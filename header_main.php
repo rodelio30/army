@@ -16,5 +16,5 @@
     <title>ARMY</title>
 
     <link href="css/app.css" rel="stylesheet">
-    <link href="css/font_googleapis.css" rel="stylesheet">
+    <link href="css/fonts.googleapis.css" rel="stylesheet">
 </head>

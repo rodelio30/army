@@ -1,13 +1,16 @@
+<?php
+include 'system_checker.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include '../system_controller/header.php' ?>
+<?php include 'header_main.php' ?>
 
 <body>
     <div class="wrapper">
         <?php
-		$nav_active = 'dashboard';
-		include 'side_navigation.php'
-		?>
+        $nav_active = 'dashboard';
+        include 'side_navigation.php'
+        ?>
 
         <div class="main">
             <?php include 'top_right_navigation.php' ?>
@@ -148,11 +151,11 @@
                 </div>
             </main>
 
-            <?php include '../system_controller/footer.php' ?>
+            <?php include 'system_controller/footer.php' ?>
         </div>
     </div>
 
-    <script src="../js/app.js"></script>
+    <script src="js/app.js"></script>
 
 
 </body>
