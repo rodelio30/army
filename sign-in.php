@@ -1,42 +1,30 @@
 <?php
-include('include/connect.php');
-
-session_start();
-if (isset($_SESSION['armylogged'])) {
-	header("location: index.php");
+require 'include/connect.php';
+if(!empty($_SESSION["id"])){
+  header("Location: index.php");
 }
-include 'include/user.php';
-
-if (isset($_POST['submit_admin'])) {
-	$email = $conn->real_escape_string($_POST['email']);
-	$password = $conn->real_escape_string($_POST['password']);
-	$res = json_decode(login($conn, $email, $password));
-	if (sizeof($res) > 0) {
-
-		$_SESSION['logged'] = true;
-		$_SESSION['id'] = $res[0]->id;
-
-		// include 'include/transaction_login.php';
-
-		if ($res[0]->type === 'admin') {
-			echo "<script type='text/javascript'>alert('Hello Admin');
-            document.location='index.php' </script>";
-		}
-		// if ($res[0]->type === 'faculty') {
-		// 	echo "<script type='text/javascript'>alert('Hello Faculty');
-		//     document.location='faculty/index.php' </script>";
-		// }
-		// if ($res[0]->type === 'student') {
-		// 	echo "<script type='text/javascript'>alert('Hello Student');
-		//     document.location='student/index.php' </script>";
-		// }
-	} else {
-		echo "<script type='text/javascript'>alert('Username or Password was incorrect.');
-            document.location='pages-sign-in.php' </script>";
-		// header("location: login.php");
-
-	}
+if(isset($_POST["submit_admin"])){
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE email = '$email'");
+  $row = mysqli_fetch_assoc($result);
+  if(mysqli_num_rows($result) > 0){
+    if($password == $row['password']){
+      $_SESSION["login"] = true;
+      $_SESSION["id"] = $row["id"];
+      header("Location: index.php");
+    }
+    else{
+      echo
+      "<script> alert('Wrong Password'); </script>";
+    }
+  }
+  else{
+    echo
+    "<script> alert('User Not Registered'); </script>";
+  }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +64,7 @@ if (isset($_POST['submit_admin'])) {
                                             class="img-fluid rounded-circle" width="132" height="132" />
                                     </div>
                                     <br>
-                                    <form>
+                                    <form method="post" autocomplete="off">
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
                                             <input class="form-control form-control-lg" type="email" name="email"
