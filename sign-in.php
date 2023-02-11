@@ -46,9 +46,7 @@ if(isset($_POST["submit_admin"])){
                                     <br>
                                     Management Information System
                                     <br>
-                                    with
-                                    <br>
-                                    Decision Support!
+                                    with Decision Support!
                                 </p>
                             </h1>
                             <!-- <p class="lead">

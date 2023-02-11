@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include '../system_controller/header.php' ?>
+<?php include 'header_main.php' ?>
 
 <body>
     <div class="wrapper">

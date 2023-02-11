@@ -5,7 +5,7 @@ if(!empty($_SESSION["id"])){
   $id = $_SESSION["id"];
   $result = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
   $row = mysqli_fetch_assoc($result);
-  echo $row["firstname"];
+//   echo $row["firstname"];
 }
 else{
   header("Location: sign-in.php");
@@ -39,7 +39,7 @@ else{
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col mt-0">
-                                                        <h5 class="card-title">Sales</h5>
+                                                        <h5 class="card-title">Reservist</h5>
                                                     </div>
 
                                                     <div class="col-auto">
@@ -132,26 +132,33 @@ else{
                             <div class="card flex-fill">
                                 <div class="card-header">
 
-                                    <h5 class="card-title mb-0">Latest Projects</h5>
+                                    <h5 class="card-title mb-0">Latest Reservist</h5>
                                 </div>
                                 <table class="table table-hover my-0">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th class="d-none d-xl-table-cell">Start Date</th>
-                                            <th class="d-none d-xl-table-cell">End Date</th>
+                                            <th class="d-none d-xl-table-cell">Email</th>
+                                            <th class="d-none d-xl-table-cell">Date Modified</th>
                                             <th>Status</th>
-                                            <th class="d-none d-md-table-cell">Assignee</th>
+                                            <th class="d-none d-md-table-cell">Rank</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Project Apollo</td>
-                                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                            <td><span class="badge bg-success">Done</span></td>
-                                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                                        </tr>
+                                    <?php
+                                        $result = mysqli_query($conn, "select reg_id, firstname, lastname, email, status, type, date, time from registration_user WHERE status='pending' ORDER BY date") or die("Query for latest reservist....");
+                                        while (list($reg_id, $firstname, $lastname, $email, $status, $type, $date, $time) = mysqli_fetch_array($result)) {
+                                            echo "
+                                                <tr>	
+                                                    <td scope='row'>$firstname $lastname</a></td>
+                                                    <td>$email</td>
+                                                    <td>$date $time</td>
+                                                    <td><span class='badge bg-warning'>$status</span></td>
+                                                    <td>$type</td>
+                                                </tr>
+                                            ";
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
