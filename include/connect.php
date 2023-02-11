@@ -1,5 +1,7 @@
 <?php
 session_start();
+date_default_timezone_set("Asia/Manila");
+
 $conn = mysqli_connect("localhost", "root", "");
 if (!$conn) {
   $ConnErr = "Not Connected to the Server";
