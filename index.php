@@ -1,5 +1,15 @@
 <?php
-include 'system_checker.php';
+// include 'system_checker.php';
+require 'include/connect.php';
+if(!empty($_SESSION["id"])){
+  $id = $_SESSION["id"];
+  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
+  $row = mysqli_fetch_assoc($result);
+  echo $row["firstname"];
+}
+else{
+  header("Location: sign-in.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
