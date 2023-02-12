@@ -2,7 +2,6 @@
 $dash_select     = '';
 $blank_select     = '';
 $profile_select     = '';
-$reservist_select     = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -12,9 +11,6 @@ if ($nav_active == 'blank') {
 }
 if ($nav_active == 'profile') {
     $profile_select = 'active';
-}
-if ($nav_active == 'reservist') {
-    $reservist_select = 'active';
 }
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
@@ -34,13 +30,7 @@ if ($nav_active == 'reservist') {
                 </a>
             </li>
 
-            <li class="sidebar-item <?php echo $reservist_select ?>">
-                <a class="sidebar-link" href="admin_registration.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reservists</span>
-                </a>
-            </li>
-            
-            <li class="sidebar-item <?php echo $profile_select ?>">
+            <!-- <li class="sidebar-item <?php echo $profile_select ?>">
                 <a class="sidebar-link" href="pages-profile.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                 </a>
@@ -50,7 +40,7 @@ if ($nav_active == 'reservist') {
                 <a class="sidebar-link" href="pages-blank.php">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- <li class="sidebar-header">
                         Tools & Components

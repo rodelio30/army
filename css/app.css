@@ -15233,3 +15233,12 @@ span.flatpickr-weekday {
 }
 
 /*# sourceMappingURL=app.css.map*/
+
+.user-clicker {
+  color: black;
+}
+
+.user-clicker:hover {
+  color: green;
+  text-decoration: none;
+}
