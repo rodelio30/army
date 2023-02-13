@@ -39,14 +39,12 @@ if(isset($_POST["submit_admin"])){
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center">
-                            <h1 class="h2">Welcome to,
-                                <br>
-                                <p style="font-weight: bold;">
+                            <h1 class="h2">                                <p style="font-weight: bold;">
                                     Army Reserved Command
                                     <br>
                                     Management Information System
                                     <br>
-                                    with Decision Support!
+                                    with Decision Support
                                 </p>
                             </h1>
                             <!-- <p class="lead">
@@ -88,7 +86,7 @@ if(isset($_POST["submit_admin"])){
                                                     </span>
                                                 </label>
                                             </div>
-                                            <a href="sign-up.php" class="success">Sign up!</a>
+                                            <a href="sign-up.php" class="btn btn-md btn-primary">Sign up!</a>
                                             <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
                                         </div>
                                     </form>
