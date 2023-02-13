@@ -1,8 +1,12 @@
 <?php
-$dash_select     = '';
+$dash_select      = '';
 $blank_select     = '';
-$profile_select     = '';
-$reservist_select     = '';
+$profile_select   = '';
+$reservist_select = '';
+$admin_select     = '';
+$staff_select     = '';
+$commander_select = '';
+$school_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -15,6 +19,18 @@ if ($nav_active == 'profile') {
 }
 if ($nav_active == 'reservist') {
     $reservist_select = 'active';
+}
+if ($nav_active == 'admin') {
+    $admin_select = 'active';
+}
+if ($nav_active == 'staff') {
+    $staff_select = 'active';
+}
+if ($nav_active == 'commander') {
+    $commander_select = 'active';
+}
+if ($nav_active == 'school') {
+    $school_select = 'active';
 }
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
@@ -34,11 +50,41 @@ if ($nav_active == 'reservist') {
                 </a>
             </li>
 
+            <li class="sidebar-header">
+               User Registration List 
+            </li>
+                    
+            <li class="sidebar-item <?php echo $admin_select ?>">
+                <a class="sidebar-link" href="admin_reg_admin.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Admin</span>
+                </a>
+            </li>
+                    
+            <li class="sidebar-item <?php echo $staff_select ?>">
+                <a class="sidebar-link" href="admin_reg_staff.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Admin Staff</span>
+                </a>
+            </li>
+            
             <li class="sidebar-item <?php echo $reservist_select ?>">
-                <a class="sidebar-link" href="admin_registration.php">
+                <a class="sidebar-link" href="admin_reg_reservist.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reservists</span>
                 </a>
             </li>
+            
+            <li class="sidebar-item <?php echo $school_select ?>">
+                <a class="sidebar-link" href="admin_reg_school.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">School Coordinator</span>
+                </a>
+            </li>
+            
+            <li class="sidebar-item <?php echo $commander_select ?>">
+                <a class="sidebar-link" href="admin_reg_commander.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Commander</span>
+                </a>
+            </li>
+
+            <hr>
             
             <li class="sidebar-item <?php echo $profile_select ?>">
                 <a class="sidebar-link" href="pages-profile.php">

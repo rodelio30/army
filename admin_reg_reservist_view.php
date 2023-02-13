@@ -10,7 +10,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
   $email         = $res['email'];
-  $type          = $res['type'];
+  $user_type          = $res['user_type'];
   $status        = $res['status'];
 }
 
@@ -35,7 +35,7 @@ while ($res   = mysqli_fetch_array($result)) {
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Reservist List / User Name</h1>
+                    <h1 class="h3 mb-3"><a href="admin_reg_reservist.php" class="linked-navigation">Reservist List </a> / User Name</h1>
 
                     <div class="row">
                         <div class="col-12">
@@ -72,7 +72,7 @@ while ($res   = mysqli_fetch_array($result)) {
                                   </div>
                                   <div class="col-sm-9 text-secondary">
                                     <div class="flatpickr-weekwrapper">
-                                      <?php echo $type ?>
+                                      <?php echo $user_type ?>
                                     </div>
                                   </div>
                                 </div>
