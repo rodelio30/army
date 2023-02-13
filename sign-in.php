@@ -51,7 +51,8 @@ if(isset($_POST["submit_admin"])){
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center">
-                            <h1 class="h2">                                <p style="font-weight: bold;">
+                            <h1 class="h2">                                
+                                <p style="font-weight: bold;">
                                     Army Reserved Command
                                     <br>
                                     Management Information System
@@ -86,19 +87,17 @@ if(isset($_POST["submit_admin"])){
 												<a href="index.html">Forgot password?</a>
 											</small> -->
                                         </div>
-                                        <div class="text-center mt-3">
+                                        <div class="text-center mt-4">
                                             <button type="submit" name="submit_admin"
-                                                class="btn btn-md btn-success">Sign in</button>
-                                            <br>
-                                            <br>
+                                                class="btn btn-md btn-outline-success">Sign in</button>
                                             <div>
-                                                <label class="form-check">
+                                                <label class="form-check mt-3">
                                                     <span class="form-check-label">
                                                         Create an Account?
                                                     </span>
                                                 </label>
                                             </div>
-                                            <a href="sign-up.php" class="btn btn-md btn-primary">Sign up!</a>
+                                            <a href="sign-choices.php" class="btn btn-md btn-outline-primary mt-1">Sign up!</a>
                                             <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
                                         </div>
                                     </form>

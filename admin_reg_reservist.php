@@ -33,28 +33,28 @@ require 'include/connect.php';
                                             <table class="table table-hover my-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th class="d-none d-xl-table-cell">Email</th>
-                                                        <th class="d-none d-xl-table-cell">Date Modified</th>
-                                                        <th>Status</th>
-                                                        <th class="d-none d-md-table-cell">Rank</th>
+                                            <th>Username</th>
+                                            <th class="d-none d-md-table-cell">Rank</th>
+                                            <th class="d-none d-xl-table-cell">Company</th>
+                                            <th>Date Modified</th>
+                                            <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php
-                                                    $result = mysqli_query($conn, "select reg_id, firstname, lastname, email, status, type, date, time from registration_user WHERE status='pending' ORDER BY date") or die("Query for latest reservist....");
-                                                    while (list($reg_id, $firstname, $lastname, $email, $status, $type, $date, $time) = mysqli_fetch_array($result)) {
-                                                        echo "
-                                                            <tr>	
-                                                                <td scope='row'><a href=\"admin_registration_view.php?ID=$reg_id\" class='user-clicker'>$firstname $lastname</a></td>
-                                                                <td>$email</td>
-                                                                <td>$date $time</td>
-                                                                <td><span class='badge bg-warning'>$status</span></td>
-                                                                <td>$type</td>
-                                                            </tr>
-                                                        ";
-                                                    }
-                                                    ?>
+                                    <?php
+                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type='reservist' ORDER BY date") or die("Query for latest reservist....");
+                                        while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
+                                            echo "
+                                                <tr>	
+                                                    <td scope='row'><a href=\"admin_reg_reservist_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>
+                                                    <td>$rank</td>
+                                                    <td>$company</td>
+                                                    <td>$date $time</td>
+                                                    <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                                                </tr>
+                                            ";
+                                        }
+                                        ?>
                                                 </tbody>
                                             </table>
                                         </div>
