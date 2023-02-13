@@ -6,6 +6,16 @@ if(!empty($_SESSION["id"])){
 if(isset($_POST["submit_admin"])){
   $email = $_POST["email"];
   $password = $_POST["password"];
+
+  if(empty($email)){
+    echo
+    "<script> alert('Please insert your Email'); </script>";
+  }
+  elseif (empty($password)){
+    echo
+    "<script> alert('Please insert your Password'); </script>";
+  }
+  else{
   $result = mysqli_query($conn, "SELECT * FROM army_users WHERE email = '$email'");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
@@ -23,6 +33,8 @@ if(isset($_POST["submit_admin"])){
     echo
     "<script> alert('User Not Registered'); </script>";
   }
+
+  }
 }
 
 ?>
@@ -39,14 +51,12 @@ if(isset($_POST["submit_admin"])){
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center">
-                            <h1 class="h2">Welcome to,
-                                <br>
-                                <p style="font-weight: bold;">
+                            <h1 class="h2">                                <p style="font-weight: bold;">
                                     Army Reserved Command
                                     <br>
                                     Management Information System
                                     <br>
-                                    with Decision Support!
+                                    with Decision Support
                                 </p>
                             </h1>
                             <!-- <p class="lead">
@@ -88,7 +98,7 @@ if(isset($_POST["submit_admin"])){
                                                     </span>
                                                 </label>
                                             </div>
-                                            <a href="sign-up.php" class="success">Sign up!</a>
+                                            <a href="sign-up.php" class="btn btn-md btn-primary">Sign up!</a>
                                             <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
                                         </div>
                                     </form>
