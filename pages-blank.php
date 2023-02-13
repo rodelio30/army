@@ -33,11 +33,11 @@
                 </div>
             </main>
 
-            <?php include '../system_controller/footer.php' ?>
+            <?php include 'system_controller/footer.php' ?>
         </div>
     </div>
 
-    <script src="../js/app.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 

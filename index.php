@@ -1,15 +1,15 @@
 <?php
-// include 'system_checker.php';
-require 'include/connect.php';
-if(!empty($_SESSION["id"])){
-  $id = $_SESSION["id"];
-  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
-  $row = mysqli_fetch_assoc($result);
-//   echo $row["firstname"];
-}
-else{
-  header("Location: sign-in.php");
-}
+include 'system_checker.php';
+// require 'include/connect.php';
+// if(!empty($_SESSION["id"])){
+//   $id = $_SESSION["id"];
+//   $result = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
+//   $row = mysqli_fetch_assoc($result);
+// //   echo $row["firstname"];
+// }
+// else{
+//   header("Location: sign-in.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,7 +150,7 @@ else{
                                         while (list($reg_id, $firstname, $lastname, $email, $status, $type, $date, $time) = mysqli_fetch_array($result)) {
                                             echo "
                                                 <tr>	
-                                                    <td scope='row'>$firstname $lastname</a></td>
+                                                    <td scope='row'><a href=\"admin_registration_view.php?ID=$reg_id\" class='user-clicker'>$firstname $lastname</a></td>
                                                     <td>$email</td>
                                                     <td>$date $time</td>
                                                     <td><span class='badge bg-warning'>$status</span></td>
