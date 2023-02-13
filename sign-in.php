@@ -6,6 +6,16 @@ if(!empty($_SESSION["id"])){
 if(isset($_POST["submit_admin"])){
   $email = $_POST["email"];
   $password = $_POST["password"];
+
+  if(empty($email)){
+    echo
+    "<script> alert('Please insert your Email'); </script>";
+  }
+  elseif (empty($password)){
+    echo
+    "<script> alert('Please insert your Password'); </script>";
+  }
+  else{
   $result = mysqli_query($conn, "SELECT * FROM army_users WHERE email = '$email'");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
@@ -22,6 +32,8 @@ if(isset($_POST["submit_admin"])){
   else{
     echo
     "<script> alert('User Not Registered'); </script>";
+  }
+
   }
 }
 
