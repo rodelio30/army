@@ -6,12 +6,19 @@ $reservist_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$reservist_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $reservist_id  = $res['reg_id'];
-  $firstname     = $res['firstname'];
-  $lastname      = $res['lastname'];
-  $email         = $res['email'];
-  $user_type          = $res['user_type'];
-  $status        = $res['status'];
+  $reservist_id = $res['reg_id'];
+  $firstname    = $res['firstname'];
+  $lastname     = $res['lastname'];
+  $username     = $res['username'];
+  $email        = $res['email'];
+  $user_type    = $res['user_type'];
+  $rank         = $res['rank'];
+  $company      = $res['company'];
+  $afpsn        = $res['afpsn'];
+  $status       = $res['status'];
+  $user_status  = $res['user_status'];
+  $date         = $res['date'];
+  $time         = $res['time'];
 }
 
 // $time_formatted  = date("g:i a ", strtotime($time_created));
@@ -57,6 +64,17 @@ while ($res   = mysqli_fetch_array($result)) {
                                 <hr>
                                 <div class="row">
                                   <div class="col-sm-3">
+                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>Username</strong></h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <div class="flatpickr-weekwrapper">
+                                      <?php echo $username ?>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
                                     <h6 class="mb-0 flatpickr-weekwrapper"><strong>Email</strong></h6>
                                   </div>
                                   <div class="col-sm-9 text-secondary">
@@ -79,6 +97,39 @@ while ($res   = mysqli_fetch_array($result)) {
                                 <hr>
                                 <div class="row">
                                   <div class="col-sm-3">
+                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <div class="flatpickr-weekwrapper">
+                                      <?php echo $rank ?>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company</strong></h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <div class="flatpickr-weekwrapper">
+                                      <?php echo $company ?>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>AFPSN</strong></h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <div class="flatpickr-weekwrapper">
+                                      <?php echo $afpsn ?>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
                                     <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                                   </div>
                                   <div class="col-sm-9 text-secondary">
@@ -88,7 +139,28 @@ while ($res   = mysqli_fetch_array($result)) {
                                   </div>
                                 </div>
                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>User Status</strong></h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <div class="flatpickr-weekwrapper">
+                                      <?php echo $user_status ?>
+                                    </div>
+                                  </div>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>Date</strong></h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <div class="flatpickr-weekwrapper">
+                                      <?php echo $date .'/'. $time ?>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr>
                             </div>
                         </div>
                     </div>
