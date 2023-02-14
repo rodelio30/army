@@ -41,9 +41,14 @@ while ($res   = mysqli_fetch_array($result)) {
 
             <main class="content">
                 <div class="container-fluid p-0">
-
-                    <h1 class="h3 mb-3"><a href="admin_reg_reservist.php" class="linked-navigation">Reservist List </a> / User Name</h1>
-
+                  <div class="row">
+                    <div class="col-6">
+                      <h1 class="h3 mb-3"><a href="admin_reg_reservist.php" class="linked-navigation">Reservist List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
+                    </div>
+                    <div class="col-6">
+                      <a <?php echo "href=\"admin_reg_reservist_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+                    </div>
+                  </div> 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
