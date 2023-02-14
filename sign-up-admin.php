@@ -61,7 +61,7 @@ if(isset($_POST["submit"])){
 								<div class="m-sm-4">
 									<form method="post" autocomplete="off">
 										<div class="mb-3">
-											<label class="form-label">Rank</label>
+											<label class="form-label">Rank <span class="input_required">*</span></label>
 											<select class="form-control" id="rank" name="rank">
                         <option value="None" select>None</option>
                         <option value="Rank 1">Rank 1</option>
@@ -72,13 +72,13 @@ if(isset($_POST["submit"])){
 										<div class="row">
 											<div class="col-6">
 										<div class="mb-3">
-											<label class="form-label">AFPSN</label>
-											<input class="form-control form-control-lg" type="text" name="afpsn" placeholder="Enter your AFPSN" />
+											<label class="form-label">AFPSN <span class="input_required">*</span></label>
+											<input class="form-control form-control-lg" type="text" name="afpsn" placeholder="Enter your AFPSN" required />
 										</div>
 											</div>
 											<div class="col-6">
 										<div class="mb-3">
-											<label class="form-label">Company</label>
+											<label class="form-label">Company <span class="input_required">*</span></label>
 											<select class="form-control" id="company" name="company">
                         <option value="None" select>None</option>
                         <option value="Company 1">Company 1</option>
