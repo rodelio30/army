@@ -42,18 +42,25 @@ require 'include/connect.php';
                                                 </thead>
                                                 <tbody>
                                     <?php
-                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type='commander' ORDER BY date") or die("Query for latest reservist....");
-                                        while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
-                                            echo "
-                                                <tr>	
-                                                    <td scope='row'><a href=\"admin_reg_reservist_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>
-                                                    <td>$rank</td>
-                                                    <td>$company</td>
-                                                    <td>$date $time</td>
-                                                    <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
-                                                </tr>
-                                            ";
-                                        }
+                                        include 'counter/registration_counter.php';
+                                    //   echo "<script>console.log('" . $reservist_counter . "');</script>";
+                                            if($commander_counter > 0) {
+                                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE (status = 'pending' || status = 'disapproved') && user_type='commander' ORDER BY date") or die("Query for latest commander....");
+                                            while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
+                                                echo "
+                                                    <tr>	
+                                                        <td scope='row'><a href=\"admin_reg_commander_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>
+                                                        <td>$rank</td>
+                                                        <td>$company</td>
+                                                        <td>$date $time</td>
+                                                        <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                                                    </tr>
+                                                ";
+                                            }
+                                            }
+                                            else {
+                                                echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
+                                            }
                                         ?>
                                                 </tbody>
                                             </table>

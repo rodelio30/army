@@ -1,5 +1,5 @@
 <?php 
-require 'include/connect.php';
+include 'system_checker.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,11 @@ require 'include/connect.php';
                                                 </thead>
                                                 <tbody>
                                     <?php
-                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type='admin' ORDER BY date") or die("Query for latest reservist....");
+                                    include 'counter/registration_counter.php';
+                                      echo "<script>console.log('" . $admin_counter . "');</script>";
+
+                                        if($admin_counter > 0) {
+                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE user_type='admin' && (status = 'pending' || status = 'disapproved') ORDER BY date") or die("Query for latest reservist....");
                                         while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                                             echo "
                                                 <tr>	
@@ -53,6 +57,10 @@ require 'include/connect.php';
                                                     <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
                                                 </tr>
                                             ";
+                                        }
+                                        }
+                                        else {
+                                            echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
                                         }
                                         ?>
                                                 </tbody>
