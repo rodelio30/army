@@ -49,6 +49,16 @@ if ($nav_active == 'school') {
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
+            
+            <li class="sidebar-header">
+               List of all Users 
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="admin_reg_admin.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">User</span>
+                </a>
+            </li>
 
             <li class="sidebar-header">
                User Registration List 

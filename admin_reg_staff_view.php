@@ -1,12 +1,11 @@
-
 <?php 
 include 'system_checker.php';
 
-$reservist_id = $_GET['ID'];
+$staff_id = $_GET['ID'];
 
-$result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$reservist_id' && user_type='admin' ");
+$result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$staff_id' && user_type='staff' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $reservist_id = $res['reg_id'];
+  $staff_id     = $res['reg_id'];
   $firstname    = $res['firstname'];
   $lastname     = $res['lastname'];
   $username     = $res['username'];
@@ -32,7 +31,7 @@ while ($res   = mysqli_fetch_array($result)) {
 <body>
     <div class="wrapper">
         <?php
-  $nav_active = 'admin';
+  $nav_active = 'staff';
 		include 'side_navigation.php'
 		?>
 
@@ -43,10 +42,10 @@ while ($res   = mysqli_fetch_array($result)) {
                 <div class="container-fluid p-0">
                   <div class="row">
                     <div class="col-6">
-                      <h1 class="h3 mb-3"><a href="admin_reg_admin.php" class="linked-navigation">Admin List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
+                      <h1 class="h3 mb-3"><a href="admin_reg_staff.php" class="linked-navigation">Staff List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
                     </div>
                     <div class="col-6">
-                      <a <?php echo "href=\"admin_reg_admin_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+                      <a <?php echo "href=\"admin_reg_staff_edit.php?ID=$staff_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
                     </div>
                   </div> 
                     <div class="row">

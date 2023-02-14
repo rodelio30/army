@@ -1,5 +1,5 @@
 <?php 
-require 'include/connect.php';
+include 'system_checker.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@ require 'include/connect.php';
                                     //   echo "<script>console.log('" . $reservist_counter . "');</script>";
 
                                     if($reservist_counter > 0) {
-                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type='reservist' ORDER BY date") or die("Query for latest reservist....");
+                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE (status = 'pending' || status = 'disapproved') && user_type='reservist' ORDER BY date") or die("Query for latest reservist....");
                                         while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                                             echo "
                                                 <tr>	
@@ -57,11 +57,11 @@ require 'include/connect.php';
                                                     <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
                                                 </tr>
                                             ";
-                                        }
-                                    }
-                                    else {
-                                        echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
-                                    }
+                                                }
+                                            }
+                                            else {
+                                                echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
+                                            }
                                         ?>
                                                 </tbody>
                                             </table>

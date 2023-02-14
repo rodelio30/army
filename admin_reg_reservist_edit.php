@@ -1,5 +1,5 @@
 <?php 
-require 'include/connect.php';
+include 'system_checker.php';
 // include 'admin_checker.php';
 
 $reservist_id = $_GET['ID'];
@@ -21,12 +21,22 @@ while ($res   = mysqli_fetch_array($result)) {
 }
 
 if (isset($_POST['update'])) {
-  $status         = $_POST['status'];
-  $user_status    = $_POST['user_status'];
+  $up_status         = $_POST['status'];
+  $up_user_status    = $_POST['user_status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
-  $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$status', '$user_status', '$date_modified', '$time_modified','$reservist_id')";
+  if($up_status == 'disapproved'){
+  echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved!.")</script>';
+    mysqli_query($conn, "update registration_user set status = '$up_status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
+  }
+  else{
+  if($up_user_status == 'inactive'){
+  echo '<script type="text/javascript"> alert("User ' . $username . ' is inactive!.")</script>';
+    mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
+  }
+  else {
+  $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$up_status', '$up_user_status', '$date_modified', '$time_modified','$reservist_id')";
 
      if (mysqli_query($conn, $query_army_user)) {
     // Getter for army user id
@@ -44,6 +54,9 @@ if (isset($_POST['update'])) {
   echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
   header('Refresh: 0; url=admin_reg_reservist.php');
 
+  }
+  }
+  // End of Else in Inactive if
 }
 
 // $time_formatted  = date("g:i a ", strtotime($time_created));
@@ -82,7 +95,7 @@ if (isset($_POST['update'])) {
                                         <select class="form-control" id="status" name="status">
                                           <option value="disapproved" selected>Disapproved</option>
                                           <option value="ready">Ready</option>
-                                          <option value="inactive">Standby</option>
+                                          <option value="standby">Standby</option>
                                           <option value="retired">Retired</option>
                                         </select>
                                       </div>

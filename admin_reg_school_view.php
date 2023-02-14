@@ -1,20 +1,17 @@
-
 <?php 
 include 'system_checker.php';
 
-$reservist_id = $_GET['ID'];
+$school_id = $_GET['ID'];
 
-$result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$reservist_id' && user_type='admin' ");
+$result       = mysqli_query($conn, "SELECT * FROM registration_sc WHERE sc_id='$school_id' && user_type='school_coordinator' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $reservist_id = $res['reg_id'];
+  $school_id    = $res['sc_id'];
   $firstname    = $res['firstname'];
   $lastname     = $res['lastname'];
   $username     = $res['username'];
   $email        = $res['email'];
   $user_type    = $res['user_type'];
   $rank         = $res['rank'];
-  $company      = $res['company'];
-  $afpsn        = $res['afpsn'];
   $status       = $res['status'];
   $user_status  = $res['user_status'];
   $date         = $res['date'];
@@ -32,7 +29,7 @@ while ($res   = mysqli_fetch_array($result)) {
 <body>
     <div class="wrapper">
         <?php
-  $nav_active = 'admin';
+  $nav_active = 'school';
 		include 'side_navigation.php'
 		?>
 
@@ -43,17 +40,17 @@ while ($res   = mysqli_fetch_array($result)) {
                 <div class="container-fluid p-0">
                   <div class="row">
                     <div class="col-6">
-                      <h1 class="h3 mb-3"><a href="admin_reg_admin.php" class="linked-navigation">Admin List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
+                      <h1 class="h3 mb-3"><a href="admin_reg_school.php" class="linked-navigation">School Coordinator List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
                     </div>
                     <div class="col-6">
-                      <a <?php echo "href=\"admin_reg_admin_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+                      <a <?php echo "href=\"admin_reg_school_edit.php?ID=$school_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
                     </div>
                   </div> 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Latest Reservist</h5>
+                                    <h5 class="card-title mb-0">Latest School Coordinator</h5>
                                 </div>
                                 <div class="card-body">
                                 <div class="row">
@@ -107,28 +104,6 @@ while ($res   = mysqli_fetch_array($result)) {
                                   <div class="col-sm-9 text-secondary">
                                     <div class="flatpickr-weekwrapper">
                                       <?php echo $rank ?>
-                                    </div>
-                                  </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company</strong></h6>
-                                  </div>
-                                  <div class="col-sm-9 text-secondary">
-                                    <div class="flatpickr-weekwrapper">
-                                      <?php echo $company ?>
-                                    </div>
-                                  </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <h6 class="mb-0 flatpickr-weekwrapper"><strong>AFPSN</strong></h6>
-                                  </div>
-                                  <div class="col-sm-9 text-secondary">
-                                    <div class="flatpickr-weekwrapper">
-                                      <?php echo $afpsn ?>
                                     </div>
                                   </div>
                                 </div>

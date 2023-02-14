@@ -1,5 +1,5 @@
 <?php 
-require 'include/connect.php';
+include 'system_checker.php';
 // include 'admin_checker.php';
 
 $reservist_id = $_GET['ID'];
