@@ -1,12 +1,13 @@
+
 <?php 
 require 'include/connect.php';
 // include 'admin_checker.php';
 
 $reservist_id = $_GET['ID'];
 
-$result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$reservist_id' && user_type='reservist'");
+$result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$reservist_id' && user_type='admin' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $reservist_id = $res['reg_id'];
+  $admin_id     = $res['reg_id'];
   $firstname    = $res['firstname'];
   $lastname     = $res['lastname'];
   $username     = $res['username'];
@@ -26,24 +27,31 @@ if (isset($_POST['update'])) {
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
-  $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$status', '$user_status', '$date_modified', '$time_modified','$reservist_id')";
+  if($status = 'disapproved' && $user_status == 'inactive'){
+  echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved!.")</script>';
+      mysqli_query($conn, "update registration_user set status = '$status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
+  }
+  else{
+
+  $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$status', '$user_status', '$date_modified', '$time_modified','$admin_id')";
 
      if (mysqli_query($conn, $query_army_user)) {
     // Getter for army user id
-      $result_getter = mysqli_query($conn, "SELECT id FROM army_users WHERE reg_user = $reservist_id");
+      $result_getter = mysqli_query($conn, "SELECT id FROM army_users WHERE reg_user = $admin_id");
       $row           = mysqli_fetch_assoc($result_getter);
       $army_user_id  = $row["id"];
 
-      $query_reservist = "INSERT INTO reservists VALUES('','$army_user_id','$rank','$company','$afpsn','$date_modified', '$time_modified')";
+      // Insert into Admin Table
+      $query_reservist = "INSERT INTO army_admin VALUES('','$army_user_id','$rank','$company','$afpsn','$date_modified', '$time_modified')";
         mysqli_query($conn, $query_reservist);
         
-      $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
+      $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $admin_id";
         mysqli_query($conn, $query_del_reservist);
      }
-
-  echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_reg_reservist.php');
-
+    echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
+    header('Refresh: 0; url=admin_reg_reservist.php');
+  }
+  // End of Else in Inactive if
 }
 
 // $time_formatted  = date("g:i a ", strtotime($time_created));
@@ -57,7 +65,7 @@ if (isset($_POST['update'])) {
 <body>
     <div class="wrapper">
         <?php
-		$nav_active = 'reservist';
+		$nav_active = 'admin';
 		include 'side_navigation.php'
 		?>
 
@@ -66,7 +74,7 @@ if (isset($_POST['update'])) {
 
             <main class="content">
                 <div class="container-fluid p-0">
-                      <h1 class="h3 mb-3"><a href="admin_reg_reservist.php" class="linked-navigation">Reservist List </a> / <a href="admin_reg_reservist_view.php?ID=<?php echo $reservist_id ?>" class="linked-navigation"><?php echo $firstname . ' ' . $lastname ?> </a> / Edit</h1>
+                      <h1 class="h3 mb-3"><a href="admin_reg_admin.php" class="linked-navigation">Admin List </a> / <a href="admin_reg_admin_view.php?ID=<?php echo $reservist_id ?>" class="linked-navigation"><?php echo $firstname . ' ' . $lastname ?> </a> / Edit</h1>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">

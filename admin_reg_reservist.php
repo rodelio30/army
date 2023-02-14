@@ -42,6 +42,10 @@ require 'include/connect.php';
                                                 </thead>
                                                 <tbody>
                                     <?php
+                                    include 'counter/registration_counter.php';
+                                    //   echo "<script>console.log('" . $reservist_counter . "');</script>";
+
+                                    if($reservist_counter > 0) {
                                         $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type='reservist' ORDER BY date") or die("Query for latest reservist....");
                                         while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                                             echo "
@@ -54,6 +58,10 @@ require 'include/connect.php';
                                                 </tr>
                                             ";
                                         }
+                                    }
+                                    else {
+                                        echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
+                                    }
                                         ?>
                                                 </tbody>
                                             </table>
