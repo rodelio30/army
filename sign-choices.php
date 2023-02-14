@@ -1,5 +1,8 @@
 <?php
 require 'include/connect.php';
+if(!empty($_SESSION["id"])){
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
