@@ -1,5 +1,6 @@
 <?php
 $dash_select      = '';
+$users_select      = '';
 $blank_select     = '';
 $profile_select   = '';
 $reservist_select = '';
@@ -10,6 +11,9 @@ $school_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
+}
+if ($nav_active == 'users') {
+    $users_select = 'active';
 }
 if ($nav_active == 'blank') {
     $blank_select = 'active';
@@ -54,8 +58,8 @@ if ($nav_active == 'school') {
                List of all Users 
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="admin_reg_admin.php">
+            <li class="sidebar-item <?php echo $users_select ?>">
+                <a class="sidebar-link" href="admin_users.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">User</span>
                 </a>
             </li>
