@@ -54,6 +54,7 @@ if ($nav_active == 'school') {
                 </a>
             </li>
             
+            <hr>
             <li class="sidebar-header">
                List of all Users 
             </li>
@@ -64,6 +65,7 @@ if ($nav_active == 'school') {
                 </a>
             </li>
 
+            <hr>
             <li class="sidebar-header">
                User Registration List 
             </li>
@@ -99,7 +101,17 @@ if ($nav_active == 'school') {
             </li>
 
             <hr>
+
+            <li class="sidebar-header">
+               School Registration List 
+            </li>
             
+            <li class="sidebar-item <?php echo $schools_select ?>">
+                <a class="sidebar-link" href="admin_schools.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Schools</span>
+                </a>
+            </li>
+
             <li class="sidebar-item <?php echo $profile_select ?>">
                 <a class="sidebar-link" href="pages-profile.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
