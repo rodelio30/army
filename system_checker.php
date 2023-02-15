@@ -2,7 +2,7 @@
 
 require 'include/connect.php';
 
-if(!empty($_SESSION["id"])){
+if (!empty($_SESSION["id"])) {
   $id          = $_SESSION["id"];
   $result      = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
   $row         = mysqli_fetch_assoc($result);
@@ -10,24 +10,21 @@ if(!empty($_SESSION["id"])){
   $type        = $row["type"];
   $status      = $row["status"];
   $user_status = $row["user_status"];
-  
-  if($user_status == 'active')
-  {
+
+  if ($user_status == 'active') {
     if ($type == 'lvl2') {
-        header("location: lvl2/index.php");
+      header("location: lvl2/index.php");
     }
-    if ($type == 'lvl3') {
-        header("location: lvl3/index.php");
+    if ($type == 'reservist') {
+      header("location: lvl3/index.php");
     }
     if ($type == 'lvl4') {
-        header("location: lvl4/index.php");
+      header("location: lvl4/index.php");
     }
-  }
-  else {
+  } else {
     echo "<script> alert('Sorry, your account is inactive. Please wait for the approval'); </script>";
   }
-}
-else{
+} else {
   header("Location: sign-in.php");
 }
 
