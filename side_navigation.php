@@ -8,6 +8,7 @@ $admin_select     = '';
 $staff_select     = '';
 $commander_select = '';
 $school_select    = '';
+$schools_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -36,6 +37,9 @@ if ($nav_active == 'commander') {
 if ($nav_active == 'school') {
     $school_select = 'active';
 }
+if ($nav_active == 'schools') {
+    $schools_select = 'active';
+}
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
@@ -53,8 +57,7 @@ if ($nav_active == 'school') {
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
-            
-            <hr>
+
             <li class="sidebar-header">
                List of all Users 
             </li>
@@ -65,7 +68,6 @@ if ($nav_active == 'school') {
                 </a>
             </li>
 
-            <hr>
             <li class="sidebar-header">
                User Registration List 
             </li>
@@ -100,15 +102,13 @@ if ($nav_active == 'school') {
                 </a>
             </li>
 
-            <hr>
-
             <li class="sidebar-header">
                School Registration List 
             </li>
             
             <li class="sidebar-item <?php echo $schools_select ?>">
                 <a class="sidebar-link" href="admin_schools.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Schools</span>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">School</span>
                 </a>
             </li>
 
