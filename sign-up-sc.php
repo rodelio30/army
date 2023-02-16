@@ -1,44 +1,41 @@
-
 <?php
 require 'include/connect.php';
-if(!empty($_SESSION["id"])){
-  header("Location: index.php");
+if (!empty($_SESSION["id"])) {
+	header("Location: index.php");
 }
-if(isset($_POST["submit"])){
-  $rank            = $_POST["rank"];
-  $school_name     = $_POST["school_name"];
-  $school_address  = $_POST["school_address"];
-  $firstname       = $_POST["firstname"];
-  $lastname        = $_POST["lastname"];
-  $username        = $_POST["username"];
-  $email           = $_POST["email"];
-  $password        = $_POST["password"];
-  $confirmpassword = $_POST["confirmpassword"];
+if (isset($_POST["submit"])) {
+	$rank            = $_POST["rank"];
+	$school_name     = $_POST["school_name"];
+	$school_address  = $_POST["school_address"];
+	$firstname       = $_POST["firstname"];
+	$lastname        = $_POST["lastname"];
+	$username        = $_POST["username"];
+	$email           = $_POST["email"];
+	$password        = $_POST["password"];
+	$confirmpassword = $_POST["confirmpassword"];
 	$user_type       = "school_coordinator";
-	$status          = "pending";  
-	$user_status     = "inactive";  
+	$status          = "pending";
+	$user_status     = "inactive";
 	$date            = date("Y-m-d");
-  $time            = date("H:i:s");;
+	$time            = date("H:i:s");;
 
 	// Checkng if duplicate email
-  $duplicate = mysqli_query($conn, "SELECT * FROM registration_sc WHERE username = '$username' OR  email = '$email'");
-  if(mysqli_num_rows($duplicate) > 0){
-    echo
-    "<script> alert('Username or Email Has Already Taken'); </script>";
-  }
-  else{
+	$duplicate = mysqli_query($conn, "SELECT * FROM registration_sc WHERE username = '$username' OR  email = '$email'");
+	if (mysqli_num_rows($duplicate) > 0) {
+		echo
+		"<script> alert('Username or Email Has Already Taken'); </script>";
+	} else {
 		// Checking if password confirmation match
-    if($password == $confirmpassword){
-      $query = "INSERT INTO registration_sc VALUES('','$firstname','$lastname','$username','$email','$password','$school_name','$school_address','$rank','$user_type','$status','$user_status','$date', '$time')";
-      mysqli_query($conn, $query);
+		if ($password == $confirmpassword) {
+			$query = "INSERT INTO registration_sc VALUES('','$firstname','$lastname','$username','$email','$password','$school_name','$school_address','$rank','$user_type','$status','$user_status','$date', '$time')";
+			mysqli_query($conn, $query);
 
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";
-    }
-    else{
-      echo
-      "<script> alert('Password Does Not Match'); </script>";
-    }
-  }
+		} else {
+			echo
+			"<script> alert('Password Does Not Match'); </script>";
+		}
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -62,12 +59,16 @@ if(isset($_POST["submit"])){
 								<div class="m-sm-4">
 									<form method="post" autocomplete="off">
 										<div class="mb-2">
-											<label class="form-label">School Name <span class="input_required">*</span> </label>
-											<select class="form-control" id="school_name" name="school_name">
-                        <option value="None" select>None</option>
-                        <option value="School Name 1">School Name 1</option>
-                        <option value="School Name 2" >School Name 2</option>
-                      </select>
+											<label class="form-label">School Name <span class="input_required">*</span>
+											</label>
+											<select name="school_name" class="form-control">
+												<?php
+												$result = mysqli_query($conn, "select school_name from schools where status='active'") or die("Query School List is inncorrect........");
+												while (list($school_name) = mysqli_fetch_array($result)) {
+													echo "<option value='$school_name'>$school_name</option>";
+												}
+												?>
+											</select>
 										</div>
 										<div class="mb-2">
 											<label class="form-label">School Address <span class="input_required">*</span> </label>
@@ -76,10 +77,10 @@ if(isset($_POST["submit"])){
 										<div class="mb-2">
 											<label class="form-label">Rank</label>
 											<select class="form-control" id="rank" name="rank">
-                        <option value="None" select>None</option>
-                        <option value="Rank 1">Rank 1</option>
-                        <option value="Rank 2" >Rank 2</option>
-                      </select>
+												<option value="None" select>None</option>
+												<option value="Rank 1">Rank 1</option>
+												<option value="Rank 2">Rank 2</option>
+											</select>
 										</div>
 										<hr>
 										<div class="row">
@@ -126,7 +127,7 @@ if(isset($_POST["submit"])){
 											</div>
 										</div>
 										<div class="text-center mt-3">
-                      <div class="row">
+											<div class="row">
 												<div class="col-6">
 													<a href="sign-choices.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
 												</div>

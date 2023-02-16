@@ -2,14 +2,17 @@
   size: A4;
   margin: 0;
 }
+
 #action-print {
   display: none;
   visibility: none;
 }
+
 #print-btn {
   display: none;
   visibility: none;
 }
+
 footer,
 head,
 #sidebar,

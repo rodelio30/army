@@ -7,6 +7,13 @@
     <meta name="keywords"
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
+
+    <?php
+    if (!empty($_SESSION["id"])) { ?>
+    <meta http-equiv="refresh" content="600;url=include/warning-sign.php" />
+    <meta http-equiv="refresh" content="610;url=include/logout-sign.php" />
+    <?php
+    } ?>
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
 
     <link rel="shortcut icon" href="img/icons/army_icon.png" />
@@ -18,4 +25,7 @@
     <link href="css/app.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
     <link href="css/fonts.googleapis.css" rel="stylesheet">
+
+    <!-- This line below is for Datatables -->
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 </head>
