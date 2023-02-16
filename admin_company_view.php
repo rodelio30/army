@@ -1,13 +1,13 @@
 <?php
 include 'system_checker.php';
 
-$ranks_id = $_GET['ID'];
+$company_id = $_GET['ID'];
 
-$result       = mysqli_query($conn, "SELECT * FROM ranks WHERE rank_id='$ranks_id'");
+$result       = mysqli_query($conn, "SELECT * FROM company WHERE company_id='$company_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $ranks_id       = $res['rank_id'];
-  $my_ranked         = $res['ranked'];
-  $rank_name      = $res['rank_name'];
+  $company_id       = $res['company_id'];
+  $my_rank_letter         = $res['rank_letter'];
+  $company_name      = $res['company_name'];
   $status         = $res['status'];
   $date_created   = $res['date_created'];
   $time_created   = $res['time_created'];
@@ -16,21 +16,21 @@ while ($res   = mysqli_fetch_array($result)) {
 }
 
 if (isset($_POST['update'])) {
-  $ranked         = $_POST['ranked'];
-  $rank_name      = $_POST['rank_name'];
+  $rank_letter         = $_POST['rank_letter'];
+  $company_name      = $_POST['company_name'];
   $status         = $_POST['status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM ranks WHERE ranked = '$ranked' && ranked != '$my_ranked'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM company WHERE rank_letter = '$rank_letter' && rank_letter != '$my_rank_letter'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
-    "<script> alert('Rank Classification has already taken'); </script>";
+    "<script> alert('company Classification has already taken'); </script>";
   } else {
-  mysqli_query($conn, "update ranks set ranked = '$ranked', rank_name = '$rank_name', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rank_id = '$ranks_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update company set rank_letter = '$rank_letter', company_name = '$company_name', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where company_id = '$company_id'") or die("Query 4 is incorrect....");
 
-  echo '<script type="text/javascript"> alert("' . $rank_name . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_ranks.php');
+  echo '<script type="text/javascript"> alert("' . $company_name . ' updated!.")</script>';
+  header('Refresh: 0; url=admin_company.php');
   }
   // End of Else in Inactive if
 }
@@ -38,6 +38,21 @@ if (isset($_POST['update'])) {
 
 $sel_active   = "";
 $sel_inactive = "";
+
+$sel_a = "";
+$sel_b = "";
+$sel_c = "";
+$sel_d = "";
+
+if ($my_rank_letter == "A") {
+  $sel_a = "selected";
+} else if ($my_rank_letter == "B") {
+  $sel_b = "selected";
+} else if ($my_rank_letter == "C") {
+  $sel_c = "selected";
+} else if ($my_rank_letter == "D") {
+  $sel_d = "selected";
+}
 
 if ($status == "active") {
   $sel_active  = "selected";
@@ -53,7 +68,7 @@ if ($status == "active") {
 <body>
   <div class="wrapper">
     <?php
-    $nav_active = 'rank';
+    $nav_active = 'company';
     include 'side_navigation.php'
     ?>
 
@@ -62,32 +77,37 @@ if ($status == "active") {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="admin_ranks.php" class="linked-navigation">Rank List</a> /
-            <?php echo $rank_name ?></h1>
+          <h1 class="h3 mb-3"><a href="admin_company.php" class="linked-navigation">Company List</a> /
+            <?php echo $company_name ?></h1>
 
           <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Edit Rank</h5>
+                  <h5 class="card-title mb-0">Edit Company</h5>
                 </div>
                 <div class="card-body">
                   <form method="post" autocomplete="off">
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Ranked</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Letter</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="number" class="form-control" id="ranked" name="ranked" value="<?php echo $my_ranked ?>" placeholder="Enter Ranked">
+                        <select class="form-control" id="rank_letter" name="rank_letter">
+                          <option value="A" <?php echo $sel_a ?>>A</option>
+                          <option value="B" <?php echo $sel_b ?> >B</option>
+                          <option value="C" <?php echo $sel_c ?> >C</option>
+                          <option value="D" <?php echo $sel_d ?> >D</option>
+                        </select>
                       </div>
                     </div>
                     <br>
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Name</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company Name</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="rank_name" name="rank_name" value="<?php echo $rank_name ?>" placeholder="Enter Rank Name">
+                        <input type="text" class="form-control" id="company_name" name="company_name" value="<?php echo $company_name ?>" placeholder="Enter company Name">
                       </div>
                     </div>
                     <br>
@@ -132,7 +152,7 @@ if ($status == "active") {
                     <hr>
                     <div class="row">
                       <div class="col-6">
-                        <a href="admin_ranks.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
+                        <a href="admin_company.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
