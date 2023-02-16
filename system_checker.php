@@ -13,14 +13,17 @@ if (!empty($_SESSION["id"])) {
   $user_status = $row["user_status"];
 
   if ($user_status == 'active') {
-    if ($type == 'lvl2') {
-      header("location: lvl2/index.php");
-    }
+    // if ($type == 'lvl2') {
+    //   header("location: lvl2/index.php");
+    // }
     if ($type == 'reservist') {
       header("location: lvl3/index.php");
     }
-    if ($type == 'lvl4') {
+    if ($type == 'school_coordinator') {
       header("location: lvl4/index.php");
+    }
+    if ($type == 'commander') {
+      header("location: lvl5/index.php");
     }
   } else {
     echo "<script> alert('Sorry, your account is inactive. Please wait for the approval'); </script>";

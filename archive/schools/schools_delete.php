@@ -1,6 +1,5 @@
 <?php
 include '../../include/connect.php';
-date_default_timezone_set("Asia/Manila");
 
 $school_id = $_GET['ID'];
 
