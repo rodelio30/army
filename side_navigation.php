@@ -68,7 +68,7 @@ if ($nav_active == 'archive') {
 
             <li class="sidebar-item <?php echo $users_select ?>">
                 <a class="sidebar-link" href="admin_users.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">User</span>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
                 </a>
             </li>
 

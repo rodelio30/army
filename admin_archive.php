@@ -18,26 +18,8 @@ include 'system_checker.php';
 
             <main class="content">
                 <div class="container-fluid p-0">
-
-                    <div class="row">
-                        <div class="col-6">
-                            <h1 class="h3 mb-3">Archive List for School Registered</h1>
-                        </div>
-                        <div class="col-6">
-                            <button onclick="window.print();" class="btn btn-outline-secondary float-end" id="print-btn"><span data-feather="printer"></span> Print</button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <?php include 'admin_archive_table_school.php'; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php include 'admin_archive_table_users.php'; ?>
+                    <?php include 'admin_archive_table_school.php'; ?>
                 </div>
             </main>
 
