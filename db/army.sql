@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 09:48 AM
+-- Generation Time: Feb 16, 2023 at 01:17 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -140,7 +140,7 @@ CREATE TABLE `army_users` (
 --
 
 INSERT INTO `army_users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `type`, `status`, `user_status`, `date_modified`, `time_modified`, `reg_user`) VALUES
-(1, 'Rodelio', 'Domingo', '', 'rodel@sample.com', 'admin', 'admin', 'standby', 'active', NULL, '00:00:00.000000', 0),
+(1, 'Rodelio', 'Domingo', 'gwapo', 'rodel@sample.com', 'admin', 'admin', 'standby', 'active', NULL, '00:00:00.000000', 0),
 (2, 'Sample', 'Sample', '', 'sample2@sample.com', 'sample', 'lvl2', 'standby', 'active', NULL, '00:00:00.000000', 0),
 (3, 'Sample', 'Sample', '', 'sample3@sample.com', 'sample', 'lvl3', 'standby', 'active', NULL, '00:00:00.000000', 0),
 (4, 'Sample', 'Sample', '', 'sample4@sample.com', 'sample', 'lvl4', 'standby', 'active', '2022-12-22', '00:00:00.000000', 0),
@@ -239,6 +239,14 @@ CREATE TABLE `schools` (
   `time_modified` time(6) NOT NULL,
   `uploader` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `schools`
+--
+
+INSERT INTO `schools` (`school_id`, `school_name`, `acronym`, `description`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
+(1, 'Central Luzon State University', 'CLSU', 'My College Now Today', 'archive', '2023-02-15', '07:01:56.000000', '2023-02-15', '08:40:53.000000', 'gwapo'),
+(2, 'Nueva Ecija University of Santo Tomas', 'NEUST', 'Their College', 'inactive', '2023-02-15', '08:41:58.000000', '2023-02-15', '08:41:58.000000', 'gwapo');
 
 --
 -- Indexes for dumped tables
@@ -354,7 +362,7 @@ ALTER TABLE `reservists`
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
