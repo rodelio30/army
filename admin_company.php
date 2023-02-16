@@ -9,7 +9,7 @@ include 'system_checker.php';
 <body>
     <div class="wrapper">
         <?php
-        $nav_active = 'rank';
+        $nav_active = 'company';
         include 'side_navigation.php'
         ?>
 
@@ -20,12 +20,12 @@ include 'system_checker.php';
                 <div class="container-fluid p-0">
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="h3 mb-3">Rank List
+                            <h1 class="h3 mb-3">Company List
                                 <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                             </h1>
                         </div>
                         <div class="col-md-3">
-                            <a <?php echo "href=\"admin_ranks_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add Rank</a>
+                            <a <?php echo "href=\"admin_company_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add Company</a>
                         </div>
                     </div>
 
@@ -36,8 +36,8 @@ include 'system_checker.php';
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th width="2%">Ranked</th>
-                                                <th>Rank</th>
+                                                <th>Rank Letter</th>
+                                                <th>Company</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
                                                 <th id="action-print"><span class="float-end me-5">Action</span>
@@ -46,18 +46,18 @@ include 'system_checker.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            include 'counter/ranks_counter.php';
+                                            include 'counter/company_counter.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
-                                            if ($ranks_counter > 0) {
-                                                $result = mysqli_query($conn, "select rank_id, ranked, rank_name, status, date_modified from ranks WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
-                                                while (list($rank_id, $ranked, $rank_name, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                            if ($company_counter > 0) {
+                                                $result = mysqli_query($conn, "select company_id, rank_letter,company_name, status, date_modified from company WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                while (list($company_id, $rank_letter, $company_name, $status, $date_modified) = mysqli_fetch_array($result)) {
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$ranked</a></td>
-                                                        <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$rank_name</a></td>
+                                                        <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$rank_letter</a></td>
+                                                        <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$company_name</a></td>
                                                         <td>$date_modified</td>
                                                         <td>$status</td>
-                                                        <td id='action-print'><a href=\"archive/ranks/ranks_archive.php?ID=$rank_id\" onClick=\"return confirm('Are you sure you want this rank move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
+                                                        <td id='action-print'><a href=\"archive/company/company_archive.php?ID=$company_id\" onClick=\"return confirm('Are you sure you want this company move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
                                                 }
@@ -65,7 +65,8 @@ include 'system_checker.php';
                                                 echo " <tr>	
                                                         <td></td>
                                                         <td></td>
-                                                        <td>No Active rank</td>
+                                                        <td>No Active company</td>
+                                                        <td></td>
                                                         <td></td>
                                                         </tr>";
                                             }

@@ -2,7 +2,7 @@
 $dash_select      = '';
 $users_select      = '';
 $blank_select     = '';
-$profile_select   = '';
+$rank_select   = '';
 $reservist_select = '';
 $admin_select     = '';
 $staff_select     = '';
@@ -10,6 +10,7 @@ $commander_select = '';
 $school_select    = '';
 $schools_select    = '';
 $archive_select    = '';
+$company_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -20,8 +21,8 @@ if ($nav_active == 'users') {
 if ($nav_active == 'blank') {
     $blank_select = 'active';
 }
-if ($nav_active == 'profile') {
-    $profile_select = 'active';
+if ($nav_active == 'rank') {
+    $rank_select = 'active';
 }
 if ($nav_active == 'reservist') {
     $reservist_select = 'active';
@@ -43,6 +44,9 @@ if ($nav_active == 'schools') {
 }
 if ($nav_active == 'archive') {
     $archive_select = 'active';
+}
+if ($nav_active == 'company') {
+    $company_select = 'active';
 }
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
@@ -117,9 +121,15 @@ if ($nav_active == 'archive') {
                 </a>
             </li>
 
-            <li class="sidebar-item <?php echo $profile_select ?>">
-                <a class="sidebar-link" href="pages-profile.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            <li class="sidebar-item <?php echo $rank_select ?>">
+                <a class="sidebar-link" href="admin_ranks.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Rank Classification</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item <?php echo $company_select ?>">
+                <a class="sidebar-link" href="admin_company.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Company</span>
                 </a>
             </li>
 
