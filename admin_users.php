@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'system_checker.php';
 ?>
 <!DOCTYPE html>
@@ -9,9 +9,9 @@ include 'system_checker.php';
 <body>
     <div class="wrapper">
         <?php
-		$nav_active = 'users';
-		include 'side_navigation.php'
-		?>
+        $nav_active = 'users';
+        include 'side_navigation.php'
+        ?>
 
         <div class="main">
             <?php include 'top_right_navigation.php' ?>
@@ -19,53 +19,47 @@ include 'system_checker.php';
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3 header-dash">User List</h1>
+                    <h1 class="h3 mb-3 header-dash">User List
+                        <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn">Print</button>
+                    </h1>
 
                     <div class="row" id="areaToPrint">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Latest Users</h5>
-                                    <button onclick="window.print();" class="btn btn-primary" id="print-btn">Print</button>
-                                </div>
                                 <div class="card-body">
-                                    <div class="col-12 col-lg-12 col-xxl-12">
-                                        <div class="card">
-                                            <table class="table table-bordered print">
-                                                <thead>
-                                                    <tr>
-                                                      <th>Username</th>
-                                                      <th>Date Modified</th>
-                                                      <th>Status</th>
-                                                      <th>Username</th>
-                                                      <th>Date Modified</th>
-                                                      <th>Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                    <?php
-                                    include 'counter/users_counter.php';
+                                    <table id="example" class="table table-hover my-0" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Username</th>
+                                                <th>Type</th>
+                                                <th>User Status</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            include 'counter/users_counter.php';
 
-                                    if($users_counter > 0) {
-                                        $result = mysqli_query($conn, "select id, username, type, status, date_modified, time_modified from army_users WHERE user_status='active' ORDER BY date_modified") or die("Query for latest reservist....");
-                                        while (list($id, $username, $user_type, $status, $date, $time) = mysqli_fetch_array($result)) {
-                                            echo "
+                                            if ($users_counter > 0) {
+                                                $result = mysqli_query($conn, "select id, username, type, status, user_status, date_modified, time_modified from army_users WHERE user_status='active' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                while (list($id, $username, $user_type, $status, $user_status, $date, $time) = mysqli_fetch_array($result)) {
+                                                    echo "
                                                 <tr>	
                                                     <td scope='row'><a href=\"admin_users_view.php?ID=$id\" class='user-clicker'>$username</a></td>
-                                                    <td>$date $time</td>
+                                                    <td>$user_type</td>
+                                                    <td>$user_status</td>
                                                     <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                                                    <td>Archive</td>
                                                 </tr>
                                             ";
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
                                             }
-                                        ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -79,6 +73,9 @@ include 'system_checker.php';
     </div>
 
     <script src="js/app.js"></script>
+    <!-- This line below is the jquery for the datatables -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.dataTable.min.js"></script>
 
 </body>
 
