@@ -35,17 +35,8 @@ if (isset($_POST['update'])) {
     mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
   }
   else {
-  $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$up_status', '$up_user_status', '$date_modified', '$time_modified','$admin_id')";
-
+  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
      if (mysqli_query($conn, $query_army_user)) {
-    // Getter for army user id
-      $result_getter = mysqli_query($conn, "SELECT id FROM army_users WHERE reg_user = $admin_id");
-      $row           = mysqli_fetch_assoc($result_getter);
-      $army_user_id  = $row["id"];
-
-      // Insert into Admin Table
-      $query_admin = "INSERT INTO army_admin VALUES('','$army_user_id','$rank','$company','$afpsn','$date_modified', '$time_modified')";
-        mysqli_query($conn, $query_admin);
         
       $query_del_admin = "DELETE FROM registration_user WHERE reg_id = $admin_id";
         mysqli_query($conn, $query_del_admin);

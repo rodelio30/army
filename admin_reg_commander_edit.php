@@ -5,7 +5,7 @@ $commander_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$commander_id' && user_type='commander' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $commander_id     = $res['reg_id'];
+  $commander_id = $res['reg_id'];
   $firstname    = $res['firstname'];
   $lastname     = $res['lastname'];
   $username     = $res['username'];
@@ -35,18 +35,10 @@ if (isset($_POST['update'])) {
     mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$commander_id'") or die("Query 4 is incorrect....");
   }
   else {
-  $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$up_status', '$up_user_status', '$date_modified', '$time_modified','$commander_id')";
+  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
 
      if (mysqli_query($conn, $query_army_user)) {
-    // Getter for army user id
-      $result_getter = mysqli_query($conn, "SELECT id FROM army_users WHERE reg_user = $commander_id");
-      $row           = mysqli_fetch_assoc($result_getter);
-      $army_user_id  = $row["id"];
-
-      // Insert into commander Table
-      $query_commander = "INSERT INTO army_commander VALUES('','$army_user_id','$rank','$company','$afpsn','$date_modified', '$time_modified')";
-        mysqli_query($conn, $query_commander);
-        
+      // Removing data who registered
       $query_del_commander = "DELETE FROM registration_user WHERE reg_id = $commander_id";
         mysqli_query($conn, $query_del_commander);
      }

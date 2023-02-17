@@ -33,18 +33,9 @@ if (isset($_POST['update'])) {
       echo '<script type="text/javascript"> alert("User ' . $username . ' is inactive!.")</script>';
       mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$school_id'") or die("Query 4 is incorrect....");
     } else {
-      $query_army_user = "INSERT INTO army_users VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$up_status', '$up_user_status', '$date_modified', '$time_modified','$school_id')";
+    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','$lastname','$username','$email','$password','$user_type','$rank','','','$school_name','$school_address','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
 
       if (mysqli_query($conn, $query_army_user)) {
-        // Getter for army user id
-        $result_getter = mysqli_query($conn, "SELECT id FROM army_users WHERE reg_user = $school_id");
-        $row           = mysqli_fetch_assoc($result_getter);
-        $army_user_id  = $row["id"];
-
-        // Insert into school Table
-        $query_school = "INSERT INTO army_sc VALUES('','$army_user_id','$rank','$school_name','$school_address','$date_modified', '$time_modified')";
-        mysqli_query($conn, $query_school);
-
         $query_del_school = "DELETE FROM registration_sc WHERE sc_id = $school_id";
         mysqli_query($conn, $query_del_school);
       }
