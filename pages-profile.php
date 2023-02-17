@@ -1,5 +1,117 @@
 <?php 
 require 'system_checker.php';
+
+$user_id = $id;
+
+if (isset($_POST['update'])) {
+  $firstname     = $_POST['firstname'];
+  $lastname      = $_POST['lastname'];
+  $username      = $_POST['username'];
+  $email         = $_POST['email'];
+  $user_type     = $_POST['type'];
+  $rank          = $_POST['rank'];
+  $company       = $_POST['company'];
+  $afpsn         = $_POST['afpsn'];
+  $status        = $_POST['status'];
+  $user_status   = $_POST['user_status'];
+
+  $date_modified = date("Y-m-d");
+  $time_modified = date("h:i:s");
+
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', type = '$user_type', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+
+  echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
+  header('Refresh: 0; url=pages-profile.php');
+  // End of Else in Inactive if
+}
+
+$result       = mysqli_query($conn, "SELECT * FROM army_users WHERE id='$user_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $user_id       = $res['id'];
+  $user_img      = $res['user_img'];
+  $firstname     = $res['firstname'];
+  $lastname      = $res['lastname'];
+  $username      = $res['username'];
+  $email         = $res['email'];
+  $type          = $res['type'];
+  $user_rank     = $res['rank'];
+  $company       = $res['company'];
+  $afpsn         = $res['afpsn'];
+  $status        = $res['status'];
+  $user_status   = $res['user_status'];
+  $date_created  = $res['date_created'];
+  $time_created  = $res['time_created'];
+  $date_modified = $res['date_modified'];
+  $time_modified = $res['time_modified'];
+}
+
+$sel_active   = "";
+$sel_inactive = "";
+
+$sel_ready    = "";
+$sel_standby  = "";
+$sel_retired  = "";
+
+$sel_admin     = "";
+$sel_staff     = "";
+$sel_commander = "";
+$sel_school    = "";
+$sel_reservist = "";
+
+if ($status == "ready") {
+  $sel_ready = "selected";
+} else if ($status == "standby") {
+  $sel_standby = "selected";
+} else if ($status == "retired") {
+  $sel_retired = "selected";
+}
+
+if ($user_status == "active") {
+  $sel_active  = "selected";
+} else if ($user_status == "inactive") {
+  $sel_inactive = "selected";
+}
+
+if ($type == "admin") {
+  $sel_admin  = "selected";
+} else if ($type == "staff") {
+  $sel_staff = "selected";
+} else if ($type == "commander") {
+  $sel_commander = "selected";
+} else if ($type == "school_coordinator") {
+  $sel_school = "selected";
+} else if ($type == "reservist") {
+  $sel_reservist = "selected";
+}
+
+
+if (isset($_POST['image_update'])) {
+if(empty($filename)){
+  echo '<script type="text/javascript"> alert("Insert an image first!.")</script>';
+} else {
+  $filename = $_FILES["uploadfile"]["name"];
+  $tempname = $_FILES["uploadfile"]["tmp_name"];
+  $folder = "img/profile/" . $filename;
+  $date_modified = date("Y-m-d h:i:s");
+
+  // echo "<script>console.log('" . $email . "');</script>";
+  // This line below is to update a specific faculty user
+  mysqli_query($conn, "update army_users set user_img = '$filename' where id = '$id'") or die("Query Changing image is incorrect....");
+
+  // removing image in folder
+  unlink('img/profile/' . $user_img . '');
+  echo "<script>console.log('Successfully removed " . $user_img . "');</script>";
+
+  if (move_uploaded_file($tempname, $folder)) {
+    echo "<script>console.log('Image uploaded successfully!');</script>";
+  } else {
+    echo "<script>console.log(' Failed to upload image!!');</script>";
+  }
+  echo '<script type="text/javascript"> alert("' . $firstname . '`s image updated!.")</script>';
+  header('Refresh: 0; url=pages-profile.php');
+
+}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +133,6 @@ require 'system_checker.php';
 
                     <div class="mb-3">
                         <h1 class="h3 d-inline align-middle">Profile</h1>
-                        <a class="badge bg-dark text-white ms-2" href="upgrade-to-pro.html">
-                            Get more page examples
-                        </a>
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-xl-3">
@@ -32,177 +141,201 @@ require 'system_checker.php';
                                     <h5 class="card-title mb-0">Profile Details</h5>
                                 </div>
                                 <div class="card-body text-center">
-                                    <img src="img/avatars/avatar-4.jpg" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                                    <h5 class="card-title mb-0">Christina Mason</h5>
-                                    <div class="text-muted mb-2">Lead Developer</div>
-
-                                    <div>
-                                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
-                                        <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+                                    <form method="post" enctype="multipart/form-data">
+                                    <img src="img/profile/<?php echo $user_img ? $user_img: 'empty_user.png' ?>" alt="Admin"
+                                        class="img-fluid" height="200px" width="200px">
                                     </div>
-                                </div>
-                                <hr class="my-0" />
-                                <div class="card-body">
-                                    <h5 class="h6 card-title">Skills</h5>
-                                    <a href="#" class="badge bg-primary me-1 my-1">HTML</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">JavaScript</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">Sass</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">Angular</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">Vue</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">React</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">Redux</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">UI</a>
-                                    <a href="#" class="badge bg-primary me-1 my-1">UX</a>
-                                </div>
-                                <hr class="my-0" />
-                                <div class="card-body">
-                                    <h5 class="h6 card-title">About</h5>
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Lives
-                                            in <a href="#">San Francisco, SA</a></li>
-
-                                        <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span>
-                                            Works at <a href="#">GitHub</a></li>
-                                        <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span>
-                                            From <a href="#">Boston</a></li>
-                                    </ul>
-                                </div>
-                                <hr class="my-0" />
-                                <div class="card-body">
-                                    <h5 class="h6 card-title">Elsewhere</h5>
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-1"><a href="#">staciehall.co</a></li>
-                                        <li class="mb-1"><a href="#">Twitter</a></li>
-                                        <li class="mb-1"><a href="#">Facebook</a></li>
-                                        <li class="mb-1"><a href="#">Instagram</a></li>
-                                        <li class="mb-1"><a href="#">LinkedIn</a></li>
-                                    </ul>
-                                </div>
+                                        <h5 class="card-title mb-0 text-center"><?php echo $fn_public . ' '. $ln_public?></h5>
+                                        <h5 class="card-title mb-0 text-center"><?php echo $user_rank ?></h5>
+                                    <br>
+                                    <div class="form-group">
+                                    <label class="ms-2">New Image</label>
+                                    <input class="form-control" type="file" name="uploadfile"/>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="form-group text-center mb-4">
+                                        <button type="submit" class="btn btn-outline-success" name="image_update">Update Profile</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
                         <div class="col-md-8 col-xl-9">
                             <div class="card">
                                 <div class="card-header">
-
-                                    <h5 class="card-title mb-0">Activities</h5>
+                                    <h5 class="card-title mb-0">Edit Profile Info</h5>
                                 </div>
                                 <div class="card-body h-100">
+                  <form method="post" autocomplete="off">
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Firstname</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="Enter Lastname">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Lastname</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname ?>" placeholder="Enter Lastname">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Username</strong>
+                        </h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" placeholder="Enter Username">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Email</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="email" name="email" value="<?php echo $email ?>" placeholder="Enter Email">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Type</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <!-- <input type="text" class="form-control" id="type" name="type" value="<?php echo $type ?>" placeholder="Enter User Type"> -->
+                        <select class="form-control" id="type" name="type">
+                          <option value="admin" <?php echo $sel_admin ?>>Admin</option>
+                          <option value="staff" <?php echo $sel_staff ?>>Staff</option>
+                          <option value="commander" <?php echo $sel_commander ?>>Company Commander</option>
+                          <option value="school_coordinator" <?php echo $sel_school ?>>School Coordinator</option>
+                          <option value="reservist" <?php echo $sel_reservist ?>>Reservist</option>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <!-- <input type="text" class="form-control" id="rank" name="rank" value="<?php echo $user_rank?>" placeholder="Enter User Rank"> -->
+                        <select class="form-control" id="rank" name="rank">
+                                <option value="none">None</option>
+                            <?php
+                            $result = mysqli_query($conn, "select ranked, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+                            while (list($ranked, $rank_name) = mysqli_fetch_array($result)) {
+                                if($rank_name == $user_rank){
+                                    echo "<option value='$rank_name' selected>$ranked. $rank_name</option>";
+                                }
+                                else {
+                                    echo "<option value='$rank_name'>$ranked. $rank_name</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <!-- <input type="text" class="form-control" id="company" name="company" value="<?php echo $company ?>" placeholder="Enter User Company"> -->
+                        <select class="form-control" id="company" name="company">
+                            <option value="none">None</option>
+                            <?php
+                            $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
+                            while (list($company_name) = mysqli_fetch_array($result)) {
+                                if($company_name == $company){
+                                    echo "<option value='$company_name' selected>$company_name</option>";
+                                } else {
+                                    echo "<option value='$company_name'>$company_name</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>AFPSN</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="afpsn" name="afpsn" value="<?php echo $afpsn?>" placeholder="Enter User AFPSN">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <select class="form-control" id="status" name="status">
+                          <option value="ready" <?php echo $sel_ready ?>>Ready</option>
+                          <option value="standby" <?php echo $sel_standby ?>>Standby</option>
+                          <option value="retired" <?php echo $sel_retired ?>>Retired</option>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>User Status</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <select class="form-control" id="user_status" name="user_status">
+                          <option value="active" <?php echo $sel_active ?>>Active</option>
+                          <option value="inactive" <?php echo $sel_inactive ?>>Inactive
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Date Created</strong>
+                        </h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <div class="flatpickr-weekwrapper">
+                          <?php echo $date_created ?>
+                          <?php echo $time_created ?>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Date Modified</strong>
+                        </h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <div class="flatpickr-weekwrapper">
+                          <?php echo $date_modified ?>
+                          <?php echo $time_modified ?>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row" id="action-print">
+                      <div class="col-6">
+                      </div>
+                      <div class="col-6">
+                        <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                      </div>
+                    </div>
+                  </form>
 
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar-5.jpg" width="36" height="36" class="rounded-circle me-2" alt="Vanessa Tucker">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">5m ago</small>
-                                            <strong>Vanessa Tucker</strong> started following <strong>Christina
-                                                Mason</strong><br />
-                                            <small class="text-muted">Today 7:51 pm</small><br />
-
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar.jpg" width="36" height="36" class="rounded-circle me-2" alt="Charles Hall">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">30m ago</small>
-                                            <strong>Charles Hall</strong> posted something on <strong>Christina
-                                                Mason</strong>'s timeline<br />
-                                            <small class="text-muted">Today 7:21 pm</small>
-
-                                            <div class="border text-sm text-muted p-2 mt-1">
-                                                Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem
-                                                quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam
-                                                nunc, blandit vel, luctus
-                                                pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt
-                                                tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis
-                                                ante.
-                                            </div>
-
-                                            <a href="#" class="btn btn-sm btn-danger mt-1"><i class="feather-sm" data-feather="heart"></i> Like</a>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar-4.jpg" width="36" height="36" class="rounded-circle me-2" alt="Christina Mason">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">1h ago</small>
-                                            <strong>Christina Mason</strong> posted a new blog<br />
-
-                                            <small class="text-muted">Today 6:35 pm</small>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar-2.jpg" width="36" height="36" class="rounded-circle me-2" alt="William Harris">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">3h ago</small>
-                                            <strong>William Harris</strong> posted two photos on <strong>Christina
-                                                Mason</strong>'s timeline<br />
-                                            <small class="text-muted">Today 5:12 pm</small>
-
-                                            <div class="row g-0 mt-1">
-                                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                                    <img src="img/photos/unsplash-1.jpg" class="img-fluid pe-2" alt="Unsplash">
-                                                </div>
-                                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                                    <img src="img/photos/unsplash-2.jpg" class="img-fluid pe-2" alt="Unsplash">
-                                                </div>
-                                            </div>
-
-                                            <a href="#" class="btn btn-sm btn-danger mt-1"><i class="feather-sm" data-feather="heart"></i> Like</a>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar-2.jpg" width="36" height="36" class="rounded-circle me-2" alt="William Harris">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">1d ago</small>
-                                            <strong>William Harris</strong> started following <strong>Christina
-                                                Mason</strong><br />
-                                            <small class="text-muted">Yesterday 3:12 pm</small>
-
-                                            <div class="d-flex align-items-start mt-1">
-                                                <a class="pe-3" href="#">
-                                                    <img src="img/avatars/avatar-4.jpg" width="36" height="36" class="rounded-circle me-2" alt="Christina Mason">
-                                                </a>
-                                                <div class="flex-grow-1">
-                                                    <div class="border text-sm text-muted p-2 mt-1">
-                                                        Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id,
-                                                        lorem. Maecenas nec odio et ante tincidunt tempus.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar-4.jpg" width="36" height="36" class="rounded-circle me-2" alt="Christina Mason">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">1d ago</small>
-                                            <strong>Christina Mason</strong> posted a new blog<br />
-                                            <small class="text-muted">Yesterday 2:43 pm</small>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-flex align-items-start">
-                                        <img src="img/avatars/avatar.jpg" width="36" height="36" class="rounded-circle me-2" alt="Charles Hall">
-                                        <div class="flex-grow-1">
-                                            <small class="float-end text-navy">1d ago</small>
-                                            <strong>Charles Hall</strong> started following <strong>Christina
-                                                Mason</strong><br />
-                                            <small class="text-muted">Yesterdag 1:51 pm</small>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="d-grid">
-                                        <a href="#" class="btn btn-primary">Load more</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
