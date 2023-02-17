@@ -1,5 +1,5 @@
 <?php 
-require 'include/connect.php';
+include 'system_checker.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
