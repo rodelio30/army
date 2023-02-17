@@ -1,7 +1,6 @@
 <?php
 $dash_select      = '';
 $users_select      = '';
-$blank_select     = '';
 $rank_select   = '';
 $reservist_select = '';
 $admin_select     = '';
@@ -17,9 +16,6 @@ if ($nav_active == 'dashboard') {
 }
 if ($nav_active == 'users') {
     $users_select = 'active';
-}
-if ($nav_active == 'blank') {
-    $blank_select = 'active';
 }
 if ($nav_active == 'rank') {
     $rank_select = 'active';
@@ -112,7 +108,7 @@ if ($nav_active == 'company') {
             </li>
 
             <li class="sidebar-header">
-                School Registration List
+                School / Rank / Company 
             </li>
 
             <li class="sidebar-item <?php echo $schools_select ?>">
@@ -130,12 +126,6 @@ if ($nav_active == 'company') {
             <li class="sidebar-item <?php echo $company_select ?>">
                 <a class="sidebar-link" href="admin_company.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Company</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item <?php echo $blank_select ?>">
-                <a class="sidebar-link" href="pages-blank.php">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
                 </a>
             </li>
 

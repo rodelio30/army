@@ -42,19 +42,20 @@
                 </a>
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
-                    <span class="text-dark">Charles Hall</span>
+                    <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
+                    <span class="text-dark">Hello, <?php echo $fn_public . ' ' . $ln_public?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="admin_archive.php"><i class="align-middle me-1" data-feather="package"></i>
                         Archive</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
+                    <!-- <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
                         Settings & Privacy</a>
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
                         Center</a>
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"></div> -->
                     <a class="dropdown-item" href="include/sign-out.php">Log out</a>
                 </div>
             </li>

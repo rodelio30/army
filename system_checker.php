@@ -7,6 +7,8 @@ if (!empty($_SESSION["id"])) {
   $result      = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
   $row         = mysqli_fetch_assoc($result);
   $user_id     = $row["id"];
+  $fn_public   = $row["firstname"];
+  $ln_public   = $row["lastname"];
   $un_public   = $row["username"];
   $type        = $row["type"];
   $status      = $row["status"];
