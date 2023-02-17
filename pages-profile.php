@@ -1,3 +1,6 @@
+<?php 
+require 'system_checker.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
