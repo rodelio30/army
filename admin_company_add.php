@@ -48,12 +48,7 @@ if (isset($_POST['submit'])) {
                   <form method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Rank Letter</label>
-                      <select class="form-control" id="rank_letter" name="rank_letter">
-                        <option value="A" select>A</option>
-                        <option value="B" >B</option>
-                        <option value="C" >C</option>
-                        <option value="D" >D</option>
-                      </select>
+                      <input type="text" class="form-control" id="rank_letter" name="rank_letter" placeholder="Enter Rank Letter" required>
                     </div>
                     <br>
                     <div class="form-group">

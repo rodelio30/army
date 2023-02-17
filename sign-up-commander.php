@@ -61,13 +61,17 @@ if(isset($_POST["submit"])){
 								<div class="m-sm-4">
 									<form method="post" autocomplete="off">
 										<div class="mb-3">
-											<label class="form-label">Rank <span class="input_required">*</span> </label>
+											<label class="form-label">Rank Classification (Lowest (no. 1) to Highest)<span class="input_required">*</span>
+											</label>
 											<select class="form-control" id="rank" name="rank">
-                        <option value="None" select>None</option>
-                        <option value="Rank 1">Rank 1</option>
-                        <option value="Rank 2" >Rank 2</option>
-                      </select>
-
+													<option value="none">None</option>
+												<?php
+												$result = mysqli_query($conn, "select ranked, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+												while (list($ranked, $rank_name) = mysqli_fetch_array($result)) {
+													echo "<option value='$rank_name'>$ranked. $rank_name</option>";
+												}
+												?>
+											</select>
 										</div>
 										<div class="row">
 											<div class="col-6">
@@ -78,12 +82,17 @@ if(isset($_POST["submit"])){
 											</div>
 											<div class="col-6">
 										<div class="mb-3">
-											<label class="form-label">Company <span class="input_required">*</span></label>
-											<select class="form-control" id="company" name="company">
-                        <option value="None" select>None</option>
-                        <option value="Company 1">Company 1</option>
-                        <option value="Company 2" >Company 2</option>
-                      </select>
+											<label class="form-label">Company <span class="input_required">*</span>
+													</label>
+													<select class="form-control" id="company" name="company">
+														<option value="none">None</option>
+														<?php
+														$result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
+														while (list($company_name) = mysqli_fetch_array($result)) {
+															echo "<option value='$company_name'>$company_name</option>";
+														}
+														?>
+													</select>
 										</div>
 											</div>
 										</div>

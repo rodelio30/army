@@ -57,7 +57,7 @@ if ($my_rank_letter == "A") {
 if ($status == "active") {
   $sel_active  = "selected";
 } else if ($status == "inactive") {
-  $se_inactive = "selected";
+  $sel_inactive = "selected";
 }
 ?>
 <!DOCTYPE html>

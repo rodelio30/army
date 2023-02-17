@@ -19,7 +19,7 @@ include 'system_checker.php';
             <main class="content">
                 <div class="container-fluid p-0">
                     <?php include 'admin_archive_table_users.php'; ?>
-                    <?php include 'admin_archive_table_school.php'; ?>
+                    <?php include 'admin_archive_admin_input.php'; ?>
                 </div>
             </main>
 
