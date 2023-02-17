@@ -7,11 +7,11 @@
     <meta name="keywords"
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-
+   
     <?php
     if (!empty($_SESSION["id"])) { ?>
-    <meta http-equiv="refresh" content="600;url=include/warning-sign.php" />
-    <meta http-equiv="refresh" content="610;url=include/logout-sign.php" />
+    <!-- <meta http-equiv="refresh" content="600;url=include/warning-sign.php" /> -->
+    <meta http-equiv="refresh" content="600;url=include/logout-sign.php" />
     <?php
     } ?>
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
