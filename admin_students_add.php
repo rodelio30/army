@@ -4,13 +4,15 @@ include 'system_checker.php';
 // un_public is username of the user who logged in
 
 if (isset($_POST['submit'])) {
-  $firstname     = $_POST['firstname'];
-  $lastname      = $_POST['lastname'];
+  $firstname      = $_POST['firstname'];
+  $lastname       = $_POST['lastname'];
   $afpsn          = $_POST['afpsn'];
   $birth_date     = $_POST['birth_date'];
   $school_address = $_POST['school_address'];
   $course         = $_POST['course'];
   $grade          = $_POST['grade'];
+  $semester       = $_POST['semester'];
+  $academic_year  = $_POST['academic_year'];
   $status         = 'inactive';
   $date           = date("Y-m-d");
   $time           = date("h:i:s");
@@ -21,7 +23,7 @@ if (isset($_POST['submit'])) {
     "<script> alert('Firstname or lastname and or AFPSN Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO students VALUES('','$firstname','$lastname','$school_address','$birth_date','$grade','$afpsn','$course','$date','$time','$date','$time','$status')";
+    $query = "INSERT INTO students VALUES('','$firstname','$lastname','$school_address','$birth_date','$grade','$afpsn','$course','$semester','$academic_year','$date','$time','$date','$time','$status')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $firstname . ' Added!.")</script>';
@@ -73,18 +75,36 @@ if (isset($_POST['submit'])) {
                     </div>
                     <br>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">School Address</label>
-                      <input type="text" class="form-control" id="school_address" name="school_address" placeholder="Enter School Address">
+                      <label for="exampleInputEmail1">Address</label>
+                      <input type="text" class="form-control" id="school_address" name="school_address" placeholder="Enter Address">
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Course</label>
-                      <input type="text" class="form-control" id="course" name="course" placeholder="Enter Course" required>
+                        <select class="form-control" id="course" name="course">
+                                <option value="none">None</option>
+                            <?php
+                            $result = mysqli_query($conn, "select course_name from courses where status='active'") or die("Query School List is inncorrect........");
+                            while (list($course_name) = mysqli_fetch_array($result)) {
+                              echo "<option value='$course_name'>$course_name</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Grade</label>
                       <input type="number" class="form-control" id="grade" name="grade" placeholder="Enter Grade" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Semester</label>
+                      <input type="text" class="form-control" id="semester" name="semester" placeholder="Enter Semester" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Academic Year</label>
+                      <input type="text" class="form-control" id="academic_year" name="academic_year" placeholder="Enter Academic Year" required>
                     </div>
                     <br>
                     <div class="row">

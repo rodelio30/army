@@ -12,6 +12,7 @@ $archive_select    = '';
 $company_select    = '';
 $rids_select    = '';
 $student_select    = '';
+$course_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -51,6 +52,9 @@ if ($nav_active == 'rids') {
 }
 if ($nav_active == 'student') {
     $student_select = 'active';
+}
+if ($nav_active == 'course') {
+    $course_select = 'active';
 }
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
@@ -171,6 +175,12 @@ if ($nav_active == 'student') {
             <li class="sidebar-item <?php echo $student_select ?>">
                 <a class="sidebar-link" href="admin_students.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item <?php echo $course_select ?>">
+                <a class="sidebar-link" href="admin_courses.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Courses</span>
                 </a>
             </li>
             <?php 
