@@ -3,25 +3,6 @@ include 'system_checker.php';
 
 $user_id = $_GET['ID'];
 
-if (isset($_POST['update'])) {
-  $firstname     = $_POST['firstname'];
-  $lastname      = $_POST['lastname'];
-  $username      = $_POST['username'];
-  $email         = $_POST['email'];
-  $user_type     = $_POST['type'];
-  $status        = $_POST['status'];
-  $user_status   = $_POST['user_status'];
-
-  $date_modified = date("Y-m-d");
-  $time_modified = date("h:i:s");
-
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', type = '$user_type', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-
-  echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_users.php');
-  // End of Else in Inactive if
-}
-
 $result       = mysqli_query($conn, "SELECT * FROM army_users WHERE id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $user_id       = $res['id'];
@@ -39,7 +20,81 @@ while ($res   = mysqli_fetch_array($result)) {
   $date_modified = $res['date_modified'];
   $time_modified = $res['time_modified'];
 }
-include 'admin_rids_query.php';
+  $result_rpi       = mysqli_query($conn, "SELECT * FROM rpi WHERE reservist_id='$user_id'");
+  while ($res   = mysqli_fetch_array($result_rpi)) {
+    $brsvc                = $res['brsvc'];
+    $afpos_mos            = $res['afpos_mos'];
+    $soc_enlistment       = $res['soc_enlistment'];
+    $initial_rank         = $res['initial_rank'];
+    $date_of_comsn_enlist = $res['date_of_comsn_enlist'];
+    $authority            = $res['authority'];
+    $mobilization_center  = $res['mobilization_center'];
+    $designation          = $res['designation'];
+    $squad                = $res['squad'];
+    $platoon              = $res['platoon'];
+    $battalion            = $res['battalion'];
+    $size_cs              = $res['size_cs'];
+    $size_cap             = $res['size_cap'];
+    $size_bda             = $res['size_bda'];
+  } 
+
+  $result_pi       = mysqli_query($conn, "SELECT * FROM personal_information WHERE reservist_id='$user_id'");
+  while ($res   = mysqli_fetch_array($result_pi)) {
+    $p_o                  = $res['p_o'];
+    $company_name_address = $res['company_name_address'];
+    $tel_no               = $res['tel_no'];
+    $home_address         = $res['home_address'];
+    $town                 = $res['town'];
+    $res_tel_no           = $res['res_tel_no'];
+    $mobile_number        = $res['mobile_number'];
+    $birth_date           = $res['birth_date'];
+    $birth_place          = $res['birth_place'];
+    $age                  = $res['age'];
+    $religion             = $res['religion'];
+    $blood_type           = $res['blood_type'];
+    $tin                  = $res['tin'];
+    $sss                  = $res['sss'];
+    $philhealth           = $res['philhealth'];
+    $height               = $res['height'];
+    $weight               = $res['weight'];
+    $marital_status       = $res['marital_status'];
+    $sex                  = $res['sex'];
+    $fb_account           = $res['fb_account'];
+    $email                = $res['email'];
+    $special_skills       = $res['special_skills'];
+    $language             = $res['language'];
+  } 
+
+  $result_below   = mysqli_query($conn, "SELECT * FROM below_info WHERE reservist_id='$user_id'");
+  while ($res     = mysqli_fetch_array($result_below)) {
+    $promo_rank            = $res['rank'];
+    $date_of_rank          = $res['date_of_rank'];
+    $rank_authority        = $res['rank_authority'];
+    $military_schooling    = $res['military_schooling'];
+    $school                = $res['school'];
+    $school_date_graduated = $res['school_date_graduated'];
+    $awards                = $res['awards'];
+    $awards_authority      = $res['awards_authority'];
+    $date_awarded          = $res['date_awarded'];
+    $relation              = $res['relation'];
+    $name                  = $res['name'];
+    $course                = $res['course'];
+    $course_school         = $res['course_school'];
+    $course_date_graduated = $res['course_date_graduated'];
+    $unit_cad              = $res['unit_cad'];
+    $unit_authority        = $res['unit_authority'];
+    $unit_date_started      = $res['unit_date_started'];
+    $unit_date_end         = $res['unit_date_end'];
+    $unit_assignment       = $res['unit_assignment'];
+    $assign_authority      = $res['assign_authority'];
+    $assign_date_from      = $res['assign_date_from'];
+    $assign_date_to        = $res['assign_date_to'];
+    $position              = $res['position'];
+    $pos_authority         = $res['pos_authority'];
+    $pos_date_from         = $res['pos_date_from'];
+    $pos_date_to           = $res['pos_date_to'];
+  } 
+// include 'admin_rids_query.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +115,7 @@ include 'admin_rids_query.php';
                 <div class="container-fluid p-0">
                     <div class="row">
                         <div class="col-md-9">
-                        <h1 class="h3 mb-3 header-dash"><a href="admin_rids.php" class="linked-navigation">Reservist ist </a> / <?php echo $username ?>
+                        <h1 class="h3 mb-3 header-dash"><a href="admin_rids.php" class="linked-navigation">Reservist List </a> / <?php echo $username ?>
                             <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                         </h1>
                         </div>

@@ -204,22 +204,15 @@ if(empty($filename)){
                       </div>
                     </div>
                     <br>
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-sm-2">
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Type</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <input type="text" class="form-control" id="type" name="type" value="<?php echo $type ?>" placeholder="Enter User Type" disabled>
-                        <!-- <select class="form-control" id="type" name="type">
-                          <option value="admin" <?php echo $sel_admin ?>>Admin</option>
-                          <option value="staff" <?php echo $sel_staff ?>>Staff</option>
-                          <option value="commander" <?php echo $sel_commander ?>>Company Commander</option>
-                          <option value="school_coordinator" <?php echo $sel_school ?>>School Coordinator</option>
-                          <option value="reservist" <?php echo $sel_reservist ?>>Reservist</option>
-                        </select> -->
                       </div>
                     </div>
-                    <br>
+                    <br> -->
                     <div class="row">
                       <div class="col-sm-2">
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
