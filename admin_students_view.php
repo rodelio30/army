@@ -11,11 +11,13 @@ if (isset($_POST['update'])) {
   $course = $_POST['course'];
   $afpsn = $_POST['afpsn'];
   $address        = $_POST['address'];
+  $semester        = $_POST['semester'];
+  $academic_year        = $_POST['academic_year'];
   $status         = $_POST['status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
-  mysqli_query($conn, "update students set firstname = '$firstname', lastname = '$lastname', birth_date = '$birth_date', course = '$course', afpsn = '$afpsn', address = '$address', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where student_id = '$students_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update students set firstname = '$firstname', lastname = '$lastname', birth_date = '$birth_date', course = '$course', afpsn = '$afpsn', address = '$address', semester = '$semester', academic_year = '$academic_year', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where student_id = '$students_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=admin_students.php');
@@ -32,6 +34,8 @@ while ($res   = mysqli_fetch_array($result)) {
   $grade           = $res['grade'];
   $afpsn           = $res['afpsn'];
   $course          = $res['course'];
+  $semester        = $res['semester'];
+  $academic_year   = $res['academic_year'];
   $status          = $res['status'];
   $date_created    = $res['date_created'];
   $time_created    = $res['time_created'];
@@ -127,7 +131,38 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course </strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>" placeholder="Enter Course">
+                        <select class="form-control" id="course" name="course">
+                                <option value="none">None</option>
+                            <?php
+                            $result = mysqli_query($conn, "select course_name from courses where status='active'") or die("Query School List is inncorrect........");
+                            while (list($course_name) = mysqli_fetch_array($result)) {
+                              if($course_name == $course) {
+                              echo "<option value='$course_name' selected >$course_name</option>";
+                              } else {
+                              echo "<option value='$course_name'>$course_name</option>";
+
+                              }
+                            }
+                            ?>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Semester</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="semester" name="semester" value="<?php echo $semester?>" placeholder="Enter Semester">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Academic Year</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="text" class="form-control" id="academic_year" name="academic_year" value="<?php echo $academic_year?>" placeholder="Enter Academic Year">
                       </div>
                     </div>
                     <br>

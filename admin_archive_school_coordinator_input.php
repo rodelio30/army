@@ -15,8 +15,8 @@
             <?php include 'admin_archive_table_students.php';?>
           </div>
           <div id="course-contents" class="tab-pane">
-            <br>
-          </div>
+            <?php include 'admin_archive_table_courses.php';?>
+         </div>
          </div>
       </div>
     </div>
