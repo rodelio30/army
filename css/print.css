@@ -12,6 +12,10 @@
   display: none;
   visibility: none;
 }
+body,
+.content {
+  background-color: white;
+}
 
 footer,
 head,
