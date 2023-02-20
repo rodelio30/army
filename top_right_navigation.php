@@ -47,16 +47,22 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                        <?php if($isSadmin) {
+                        ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="admin_archive.php"><i class="align-middle me-1" data-feather="package"></i>
-                        Archive</a>
+                        <a class="dropdown-item" href="admin_archive.php"><i class="align-middle me-1" data-feather="package"></i>
+                            Archive</a>
+                            <?php
+
+                        }
+                        ?>
                     <div class="dropdown-divider"></div>
                     <!-- <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
                         Settings & Privacy</a>
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
                         Center</a>
                     <div class="dropdown-divider"></div> -->
-                    <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+                    <a class="dropdown-item" href="include/sign-out.php"><i class="align-middle me-1" data-feather="log-out"></i> Log out</a>
                 </div>
             </li>
         </ul>

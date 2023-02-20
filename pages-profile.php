@@ -8,7 +8,6 @@ if (isset($_POST['update'])) {
   $lastname      = $_POST['lastname'];
   $username      = $_POST['username'];
   $email         = $_POST['email'];
-  $user_type     = $_POST['type'];
   $rank          = $_POST['rank'];
   $company       = $_POST['company'];
   $afpsn         = $_POST['afpsn'];
@@ -18,7 +17,7 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', type = '$user_type', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
   header('Refresh: 0; url=pages-profile.php');
@@ -86,10 +85,10 @@ if ($type == "admin") {
 
 
 if (isset($_POST['image_update'])) {
+  $filename = $_FILES["uploadfile"]["name"];
 if(empty($filename)){
   echo '<script type="text/javascript"> alert("Insert an image first!.")</script>';
 } else {
-  $filename = $_FILES["uploadfile"]["name"];
   $tempname = $_FILES["uploadfile"]["tmp_name"];
   $folder = "img/profile/" . $filename;
   $date_modified = date("Y-m-d h:i:s");
@@ -210,14 +209,14 @@ if(empty($filename)){
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Type</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <!-- <input type="text" class="form-control" id="type" name="type" value="<?php echo $type ?>" placeholder="Enter User Type"> -->
-                        <select class="form-control" id="type" name="type">
+                        <input type="text" class="form-control" id="type" name="type" value="<?php echo $type ?>" placeholder="Enter User Type" disabled>
+                        <!-- <select class="form-control" id="type" name="type">
                           <option value="admin" <?php echo $sel_admin ?>>Admin</option>
                           <option value="staff" <?php echo $sel_staff ?>>Staff</option>
                           <option value="commander" <?php echo $sel_commander ?>>Company Commander</option>
                           <option value="school_coordinator" <?php echo $sel_school ?>>School Coordinator</option>
                           <option value="reservist" <?php echo $sel_reservist ?>>Reservist</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
                     <br>

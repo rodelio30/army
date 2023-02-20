@@ -40,8 +40,11 @@ include 'system_checker.php';
                                                 <th>Company</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
-                                                <th id="action-print"><span class="float-end me-5">Action</span>
-                                                </th>
+                                                <?php if($isSadmin || $isAdmin) {
+                                                ?>
+                                                <th id="action-print"><span class="float-end me-5">Action</span> </th>
+                                                <?php }
+                                                ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -51,6 +54,7 @@ include 'system_checker.php';
                                             if ($company_counter > 0) {
                                                 $result = mysqli_query($conn, "select company_id, rank_letter,company_name, status, date_modified from company WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($company_id, $rank_letter, $company_name, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                                    if($isSadmin || $isAdmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$rank_letter</a></td>
@@ -60,6 +64,16 @@ include 'system_checker.php';
                                                         <td id='action-print'><a href=\"archive/company/company_archive.php?ID=$company_id\" onClick=\"return confirm('Are you sure you want this company move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
+                                                    } else { 
+                                                    echo "
+                                                    <tr>	
+                                                        <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$rank_letter</a></td>
+                                                        <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$company_name</a></td>
+                                                        <td>$date_modified</td>
+                                                        <td>$status</td>
+                                                    </tr>
+                                                ";
+                                                    }
                                                 }
                                             } else {
                                                 echo " <tr>	

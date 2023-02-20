@@ -18,7 +18,7 @@ if(!empty($_SESSION["id"])){
 
                         <div class="text-center">
                             <h1 class="h2">                    
-                               Registration 
+                               <strong> Registration </strong>
                             </h1>
                             <!-- <p class="lead">
 								Sign in to your account to continue

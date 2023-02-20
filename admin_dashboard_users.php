@@ -2,6 +2,9 @@
     <div class="col-xl-12 col-xxl-12 d-flex">
         <div class="w-100">
             <div class="row">
+                <?php 
+                if($isSadmin) {
+                ?>
                 <div class="col-sm-2">
                     <div class="card">
                         <div class="card-body">
@@ -14,7 +17,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <?php 
+                }
+                ?>
+                <div class="col-sm-<?php echo $isSadmin ? 2: 3?>">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -26,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-<?php echo $isSadmin ? 2: 3?>">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">

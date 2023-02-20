@@ -40,8 +40,11 @@ include 'system_checker.php';
                                                 <th>Rank</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
-                                                <th id="action-print"><span class="float-end me-5">Action</span>
-                                                </th>
+                                                <?php if($isSadmin || $isAdmin) {
+                                                ?>
+                                                <th id="action-print"><span class="float-end me-5">Action</span> </th>
+                                                <?php }
+                                                ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -51,6 +54,7 @@ include 'system_checker.php';
                                             if ($ranks_counter > 0) {
                                                 $result = mysqli_query($conn, "select rank_id, ranked, rank_name, status, date_modified from ranks WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($rank_id, $ranked, $rank_name, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                                    if($isSadmin || $isAdmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$ranked</a></td>
@@ -60,14 +64,34 @@ include 'system_checker.php';
                                                         <td id='action-print'><a href=\"archive/ranks/ranks_archive.php?ID=$rank_id\" onClick=\"return confirm('Are you sure you want this rank move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
+                                                    } else { 
+                                                        echo "
+                                                        <tr>	
+                                                            <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$ranked</a></td>
+                                                            <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$rank_name</a></td>
+                                                            <td>$date_modified</td>
+                                                            <td>$status</td>
+                                                        </tr>
+                                                    ";
+                                                    }
                                                 }
                                             } else {
-                                                echo " <tr>	
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>No Active rank</td>
-                                                        <td></td>
-                                                        </tr>";
+                                                if($isSadmin || $isAdmin){ 
+                                                    echo " <tr>	
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan='2' class='text-center'>No Active School</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            </tr>";
+                                                } else {
+                                                    echo " <tr>	
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan='2' class='text-center'>No Active School</td>
+                                                            <td></td>
+                                                            </tr>";
+                                                }
                                             }
                                             ?>
                                         </tbody>
