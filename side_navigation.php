@@ -11,6 +11,7 @@ $schools_select    = '';
 $archive_select    = '';
 $company_select    = '';
 $rids_select    = '';
+$student_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -47,6 +48,9 @@ if ($nav_active == 'company') {
 }
 if ($nav_active == 'rids') {
     $rids_select = 'active';
+}
+if ($nav_active == 'student') {
+    $student_select = 'active';
 }
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
@@ -155,6 +159,23 @@ if ($nav_active == 'rids') {
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Company</span>
                 </a>
             </li>
+
+            <?php 
+            // if($isStaff){
+
+            ?>
+            <li class="sidebar-header">
+                Students 
+            </li>
+
+            <li class="sidebar-item <?php echo $student_select ?>">
+                <a class="sidebar-link" href="admin_students.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
+                </a>
+            </li>
+            <?php 
+            // }
+            ?>
 
             <!-- <li class="sidebar-header">
                         Tools & Components
