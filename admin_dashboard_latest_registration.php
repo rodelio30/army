@@ -17,8 +17,16 @@
                 </thead>
                 <tbody>
                 <?php
+                    include 'counter/registration_counter.php';
                     // Viewing User Registered 
-                    $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' ORDER BY date") or die("Query for latest reservist....");
+                    if($registered_counter > 0) {
+                        if($isSadmin){
+                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' ORDER BY date") or die("Query for latest reservist....");
+                        }elseif ($isAdmin){
+                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type != 'admin' && user_type != 'sadmin' ORDER BY date") or die("Query for latest reservist....");
+                        }elseif ($isStaff){
+                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type != 'admin' && user_type != 'sadmin' ORDER BY date") or die("Query for latest reservist....");
+                        }
                     while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                         $user_view = 'admin_reg_'.$user_type.'_view.php';
                         echo "
@@ -41,6 +49,14 @@
                                 <td>$rank</td>
                                 <td>$date $time</td>
                                 <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                            </tr>
+                        ";
+                    }
+                    }
+                    else {
+                        echo "
+                            <tr>
+                                <td colspan='5' class='text-center'>Empty Registration</td>
                             </tr>
                         ";
                     }

@@ -53,7 +53,7 @@ if(isset($_POST["submit"])){
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2">Get started Reservist!</h1>
+							<h1 class="h2"><strong> Get Started Reservist!</strong></h2>
 						</div>
 
 						<div class="card">

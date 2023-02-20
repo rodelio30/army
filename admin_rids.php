@@ -1,4 +1,4 @@
-<?php
+<?php 
 include 'system_checker.php';
 ?>
 <!DOCTYPE html>
@@ -9,9 +9,9 @@ include 'system_checker.php';
 <body>
     <div class="wrapper">
         <?php
-        $nav_active = 'users';
-        include 'side_navigation.php'
-        ?>
+		$nav_active = 'rids';
+		include 'side_navigation.php'
+		?>
 
         <div class="main">
             <?php include 'top_right_navigation.php' ?>
@@ -19,11 +19,11 @@ include 'system_checker.php';
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3 header-dash">User List
+                    <h1 class="h3 mb-3">Reservist List
                         <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                     </h1>
 
-                    <div class="row" id="areaToPrint">
+                    <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -32,11 +32,10 @@ include 'system_checker.php';
                                             <tr>
                                                 <th>Username</th>
                                                 <th>Type</th>
-                                                <th>User Status</th>
                                                 <th>Status</th>
                                                 <?php if($isSadmin || $isAdmin) {
                                                 ?>
-                                                <th id='action-print'>Action</th>
+                                                <th id='action-print' class="float-end">Action</th>
                                                 <?php }
                                                 ?>
                                             </tr>
@@ -47,11 +46,11 @@ include 'system_checker.php';
 
                                             if ($users_counter > 0) {
                                                 if($isSadmin){
-                                                    $result = mysqli_query($conn, "select id, username, type, status, user_status, date_modified, time_modified from army_users WHERE user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select id, username, type, status, date_modified, time_modified from army_users WHERE type = 'reservist' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }elseif ($isAdmin || $isStaff){
-                                                    $result = mysqli_query($conn, "select id, username, type, status, user_status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select id, username, type, status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
-                                                while (list($army_id, $username, $user_type, $status, $user_status, $date, $time) = mysqli_fetch_array($result)) {
+                                                while (list($army_id, $username, $user_type, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
                                                     if($status == 'pending') {
                                                         $color_me = 'warning';
@@ -65,19 +64,17 @@ include 'system_checker.php';
                                                     if($isSadmin || $isAdmin) {
                                                     echo "
                                                 <tr>	
-                                                    <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
-                                                    <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$user_type</a></td>
-                                                    <td>$user_status</td>
+                                                    <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
+                                                    <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$user_type</a></td>
                                                     <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
-                                                    <td id='action-print'><a href=\"archive/army_users/army_users_archive.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md'><span><span data-feather='package'></span>&nbsp Archive</a></td>
+                                                    <td id='action-print'><a href=\"archive/army_users/army_users_archive.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md float-end'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                 </tr>
                                                         "; 
                                                     }
                                                     else {
                                                     echo "
                                                         <tr>	
-                                                            <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
-                                                            <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$user_type</a></td>
+                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
                                                             <td>$user_status</td>
                                                             <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
                                                         </tr>
@@ -86,7 +83,7 @@ include 'system_checker.php';
 
                                                     }
                                             } else {
-                                                echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
+                                                echo " <tr>	<td colspan='4' class='text-center'>No Registered User </td></tr>";
                                             }
                                             ?>
                                         </tbody>

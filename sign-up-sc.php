@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2">Get started School Coordinator!</h1>
+							<h1 class="h2"><strong>Get Started School Coordinator!</strong> </h1>
 						</div>
 
 						<div class="card">

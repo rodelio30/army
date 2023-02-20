@@ -10,6 +10,7 @@ $school_select    = '';
 $schools_select    = '';
 $archive_select    = '';
 $company_select    = '';
+$rids_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -44,6 +45,9 @@ if ($nav_active == 'archive') {
 if ($nav_active == 'company') {
     $company_select = 'active';
 }
+if ($nav_active == 'rids') {
+    $rids_select = 'active';
+}
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
@@ -76,11 +80,17 @@ if ($nav_active == 'company') {
                 User Registration List
             </li>
 
+            <?php 
+                if($isSadmin){
+            ?>
             <li class="sidebar-item <?php echo $admin_select ?>">
                 <a class="sidebar-link" href="admin_reg_admin.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Admin</span>
                 </a>
             </li>
+            <?php 
+            }
+            ?>
 
             <li class="sidebar-item <?php echo $staff_select ?>">
                 <a class="sidebar-link" href="admin_reg_staff.php">
@@ -106,6 +116,23 @@ if ($nav_active == 'company') {
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Commander</span>
                 </a>
             </li>
+            
+            <?php 
+            // if($isStaff){
+
+            ?>
+            <li class="sidebar-header">
+                RIDS Info 
+            </li>
+
+            <li class="sidebar-item <?php echo $rids_select ?>">
+                <a class="sidebar-link" href="admin_rids.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reservist</span>
+                </a>
+            </li>
+            <?php 
+            // }
+            ?>
 
             <li class="sidebar-header">
                 School / Rank / Company 

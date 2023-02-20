@@ -75,7 +75,7 @@ if ($user_status == "active") {
                 <div class="container-fluid p-0">
 
                     <h1 class="h3 mb-3 header-dash"><a href="admin_users.php" class="linked-navigation">User List </a> / <?php echo $username ?>
-                        <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn">Print</button>
+                        <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                     </h1>
 
                     <div class="row" id="areaToPrint">
