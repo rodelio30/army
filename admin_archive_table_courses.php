@@ -32,7 +32,7 @@
                             ";
                             }
                         } else {
-                            echo " <tr>	<td></td> <td colspan='2' class='text-center'>No Active course</td> <td></td> </tr>";
+                            echo " <tr>	<td></td> <td></td> <td class='text-center'>No Active course</td> <td></td> </tr>";
                         }
                         ?>
                     </tbody>

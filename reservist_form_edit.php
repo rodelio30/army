@@ -365,7 +365,14 @@
                 </table>
                 <!-- End of Tenth field -->
 
-            <button type="submit" name="rids_update" class="btn btn-md btn-outline-success m-2 mb-3" style="float:right">Update</button>
+                    <div class="row">
+                      <div class="col-6">
+                        <a href="admin_rids_view.php?ID=<?php echo $id?>" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
+                      </div>
+                      <div class="col-6">
+                        <button type="submit" name="rids_update" class="btn btn-md btn-outline-success m-2 mb-3" style="float:right">Update</button>
+                      </div>
+                    </div>
             </div>
             </form>
         </div>

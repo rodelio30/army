@@ -72,8 +72,9 @@ include 'system_checker.php';
                                                     } else {
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$acronym</a></td>
-                                                        <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$student_name</a></td>
+                                                        <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$id_no</a></td>
+                                                        <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$firstname $lastname</a></td>
+                                                        <td>$afpsn</td>
                                                         <td>$date_modified</td>
                                                         <td>$status</td>
                                                     </tr>
@@ -94,7 +95,7 @@ include 'system_checker.php';
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td colspan='2' class='text-center'>Empty Student</td>
+                                                                <tdclass='text-center'>Empty Student</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 </tr>";
