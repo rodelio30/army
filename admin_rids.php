@@ -35,7 +35,7 @@ include 'system_checker.php';
                                                 <th>Status</th>
                                                 <?php if($isSadmin || $isAdmin) {
                                                 ?>
-                                                <th id='action-print' class="float-end">Action</th>
+                                                <th id='action-print'><span class="float-end">Action</span</th>
                                                 <?php }
                                                 ?>
                                             </tr>
@@ -45,11 +45,7 @@ include 'system_checker.php';
                                             include 'counter/users_counter.php';
 
                                             if ($users_counter > 0) {
-                                                if($isSadmin){
                                                     $result = mysqli_query($conn, "select id, username, type, status, date_modified, time_modified from army_users WHERE type = 'reservist' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
-                                                }elseif ($isAdmin || $isStaff){
-                                                    $result = mysqli_query($conn, "select id, username, type, status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
-                                                }
                                                 while (list($army_id, $username, $user_type, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
                                                     if($status == 'pending') {

@@ -115,7 +115,13 @@ while ($res   = mysqli_fetch_array($result)) {
                 <div class="container-fluid p-0">
                     <div class="row">
                         <div class="col-md-9">
-                        <h1 class="h3 mb-3 header-dash"><a href="admin_rids.php" class="linked-navigation">Reservist List </a> / <?php echo $username ?>
+                        <h1 class="h3 mb-3 header-dash">
+                          <?php if(!$isReservist) {
+                            ?>
+                          <a href="admin_rids.php" class="linked-navigation">Reservist List </a> / 
+                          <?php echo $username ?>
+                            <?php
+                          } ?>
                             <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                         </h1>
                         </div>

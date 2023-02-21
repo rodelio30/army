@@ -235,7 +235,12 @@ if (isset($_POST['rids_update'])) {
 
             <main class="content">
                 <div class="container-fluid p-0">
-                        <h1 class="h3 mb-3 header-dash"><a href="admin_rids.php" class="linked-navigation">Reservist List </a> / <a href="admin_rids_view.php?ID=<?php echo $user_id?>" class="linked-navigation"><?php echo $username ?> </a> 
+                        <h1 class="h3 mb-3 header-dash">
+                          <?php if(!$isReservist) {
+                            ?>
+                          <a href="admin_rids.php" class="linked-navigation">Reservist List </a> / <a href="admin_rids_view.php?ID=<?php echo $user_id?>" class="linked-navigation"><?php echo $username ?> </a> 
+                            <?php
+                          } ?>
                         </h1>
 
                     <?php include 'reservist_form_edit.php'?>

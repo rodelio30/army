@@ -25,7 +25,18 @@ include 'counter/users_counter.php';
 
         <div class="main">
             <?php include 'top_right_navigation.php' ?>
-            <?php include 'admin_user_registration_dashboard.php' ?>
+
+            <?php 
+                if($isSadmin || $isAdmin || $isStaff ){
+                    include 'admin_user_registration_dashboard.php';
+                } else if($isSchool){
+                    include 'admin_school_coordinator.php';
+                } else if($isCommander) {
+                    include 'admin_commander.php';
+                } else if($isReservist) {
+                    include 'admin_reservist.php';
+                }
+            ?>
 
             <?php include 'system_controller/footer.php' ?>
         </div>
