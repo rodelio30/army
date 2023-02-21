@@ -6,26 +6,15 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card">
+                        <a href="admin_rids_view.php?ID=<?php echo $id?>">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Active Reservist</h5>
+                                    <h5 class="card-title">View my Form</h5>
                                 </div>
                             </div>
-                            <h1 class="mt-3 mb-1"><?php echo $reservist_counter ;?></h1>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col mt-0">
-                                    <h5 class="card-title">Pending Reservist</h5>
-                                </div>
-                            </div>
-                            <h1 class="mt-3 mb-1"><?php echo $p_reservist_counter ;?></h1>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -33,23 +33,15 @@
             // }
             ?>
 
-            <!-- <li class="sidebar-header">
-                        Tools & Components
-                    </li> -->
-
-            <!-- <li class="sidebar-item">
-                        <a class="sidebar-link" href="ui-buttons.php">
-                            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
-                        </a>
-                    </li> -->
-
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
-                    <strong class="d-inline-block mb-2">Your Time</strong>
-                    <div class="mb-3 text-sm">
-                        Sample Time
-                        <!-- Are you looking for more components? Check out our premium version. -->
+                    <div id="oras" class="clock-position ms-4 mb-2">
+                    <div id="clock">
+                        <div id="dates"></div>
+                        <div id="current-time"></div>
                     </div>
+                    </div>
+                    <script src="js/time_script.js"></script>
                 </div>
             </div>
     </div>
