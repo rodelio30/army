@@ -1,16 +1,8 @@
 <div class="row">
-    <div class="col-6">
-        <h1 class="h3 mb-3">Archive List for Users</h1>
-    </div>
-    <div class="col-6">
-        <!-- <button onclick="window.print();" class="btn btn-outline-secondary float-end" id="print-btn"><span data-feather="printer"></span> Print</button> -->
-    </div>
-</div>
-
-<div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+        <h2>Archive List for Users</h2>
               <table id="example" class="table table-hover my-0" style="width:100%">
                   <thead>
                       <tr>

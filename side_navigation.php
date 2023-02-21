@@ -14,6 +14,8 @@ $rids_select    = '';
 $student_select    = '';
 $course_select    = '';
 $appoint_select    = '';
+$training_select    = '';
+$seminar_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -59,6 +61,12 @@ if ($nav_active == 'course') {
 }
 if ($nav_active == 'appoint') {
     $appoint_select = 'active';
+}
+if ($nav_active == 'training') {
+    $training_select = 'active';
+}
+if ($nav_active == 'seminar') {
+    $seminar_select = 'active';
 }
 
 if($isSadmin || $isAdmin || $isStaff){

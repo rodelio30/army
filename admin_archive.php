@@ -21,6 +21,7 @@ include 'system_checker.php';
                     <?php include 'admin_archive_table_users.php'; ?>
                     <?php include 'admin_archive_admin_input.php'; ?>
                     <?php include 'admin_archive_school_coordinator_input.php'; ?>
+                    <?php include 'admin_archive_trainings_seminars.php'; ?>
                 </div>
             </main>
 

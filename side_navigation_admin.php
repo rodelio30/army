@@ -125,6 +125,22 @@
             </li>
 
             <li class="sidebar-header">
+               Trainings and Seminars 
+            </li>
+
+            <li class="sidebar-item <?php echo $training_select ?>">
+                <a class="sidebar-link" href="admin_trainings.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Trainings</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item <?php echo $seminar_select ?>">
+                <a class="sidebar-link" href="admin_seminars.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Seminars</span>
+                </a>
+            </li>
+
+            <!-- <li class="sidebar-header">
                 Appointments 
             </li>
 
@@ -132,7 +148,7 @@
                 <a class="sidebar-link" href="admin_appointments.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Appointments</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- <li class="sidebar-header">
                         Tools & Components
