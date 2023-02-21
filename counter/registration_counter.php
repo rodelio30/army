@@ -9,11 +9,11 @@ $registered_counter = 0;
 // This line is Counting for the number of Reservist Register User
 if($isSadmin){
   $sql_all = "SELECT reg_id FROM registration_user WHERE user_status = 'inactive' ";
+  $result_all = $conn->query($sql_all);
 } else if($isAdmin || $isStaff){
   $sql_all = "SELECT reg_id FROM registration_user WHERE user_status = 'inactive' && user_type != 'admin' && user_type != 'sadmin' ";
+  $result_all = $conn->query($sql_all);
 }
-$result_all = $conn->query($sql_all);
-
 if ($result_all->num_rows > 0) {
   while ($row = $result_all->fetch_assoc()) {
     $registered_counter++;

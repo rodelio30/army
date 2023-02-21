@@ -4,6 +4,7 @@ include 'system_checker.php';
 // un_public is username of the user who logged in
 
 if (isset($_POST['submit'])) {
+  $id_no          = $_POST['id_no'];
   $firstname      = $_POST['firstname'];
   $lastname       = $_POST['lastname'];
   $afpsn          = $_POST['afpsn'];
@@ -17,14 +18,16 @@ if (isset($_POST['submit'])) {
   $date           = date("Y-m-d");
   $time           = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM students WHERE afpsn = '$afpsn' OR  firstname = '$firstname' OR lastname = '$lastname'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM students WHERE id_no = '$id_no' OR afpsn = '$afpsn' OR  firstname = '$firstname' OR lastname = '$lastname'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
-    "<script> alert('Firstname or lastname and or AFPSN Has Already Taken'); </script>";
+    "<script> alert('Firstname or lastname and or AFPSN or ID NumberHas Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO students VALUES('','$firstname','$lastname','$school_address','$birth_date','$grade','$afpsn','$course','$semester','$academic_year','$date','$time','$date','$time','$status')";
+    $query = "INSERT INTO students VALUES('','$id_no','$firstname','$lastname','$school_address','$birth_date','$grade','$afpsn','$course','$semester','$academic_year','$date','$time','$date','$time','$status')";
     mysqli_query($conn, $query);
+    
+    mysqli_query($conn, "update courses set student_count = student_count + 1 where course_name = '$course'") or die("Query 4 is incorrect....");
 
     echo '<script type="text/javascript"> alert("' . $firstname . ' Added!.")</script>';
     header('Refresh: 0; url=admin_students.php');
@@ -55,8 +58,13 @@ if (isset($_POST['submit'])) {
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
+                      <label for="exampleInputEmail1">Student ID Number</label>
+                      <input type="text" class="form-control" id="id_no" name="id_no" placeholder="Enter Student ID Number" required autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Firstname</label>
-                      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter Firstname" required autofocus>
+                      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter Firstname" required >
                     </div>
                     <br>
                     <div class="form-group">
@@ -94,17 +102,37 @@ if (isset($_POST['submit'])) {
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Grade</label>
-                      <input type="number" class="form-control" id="grade" name="grade" placeholder="Enter Grade" required>
+                      <input type="text" class="form-control" id="grade" name="grade" placeholder="Enter Grade" required>
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Semester</label>
-                      <input type="text" class="form-control" id="semester" name="semester" placeholder="Enter Semester" required>
+                      <select class="form-control" id="semester" value="<?php echo $semester ?>" name="semester">
+                        <option value="First">First Semester</option>
+                        <option value="Second">Second Semester</option>
+                      </select>
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Academic Year</label>
-                      <input type="text" class="form-control" id="academic_year" name="academic_year" placeholder="Enter Academic Year" required>
+                      <select class="form-control" id="academic_year" value="<?php echo $academic_year ?>" name="academic_year">
+                        <option value="2014-2015">2014-2015</option>
+                        <option value="2015-2016">2015-2016</option>
+                        <option value="2016-2017">2016-2017</option>
+                        <option value="2017-2018">2017-2018</option>
+                        <option value="2018-2019">2018-2019</option>
+                        <option value="2019-2020">2019-2020</option>
+                        <option value="2020-2021">2020-2021</option>
+                        <option value="2021-2022">2021-2022</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <!-- <option value="2024-2025">2020-2021</option>
+                        <option value="2025-2026">2020-2021</option>
+                        <option value="2026-2027">2020-2021</option>
+                        <option value="2027-2028">2020-2021</option>
+                        <option value="2028-2029">2020-2021</option>
+                        <option value="2029-2030">2020-2021</option> -->
+                      </select>
                     </div>
                     <br>
                     <div class="row">
