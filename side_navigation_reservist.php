@@ -23,9 +23,8 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">My Reservist</span>
                 </a>
             </li>
-            <?php 
-            // }
-            ?>
+
+            <hr>
 
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">

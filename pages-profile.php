@@ -8,7 +8,9 @@ if (isset($_POST['update'])) {
   $lastname      = $_POST['lastname'];
   $username      = $_POST['username'];
   $email         = $_POST['email'];
+  if($isSadmin) {
   $rank          = $_POST['rank'];
+  }
   $company       = $_POST['company'];
   $afpsn         = $_POST['afpsn'];
   $status        = $_POST['status'];
@@ -17,7 +19,11 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
+  if($isSadmin){
   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  } else {
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  }
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
   header('Refresh: 0; url=pages-profile.php');
@@ -218,21 +224,28 @@ if(empty($filename)){
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <!-- <input type="text" class="form-control" id="rank" name="rank" value="<?php echo $user_rank?>" placeholder="Enter User Rank"> -->
-                        <select class="form-control" id="rank" name="rank">
-                                <option value="none">None</option>
-                            <?php
-                            $result = mysqli_query($conn, "select ranked, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
-                            while (list($ranked, $rank_name) = mysqli_fetch_array($result)) {
-                                if($rank_name == $user_rank){
-                                    echo "<option value='$rank_name' selected>$ranked. $rank_name</option>";
-                                }
-                                else {
-                                    echo "<option value='$rank_name'>$ranked. $rank_name</option>";
-                                }
-                            }
-                            ?>
-                        </select>
+                        <?php if(!$isSadmin) { ?>
+                        <input type="text" class="form-control" id="rank" name="rank" value="<?php echo $user_rank?>" disabled>
+                        <?php
+                        } else {
+                          ?> 
+                          <select class="form-control" id="rank" name="rank">
+                                  <option value="none">None</option>
+                              <?php
+                              $result = mysqli_query($conn, "select ranked, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+                              while (list($ranked, $rank_name) = mysqli_fetch_array($result)) {
+                                  if($rank_name == $user_rank){
+                                      echo "<option value='$rank_name' selected>$ranked. $rank_name</option>";
+                                  }
+                                  else {
+                                      echo "<option value='$rank_name'>$ranked. $rank_name</option>";
+                                  }
+                              }
+                              ?>
+                          </select>
+                          <?php
+                        }
+                        ?>
                       </div>
                     </div>
                     <br>

@@ -13,6 +13,7 @@ $company_select    = '';
 $rids_select    = '';
 $student_select    = '';
 $course_select    = '';
+$appoint_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -56,6 +57,10 @@ if ($nav_active == 'student') {
 if ($nav_active == 'course') {
     $course_select = 'active';
 }
+if ($nav_active == 'appoint') {
+    $appoint_select = 'active';
+}
+
 if($isSadmin || $isAdmin || $isStaff){
     include 'side_navigation_admin.php';
 } else if($isCommander){

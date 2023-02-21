@@ -123,9 +123,16 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Courses</span>
                 </a>
             </li>
-            <?php 
-            // }
-            ?>
+
+            <li class="sidebar-header">
+                Appointments 
+            </li>
+
+            <li class="sidebar-item <?php echo $appoint_select ?>">
+                <a class="sidebar-link" href="admin_appointments.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Appointments</span>
+                </a>
+            </li>
 
             <!-- <li class="sidebar-header">
                         Tools & Components
