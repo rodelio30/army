@@ -37,9 +37,10 @@ include 'system_checker.php';
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>ID Number</th>
                                                 <th>Name</th>
+                                                <th>AFPSN</th>
                                                 <th>Date Modified</th>
-                                                <th>Date of Birth</th>
                                                 <th>Status</th>
                                                 </th>
                                                 <?php if($isSadmin || $isAdmin) {
@@ -55,14 +56,15 @@ include 'system_checker.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($students_counter > 0) {
 
-                                                $result = mysqli_query($conn, "select student_id, firstname, lastname, birth_date, status, date_modified from students WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
-                                                while (list($student_id, $firstname, $lastname, $birth_date, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                                $result = mysqli_query($conn, "select student_id, id_no, firstname, lastname, afpsn, status, date_modified from students WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                while (list($student_id, $id_no, $firstname, $lastname, $afpsn, $status, $date_modified) = mysqli_fetch_array($result)) {
                                                     if($isSadmin || $isAdmin){
                                                     echo "
                                                     <tr>	
+                                                        <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$id_no</a></td>
                                                         <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$firstname $lastname</a></td>
+                                                        <td>$afpsn</td>
                                                         <td>$date_modified</td>
-                                                        <td>$birth_date</td>
                                                         <td>$status</td>
                                                         <td id='action-print'><a href=\"archive/students/students_archive.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this student move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
@@ -86,12 +88,14 @@ include 'system_checker.php';
                                                                 <td colspan='2' class='text-center'>Empty Student</td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td></td>
                                                                 </tr>";
                                                     } else {
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td colspan='2' class='text-center'>Empty Student</td>
+                                                                <td></td>
                                                                 <td></td>
                                                                 </tr>";
                                                     }

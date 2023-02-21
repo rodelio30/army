@@ -29,7 +29,13 @@ if (!empty($_SESSION["id"])) {
     } 
     if ($type == 'staff') {
       $isStaff = true;
-    } 
+    } if($type == 'school_coordinator') {
+      $isSchool = true;
+    } if($type == 'commander') {
+      $isCommander = true;
+    } if($type == 'reservist') {
+      $isReservist = true;
+    }
     // if ($type == 'reservist') {
     //   header("location: lvl3/index.php");
     // }
