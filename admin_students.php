@@ -43,7 +43,7 @@ include 'system_checker.php';
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
                                                 </th>
-                                                <?php if($isSadmin || $isAdmin) {
+                                                <?php if($isSadmin || $isAdmin || $isSchool) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
                                                 <?php }
@@ -58,7 +58,7 @@ include 'system_checker.php';
 
                                                 $result = mysqli_query($conn, "select student_id, id_no, firstname, lastname, afpsn, status, date_modified from students WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($student_id, $id_no, $firstname, $lastname, $afpsn, $status, $date_modified) = mysqli_fetch_array($result)) {
-                                                    if($isSadmin || $isAdmin){
+                                                    if($isSadmin || $isAdmin || $isSchool){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_students_view.php?ID=$student_id\" class='user-clicker'>$id_no</a></td>
@@ -82,7 +82,7 @@ include 'system_checker.php';
                                                     }
                                                 }
                                             } else {
-                                                    if($isSadmin || $isAdmin){ 
+                                                    if($isSadmin || $isAdmin || $isSchool){ 
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>

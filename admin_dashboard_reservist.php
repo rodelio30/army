@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card">
-                        <a href="admin_rids_view.php?ID=<?php echo $id?>">
+                        <a href="admin_rids_view.php?ID=<?php echo $id?>" class="user-clicker">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
@@ -17,6 +17,19 @@
                         </a>
                     </div>
                 </div>
+                <!-- <div class="col-sm-6">
+                    <div class="card">
+                        <a href="admin_appointments.php" class="user-clicker">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">View Appointment</h5>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>

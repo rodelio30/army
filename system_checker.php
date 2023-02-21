@@ -16,6 +16,7 @@ if (!empty($_SESSION["id"])) {
   $fn_public   = $row["firstname"];
   $ln_public   = $row["lastname"];
   $un_public   = $row["username"];
+  $rank_public = $row["rank"];
   $type        = $row["type"];
   $status      = $row["status"];
   $user_status = $row["user_status"];
