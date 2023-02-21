@@ -140,6 +140,16 @@
                 </a>
             </li>
 
+            <li class="sidebar-header">
+               Announcements 
+            </li>
+
+            <li class="sidebar-item <?php echo $announce_select ?>">
+                <a class="sidebar-link" href="admin_announcements.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Announcements</span>
+                </a>
+            </li>
+
             <!-- <li class="sidebar-header">
                 Appointments 
             </li>
