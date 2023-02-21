@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.php" style="background-color:#0D370A;">
+        <a class="sidebar-brand" href="index.php">
             <span class="align-middle">ARMY</span>
         </a>
 
@@ -139,7 +139,7 @@
 
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
-                    <div id="oras" class="clock-position ms-4 mb-2">
+                    <div id="oras" class="ms-2 mb-2">
                     <div id="clock">
                         <div id="dates"></div>
                         <div id="current-time"></div>

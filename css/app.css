@@ -13782,7 +13782,7 @@ body {
 
 .sidebar,
 .sidebar-content {
-  background: #222e3c;
+  background: #0d370a;
   transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out,
     margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
 }
@@ -13802,7 +13802,7 @@ body {
 
 .sidebar-link,
 a.sidebar-link {
-  background: #222e3c;
+  background: #0d370a;
   border-left: 3px solid transparent;
   color: rgba(233, 236, 239, 0.5);
   cursor: pointer;
@@ -13827,7 +13827,7 @@ a.sidebar-link svg {
 }
 
 .sidebar-link:hover {
-  background: #222e3c;
+  background: #0d370a;
   border-left-color: transparent;
 }
 
@@ -13857,7 +13857,7 @@ a.sidebar-link svg {
 }
 
 .sidebar-brand {
-  color: #f8f9fa;
+  color: #afa05c;
   display: block;
   font-size: 1.15rem;
   font-weight: 600;
@@ -13865,7 +13865,7 @@ a.sidebar-link svg {
 }
 
 .sidebar-brand:hover {
-  color: #f8f9fa;
+  color: #7c7e7a;
   text-decoration: none;
 }
 
@@ -13913,11 +13913,11 @@ a.sidebar-link svg {
 }
 
 .sidebar-cta-content {
-  background: #2b3947;
+  background: #afa05c;
   border-radius: 0.3rem;
   color: #e9ecef;
-  margin: 1.75rem;
-  padding: 1.5rem;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .min-vw-50 {
@@ -13992,7 +13992,7 @@ a {
 
 .wrapper {
   align-items: stretch;
-  background: #222e3c;
+  background: #0d370a;
   display: flex;
   width: 100%;
 }
@@ -15321,4 +15321,4 @@ span.flatpickr-weekday {
 .linked-navigation:hover {
   color: green;
   text-decoration: none;
-}
+} 
