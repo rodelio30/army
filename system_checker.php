@@ -50,7 +50,7 @@ if (!empty($_SESSION["id"])) {
     echo "<script> alert('Sorry, your account is inactive. Please wait for the approval'); </script>";
   }
 } else {
-  header("Location: sign-in.php");
+  header("Location: bulletin.php");
 }
 
 // include 'counter/counter.php';

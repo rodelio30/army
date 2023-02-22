@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 04:53 AM
+-- Generation Time: Feb 21, 2023 at 02:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,73 @@ SET time_zone = "+00:00";
 --
 -- Database: `army`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `ann_id` int(250) NOT NULL,
+  `img` varchar(250) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `date_created` date NOT NULL,
+  `time_created` time(6) NOT NULL,
+  `date_modified` date NOT NULL,
+  `time_modified` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`ann_id`, `img`, `title`, `description`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
+(1, '', 'First Title', 'First Description 2', 'active', '2023-02-21', '09:24:17.000000', '2023-02-21', '09:39:13.000000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ann_descrip`
+--
+
+CREATE TABLE `ann_descrip` (
+  `ad_id` int(250) NOT NULL,
+  `announce_id` int(250) NOT NULL,
+  `description` int(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointments`
+--
+
+CREATE TABLE `appointments` (
+  `ap_id` int(250) NOT NULL,
+  `reservist_id` int(250) NOT NULL,
+  `commander_id` int(250) NOT NULL,
+  `subject` varchar(250) NOT NULL,
+  `text` varchar(250) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `date_appoint` date NOT NULL,
+  `time_appoint` time(6) NOT NULL,
+  `date_created` date NOT NULL,
+  `time_created` time(6) NOT NULL,
+  `date_modified` date NOT NULL,
+  `time_modified` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`ap_id`, `reservist_id`, `commander_id`, `subject`, `text`, `status`, `date_appoint`, `time_appoint`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
+(1, 3, 4, 'Sample Appoint ', 'Appointment Schedule', 'inactive', '2023-03-02', '08:24:00.000000', '2023-02-21', '03:22:58.000000', '2023-02-21', '04:07:18.000000'),
+(2, 3, 28, 'Second Samplew', 'Appointment Schedule Sample', 'pending', '2023-03-03', '09:00:00.000000', '2023-02-21', '03:24:50.000000', '2023-02-21', '03:24:50.000000'),
+(3, 0, 4, 'Third Appointment ', 'Appointment Thirds', 'active', '2023-03-13', '08:35:00.000000', '2023-02-21', '04:01:05.000000', '2023-02-21', '04:03:43.000000');
 
 -- --------------------------------------------------------
 
@@ -56,12 +123,12 @@ CREATE TABLE `army_users` (
 
 INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank`, `company`, `afpsn`, `school_name`, `school_address`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
 (1, 'commander.png', 'Rodelio', '', 'Domingo', 'gwapo', 'rodel@sample.com', 'admin', 'sadmin', 'Private', 'Charlie', 'sladkjf=234234saefq3245325w', '', '', 'standby', 'active', '2023-02-17', '03:32:22.000000', '2023-02-17', '06:51:07.000000'),
-(3, 'download (1).jpg', 'Sample', '', 'Sample', 'lvl3', 'sample3@sample.com', 'sample', 'reservist', 'none', '', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-21', '11:07:41.000000'),
+(3, 'download (1).jpg', 'Sample', '', 'Sample', 'lvl3', 'sample3@sample.com', 'sample', 'reservist', 'none', 'Alpha', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-21', '04:40:47.000000'),
 (4, 'download (1).jpg', 'Sample', '', 'Sample', 'lvl4 comsldkfj', 'sample4@sample.com', 'sample', 'commander', 'First Lieutenant', 'none', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-21', '11:43:23.000000'),
 (15, 'download (1).jpg', 'Rodelio', 'B', 'Domingo', 'reservist', 'reservist@sample.com', 'sample', 'reservist', 'Major', '', '', '', '', 'retired', 'active', NULL, '00:00:00.000000', '2023-02-20', '04:23:20.000000'),
 (24, '', 'Sample', '', 'Testing', 'testschool', 'testschool@sample.com', 'sample', 'school_coordinator', '', '', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-16', '06:42:19.000000'),
 (25, '', 'Private', '', 'None', 'prinon', 'prinon@sample.com', 'sample', 'reservist', '', '', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-17', '07:59:00.000000'),
-(26, 'download.jpg', 'Captain', '', 'Bravo', 'capbra', 'capbra@sample.com', 'sample', 'staff', 'none', 'none', '', '', '', 'ready', 'active', NULL, '00:00:00.000000', '2023-02-17', '07:55:15.000000'),
+(26, 'download (1).jpg', 'Captain', '', 'Bravo', 'capbra', 'capbra@sample.com', 'sample', 'staff', 'none', 'none', '', '', '', 'ready', 'active', NULL, '00:00:00.000000', '2023-02-17', '07:55:15.000000'),
 (27, 'smile.png', 'Colonel', '', 'Domingo', 'coldom', 'coldom@sample.com', 'sample', 'admin', 'Private', 'Alpha', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-17', '07:11:44.000000'),
 (28, '', 'Commander', '', 'Alpha', 'comaplh', 'comaplh@sample.com', 'sample', 'commander', 'Command Sergeant Major', 'Alpha', 'dfsdf-sdflkjsdf-dfl;kjdf', '', '', 'standby', 'active', '2023-02-17', '04:49:15.000000', '2023-02-17', '04:49:15.000000'),
 (30, '', 'Staff', '', 'Sirjint', 'ssalp', 'ssalp@sample.com', 'sample', 'admin', 'Staff Sergeant', 'Alpha', 'sdfsadf-sdfsdf-', '', '', 'standby', 'active', '2023-02-17', '04:51:17.000000', '2023-02-17', '04:51:17.000000'),
@@ -167,7 +234,7 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`course_id`, `course_name`, `description`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
 (1, 'Rodel Tutorial', 'This broom broom', 'inactive', 2, '2023-02-20', '09:42:13.000000', '2023-02-21', '10:35:37.000000'),
-(2, 'Second Tutorial', 'My Own Tutorial', 'active', 2, '2023-02-21', '09:18:07.000000', '2023-02-21', '09:24:34.000000');
+(2, 'Second Tutorial', 'My Own Tutorial', 'active', 2, '2023-02-21', '09:18:07.000000', '2023-02-21', '02:56:46.000000');
 
 -- --------------------------------------------------------
 
@@ -361,7 +428,7 @@ CREATE TABLE `rpi` (
 INSERT INTO `rpi` (`rpi_id`, `reservist_id`, `brsvc`, `afpos_mos`, `soc_enlistment`, `initial_rank`, `date_of_comsn_enlist`, `authority`, `mobilization_center`, `designation`, `squad`, `platoon`, `battalion`, `size_cs`, `size_cap`, `size_bda`) VALUES
 (1, 15, '', 'INF', 'MNSA', '', '', 'Me', '', '', '', '', '', 185, 12, 123),
 (2, 25, '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0),
-(3, 3, '', 'INF', 'MNSA', '', '', '', '', '', '', '', '', 0, 0, 0);
+(3, 3, '', 'INF', 'MNSA', '', '', '', '', '', '', '', '', 120, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -390,6 +457,31 @@ CREATE TABLE `schools` (
 INSERT INTO `schools` (`school_id`, `school_name`, `acronym`, `description`, `school_address`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
 (1, 'Central Luzon State University', 'CLSU', 'My College Now Today', 'My School', 'active', '2023-02-15', '07:01:56.000000', '2023-02-16', '06:40:19.000000', 'gwapo'),
 (2, 'Nueva Ecija University of Santo Tomas', 'NEUST', 'Their College', '', 'active', '2023-02-15', '08:41:58.000000', '2023-02-15', '08:41:58.000000', 'gwapo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seminars`
+--
+
+CREATE TABLE `seminars` (
+  `seminar_id` int(250) NOT NULL,
+  `seminar_name` varchar(200) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `student_count` int(250) NOT NULL,
+  `date_created` date NOT NULL,
+  `time_created` time(6) NOT NULL,
+  `date_modified` date NOT NULL,
+  `time_modified` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `seminars`
+--
+
+INSERT INTO `seminars` (`seminar_id`, `seminar_name`, `description`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
+(1, 'First Seminar', 'My Initial Seminar', 'active', 0, '2023-02-21', '08:45:26.000000', '2023-02-21', '09:33:11.000000');
 
 -- --------------------------------------------------------
 
@@ -423,12 +515,55 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`student_id`, `id_no`, `firstname`, `lastname`, `address`, `birth_date`, `grade`, `afpsn`, `course`, `semester`, `academic_year`, `date_created`, `time_created`, `date_modified`, `time_modified`, `status`) VALUES
 (3, '20-2012', 'Richard', 'Pable', 'Central Luzon State University', '2023-02-09', '2', 'alsdf=sdljkfh2oi', 'Second Tutorial', '', '', '2023-02-20', '09:59:25.000000', '2023-02-21', '09:25:37.000000', 'inactive'),
 (4, '21-2123', 'Second', 'Student', 'sdfsdf', '2019-10-22', '2.5', 'sldjkf=dlkj1', 'Rodel Tutorial', 'Second', '2017-2018', '2023-02-20', '10:07:42.000000', '2023-02-21', '09:30:06.000000', 'inactive'),
-(5, 'RA-0989', 'Moises', 'Anana', '#77 Purok Jasmine, Poblacion West', '2002-12-30', '2', 'jslkdjf-0dfjlq2id', 'Rodel Tutorial', 'Second', '2019-2020', '2023-02-21', '09:01:55.000000', '2023-02-21', '09:28:53.000000', 'inactive'),
+(5, 'RA-0989', 'Moises', 'Anana', '#77 Purok Jasmine, Poblacion West', '2002-12-30', '2', 'jslkdjf-0dfjlq2id', 'Rodel Tutorial', 'Second', '2019-2020', '2023-02-21', '09:01:55.000000', '2023-02-21', '02:56:36.000000', 'active'),
 (6, '14-2142', 'Daryl', 'Nortado', 'Jaan lang', '1997-12-30', '1.25', 'sldfj-sdj1jhek', 'Second Tutorial', 'Second', '2014-2015', '2023-02-21', '09:11:59.000000', '2023-02-21', '11:17:13.000000', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainings`
+--
+
+CREATE TABLE `trainings` (
+  `training_id` int(250) NOT NULL,
+  `training_name` varchar(200) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `student_count` int(250) NOT NULL,
+  `date_created` date NOT NULL,
+  `time_created` time(6) NOT NULL,
+  `date_modified` date NOT NULL,
+  `time_modified` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trainings`
+--
+
+INSERT INTO `trainings` (`training_id`, `training_name`, `description`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
+(1, 'First Training', 'First Training forever', 'active', 0, '2023-02-21', '08:20:25.000000', '2023-02-21', '09:33:05.000000');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`ann_id`);
+
+--
+-- Indexes for table `ann_descrip`
+--
+ALTER TABLE `ann_descrip`
+  ADD PRIMARY KEY (`ad_id`);
+
+--
+-- Indexes for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`ap_id`);
 
 --
 -- Indexes for table `army_users`
@@ -497,14 +632,44 @@ ALTER TABLE `schools`
   ADD PRIMARY KEY (`school_id`);
 
 --
+-- Indexes for table `seminars`
+--
+ALTER TABLE `seminars`
+  ADD PRIMARY KEY (`seminar_id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`student_id`);
 
 --
+-- Indexes for table `trainings`
+--
+ALTER TABLE `trainings`
+  ADD PRIMARY KEY (`training_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `ann_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `ann_descrip`
+--
+ALTER TABLE `ann_descrip`
+  MODIFY `ad_id` int(250) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `appointments`
+--
+ALTER TABLE `appointments`
+  MODIFY `ap_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `army_users`
@@ -573,10 +738,22 @@ ALTER TABLE `schools`
   MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `seminars`
+--
+ALTER TABLE `seminars`
+  MODIFY `seminar_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
   MODIFY `student_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `trainings`
+--
+ALTER TABLE `trainings`
+  MODIFY `training_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
