@@ -9,6 +9,9 @@ body {
   height: 10px;
 }
 
+.bg-navigation {
+  background-color:#FFF4C4;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
