@@ -1,5 +1,18 @@
 <?php 
 include 'system_checker.php';
+if (isset($_POST['update'])) {
+  $app_id         = $_POST['app_id'];
+  $purpose        = $_POST['purpose'];
+  $status         = $_POST['status'];
+  $date_modified  = date("Y-m-d");
+  $time_modified  = date("h:i:s");
+
+  mysqli_query($conn, "update appointments set status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where ap_id = '$app_id'") or die("Query 4 is incorrect....");
+
+  echo '<script type="text/javascript"> alert("' . $purpose . ' updated!.")</script>';
+  header('Refresh: 0; url=admin_appointments.php');
+  // End of Else in Inactive if
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,9 +51,8 @@ include 'system_checker.php';
                                     <table id="example" class="table table-hover my-0" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Reservist</th>
-                                                <th>Subject</th>
-                                                <th>Commander</th>
+                                                <th>Name</th>
+                                                <th>Purpose</th>
                                                 <th>Date & Time</th>
                                                 <th>Status</th>
                                                 <th id='action-print'><span class="float-end">Action</span</th>
@@ -51,24 +63,47 @@ include 'system_checker.php';
                                             include 'counter/appointments_counter.php';
 
                                             if ($appointments_counter > 0) {
-                                                    $result = mysqli_query($conn, "select ap_id, reservist_id, commander_id, subject, text, status, date_appoint, time_appoint from appointments ORDER BY date_modified") or die("Query for Appointments....");
-                                                while (list($ap_id, $reservist_id, $commander_id, $subject, $text, $status, $date_appoint, $time_appoint) = mysqli_fetch_array($result)) {
+                                                    $result = mysqli_query($conn, "select ap_id, name, purpose, text, status, date_appoint, time_appoint from appointments where status != 'archive' ORDER BY date_modified") or die("Query for Appointments....");
+                                                while (list($ap_id, $name, $purpose, $text, $status, $date_appoint, $time_appoint) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
                                                     if($status == 'pending') {
                                                         $color_me = 'warning';
-                                                    } else if($status == 'active') {
+                                                    } else if($status == 'approved') {
                                                         $color_me = 'success';
-                                                    } else if($status == 'inactive') {
+                                                    } else if($status == 'declined') {
                                                         $color_me = 'danger';
+                                                    }
+                                                    $sel_pending  = "";
+                                                    $sel_approved = "";
+                                                    $sel_declined= "";
+
+                                                    if ($status == "approved") {
+                                                    $sel_approved = "selected";
+                                                    } else if ($status == "pending") {
+                                                    $sel_pending = "selected";
+                                                    } else if ($status == "declined") {
+                                                    $sel_declined = "selected";
                                                     }
                                                     echo "
                                                 <tr>	
-                                                    <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$reservist_id</a></td>
-                                                    <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$subject</a></td>
-                                                    <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$commander_id</a></td>
+                                                    <form method='post'>
+                                                    <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$name</a></td>
+                                                    <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$purpose</a></td>
                                                     <td scope='row'>$date_appoint $time_appoint</td>
-                                                    <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
-                                                    <td id='action-print'><a href=\"archive/army_users/army_users_archive.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md float-end'><span><span data-feather='package'></span>&nbsp Archive</a></td>
+                                                    <td>
+                                                        <select class='badge bg-$color_me' id='status' value='$status' name='status'>
+                                                        <option value='pending' $sel_pending>Pending</option>
+                                                        <option value='approved' $sel_approved>Approved</option>
+                                                        <option value='declined' $sel_declined>Declined</option>
+                                                        </select>
+                                                    </td>
+                                                    <input type='hidden' name='app_id' value='$ap_id'>
+                                                    <input type='hidden' name='purpose' value='$purpose'>
+                                                    <td id='action-print'>
+                                                        <button type='submit' name='update' class='ms-3 btn btn-md btn-outline-primary '>Update</button>
+                                                        <a href=\"archive/appointments/appointments_archive.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md'><span><span data-feather='package'></span>&nbsp Archive</a>
+                                                    </td>
+                                                    </form>
                                                 </tr>
                                                         "; 
 
@@ -77,8 +112,7 @@ include 'system_checker.php';
                                                 echo " <tr>
                                                 <td></td>
                                                 <td></td>
-                                                	<td class='text-center'>No Registered User </td>
-                                                <td></td>
+                                                	<td class='text-center'>No Registered Appointment </td>
                                                 <td></td>
                                                 <td></td>
                                                     </tr>";

@@ -4,9 +4,10 @@ include 'system_checker.php';
 // un_public is username of the user who logged in
 
 if (isset($_POST['submit'])) {
-  $reservist_id   = $_POST['reservist_id'];
-  $commander_id   = $_POST['commander_id'];
-  $subject        = $_POST['subject'];
+  $name           = $_POST['name'];
+  $email          = $_POST['email'];
+  $cnumber        = $_POST['cnumber'];
+  $purpose        = $_POST['purpose'];
   $text           = $_POST['text'];
   $date_appoint   = $_POST['date_appoint'];
   $time_appoint   = $_POST['time_appoint'];
@@ -22,10 +23,10 @@ if (isset($_POST['submit'])) {
     "<script> alert('Date and Time Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO appointments VALUES('','$reservist_id','$commander_id','$subject','$text','$status','$date_appoint','$time_appoint','$date','$time','$date','$time')";
+    $query = "INSERT INTO appointments VALUES('','$name','$email','$cnumber','$subject','$text','$status','$date_appoint','$time_appoint','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
     
-    echo '<script type="text/javascript"> alert("' . $subject . ' Added!.")</script>';
+    echo '<script type="text/javascript"> alert("' . $purpose . ' Added!.")</script>';
     header('Refresh: 0; url=admin_appointments.php');
   }
 }
@@ -53,38 +54,33 @@ if (isset($_POST['submit'])) {
               <div class="card">
                 <div class="card-body">
                   <form method="post">
-                      <input type="hidden" class="form-control" id="reservist_id" name="reservist_id" value="<?php echo $id?>">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">To:</label>
-                        <select class="form-control" id="commander_id" name="commander_id">
-                                <!-- <option value="none">None</option> -->
-                            <?php
-                            $result = mysqli_query($conn, "select id, firstname, lastname, rank from army_users where type='commander' && user_status='active'") or die("Query School List is inncorrect........");
-                            while (list($commander_id, $firstname, $lastname, $rank ) = mysqli_fetch_array($result)) {
-                              echo "<option value='$commander_id'>$rank $firstname $lastname</option>";
-                            }
-                            ?>
-                        </select>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                        <label>Appointment Date</label>
+                        <input type="date" name="app_date" class="form-control" id="app_date" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                        <label>Appointment Time</label>
+                        <input type="time" class="form-control" name="app_time" id="app_time" placeholder="Your Email" required>
+                        </div>
                     </div>
                     <br>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Subject</label>
-                      <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject" required>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Complete Name" required>
+                        <br>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                        <!-- <input type="text" name="cnumber" class="form-control" id="cnumber" placeholder="Your Contact Number" required> -->
+                          <input type="tel" id="cnumber" class="form-control"  name="cnumber" placeholder="000-0000-000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" required>
+                        </div>
                     </div>
-                    <br>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Description</label>
-                      <input type="text" class="form-control" id="text" name="text" placeholder="Enter Description">
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="purpose" id="purpose" placeholder="Purpose of Appointment" required>
                     </div>
-                    <br>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Date Appointment</label>
-                      <input type="date" class="form-control" id="date_appoint" name="date_appoint" placeholder="Enter Date Appointment" required>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Time Appointment</label>
-                      <input type="time" class="form-control" id="time_appoint" name="time_appoint" min="08:30" max="15:00" placeholder="Enter Time Appointment" required>
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                     </div>
                     <br>
                     <div class="row">
@@ -100,7 +96,6 @@ if (isset($_POST['submit'])) {
               </div>
             </div>
           </div>
-
         </div>
       </main>
 

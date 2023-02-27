@@ -11312,3 +11312,19 @@ $(document).ready(function () {
     },
   });
 });
+
+$(document).ready(function () {
+  $("#archive_appointments").DataTable({
+    order: [[0, "asc"]],
+    pagingType: "full_numbers",
+    lengthMenu: [
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"],
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search .",
+    },
+  });
+});
