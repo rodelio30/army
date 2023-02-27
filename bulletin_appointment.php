@@ -3,9 +3,9 @@ include 'include/connect.php';
 if (isset($_POST['submit'])) {
   $app_date     = $_POST['app_date'];
   $app_time     = $_POST['app_time'];
-  $commander_id = $_POST['commander_id'];
   $name         = $_POST['name'];
   $email        = $_POST['email'];
+  $cnumber      = $_POST['cnumber'];
   $subject      = $_POST['subject'];
   $text         = $_POST['message'];
   $status       = 'pending';
@@ -18,11 +18,11 @@ if (isset($_POST['submit'])) {
   //   "<script> alert('This Traning Has Already Taken'); </script>";
   // } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO appointments VALUES('','','$commander_id','$name','$email','$subject','$text','$status','$app_date','$app_time','$date','$time','$date','$time')";
+    $query = "INSERT INTO appointments VALUES('','$name','$email','$cnumber','$subject','$text','$status','$app_date','$app_time','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
-    echo '<script type="text/javascript"> alert("Hi ' . $name . '! We Set your appointment, please wait for the approval!.")</script>';
-    header('Refresh: 0; url=appointment.php');
+    echo '<script type="text/javascript"> alert("Hi ' . $name . '! We Set your appointment, please wait for the approval, will send you an update for text or email!.")</script>';
+    header('Refresh: 0; url=bulletin_appointment.php');
   // }
 }
 ?>
