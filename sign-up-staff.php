@@ -46,6 +46,7 @@ if(isset($_POST["submit"])){
 <?php include 'header_main.php' ?>
 
 <body>
+    <?php include 'bulletin_navigation.php' ?>
 	<main class="d-flex w-100">
 		<div class="container d-flex flex-column">
 			<div class="row vh-100">

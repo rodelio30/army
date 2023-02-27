@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
     mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
   }
   else {
-  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
 
      if (mysqli_query($conn, $query_army_user)) {
         
