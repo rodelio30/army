@@ -14,6 +14,11 @@
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
+            
+
+            <?php 
+                if($isSadmin || $isAdmin){
+            ?>
             <li class="sidebar-header">
                 List of all Users
             </li>
@@ -23,10 +28,12 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
                 </a>
             </li>
-
-            <li class="sidebar-header">
-                User Registration List
-            </li>
+                <li class="sidebar-header">
+                    User Registration List
+                </li>
+            <?php 
+            }
+            ?>
 
             <?php 
                 if($isSadmin){
@@ -38,6 +45,10 @@
             </li>
             <?php 
             }
+            ?>
+
+            <?php 
+                if($isSadmin || $isAdmin){
             ?>
 
             <li class="sidebar-item <?php echo $staff_select ?>">
@@ -64,6 +75,9 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Commander</span>
                 </a>
             </li>
+            <?php 
+            }
+            ?>
 
             <li class="sidebar-header">
                 RIDS Info 
