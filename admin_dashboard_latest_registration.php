@@ -5,7 +5,8 @@
 
                 <h5 class="card-title mb-0">Latest User Registration</h5>
             </div>
-            <table class="table table-hover my-0">
+                                <div class="card-body">
+            <table id="example" class="table table-hover my-0" style="width:100%">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -56,13 +57,18 @@
                     else {
                         echo "
                             <tr>
-                                <td colspan='5' class='text-center'>Empty Registration</td>
+                                <td></td>
+                                <td></td>
+                                <td class='text-center'>Empty Registration</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         ";
                     }
                     ?>
                 </tbody>
             </table>
+</div>
         </div>
     </div>
 </div>
