@@ -161,7 +161,8 @@
                                 <input type="text" class="form-control" id="birth_place" name="birth_place" value="<?php echo $birth_place?>" placeholder="Enter Birth PLace">
                             </td>
                             <td colspan="1">Age
-                                <input type="number" class="form-control" id="age" name="age" value="<?php echo $age?>" placeholder="Enter Age">
+                                <input type="number" class="form-control" id="age" name="age" value="<?php echo $age?>" placeholder="Enter Age" disabled>
+                                <input type="hidden" class="form-control" id="age" name="age" value="<?php echo $age?>">
                             </td>
                             <td colspan="1">Religion
                                 <input type="text" class="form-control" id="religion" name="religion" value="<?php echo $religion?>" placeholder="Enter Religion">
