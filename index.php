@@ -44,6 +44,9 @@ include 'counter/users_counter.php';
 
     <script src="js/app.js"></script>
 
+    <!-- This line below is the jquery for the datatables -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.dataTable.min.js"></script>
 
 </body>
 

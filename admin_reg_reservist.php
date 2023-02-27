@@ -28,9 +28,7 @@ include 'system_checker.php';
                                     <h5 class="card-title mb-0">Latest Reservist</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="col-12 col-lg-12 col-xxl-12 d-flex">
-                                        <div class="card flex-fill">
-                                            <table class="table table-hover my-0">
+                                            <table id="example" class="table table-hover my-0">
                                                 <thead>
                                                     <tr>
                                             <th>Username</th>
@@ -60,13 +58,17 @@ include 'system_checker.php';
                                                 }
                                             }
                                             else {
-                                                echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
+                                                echo " <tr>	
+                                                <td></td>
+                                                <td></td>
+                                                <td class='text-center'>No Registered User </td>
+                                                <td></td>
+                                                <td></td>
+                                                </tr>";
                                             }
                                         ?>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,6 +82,9 @@ include 'system_checker.php';
     </div>
 
     <script src="js/app.js"></script>
+    <!-- This line below is the jquery for the datatables -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.dataTable.min.js"></script>
 
 </body>
 
