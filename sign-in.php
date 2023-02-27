@@ -44,22 +44,23 @@ if(isset($_POST["submit_admin"])){
 <?php include 'header_main.php' ?>
 
 <body>
+    <?php include 'bulletin_navigation.php' ?>
     <main class="d-flex w-100">
         <div class="container d-flex flex-column">
-            <div class="row vh-100">
+            <div class="row mt-2">
                 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center">
-                            <h1 class="h2">                                
-                                <p style="font-weight: bold;">
+                            <h1 class="h2">                                       
+                                <strong>
                                     Army Reserved Command
                                     <br>
                                     Management Information System
                                     <br>
                                     with Decision Support
-                                </p>
-                            </h1>
+                                </strong>
+                            </h2>
                             <!-- <p class="lead">
 								Sign in to your account to continue
 							</p> -->
@@ -69,8 +70,7 @@ if(isset($_POST["submit_admin"])){
                             <div class="card-body">
                                 <div class="m-sm-4">
                                     <div class="text-center">
-                                        <img src="img/avatars/army_logo.png" alt="Charles Hall"
-                                            class="img-fluid rounded-circle" width="132" height="132" />
+                                        <!-- <img src="img/avatars/army_logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" /> -->
                                     </div>
                                     <br>
                                     <form method="post" autocomplete="off">

@@ -38,27 +38,7 @@
   </head>
   <body>
     
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-navigation">
-    <div class="container">
-      <a class="navbar-brand" href="bulletin.php">
-        <img src="img/icons/army_logo.png" style="heigth: 13rem; width: 13rem;" alt="Sunset Over the City"/>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        </ul>
-        <form class="d-flex">
-            <a class="btn btn-primary me-2" href="sign-in.php">Sign In</a>
-            <a class="btn btn-info me-2" href="sign-choices.php">Sign Up</a>
-          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-        </form>
-      </div>
-    </div>
-  </nav>
-</header>
+  <?php include 'bulletin_header.php'?>
 
 <main>
 
@@ -115,6 +95,31 @@
 
   <div class="container marketing">
     <!-- START THE ANNOUNCEMENTS -->
+  <?php
+  $conn = mysqli_connect("localhost", "root", "");
+  if (!$conn) {
+    $ConnErr = "Not Connected to the Server";
+  }
+  if (!mysqli_select_db($conn, 'army')) {
+    $SelcErr = "Database Not Selected";
+  }
+      $result = mysqli_query($conn, "select img, title, description from announcements WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+      while (list($img, $title, $description) = mysqli_fetch_array($result)) {
+          echo "
+        <div class='row featurette'>
+          <div class='col-md-7 order-md-2'>
+            <h2 class='featurette-heading'>$title</h2>
+            <p class='lead'>$description</p>
+          </div>
+          <div class='col-md-5 order-md-1'>
+            <svg class='bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto' width='500' height='500' xmlns='img/announce/$img' role='img' aria-label='Placeholder: 500x500' preserveAspectRatio='xMidYMid slice' focusable='false'><title>Placeholder</title><rect width='100%' height='100%' fill='#eee'/><text x='50%' y='50%' fill='#aaa' dy='.3em'>500x500</text></svg>
+
+          </div>
+        </div>
+      ";
+      }
+  ?>
+    <hr class="featurette-divider">
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
@@ -122,19 +127,6 @@
         <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-      </div>
-      <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
 
       </div>

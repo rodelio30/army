@@ -10,9 +10,10 @@ if(!empty($_SESSION["id"])){
 <?php include 'header_main.php' ?>
 
 <body>
+    <?php include 'bulletin_navigation.php' ?>
     <main class="d-flex w-100">
         <div class="container d-flex flex-column">
-            <div class="row vh-100">
+            <div class="row mt-4">
                 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
 
@@ -29,8 +30,7 @@ if(!empty($_SESSION["id"])){
                             <div class="card-body">
                                 <div class="m-sm-4">
                                     <div class="text-center mb-4">
-                                        <img src="img/avatars/army_logo.png" alt="Charles Hall"
-                                            class="img-fluid rounded-circle" width="132" height="132" />
+                                        <!-- <img src="img/avatars/army_logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" /> -->
                                     </div>
                                     <div class="row">
                                         <div class="col">
