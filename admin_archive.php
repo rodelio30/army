@@ -24,6 +24,7 @@ include 'system_checker.php';
                     <?php include 'admin_archive_trainings_seminars.php'; ?>
                     <?php include 'admin_archive_announcements.php'; ?>
                     <?php include 'admin_archive_appointments.php'; ?>
+                    <?php include 'admin_archive_aor.php'; ?>
                 </div>
             </main>
 

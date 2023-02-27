@@ -32,7 +32,7 @@
                             ";
                             }
                         } else {
-                            echo " <tr>	<td></td> <td></td> <td class='text-center'>No Active Announcement</td> <td></td> <td></td> </tr>";
+                            echo " <tr>	<td></td> <td></td> <td class='text-center'>No Active Announcement</td><td></td> </tr>";
                         }
                         ?>
                     </tbody>
