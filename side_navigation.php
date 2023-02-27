@@ -16,6 +16,7 @@ $course_select    = '';
 $appoint_select    = '';
 $training_select    = '';
 $seminar_select    = '';
+$aor_select    = '';
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -67,6 +68,9 @@ if ($nav_active == 'training') {
 }
 if ($nav_active == 'seminar') {
     $seminar_select = 'active';
+}
+if ($nav_active == 'aor') {
+    $aor_select = 'active';
 }
 
 if($isSadmin || $isAdmin || $isStaff){

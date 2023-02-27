@@ -64,11 +64,7 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Commander</span>
                 </a>
             </li>
-            
-            <?php 
-            // if($isStaff){
 
-            ?>
             <li class="sidebar-header">
                 RIDS Info 
             </li>
@@ -78,9 +74,6 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reservist</span>
                 </a>
             </li>
-            <?php 
-            // }
-            ?>
 
             <li class="sidebar-header">
                 School / Rank / Company 
@@ -103,6 +96,13 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Company</span>
                 </a>
             </li>
+
+            <li class="sidebar-item <?php echo $aor_select ?>">
+                <a class="sidebar-link" href="admin_aor.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Area of Responsibility</span>
+                </a>
+            </li>
+            
 
             <?php 
             // if($isStaff){
