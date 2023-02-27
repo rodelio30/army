@@ -14,13 +14,12 @@
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-header">
-                RIDS Info 
-            </li>
 
-            <li class="sidebar-item <?php echo $rids_select ?>">
-                <a class="sidebar-link" href="admin_rids_view.php?ID=<?php echo $id ?>">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">My Reservist</span>
+            <hr>
+
+            <li class="sidebar-item <?php echo $aor_select ?>">
+                <a class="sidebar-link" href="admin_aor.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Area of Responsibility</span>
                 </a>
             </li>
 

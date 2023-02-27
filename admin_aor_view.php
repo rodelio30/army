@@ -37,6 +37,11 @@ if ($status == "active") {
 } else if ($status == "inactive") {
   $sel_inactive = "selected";
 }
+
+$disabled = '';
+if($isReservist || $isCommander) {
+  $disabled = 'disabled';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +67,11 @@ if ($status == "active") {
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Edit Area of Responsibility</h5>
+                  <?php if($isSadmin || $isAdmin || $isStaff) {
+                  ?>
+                    <h5 class="card-title mb-0">Edit Area of Responsibility</h5>
+                  <?php }
+                  ?>
                 </div>
                 <div class="card-body">
                   <form method="post" autocomplete="off">
@@ -72,7 +81,7 @@ if ($status == "active") {
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <!-- <input type="text" class="form-control" id="company_name" name="company_name" value="<?php echo $company_name ?>" placeholder="Enter company Name"> -->
-                      <select class="form-control" id="company_name" name="company_name">
+                      <select class="form-control" id="company_name" name="company_name" <?php echo $disabled ?>>
                           <?php
                           $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
                           while (list($c_name) = mysqli_fetch_array($result)) {
@@ -92,7 +101,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Place</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="place" name="place" value="<?php echo $place ?>" placeholder="Enter Place">
+                        <input type="text" class="form-control" id="place" name="place" value="<?php echo $place ?>" placeholder="Enter Place" <?php echo $disabled?>>
                       </div>
                     </div>
                     <br>
@@ -101,7 +110,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
+                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status" <?php echo $disabled?>>
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>
@@ -114,7 +123,11 @@ if ($status == "active") {
                         <a href="admin_aor.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
+                            <?php if($isSadmin || $isAdmin || $isStaff) {
+                            ?>
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                            <?php }
+                            ?>
                       </div>
                     </div>
                   </form>

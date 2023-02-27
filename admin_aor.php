@@ -25,7 +25,13 @@ include 'system_checker.php';
                             </h1>
                         </div>
                         <div class="col-md-3">
+                            <?php if($isSadmin || $isAdmin || $isStaff) {
+                            ?>
                             <a <?php echo "href=\"admin_aor_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add new AoR</a>
+                            <?php }
+                            ?>
+
+
                         </div>
                     </div>
 
@@ -65,6 +71,7 @@ include 'system_checker.php';
                                                     } else { 
                                                     echo "
                                                     <tr>	
+                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$company_name</a></td>
                                                         <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$place</a></td>
                                                     </tr>
                                                 ";

@@ -25,6 +25,16 @@
                 </a>
             </li>
 
+            <hr>
+
+            <li class="sidebar-item <?php echo $aor_select ?>">
+                <a class="sidebar-link" href="admin_aor.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Area of Responsibility</span>
+                </a>
+            </li>
+            
+            <hr>
+
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
                     <div id="oras" class="clock-position ms-4 mb-2">
