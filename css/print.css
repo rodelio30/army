@@ -1,6 +1,8 @@
 @page {
   size: A4;
   margin: 0;
+  margin-bottom: 40px;
+  counter-increment: page;
 }
 /* #areaToPrint {
   margin: -1rem;
