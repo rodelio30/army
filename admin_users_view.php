@@ -82,6 +82,7 @@ if ($user_status == "active") {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <?php include 'print_header.php'?>
                   <form method="post" autocomplete="off">
                     <div class="row">
                       <div class="col-sm-2">
@@ -177,6 +178,7 @@ if ($user_status == "active") {
                       </div>
                     </div>
                   </form>
+                                    <?php include 'print_footer.php'?>
                                 </div>
                             </div>
                         </div>

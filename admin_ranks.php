@@ -19,7 +19,7 @@ include 'system_checker.php';
             <main class="content">
                 <div class="container-fluid p-0">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-9" id="action-print">
                             <h1 class="h3 mb-3">Rank List
                                 <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                             </h1>
@@ -33,6 +33,8 @@ include 'system_checker.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <?php include 'print_header.php'?>
+                                    <h3 class="print-hidden"><strong>Rank List</strong></h3>
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
@@ -96,6 +98,7 @@ include 'system_checker.php';
                                             ?>
                                         </tbody>
                                     </table>
+                                    <?php include 'print_footer.php'?>
                                 </div>
                             </div>
                         </div>

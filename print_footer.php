@@ -1,0 +1,1 @@
+<img src="img/printer/footer.png" alt="" class="print-hidden" id="print-footer" style="width:100%">

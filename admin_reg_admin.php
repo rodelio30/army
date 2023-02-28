@@ -19,21 +19,22 @@ include 'system_checker.php';
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Admin List</h1>
+                    <h1 class="h3 mb-3 header-dash">Admin List
+                        <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
+                    </h1>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Latest Admin</h5>
-                                </div>
                                 <div class="card-body">
+                                    <?php include 'print_header.php'?>
+                                    <h3 class="print-hidden"><strong>Admin Registration List</strong></h3>
                                             <table id="example" class="table table-hover my-0">
                                                 <thead>
                                                     <tr>
                                                         <th>Username</th>
-                                                        <th class="d-none d-md-table-cell">Rank</th>
-                                                        <th class="d-none d-xl-table-cell">Company</th>
+                                                        <th>Rank</th>
+                                                        <th>Company</th>
                                                         <th>Date Modified</th>
                                                         <th>Status</th>
                                                     </tr>
@@ -61,7 +62,7 @@ include 'system_checker.php';
                                                 echo " <tr>	
                                                 <td></td>
                                                 <td></td>
-                                                <td class='text-center'>No Registered User </td>
+                                                <td class='text-center'>No Registered User  </td>
                                                 <td></td>
                                                 <td></td>
                                                 </tr>";
@@ -69,6 +70,7 @@ include 'system_checker.php';
                                         ?>
                                                 </tbody>
                                             </table>
+                                    <?php include 'print_footer.php'?>
                                 </div>
                             </div>
                         </div>

@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
 
                     <div class="row">
                         <div class="col-md-9">
-                        <h1 class="h3 mb-3">Appointment List
+                        <h1 class="h3 mb-3" id="action-print">Appointment List
                             <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                         </h1>
                         </div>
@@ -48,6 +48,8 @@ if (isset($_POST['update'])) {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <?php include 'print_header.php'?>
+                                    <h3 class="print-hidden"><strong>Appointment List</strong></h3>
                                     <table id="example" class="table table-hover my-0" style="width:100%">
                                         <thead>
                                             <tr>
@@ -120,6 +122,7 @@ if (isset($_POST['update'])) {
                                             ?>
                                         </tbody>
                                     </table>
+                                    <?php include 'print_footer.php'?>
                                 </div>
                             </div>
                         </div>

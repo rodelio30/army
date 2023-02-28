@@ -20,7 +20,7 @@ include 'system_checker.php';
                 <div class="container-fluid p-0">
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="h3 mb-3">Seminar List
+                            <h1 class="h3 mb-3" id="action-print">Seminar List
                                 <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                             </h1>
                         </div>
@@ -34,6 +34,8 @@ include 'system_checker.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <?php include 'print_header.php'?>
+                                    <h3 class="print-hidden"><strong>Seminar List</strong></h3>
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
@@ -94,6 +96,7 @@ include 'system_checker.php';
                                             ?>
                                         </tbody>
                                     </table>
+                                    <?php include 'print_footer.php'?>
                                 </div>
                             </div>
                         </div>
