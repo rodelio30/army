@@ -18,6 +18,7 @@ $training_select  = '';
 $seminar_select   = '';
 $aor_select       = '';
 $rotc_select      = '';
+$ts_select      = '';
 
 
 if ($nav_active == 'dashboard') {
@@ -76,6 +77,9 @@ if ($nav_active == 'aor') {
 }
 if ($nav_active == 'rotc') {
     $rotc_select = 'active';
+}
+if ($nav_active == 'ts_available') {
+    $ts_select = 'active';
 }
 
 if($isSadmin || $isAdmin || $isStaff){

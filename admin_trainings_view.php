@@ -143,6 +143,9 @@ if ($status == "active") {
                       </div>
                     </div>
                   </form>
+                  <hr>
+                <h4>Attendance</h4>
+                <?php include 'training_attendance.php'?>
                 </div>
               </div>
             </div>
@@ -156,6 +159,9 @@ if ($status == "active") {
   </div>
 
   <script src="js/app.js"></script>
+    <!-- This line below is the jquery for the datatables -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.dataTable.min.js"></script>
 
 </body>
 
