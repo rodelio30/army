@@ -31,6 +31,7 @@ if (!empty($_SESSION["id"])) {
     if ($type == 'staff') {
       $isStaff = true;
     } if($type == 'school_coordinator') {
+      $school_name_public = $row["school_name"];
       $isSchool = true;
     } if($type == 'commander') {
       $isCommander = true;

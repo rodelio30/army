@@ -20,7 +20,7 @@
 
             <li class="sidebar-item <?php echo $rotc_select ?>">
                 <a class="sidebar-link" href="admin_rg.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reserve</span>
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">ROTC Graduates</span>
                 </a>
             </li>
 <!-- 
