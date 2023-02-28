@@ -27,8 +27,10 @@ include 'counter/users_counter.php';
             <?php include 'top_right_navigation.php' ?>
 
             <?php 
-                if($isSadmin || $isAdmin || $isStaff ){
+                if($isSadmin || $isAdmin){
                     include 'admin_user_registration_dashboard.php';
+                } else if($isStaff){
+                    include 'admin_dashboard_staff.php';
                 } else if($isSchool){
                     include 'admin_school_coordinator.php';
                 } else if($isCommander) {

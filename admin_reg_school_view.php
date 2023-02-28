@@ -46,7 +46,11 @@ while ($res   = mysqli_fetch_array($result)) {
                   Coordinator List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
             </div>
             <div class="col-6">
+              <?php 
+              if($isSadmin || $isAdmin){
+              ?>
               <a <?php echo "href=\"admin_reg_school_edit.php?ID=$school_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+              <?php } ?>
             </div>
           </div>
           <div class="row">

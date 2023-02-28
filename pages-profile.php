@@ -106,8 +106,10 @@ if(empty($filename)){
   mysqli_query($conn, "update army_users set user_img = '$filename' where id = '$id'") or die("Query Changing image is incorrect....");
 
   // removing image in folder
-  unlink('img/profile/' . $user_img . '');
-  echo "<script>console.log('Successfully removed " . $user_img . "');</script>";
+  if(!empty($user_img)){
+    unlink('img/profile/' . $user_img . '');
+    echo "<script>console.log('Successfully removed " . $user_img . "');</script>";
+  }
 
   if (move_uploaded_file($tempname, $folder)) {
     echo "<script>console.log('Image uploaded successfully!');</script>";
@@ -142,7 +144,7 @@ if(empty($filename)){
                         <h1 class="h3 d-inline align-middle">Profile</h1>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 col-xl-3">
+                        <div class="col-md-5 col-xl-4">
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">Profile Details</h5>
@@ -150,14 +152,14 @@ if(empty($filename)){
                                 <div class="card-body text-center">
                                     <form method="post" enctype="multipart/form-data">
                                     <img src="img/profile/<?php echo $user_img ? $user_img: 'empty_user.png' ?>" alt="Admin"
-                                        class="img-fluid" height="200px" width="200px">
+                                        class="page_profile">
                                     </div>
                                         <h5 class="card-title mb-0 text-center"><?php echo $fn_public . ' '. $ln_public?></h5>
                                         <h5 class="card-title mb-0 text-center"><?php echo $user_rank ?></h5>
                                     <br>
-                                    <div class="form-group">
-                                    <label class="ms-2">New Image</label>
-                                    <input class="form-control" type="file" name="uploadfile"/>
+                                    <div class="form-group ms-2 me-2">
+                                    <label>New Image</label>
+                                      <input class="form-control" type="file" name="uploadfile"/>
                                     </div>
                                     <br>
                                     <br>
@@ -168,7 +170,7 @@ if(empty($filename)){
                             </div>
                         </div>
 
-                        <div class="col-md-8 col-xl-9">
+                        <div class="col-md-7 col-xl-8">
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">Edit Profile Info</h5>
