@@ -15557,7 +15557,14 @@ span.flatpickr-weekday {
 }
 
 
-/* Font size text for reservist form */
-.text-name {
-
+/* Image profile circle */
+.page_profile {
+  text-align: center; 
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px; 
+  height: 200px; 
+  top: 0;
+  left: 0; 
+  object-fit: cover;
 }
