@@ -18,9 +18,9 @@
                 Students 
             </li>
 
-            <li class="sidebar-item <?php echo $student_select ?>">
-                <a class="sidebar-link" href="admin_students.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
+            <li class="sidebar-item <?php echo $rotc_select ?>">
+                <a class="sidebar-link" href="admin_rg.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reserve</span>
                 </a>
             </li>
 

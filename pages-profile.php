@@ -13,6 +13,7 @@ if (isset($_POST['update'])) {
   }
   $company       = $_POST['company'];
   $afpsn         = $_POST['afpsn'];
+  $school_name   = $_POST['school_name'];
   $status        = $_POST['status'];
   $user_status   = $_POST['user_status'];
 
@@ -22,7 +23,7 @@ if (isset($_POST['update'])) {
   if($isSadmin){
   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
   } else {
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
   }
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
@@ -42,6 +43,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $user_rank     = $res['rank'];
   $company       = $res['company'];
   $afpsn         = $res['afpsn'];
+  $user_school_name = $res['school_name'];
   $status        = $res['status'];
   $user_status   = $res['user_status'];
   $date_created  = $res['date_created'];
@@ -210,15 +212,33 @@ if(empty($filename)){
                       </div>
                     </div>
                     <br>
-                    <!-- <div class="row">
+                    <?php 
+                    if($isSchool){
+                      ?>
+                    <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Type</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>School Acronym</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="type" name="type" value="<?php echo $type ?>" placeholder="Enter User Type" disabled>
+                          <select class="form-control" id="school_name" name="school_name">
+                              <?php
+                              $result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
+                              while (list($school_name, $acronym) = mysqli_fetch_array($result)) {
+                                  if($school_name == $user_school_name){
+                                      echo "<option value='$school_name' selected>$acronym</option>";
+                                  }
+                                  else {
+                                      echo "<option value='$school_name'>$acronym</option>";
+                                  }
+                              }
+                              ?>
+                          </select>
                       </div>
                     </div>
-                    <br> -->
+                    <br>
+                    <?php
+                    }
+                    ?>
                     <div class="row">
                       <div class="col-sm-2">
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>

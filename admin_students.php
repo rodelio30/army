@@ -95,7 +95,7 @@ include 'system_checker.php';
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <tdclass='text-center'>Empty Student</td>
+                                                                <td class='text-center'>Empty Student</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 </tr>";
