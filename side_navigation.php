@@ -1,22 +1,24 @@
 <?php
 $dash_select      = '';
-$users_select      = '';
-$rank_select   = '';
+$users_select     = '';
+$rank_select      = '';
 $reservist_select = '';
 $admin_select     = '';
 $staff_select     = '';
 $commander_select = '';
 $school_select    = '';
-$schools_select    = '';
-$archive_select    = '';
-$company_select    = '';
-$rids_select    = '';
-$student_select    = '';
+$schools_select   = '';
+$archive_select   = '';
+$company_select   = '';
+$rids_select      = '';
+$student_select   = '';
 $course_select    = '';
-$appoint_select    = '';
-$training_select    = '';
-$seminar_select    = '';
-$aor_select    = '';
+$appoint_select   = '';
+$training_select  = '';
+$seminar_select   = '';
+$aor_select       = '';
+$rotc_select      = '';
+
 
 if ($nav_active == 'dashboard') {
     $dash_select = 'active';
@@ -71,6 +73,9 @@ if ($nav_active == 'seminar') {
 }
 if ($nav_active == 'aor') {
     $aor_select = 'active';
+}
+if ($nav_active == 'rotc') {
+    $rotc_select = 'active';
 }
 
 if($isSadmin || $isAdmin || $isStaff){
