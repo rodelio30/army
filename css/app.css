@@ -15568,3 +15568,7 @@ span.flatpickr-weekday {
   left: 0; 
   object-fit: cover;
 }
+
+.print-hidden {
+  display: none;
+}
