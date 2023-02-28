@@ -4,18 +4,19 @@ include 'system_checker.php';
 
 if (isset($_POST['submit'])) {
   $training_name = $_POST['training_name'];
+  $link          = $_POST['link'];
   $description   = $_POST['description'];
   $status        = 'inactive';
   $date          = date("Y-m-d");
   $time          = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' OR link = '$link'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
-    "<script> alert('This Traning Has Already Taken'); </script>";
+    "<script> alert('This Traning or Link Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO trainings VALUES('','$training_name','$description','$status','','$date','$time','$date','$time')";
+    $query = "INSERT INTO trainings VALUES('','$training_name','$description','$link','$status','','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $training_name . ' Added!.")</script>';
@@ -49,6 +50,11 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                       <label for="exampleInputEmail1">Training Name</label>
                       <input type="text" class="form-control" id="training_name" name="training_name" placeholder="Enter training name" required autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Link</label>
+                      <input type="url" class="form-control" id="link" name="link" placeholder="Enter Link" required>
                     </div>
                     <br>
                     <div class="form-group">

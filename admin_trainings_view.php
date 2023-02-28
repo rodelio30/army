@@ -4,13 +4,14 @@ include 'system_checker.php';
 $trainings_id = $_GET['ID'];
 
 if (isset($_POST['update'])) {
-  $training_name   = $_POST['training_name'];
+  $training_name = $_POST['training_name'];
   $description   = $_POST['description'];
+  $link          = $_POST['link'];
   $status        = $_POST['status'];
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  mysqli_query($conn, "update trainings set training_name = '$training_name', description = '$description', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where training_id = '$trainings_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update trainings set training_name = '$training_name', description = '$description', link = '$link', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where training_id = '$trainings_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $training_name . ' updated!.")</script>';
   header('Refresh: 0; url=admin_trainings.php');
@@ -19,9 +20,10 @@ if (isset($_POST['update'])) {
 
 $result       = mysqli_query($conn, "SELECT * FROM trainings WHERE training_id='$trainings_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $trainings_id    = $res['training_id'];
-  $training_name   = $res['training_name'];
+  $trainings_id  = $res['training_id'];
+  $training_name = $res['training_name'];
   $description   = $res['description'];
+  $link          = $res['link'];
   $status        = $res['status'];
   $date_created  = $res['date_created'];
   $time_created  = $res['time_created'];
@@ -72,6 +74,15 @@ if ($status == "active") {
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <input type="text" class="form-control" id="training_name" name="training_name" value="<?php echo $training_name?>" placeholder="Enter training Name">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Link</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="url" class="form-control" id="link" name="link" value="<?php echo $link ?>" placeholder="Enter Link">
                       </div>
                     </div>
                     <br>

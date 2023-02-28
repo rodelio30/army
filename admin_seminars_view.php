@@ -6,11 +6,12 @@ $seminars_id = $_GET['ID'];
 if (isset($_POST['update'])) {
   $seminar_name   = $_POST['seminar_name'];
   $description   = $_POST['description'];
+  $link          = $_POST['link'];
   $status        = $_POST['status'];
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  mysqli_query($conn, "update seminars set seminar_name = '$seminar_name', description = '$description', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where seminar_id = '$seminars_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update seminars set seminar_name = '$seminar_name', description = '$description', link = '$link',  status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where seminar_id = '$seminars_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $seminar_name . ' updated!.")</script>';
   header('Refresh: 0; url=admin_seminars.php');
@@ -22,6 +23,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $seminars_id    = $res['seminar_id'];
   $seminar_name   = $res['seminar_name'];
   $description   = $res['description'];
+  $link          = $res['link'];
   $status        = $res['status'];
   $date_created  = $res['date_created'];
   $time_created  = $res['time_created'];
@@ -72,6 +74,15 @@ if ($status == "active") {
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <input type="text" class="form-control" id="seminar_name" name="seminar_name" value="<?php echo $seminar_name?>" placeholder="Enter seminar Name">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Link</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="url" class="form-control" id="link" name="link" value="<?php echo $link ?>" placeholder="Enter Link">
                       </div>
                     </div>
                     <br>

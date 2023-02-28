@@ -4,6 +4,7 @@ include 'system_checker.php';
 
 if (isset($_POST['submit'])) {
   $seminar_name = $_POST['seminar_name'];
+  $link          = $_POST['link'];
   $description   = $_POST['description'];
   $status        = 'inactive';
   $date          = date("Y-m-d");
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
     "<script> alert('This Traning Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO seminars VALUES('','$seminar_name','$description','$status','','$date','$time','$date','$time')";
+    $query = "INSERT INTO seminars VALUES('','$seminar_name','$description','$link','$status','','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $seminar_name . ' Added!.")</script>';
@@ -49,6 +50,11 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                       <label for="exampleInputEmail1">Seminar Name</label>
                       <input type="text" class="form-control" id="seminar_name" name="seminar_name" placeholder="Enter seminar name" required autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Link</label>
+                      <input type="url" class="form-control" id="link" name="link" placeholder="Enter Link" required>
                     </div>
                     <br>
                     <div class="form-group">
