@@ -1,5 +1,5 @@
 <?php 
-include 'counter/reserve_counter.php';
+include 'counter/staff_reserve_counter.php';
 include 'counter/appointments_counter.php';
 include 'counter/announcements_counter.php';
 include 'counter/trainings_counter.php';

@@ -226,11 +226,11 @@ if(empty($filename)){
                               <?php
                               $result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
                               while (list($school_name, $acronym) = mysqli_fetch_array($result)) {
-                                  if($school_name == $user_school_name){
-                                      echo "<option value='$school_name' selected>$acronym</option>";
+                                  if($school_name_public == $acronym){
+                                      echo "<option value='$acronym' selected>$acronym</option>";
                                   }
                                   else {
-                                      echo "<option value='$school_name'>$acronym</option>";
+                                      echo "<option value='$acronym'>$acronym</option>";
                                   }
                               }
                               ?>

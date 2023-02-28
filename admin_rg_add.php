@@ -1,27 +1,16 @@
-
 <?php
 include 'system_checker.php';
-// un_public is username of the user who logged in
-$user_school_name = '';
-$result_sn = mysqli_query($conn, "SELECT * FROM army_users WHERE type='school_coordiator' && id='$id'");
-while ($res = mysqli_fetch_array($result_sn)) {
-  $user_school_name = $res['school_name'];
-}
-$result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
-while (list($school_name, $acronym) = mysqli_fetch_array($result)) {
-  if($school_name == $user_school_name){
-    $school_graduated = $acronym;
-  }
-}
+  // echo "<script>console.log('High this is me " . $school_name_public. "');</script>";
 
 if (isset($_POST['submit'])) {
   $name           = $_POST['name'];
   $afpsn          = $_POST['afpsn'];
   $birth_date     = $_POST['birth_date'];
   $home_address   = $_POST['home_address'];
-
-  if($type == 'school_coordinator') {
-    $school_address = $school_graduated;
+  
+  
+  if($isSchool) {
+    $school_address = $school_name_public;
   } else {
     $school_address = $_POST['school_graduated'];
   }
@@ -121,6 +110,8 @@ if (isset($_POST['submit'])) {
                       </select>
                     </div>
                     <br>
+                    <?php if($isStaff) {
+                    ?> 
                     <div class="form-group">
                       <label for="exampleInputEmail1">School Graduated</label>
                         <select class="form-control" id="school_graduated" name="school_graduated">
@@ -133,6 +124,10 @@ if (isset($_POST['submit'])) {
                         </select>
                     </div>
                     <br>
+
+                    <?php
+                    }
+                    ?>
                     <div class="row">
                       <div class="col-6">
                         <a href="admin_rg.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>

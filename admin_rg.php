@@ -60,7 +60,12 @@ include 'system_checker.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($rg_counter > 0) {
 
+                                                if($isSchool){
+                                                $result = mysqli_query($conn, "select rg_id, name, afpsn, date_of_birth, home_address, date_graduated, school_graduated, status from rotc_graduates WHERE status != 'archive' && school_graduated = '$school_name_public' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                } else{
                                                 $result = mysqli_query($conn, "select rg_id, name, afpsn, date_of_birth, home_address, date_graduated, school_graduated, status from rotc_graduates WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                }
+
                                                 while (list($rg_id, $name, $afpsn, $date_of_birth, $home_address, $date_graduated, $school_graduated, $status) = mysqli_fetch_array($result)) {
                                                     if($isSadmin || $isAdmin || $isSchool){
                                                     echo "
