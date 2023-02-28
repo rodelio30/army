@@ -25,6 +25,14 @@
 
             <hr>
 
+            <li class="sidebar-item <?php echo $ts_select ?>">
+                <a class="sidebar-link" href="admin_ts_attended.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Training and Seminars</span>
+                </a>
+            </li>
+
+            <hr>
+
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
                     <div id="oras" class="clock-position ms-4 mb-2">
