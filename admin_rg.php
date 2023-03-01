@@ -20,7 +20,7 @@ include 'system_checker.php';
                 <div class="container-fluid p-0">
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="h3 mb-3" id="action-print">Reservist List
+                            <h1 class="h3 mb-3" id="action-print">ROTC Graduate List
                                 <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                             </h1>
                         </div>
@@ -34,21 +34,16 @@ include 'system_checker.php';
                             <div class="card">
                                 <div class="card-body">
                                     <?php include 'print_header.php'?>
-                                    <h3 class="print-hidden"><strong>Reservist List</strong></h3>
+                                    <h3 class="print-hidden"><strong>ROTC Graduate List</strong></h3>
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>AFPSN</th>
                                                 <th>Date of Birth</th>
-                                                <th>Home Address</th>
+                                                <th>School Graduate</th>
                                                 <th>Date Graduated</th>
                                                 </th>
-                                                <?php if($isStaff) {
-                                                ?>
-                                                <th>School Graduate</th>
-                                                <?php }
-                                                ?>
                                                 <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
@@ -75,7 +70,7 @@ include 'system_checker.php';
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$name</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
-                                                        <td>$home_address</td>
+                                                        <td>$school_graduated</td>
                                                         <td>$date_graduated</td>
                                                         <td id='action-print'><a href=\"archive/rg/rg_archive.php?ID=$rg_id\" onClick=\"return confirm('Are you sure you want this rg move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
@@ -87,9 +82,8 @@ include 'system_checker.php';
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$name</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
-                                                        <td>$home_address</td>
-                                                        <td>$date_graduated</td>
                                                         <td>$school_graduated</td>
+                                                        <td>$date_graduated</td>
                                                     </tr>
                                                 ";
                                                     }
@@ -99,7 +93,7 @@ include 'system_checker.php';
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$name</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
-                                                        <td>$home_address</td>
+                                                        <td>$school_graduated</td>
                                                         <td>$date_graduated</td>
                                                     </tr>
                                                 ";

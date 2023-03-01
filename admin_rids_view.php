@@ -34,7 +34,9 @@ include 'admin_rids_query.php';
                         </h1>
                         </div>
                         <div class="col-md-3">
+                            <?php if(!$isStaff) {?>
                             <a <?php echo "href=\"admin_rids_edit.php?ID=" . $user_id ."\"" ?> style="float: right" id="action-print" class="btn btn-outline-primary">&nbsp Edit Info</a>
+                                <?php } ?>
                         </div>
                     </div>
 

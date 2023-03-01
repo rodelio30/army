@@ -31,13 +31,13 @@ include 'system_checker.php';
                                         <thead>
                                             <tr>
                                                 <th>Username</th>
-                                                <th>Type</th>
+                                                <?php if(!$isStaff) { ?>
+                                                <th>Company</th>
+                                                <?php } ?>
                                                 <th>Status</th>
-                                                <?php if($isSadmin || $isAdmin) {
-                                                ?>
+                                                <?php if($isSadmin) { ?>
                                                 <th id='action-print'><span class="float-end">Action</span</th>
-                                                <?php }
-                                                ?>
+                                                <?php } ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,8 +45,8 @@ include 'system_checker.php';
                                             include 'counter/users_counter.php';
 
                                             if ($users_counter > 0) {
-                                                    $result = mysqli_query($conn, "select id, username, type, status, date_modified, time_modified from army_users WHERE type = 'reservist' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
-                                                while (list($army_id, $username, $user_type, $status, $date, $time) = mysqli_fetch_array($result)) {
+                                                    $result = mysqli_query($conn, "select id, username, type, company, status, date_modified, time_modified from army_users WHERE type = 'reservist' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                while (list($army_id, $username, $user_type, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
                                                     if($status == 'pending') {
                                                         $color_me = 'warning';
@@ -57,21 +57,27 @@ include 'system_checker.php';
                                                     } else if($status == 'retired') {
                                                         $color_me = 'secondary';
                                                     }
-                                                    if($isSadmin || $isAdmin) {
-                                                    echo "
-                                                <tr>	
-                                                    <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
-                                                    <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$user_type</a></td>
-                                                    <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
-                                                    <td id='action-print'><a href=\"archive/army_users/army_users_archive.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md float-end'><span><span data-feather='package'></span>&nbsp Archive</a></td>
-                                                </tr>
-                                                        "; 
-                                                    }
-                                                    else {
+                                                    if($isSadmin) {
                                                     echo "
                                                         <tr>	
                                                             <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
-                                                            <td>$user_status</td>
+                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$company</a></td>
+                                                            <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
+                                                            <td id='action-print'><a href=\"archive/army_users/army_users_archive.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md float-end'><span><span data-feather='package'></span>&nbsp Archive</a></td>
+                                                        </tr>
+                                                        "; 
+                                                    } else if($isAdmin) {
+                                                    echo "
+                                                        <tr>	
+                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
+                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$company</a></td>
+                                                            <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
+                                                        </tr>
+                                                    ";
+                                                    } else {
+                                                    echo "
+                                                        <tr>	
+                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
                                                             <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
                                                         </tr>
                                                     ";

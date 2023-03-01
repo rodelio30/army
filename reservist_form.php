@@ -1,6 +1,7 @@
 <div class="row">
-    <div class="col-12 col-lg-12 col-xxl-12 d-flex">
-        <div class="card flex-fill">
+    <div class="col-12">
+        <div class="card" id="add-top">
+            <div class="card-body">
             <?php include 'print_header.php'?>
             <h1 class="h3 mb-0 mt-2 text-center">PHILIPPINE ARMY</h1>
             <h1 class="h3 mb-3 text-center"><strong>RESERVIST INFORMATION DATA SHEET</strong></h1>
@@ -465,5 +466,6 @@
             </div>
             <?php include 'print_footer.php'?>
         </div>
+    </div>
     </div>
 </div>
