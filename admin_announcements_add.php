@@ -3,6 +3,10 @@ include 'system_checker.php';
 // un_public is username of the user who logged in
 
 if (isset($_POST['submit'])) {
+  $filename = $_FILES["uploadfile"]["name"];
+  $tempname = $_FILES["uploadfile"]["tmp_name"];
+  $folder = "img/announcement/" . $filename;
+
   $title         = $_POST['title'];
   $description   = $_POST['description'];
   $status        = 'inactive';
@@ -15,9 +19,14 @@ if (isset($_POST['submit'])) {
     "<script> alert('This Traning Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO announcements VALUES('','$title','$description','$status','$date','$time','$date','$time')";
+    $query = "INSERT INTO announcements VALUES('','$filename','$title','$description','$status','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
-
+  
+    if (move_uploaded_file($tempname, $folder)) {
+      echo "<script>console.log('Image uploaded successfully!');</script>";
+    } else {
+      echo "<script>console.log(' Failed to upload image!!');</script>";
+    }
     echo '<script type="text/javascript"> alert("' . $title . ' Added!.")</script>';
     header('Refresh: 0; url=admin_announcements.php');
   }
@@ -45,7 +54,12 @@ if (isset($_POST['submit'])) {
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <form method="post">
+                  <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                    <label>Announcement Image</label>
+                      <input class="form-control" type="file" name="uploadfile"/>
+                    </div>
+                    <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
                       <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required autofocus>

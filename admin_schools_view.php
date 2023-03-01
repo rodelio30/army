@@ -39,7 +39,11 @@ $sel_inactive = "";
 if ($status == "active") {
   $sel_active  = "selected";
 } else if ($status == "inactive") {
-  $se_inactive = "selected";
+  $sel_inactive = "selected";
+}
+$disable = '';
+if($isAdmin) {
+  $disable = 'disabled';
 }
 ?>
 <!DOCTYPE html>
@@ -112,11 +116,18 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
+
+                      <?php if(!$isSadmin) { ?>
+                        <input type="text" class="form-control" id="status" name="status" value="<?php echo ucfirst($status) ?>"disabled>
+                        <input type="hidden" class="form-control" id="status" name="status" value="<?php echo ucfirst($status) ?>">
+                      <?php } else { ?> 
                         <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>
                         </select>
+                      <?php }?>
+
                       </div>
                     </div>
                     <hr>

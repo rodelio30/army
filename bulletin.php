@@ -29,13 +29,12 @@
                 while (list($img, $title, $description) = mysqli_fetch_array($result)) {
                     echo "
                     <div class='row featurette'>
-                    <div class='col-md-7 order-md-2'>
+                    <div class='col-md-7 order-md-2 mt-3'>
                         <h2 class='featurette-heading'>$title</h2>
                         <p class='lead'>$description</p>
                     </div>
-                    <div class='col-md-5 order-md-1'>
-                        <svg class='bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto' width='500' height='500' xmlns='img/announce/$img' role='img' aria-label='Placeholder: 500x500' preserveAspectRatio='xMidYMid slice' focusable='false'><title>Placeholder</title><rect width='100%' height='100%' fill='#eee'/><text x='50%' y='50%' fill='#aaa' dy='.3em'>500x500</text></svg>
-
+                    <div class='col-md-5 order-md-1 text-center'>
+                          <img src='img/announcement/$img' alt='Admin' class='public_announce_image'>
                     </div>
                     </div>
                     <br>

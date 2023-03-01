@@ -97,6 +97,10 @@ if ($date_graduated == "2014-2015") {
 } else if ($date_graduated == "2023-2024") {
   $sel_2023 = "selected";
 }
+$disabled = '';
+if($isStaff){
+$disabled = 'disabled';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +135,7 @@ if ($date_graduated == "2014-2015") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Name</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" placeholder="Enter Name">
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" placeholder="Enter Name" <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -140,7 +144,7 @@ if ($date_graduated == "2014-2015") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>AFPSN</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="afpsn" name="afpsn" value="<?php echo $afpsn ?>" placeholder="Enter AFPSN ">
+                        <input type="text" class="form-control" id="afpsn" name="afpsn" value="<?php echo $afpsn ?>" placeholder="Enter AFPSN " <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -149,7 +153,7 @@ if ($date_graduated == "2014-2015") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Date of Birth</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?php echo $date_of_birth?>" placeholder="Enter Birthdate">
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?php echo $date_of_birth?>" placeholder="Enter Birthdate" <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -158,7 +162,7 @@ if ($date_graduated == "2014-2015") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Home Address</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="home_address" name="home_address" value="<?php echo $home_address?>" placeholder="Enter Home Address">
+                        <input type="text" class="form-control" id="home_address" name="home_address" value="<?php echo $home_address?>" placeholder="Enter Home Address" <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -215,11 +219,18 @@ if ($date_graduated == "2014-2015") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
+
+                      <?php if($isAdmin || $isSchool) {?>
+                        <input type="text" class="form-control" id="status" name="status" value="<?php echo ucfirst($status) ?>" disabled>
+                        <input type="hidden" id="status" name="status" value="<?php echo $status ?>">
+                      <?php } else { ?>
+                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status" <?php echo $disabled ?>>
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>
                         </select>
+                          
+                      <?php }?>
                       </div>
                     </div>
                     <hr>
@@ -254,7 +265,9 @@ if ($date_graduated == "2014-2015") {
                         <a href="admin_rg.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
+                        <?php if(!$isStaff) {?>
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php } ?>
                       </div>
                     </div>
                   </form>

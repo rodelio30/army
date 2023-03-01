@@ -25,8 +25,9 @@ include 'system_checker.php';
                             </h1>
                         </div>
                         <div class="col-md-3">
-                            <a <?php echo "href=\"admin_schools_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add
-                                School</a>
+                            <?php if($isSadmin) {?>
+                                <a <?php echo "href=\"admin_schools_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add School</a>
+                            <?php }?>
                         </div>
                     </div>
 
@@ -44,7 +45,7 @@ include 'system_checker.php';
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
                                                 </th>
-                                                <?php if($isSadmin || $isAdmin) {
+                                                <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
                                                 <?php }
@@ -57,15 +58,21 @@ include 'system_checker.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($schools_counter > 0) {
 
-                                                $result = mysqli_query($conn, "select school_id, school_name, acronym, status, date_modified from schools WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                if($isSchool){
+                                                    $result = mysqli_query($conn, "select school_id, school_name, acronym, status, date_modified from schools WHERE status != 'archive' && acronym = '$school_name_public' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                }else {
+                                                    $result = mysqli_query($conn, "select school_id, school_name, acronym, status, date_modified from schools WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                }
+
                                                 while (list($school_id, $school_name, $acronym, $status, $date_modified) = mysqli_fetch_array($result)) {
-                                                    if($isSadmin || $isAdmin){
+                                                        $stat =  ucfirst($status);
+                                                    if($isSadmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_schools_view.php?ID=$school_id\" class='user-clicker'>$acronym</a></td>
                                                         <td scope='row'><a href=\"admin_schools_view.php?ID=$school_id\" class='user-clicker'>$school_name</a></td>
                                                         <td>$date_modified</td>
-                                                        <td>$status</td>
+                                                        <td>$stat</td>
                                                         <td id='action-print'><a href=\"archive/schools/schools_archive.php?ID=$school_id\" onClick=\"return confirm('Are you sure you want this school move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
@@ -75,13 +82,13 @@ include 'system_checker.php';
                                                         <td scope='row'><a href=\"admin_schools_view.php?ID=$school_id\" class='user-clicker'>$acronym</a></td>
                                                         <td scope='row'><a href=\"admin_schools_view.php?ID=$school_id\" class='user-clicker'>$school_name</a></td>
                                                         <td>$date_modified</td>
-                                                        <td>$status</td>
+                                                        <td>$stat</td>
                                                     </tr>
                                                 ";
                                                     }
                                                 }
                                             } else {
-                                                    if($isSadmin || $isAdmin){ 
+                                                    if($isSadmin){ 
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>

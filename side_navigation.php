@@ -13,6 +13,7 @@ $company_select   = '';
 $rids_select      = '';
 $student_select   = '';
 $course_select    = '';
+$announce_select   = '';
 $appoint_select   = '';
 $training_select  = '';
 $seminar_select   = '';
@@ -62,6 +63,9 @@ if ($nav_active == 'student') {
 }
 if ($nav_active == 'course') {
     $course_select = 'active';
+}
+if ($nav_active == 'announce') {
+    $announce_select = 'active';
 }
 if ($nav_active == 'appoint') {
     $appoint_select = 'active';

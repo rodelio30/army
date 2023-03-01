@@ -57,12 +57,12 @@ if ($status == "active") {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="admin_trainings.php" class="linked-navigation">Training List</a> /
+          <h1 class="h3 mb-3" id="action-print"><a href="admin_trainings.php" class="linked-navigation">Training List</a> /
             <?php echo $training_name ?></h1>
 
           <div class="row">
             <div class="col-12">
-              <div class="card">
+              <div class="card" id="action-print">
                 <div class="card-header">
                   <h5 class="card-title mb-0">Edit Training</h5>
                 </div>
@@ -144,8 +144,18 @@ if ($status == "active") {
                     </div>
                   </form>
                   <hr>
-                <h4>Attendance</h4>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                <?php include 'print_header.php'?>
+                <h1 class="h3 mb-3"> <strong>
+                <h4>Attendance for: <?php echo $training_name ?> <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
+                  </h4>
+                </strong> 
+                </h1>
                 <?php include 'training_attendance.php'?>
+                <?php include 'print_footer.php'?>
                 </div>
               </div>
             </div>

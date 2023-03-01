@@ -49,7 +49,7 @@ include 'system_checker.php';
                                                 <th>School Graduate</th>
                                                 <?php }
                                                 ?>
-                                                <?php if($isSadmin || $isAdmin || $isSchool) {
+                                                <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
                                                 <?php }
@@ -69,7 +69,7 @@ include 'system_checker.php';
                                                 }
 
                                                 while (list($rg_id, $name, $afpsn, $date_of_birth, $home_address, $date_graduated, $school_graduated, $status) = mysqli_fetch_array($result)) {
-                                                    if($isSadmin || $isAdmin || $isSchool){
+                                                    if($isSadmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$name</a></td>

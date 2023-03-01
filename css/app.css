@@ -15569,6 +15569,29 @@ span.flatpickr-weekday {
   object-fit: cover;
 }
 
+/* Image Announcement */
+.announce_image {
+  text-align: center; 
+  border-radius: 5%;
+  overflow: hidden;
+  width: 200px; 
+  height: 200px; 
+  top: 0;
+  left: 0; 
+  object-fit: cover;
+}
+
+.public_announce_image {
+  text-align: center; 
+  border-radius: 5%;
+  overflow: hidden;
+  width: 400px; 
+  height: 400px; 
+  top: 0;
+  left: 0; 
+  object-fit: cover;
+}
+
 .print-hidden {
   display: none;
 }
