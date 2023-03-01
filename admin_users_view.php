@@ -9,13 +9,14 @@ if (isset($_POST['update'])) {
   $username      = $_POST['username'];
   $email         = $_POST['email'];
   $user_type     = $_POST['type'];
+  $company       = $_POST['company'];
   $status        = $_POST['status'];
   $user_status   = $_POST['user_status'];
 
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', type = '$user_type', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', type = '$user_type', company = '$company', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
   header('Refresh: 0; url=admin_users.php');
@@ -30,6 +31,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $username      = $res['username'];
   $email         = $res['email'];
   $type          = $res['type'];
+  $company       = $res['company'];
   $status        = $res['status'];
   $user_status   = $res['user_status'];
   $date_modified = $res['date_modified'];
@@ -127,6 +129,26 @@ if ($user_status == "active") {
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <input type="text" class="form-control" id="type" name="type" value="<?php echo $type ?>" placeholder="Enter User Type ">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <select class="form-control" id="company" name="company">
+                            <?php
+                            $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
+                            while (list($c_name) = mysqli_fetch_array($result)) {
+                              if($c_name == $company) {
+                                echo "<option value='$c_name' selected>$c_name</option>";
+                              } else {
+                                echo "<option value='$c_name'>$c_name</option>";
+                              }
+                            }
+                            ?>
+                        </select>
                       </div>
                     </div>
                     <br>

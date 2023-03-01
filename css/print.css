@@ -1,8 +1,6 @@
 @page {
   size: A4;
   margin: 0;
-  margin-bottom: 40px;
-  counter-increment: page;
 }
 /* #areaToPrint {
   margin: -1rem;
@@ -12,6 +10,11 @@
   margin-left: -2rem;
   margin-right: -2rem;
 }
+
+#add-top {
+  margin-top: 0.3rem;
+}
+
 .print-hidden {
   display: block;
   text-align: center;
