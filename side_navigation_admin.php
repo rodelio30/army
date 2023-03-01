@@ -29,25 +29,15 @@
                 </a>
             </li>
 
-            <?php 
-            }
-            ?>
-
             <li class="sidebar-header">
                 User Registration List
             </li>
 
-            <?php 
-                if($isSadmin){
-            ?>
             <li class="sidebar-item <?php echo $admin_select ?>">
                 <a class="sidebar-link" href="admin_reg_admin.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Admin</span>
                 </a>
             </li>
-            <?php 
-            }
-            ?>
 
             <li class="sidebar-item <?php echo $staff_select ?>">
                 <a class="sidebar-link" href="admin_reg_staff.php">
@@ -73,14 +63,18 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Commander</span>
                 </a>
             </li>
+            
+            <?php 
+            }
+            ?>
 
             <li class="sidebar-header">
-                Reserve 
+                Reservist
             </li>
 
             <li class="sidebar-item <?php echo $rotc_select ?>">
                 <a class="sidebar-link" href="admin_rg.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reservist</span>
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Reservist</span>
                 </a>
             </li>
 

@@ -59,6 +59,10 @@ if ($status == "active") {
 } else if ($status == "inactive") {
   $sel_inactive = "selected";
 }
+$disabled = '';
+if($isStaff){
+  $disabled = 'disabled';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,12 +81,12 @@ if ($status == "active") {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="admin_company.php" class="linked-navigation">Company List</a> /
+          <h1 class="h3 mb-3" id="action-print"><a href="admin_company.php" class="linked-navigation">Company List</a> /
             <?php echo $company_name ?></h1>
 
           <div class="row">
             <div class="col-12">
-              <div class="card">
+              <div class="card" id="action-print">
                 <div class="card-header">
                   <h5 class="card-title mb-0">Edit Company</h5>
                 </div>
@@ -93,7 +97,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Letter</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="rank_letter" name="rank_letter">
+                        <select class="form-control" id="rank_letter" name="rank_letter" <?php echo $disabled?>>
                           <option value="A" <?php echo $sel_a ?>>A</option>
                           <option value="B" <?php echo $sel_b ?> >B</option>
                           <option value="C" <?php echo $sel_c ?> >C</option>
@@ -107,7 +111,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company Name</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="company_name" name="company_name" value="<?php echo $company_name ?>" placeholder="Enter company Name">
+                        <input type="text" class="form-control" id="company_name" name="company_name" value="<?php echo $company_name ?>" placeholder="Enter company Name" <?php echo $disabled?>>
                       </div>
                     </div>
                     <br>
@@ -116,7 +120,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
+                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status" <?php echo $disabled?>>
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>
@@ -155,10 +159,38 @@ if ($status == "active") {
                         <a href="admin_company.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php if(!$isStaff){?>
+                          <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php }?>
                       </div>
                     </div>
                   </form>
+                    </div>
+                    </div>
+              <div class="card">
+                <div class="card-header" id="action-print">
+                  <h5 class="card-title mb-0" id="action-print">Area of Responsibility</h5>
+                </div>
+                <div class="card-body">
+                <?php include 'print_header.php'?>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h1 class="h3 mb-3"> <strong><?php echo $company_name?></strong> 
+                                <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
+                            </h1>
+                        </div>
+                        <div class="col-md-3">
+                            <?php if($isSadmin || $isAdmin) {
+                            ?>
+                            <a <?php echo "href=\"admin_aor_add.php?com_name=$company_name\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add new AoR</a>
+                            <?php }
+                            ?>
+
+
+                        </div>
+                    </div>
+                <?php include 'company_aor.php'?>
+                <?php include 'print_footer.php'?>
                 </div>
               </div>
             </div>

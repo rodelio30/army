@@ -20,12 +20,12 @@ include 'system_checker.php';
                 <div class="container-fluid p-0">
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="h3 mb-3" id="action-print">Reserve List
+                            <h1 class="h3 mb-3" id="action-print">Reservist List
                                 <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                             </h1>
                         </div>
                         <div class="col-md-3">
-                            <a <?php echo "href=\"admin_rg_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add Reserve</a>
+                            <a <?php echo "href=\"admin_rg_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add Reservist</a>
                         </div>
                     </div>
 

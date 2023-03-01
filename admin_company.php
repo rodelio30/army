@@ -25,7 +25,9 @@ include 'system_checker.php';
                             </h1>
                         </div>
                         <div class="col-md-3">
+                            <?php if(!$isStaff){?>
                             <a <?php echo "href=\"admin_company_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add Company</a>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -42,7 +44,7 @@ include 'system_checker.php';
                                                 <th>Company</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
-                                                <?php if($isSadmin || $isAdmin) {
+                                                <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
                                                 <?php }
@@ -56,7 +58,7 @@ include 'system_checker.php';
                                             if ($company_counter > 0) {
                                                 $result = mysqli_query($conn, "select company_id, rank_letter,company_name, status, date_modified from company WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($company_id, $rank_letter, $company_name, $status, $date_modified) = mysqli_fetch_array($result)) {
-                                                    if($isSadmin || $isAdmin){
+                                                    if($isSadmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$rank_letter</a></td>
