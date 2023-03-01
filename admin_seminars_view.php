@@ -57,12 +57,12 @@ if ($status == "active") {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="admin_seminars.php" class="linked-navigation">Seminar List</a> /
+          <h1 class="h3 mb-3" id="action-print"><a href="admin_seminars.php" class="linked-navigation">Seminar List</a> /
             <?php echo $seminar_name ?></h1>
 
           <div class="row">
             <div class="col-12">
-              <div class="card">
+              <div class="card" id="action-print">
                 <div class="card-header">
                   <h5 class="card-title mb-0">Edit Seminar</h5>
                 </div>
@@ -143,6 +143,19 @@ if ($status == "active") {
                       </div>
                     </div>
                   </form>
+                  <hr>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                <?php include 'print_header.php'?>
+                <h1 class="h3 mb-3"> <strong>
+                <h4>Attendance for: <?php echo $seminar_name ?> <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
+                  </h4>
+                </strong> 
+                </h1>
+                <?php include 'seminar_attendance.php'?>
+                <?php include 'print_footer.php'?>
                 </div>
               </div>
             </div>
@@ -156,6 +169,9 @@ if ($status == "active") {
   </div>
 
   <script src="js/app.js"></script>
+    <!-- This line below is the jquery for the datatables -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.dataTable.min.js"></script>
 
 </body>
 

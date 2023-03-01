@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 <body>
   <div class="wrapper">
     <?php
-    $nav_active = 'trainings';
+    $nav_active = 'training';
     include 'side_navigation.php'
     ?>
 

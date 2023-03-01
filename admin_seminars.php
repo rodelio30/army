@@ -58,12 +58,13 @@ include 'system_checker.php';
 
                                                 $result = mysqli_query($conn, "select seminar_id, seminar_name, description, status, date_modified from seminars WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($seminar_id, $seminar_name, $description, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                                    $stat = ucfirst($status);
                                                     if($isSadmin || $isAdmin || $isSchool){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_seminars_view.php?ID=$seminar_id\" class='user-clicker'>$seminar_name</a></td>
                                                         <td>$date_modified</td>
-                                                        <td>$status</td>
+                                                        <td>$stat</td>
                                                         <td id='action-print'><a href=\"archive/seminars/seminars_archive.php?ID=$seminar_id\" onClick=\"return confirm('Are you sure you want this seminar move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
@@ -72,7 +73,7 @@ include 'system_checker.php';
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_seminars_view.php?ID=$seminar_id\" class='user-clicker'>$seminar_name</a></td>
                                                         <td>$date_modified</td>
-                                                        <td>$status</td>
+                                                        <td>$stat</td>
                                                     </tr>
                                                 ";
                                                     }

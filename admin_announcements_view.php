@@ -20,6 +20,7 @@ if (isset($_POST['update'])) {
 $result       = mysqli_query($conn, "SELECT * FROM announcements WHERE ann_id='$ann_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $ann_id        = $res['ann_id'];
+  $img           = $res['img'];
   $title         = $res['title'];
   $description   = $res['description'];
   $status        = $res['status'];
@@ -36,6 +37,37 @@ if ($status == "active") {
   $sel_active  = "selected";
 } else if ($status == "inactive") {
   $sel_inactive = "selected";
+}
+
+if (isset($_POST['image_update'])) {
+  $filename = $_FILES["uploadfile"]["name"];
+if(empty($filename)){
+  echo '<script type="text/javascript"> alert("Insert an image first!.")</script>';
+} else {
+  $tempname = $_FILES["uploadfile"]["tmp_name"];
+  $folder = "img/announcement/" . $filename;
+  $date_modified = date("Y-m-d h:i:s");
+  $ann_id   = $_POST['ann_id'];
+
+  // echo "<script>console.log('" . $email . "');</script>";
+  // This line below is to update a specific faculty user
+  mysqli_query($conn, "update announcements set img = '$filename' where ann_id = '$ann_id'") or die("Query Changing image is incorrect....");
+
+  // removing image in folder
+  if(!empty($user_img)){
+    unlink('img/announcement/' . $user_img . '');
+    echo "<script>console.log('Successfully removed " . $user_img . "');</script>";
+  }
+
+  if (move_uploaded_file($tempname, $folder)) {
+    echo "<script>console.log('Image uploaded successfully!');</script>";
+  } else {
+    echo "<script>console.log(' Failed to upload image!!');</script>";
+  }
+  echo '<script type="text/javascript"> alert("' . $title. '`s image updated!.")</script>';
+  header('Refresh: 0; url=admin_announcements_view.php?ID=' . $ann_id. '');
+
+}
 }
 ?>
 <!DOCTYPE html>
@@ -65,6 +97,27 @@ if ($status == "active") {
                   <h5 class="card-title mb-0">Edit Announcement</h5>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Image</strong></h6>
+                      </div>
+                      <div class="col-sm-6 text-center">
+                          <img src="img/announcement/<?php echo $img ? $img: 'empty_user.png' ?>" alt="Admin" class="announce_image">
+                      </div>
+                      <div class="col-sm-4 text-center">
+                        <form method="post" enctype="multipart/form-data">
+                        <label>New Image</label>
+                          <input class="form-control" type="file" name="uploadfile"/>
+                          <input type="hidden" name="ann_id" value="<?php echo $ann_id?>">
+                          <br>
+                          <button type="submit" class="btn btn-outline-success" name="image_update">Update Image</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+
+                  <div class="form-group ms-2 me-2">
+
                   <form method="post" autocomplete="off">
                     <div class="row">
                       <div class="col-sm-2">
@@ -128,7 +181,7 @@ if ($status == "active") {
                         <a href="admin_announcements.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update Info</button>
                       </div>
                     </div>
                   </form>

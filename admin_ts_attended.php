@@ -73,7 +73,7 @@ $isAvailable = true;
                                                     }
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'>$training_name</td>
+                                                        <td scope='row'><a href='admin_training_attended_view.php?ID=$at_training_id' class='linked-navigation'>$training_name</td>
                                                         <td scope='row'>$t_date $t_time</td>
                                                     </tr>
                                                 ";
@@ -83,13 +83,13 @@ $isAvailable = true;
                                                 while (list($att_id, $at_seminar_id, $at_user_id) = mysqli_fetch_array($result_seminar)) {
                                                     $result_tn       = mysqli_query($conn, "SELECT * FROM seminars WHERE seminar_id='$at_seminar_id'");
                                                     while ($res      = mysqli_fetch_array($result_tn)) {
-                                                    $seminar_name = $res['seminar_name'];
+                                                    $seminar_name  = $res['seminar_name'];
                                                     $t_date        = $res['date_created'];
                                                     $t_time        = $res['time_created'];
                                                     }
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'>$seminar_name</td>
+                                                        <td scope='row'><a href='admin_seminar_attended_view.php?ID=$at_seminar_id' class='linked-navigation'>$seminar_name</td>
                                                         <td scope='row'>$t_date $t_time</td>
                                                     </tr>
                                                 ";
