@@ -39,7 +39,7 @@ if ($status == "active") {
 }
 
 $disabled = '';
-if($isReservist || $isCommander) {
+if($isReservist || $isCommander || $isStaff) {
   $disabled = 'disabled';
 }
 ?>
@@ -123,7 +123,7 @@ if($isReservist || $isCommander) {
                         <a href="admin_aor.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                            <?php if($isSadmin || $isAdmin || $isStaff) {
+                            <?php if($isSadmin || $isAdmin) {
                             ?>
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
                             <?php }

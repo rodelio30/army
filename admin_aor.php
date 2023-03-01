@@ -25,7 +25,7 @@ include 'system_checker.php';
                             </h1>
                         </div>
                         <div class="col-md-3">
-                            <?php if($isSadmin || $isAdmin || $isStaff) {
+                            <?php if($isSadmin || $isAdmin) {
                             ?>
                             <a <?php echo "href=\"admin_aor_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add new AoR</a>
                             <?php }
@@ -47,7 +47,7 @@ include 'system_checker.php';
                                             <tr>
                                                 <th>AoR</th>
                                                 <th>Place</th>
-                                                <?php if($isSadmin || $isAdmin || $isStaff) {
+                                                <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
                                                 <?php }
@@ -61,21 +61,31 @@ include 'system_checker.php';
                                             if ($aor_counter > 0) {
                                                 $result = mysqli_query($conn, "select aor_id, company_name, place from aor WHERE status != 'archive' ORDER BY company_name") or die("Query for latest reservist....");
                                                 while (list($aor_id, $company_name, $place) = mysqli_fetch_array($result)) {
-                                                    if($isSadmin || $isAdmin || $isStaff){
-                                                    echo "
-                                                    <tr>	
-                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$company_name</a></td>
-                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$place</a></td>
-                                                        <td id='action-print'><a href=\"archive/aor/aor_archive.php?ID=$aor_id\" onClick=\"return confirm('Are you sure you want this aor move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
-                                                    </tr>
-                                                ";
-                                                    } else { 
-                                                    echo "
-                                                    <tr>	
-                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$company_name</a></td>
-                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$place</a></td>
-                                                    </tr>
-                                                ";
+
+                                                    // getting the status of Company Commander
+                                                    $result_active  = mysqli_query($conn, "SELECT * FROM company WHERE status='active' && company_name = '$company_name'");
+                                                    while ($res  = mysqli_fetch_array($result_active)) {
+                                                    $status_com = $res['status'];
+                                                    if($status_com == 'active') {
+                                                        if($isSadmin){
+                                                                    echo "
+                                                                    <tr>	
+                                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$company_name</a></td>
+                                                                        <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$place</a></td>
+                                                                        <td id='action-print'><a href=\"archive/aor/aor_archive.php?ID=$aor_id\" onClick=\"return confirm('Are you sure you want this aor move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
+                                                                    </tr>
+                                                                ";
+                                                                    } else { 
+                                                                echo "
+                                                                <tr>	
+                                                                    <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$company_name</a></td>
+                                                                    <td scope='row'><a href=\"admin_aor_view.php?ID=$aor_id\" class='user-clicker'>$place</a></td>
+                                                                </tr>
+                                                            ";
+                                                                }
+
+                                                        }
+                                                    // End of if Active
                                                     }
                                                 }
                                             } else {
