@@ -4,19 +4,20 @@ if(!empty($_SESSION["id"])){
   header("Location: index.php");
 }
 if(isset($_POST["submit_admin"])){
-  $email = $_POST["email"];
+//   $email = $_POST["email"];
+  $usernameemail = $_POST["usernameemail"];
   $password = $_POST["password"];
 
-  if(empty($email)){
+  if(empty($usernameemail)){
     echo
-    "<script> alert('Please insert your Email'); </script>";
+    "<script> alert('Please insert your Email or Username'); </script>";
   }
   elseif (empty($password)){
     echo
     "<script> alert('Please insert your Password'); </script>";
   }
   else{
-  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE email = '$email'");
+  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE username = '$usernameemail' OR email = '$usernameemail'");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
     if($password == $row['password']){
@@ -75,9 +76,9 @@ if(isset($_POST["submit_admin"])){
                                     <br>
                                     <form method="post" autocomplete="off">
                                         <div class="mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input class="form-control form-control-lg" type="email" name="email"
-                                                placeholder="Enter your email" autofocus />
+                                            <label class="form-label">Email or Username</label>
+                                            <input class="form-control form-control-lg" type="text" name="usernameemail"
+                                                placeholder="Enter your Email or Username" autofocus />
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
@@ -93,11 +94,16 @@ if(isset($_POST["submit_admin"])){
                                             <div>
                                                 <label class="form-check mt-3">
                                                     <span class="form-check-label">
+                                                        Forgot Password?  <a href="forgot_check.php" class="linked-navigation">click me!</a>
+                                                    </span>
+                                                </label>
+                                                <label class="form-check mt-2">
+                                                    <span class="form-check-label">
                                                         Create an Account?
                                                     </span>
                                                 </label>
                                             </div>
-                                            <a href="sign-choices.php" class="btn btn-md btn-outline-primary mt-1">Sign up!</a>
+                                            <a href="sign-choices.php" class="mt-2 btn btn-md btn-outline-primary mt-1">Sign up!</a>
                                             <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
                                         </div>
                                     </form>
