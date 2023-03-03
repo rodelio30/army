@@ -3,10 +3,13 @@ include 'system_checker.php';
   // echo "<script>console.log('High this is me " . $school_name_public. "');</script>";
 
 if (isset($_POST['submit'])) {
-  $name           = $_POST['name'];
-  $afpsn          = $_POST['afpsn'];
-  $birth_date     = $_POST['birth_date'];
-  $home_address   = $_POST['home_address'];
+  $firstname     = $_POST['firstname'];
+  $m_i           = $_POST['m_i'];
+  $lastname      = $_POST['lastname'];
+  $afpsn         = $_POST['afpsn'];
+  $rank          = $_POST['rank'];
+  $birth_date    = $_POST['birth_date'];
+  $home_address  = $_POST['home_address'];
   
   
   if($isSchool) {
@@ -35,10 +38,10 @@ if (isset($_POST['submit'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO rotc_graduates VALUES('','$name','$afpsn','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$date','$time','$date','$time')";
+    $query = "INSERT INTO rotc_graduates VALUES('','$firstname','$m_i','$lastname','$afpsn','$rank','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
-    echo '<script type="text/javascript"> alert("' . $name . ' Added!.")</script>';
+    echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname . ' Added!.")</script>';
     header('Refresh: 0; url=admin_rg.php');
   }
 }
@@ -60,21 +63,49 @@ if (isset($_POST['submit'])) {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="admin_rg.php" class="linked-navigation">Reserve List</a></h1>
+          <h1 class="h3 mb-3"><a href="admin_rg.php" class="linked-navigation">Reservist List</a></h1>
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Add New Reservist</h5>
+                </div>
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required autofocus>
+                      <div class="row">
+                        <div class="col-4">
+                          <label for="exampleInputEmail1">First Name</label>
+                          <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required autofocus>
+                        </div>
+                        <div class="col-4">
+                          <label for="exampleInputEmail1">Middle Initial</label>
+                          <input type="text" class="form-control" id="m_i" name="m_i" placeholder="Enter Middle Initial" required autofocus>
+                        </div>
+                        <div class="col-4">
+                          <label for="exampleInputEmail1">Last Name</label>
+                          <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required autofocus>
+                        </div>
+                      </div>
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">AFPSN</label>
                       <input type="text" class="form-control" id="afpsn" name="afpsn" placeholder="Enter AFPSN">
                     </div>
+                    <br>
+										<div class="form-group">
+											<label class="form-label">Rank Classification </label>
+											<select class="form-control" id="rank" name="rank">
+													<option value="none">None</option>
+												<?php
+												$result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+												while (list($rank_name) = mysqli_fetch_array($result)) {
+													echo "<option value='$rank_name'>$rank_name</option>";
+												}
+												?>
+											</select>
+										</div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date of Birth</label>
@@ -83,22 +114,21 @@ if (isset($_POST['submit'])) {
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Home Address</label>
-                      <input type="text" class="form-control" id="home_address" name="home_address" placeholder="Enter Home Address">
+                      <input type="text" class="form-control" id="home_address" name="home_address" placeholder="Barangay, Municipality/City, Province">
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Graduated (A.Y.)</label>
-                      <select class="form-control" id="date_graduated"name="date_graduated">
-                        <option value="2014-2015">2014-2015</option>
-                        <option value="2015-2016">2015-2016</option>
-                        <option value="2016-2017">2016-2017</option>
-                        <option value="2017-2018">2017-2018</option>
-                        <option value="2018-2019">2018-2019</option>
-                        <option value="2019-2020">2019-2020</option>
-                        <option value="2020-2021">2020-2021</option>
-                        <option value="2021-2022">2021-2022</option>
-                        <option value="2022-2023">2022-2023</option>
-                        <option value="2023-2024">2023-2024</option>
+                      <select class="form-control" id="date_graduated" name="date_graduated">
+                        <?php  
+                        $year_start = 1999;
+                        $year_end   = 2000;
+                        for ($x = 0; $x <= 30; $x++) {
+                          $year_start++;
+                          $year_end++;
+                          echo "<option value='$year_start-$year_end'>$year_start-$year_end</option>";
+                        }
+                        ?>  
                       </select>
                     </div>
                     <br>
@@ -110,7 +140,7 @@ if (isset($_POST['submit'])) {
                       </select>
                     </div>
                     <br>
-                    <?php if($isStaff) {
+                    <?php if(!$isSchool) {
                     ?> 
                     <div class="form-group">
                       <label for="exampleInputEmail1">School Graduated</label>
@@ -125,15 +155,13 @@ if (isset($_POST['submit'])) {
                     </div>
                     <br>
 
-                    <?php
-                    }
-                    ?>
+                    <?php } ?>
                     <div class="row">
                       <div class="col-6">
                         <a href="admin_rg.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Insert</button>
+                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Add</button>
                       </div>
                     </div>
                   </form>
