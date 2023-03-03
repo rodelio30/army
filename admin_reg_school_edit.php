@@ -20,7 +20,8 @@ while ($res   = mysqli_fetch_array($result)) {
 }
 
 if (isset($_POST['update'])) {
-  $up_status         = $_POST['status'];
+  $up_status      = $_POST['status'];
+  $up_user_status    = 'active';
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
@@ -32,7 +33,7 @@ if (isset($_POST['update'])) {
     $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','','','$school_name','$school_address','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
 
       if (mysqli_query($conn, $query_army_user)) {
-        $query_del_school = "DELETE FROM registration_sc WHERE sc_id = $school_id";
+        $query_del_school = "DELETE FROM registration_user WHERE reg_id = $school_id";
         mysqli_query($conn, $query_del_school);
       }
       echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
