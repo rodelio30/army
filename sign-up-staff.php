@@ -54,7 +54,7 @@ if(isset($_POST["submit"])){
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2"><strong>Get Started Admin Staff!</strong> </h1>
+							<h1 class="h2"><strong>Sign Up for Admin Staff</strong> </h1>
 						</div>
 
 						<div class="card">
@@ -62,14 +62,14 @@ if(isset($_POST["submit"])){
 								<div class="m-sm-4">
 									<form method="post" autocomplete="off">
 										<div class="mb-3">
-											<label class="form-label">Rank Classification (Lowest (no. 1) to Highest)<span class="input_required">*</span>
+											<label class="form-label">Rank Classification <span class="input_required">*</span>
 											</label>
 											<select class="form-control" id="rank" name="rank">
 													<option value="none">None</option>
 												<?php
-												$result = mysqli_query($conn, "select ranked, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
-												while (list($ranked, $rank_name) = mysqli_fetch_array($result)) {
-													echo "<option value='$rank_name'>$ranked. $rank_name</option>";
+												$result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+												while (list($rank_name) = mysqli_fetch_array($result)) {
+													echo "<option value='$rank_name'>$rank_name</option>";
 												}
 												?>
 											</select>
@@ -131,13 +131,15 @@ if(isset($_POST["submit"])){
 											<div class="col-6">
 												<div class="mb-3">
 													<label class="form-label">Password <span class="input_required">*</span></label>
-													<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" required />
+													<input class="form-control form-control-lg" type="password" id="main_password" name="password" placeholder="Enter password" required />
+												<input type="checkbox" onclick="myFunction()"> Show Password
 												</div>
 											</div>
 											<div class="col-6">
 												<div class="mb-3">
-													<label class="form-label">Confirm Password <span class="input_required">*</span></label>
-													<input class="form-control form-control-lg" type="password" name="confirmpassword" placeholder="Enter password" required />
+													<label class="form-label">Confirm Password  <span class="input_required">*</span></label>
+													<input class="form-control form-control-lg" type="password" id="confirm_password" name="confirmpassword" placeholder="Enter password" required />
+													<input type="checkbox" onclick="myConfirm()"> Show Password
 												</div>
 											</div>
 										</div>
@@ -163,7 +165,7 @@ if(isset($_POST["submit"])){
 	</main>
 
 	<script src="js/app.js"></script>
-
+	<script src="js/pw.js"></script>
 </body>
 
 </html>

@@ -97,14 +97,7 @@ if(isset($_POST["submit_admin"])){
                                                         Forgot Password?  <a href="forgot_check.php" class="linked-navigation">click me!</a>
                                                     </span>
                                                 </label>
-                                                <label class="form-check mt-2">
-                                                    <span class="form-check-label">
-                                                        Create an Account?
-                                                    </span>
-                                                </label>
                                             </div>
-                                            <a href="sign-choices.php" class="mt-2 btn btn-md btn-outline-primary mt-1">Sign up!</a>
-                                            <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
                                         </div>
                                     </form>
                                 </div>

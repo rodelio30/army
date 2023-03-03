@@ -26,16 +26,16 @@
 
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4 pb-1" style="color: white">Search something</h5>
+          <h5 class="text-uppercase mb-4 pb-1" style="color: white">Contact Us</h5>
 
-          <div class="form-outline form-white mb-4">
+          <!-- <div class="form-outline form-white mb-4">
             <input type="text" id="formControlLg" class="form-control form-control-lg">
             <label class="form-label" for="formControlLg" style="margin-left: 0px;">Search</label>
-          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 48.8px;"></div><div class="form-notch-trailing"></div></div></div>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 48.8px;"></div><div class="form-notch-trailing"></div></div></div> -->
 
           <ul class="fa-ul" style="margin-left: 1.65em;">
             <li class="mb-3">
-              <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">New York, NY 10012, US</span>
+              <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Nueva Ecija, Philippines</span>
             </li>
             <li class="mb-3">
               <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@example.com</span>
@@ -79,7 +79,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2023 Copyright:
+      © 2023 2023 Reserve Command, Philippine Army. All Rights Reserved.
     </div>
     <!-- Copyright -->
   </footer>

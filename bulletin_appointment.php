@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <br>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success contact-submit" name="submit">Set Appointment</button>
+                                    <button type="submit" class="btn btn-outline-success contact-submit" name="submit">Set Appointment</button>
                                 </div>
                                 </form>  
                                 </div>

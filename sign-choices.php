@@ -19,7 +19,7 @@ if(!empty($_SESSION["id"])){
 
                         <div class="text-center">
                             <h1 class="h2">                    
-                               <strong> Registration </strong>
+                               <strong> User Account Registration </strong>
                             </h1>
                             <!-- <p class="lead">
 								Sign in to your account to continue
@@ -49,12 +49,6 @@ if(!empty($_SESSION["id"])){
                                         <div class="w-100"></div>
                                         <div class="col">
                                     <a href="sign-up-reservist.php" class="btn btn-md btn-outline-success choices m-2">Reservist</a>
-                                        </div>
-                                        <div class="col">
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
-                                    <a href="sign-in.php" class="btn btn-md btn-outline-warning ms-2 mt-4">Cancel</a>
                                         </div>
                                         <div class="col">
                                         </div>
