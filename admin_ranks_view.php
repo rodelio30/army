@@ -6,7 +6,7 @@ $ranks_id = $_GET['ID'];
 $result       = mysqli_query($conn, "SELECT * FROM ranks WHERE rank_id='$ranks_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $ranks_id       = $res['rank_id'];
-  $my_ranked         = $res['ranked'];
+  $my_acronym     = $res['acronym'];
   $rank_name      = $res['rank_name'];
   $status         = $res['status'];
   $date_created   = $res['date_created'];
@@ -16,18 +16,18 @@ while ($res   = mysqli_fetch_array($result)) {
 }
 
 if (isset($_POST['update'])) {
-  $ranked         = $_POST['ranked'];
+  $acronym         = $_POST['acronym'];
   $rank_name      = $_POST['rank_name'];
   $status         = $_POST['status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM ranks WHERE ranked = '$ranked' && ranked != '$my_ranked'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM ranks WHERE acronym = '$acronym' && acronym != '$my_acronym'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('Rank Classification has already taken'); </script>";
   } else {
-  mysqli_query($conn, "update ranks set ranked = '$ranked', rank_name = '$rank_name', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rank_id = '$ranks_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update ranks set acronym = '$acronym', rank_name = '$rank_name', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rank_id = '$ranks_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $rank_name . ' updated!.")</script>';
   header('Refresh: 0; url=admin_ranks.php');
@@ -75,19 +75,19 @@ if ($status == "active") {
                   <form method="post" autocomplete="off">
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Ranked</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="number" class="form-control" id="ranked" name="ranked" value="<?php echo $my_ranked ?>" placeholder="Enter Ranked">
+                        <input type="text" class="form-control" id="acronym" name="acronym" value="<?php echo $my_acronym ?>" placeholder="Enter Rank Abbreviation">
                       </div>
                     </div>
                     <br>
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Name</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Description</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="rank_name" name="rank_name" value="<?php echo $rank_name ?>" placeholder="Enter Rank Name">
+                        <input type="text" class="form-control" id="rank_name" name="rank_name" value="<?php echo $rank_name ?>" placeholder="Enter Rank Title">
                       </div>
                     </div>
                     <br>
