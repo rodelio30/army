@@ -38,15 +38,13 @@ include 'system_checker.php';
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th width="2%">Ranked</th>
-                                                <th>Rank</th>
+                                                <th width="2%">Rank</th>
+                                                <th>Description</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
-                                                <?php if($isSadmin || $isAdmin) {
-                                                ?>
+                                                <?php if($isSadmin || $isAdmin) { ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
-                                                <?php }
-                                                ?>
+                                                <?php } ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -54,12 +52,12 @@ include 'system_checker.php';
                                             include 'counter/ranks_counter.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($ranks_counter > 0) {
-                                                $result = mysqli_query($conn, "select rank_id, ranked, rank_name, status, date_modified from ranks WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
-                                                while (list($rank_id, $ranked, $rank_name, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                                $result = mysqli_query($conn, "select rank_id, acronym, rank_name, status, date_modified from ranks WHERE status != 'archive' ORDER BY rank_id DESC") or die("Query for latest reservist....");
+                                                while (list($rank_id, $acronym, $rank_name, $status, $date_modified) = mysqli_fetch_array($result)) {
                                                     if($isSadmin || $isAdmin){
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$ranked</a></td>
+                                                        <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$acronym</a></td>
                                                         <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$rank_name</a></td>
                                                         <td>$date_modified</td>
                                                         <td>$status</td>
@@ -69,7 +67,7 @@ include 'system_checker.php';
                                                     } else { 
                                                         echo "
                                                         <tr>	
-                                                            <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$ranked</a></td>
+                                                            <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$acronym</a></td>
                                                             <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$rank_name</a></td>
                                                             <td>$date_modified</td>
                                                             <td>$status</td>
