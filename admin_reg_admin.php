@@ -45,7 +45,7 @@ include 'system_checker.php';
                                       echo "<script>console.log('" . $admin_counter . "');</script>";
 
                                         if($admin_counter > 0) {
-                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE user_type='admin' && (status = 'pending' || status = 'disapproved') ORDER BY date") or die("Query for latest reservist....");
+                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE user_type='admin' && status = 'pending' ORDER BY date") or die("Query for latest reservist....");
                                         while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                                             echo "
                                                 <tr>	

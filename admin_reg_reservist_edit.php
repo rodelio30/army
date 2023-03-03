@@ -22,32 +22,23 @@ while ($res   = mysqli_fetch_array($result)) {
 
 if (isset($_POST['update'])) {
   $up_status         = $_POST['status'];
-  $up_user_status    = $_POST['user_status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
   if($up_status == 'disapproved'){
-  echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved!.")</script>';
-    mysqli_query($conn, "update registration_user set status = '$up_status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved! It will go to Archive List.")</script>';
+    mysqli_query($conn, "update registration_user set status = '$up_status' where reg_id = '$reservist_id'") or die("Query 4 is incorrect....");
+    header('Refresh: 0; url=admin_reg_reservist.php');
   }
   else{
-  if($up_user_status == 'inactive'){
-  echo '<script type="text/javascript"> alert("User ' . $username . ' is inactive!.")</script>';
-    mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$admin_id'") or die("Query 4 is incorrect....");
-  }
-  else {
-  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
-
+    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
      if (mysqli_query($conn, $query_army_user)) {
-        
       $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
         mysqli_query($conn, $query_del_reservist);
      }
 
-  echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_reg_reservist.php');
-
-  }
+    echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
+    header('Refresh: 0; url=admin_reg_reservist.php');
   }
   // End of Else in Inactive if
 }
@@ -84,7 +75,7 @@ if (isset($_POST['update'])) {
                                   <div class="row">
                                     <div class="col-6">
                                       <div class="mb-3">
-                                        <label class="form-label">APPROVED?</label>
+                                        <label class="form-label">Status</label>
                                         <select class="form-control" id="status" name="status">
                                           <option value="disapproved" selected>Disapproved</option>
                                           <option value="ready">Ready</option>
@@ -93,17 +84,8 @@ if (isset($_POST['update'])) {
                                         </select>
                                       </div>
                                     </div>
-                                    <div class="col-6">
-                                      <div class="mb-3">
-                                        <label class="form-label">Activate the Account?</label>
-                                        <select class="form-control" id="user_status" name="user_status">
-                                          <option value="active">Active</option>
-                                          <option value="inactive" selected>Inactive</option>
-                                        </select>
-                                      </div>
-                                    </div>
                                   </div>
-                                  <div class="text-center mt-3">
+                                  <div class="mt-2">
                                       <button type="submit" name="update" class="btn btn-md btn-outline-success">Update</button>
                                   </div>
                                 </form>

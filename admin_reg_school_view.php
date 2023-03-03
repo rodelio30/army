@@ -3,9 +3,9 @@ include 'system_checker.php';
 
 $school_id = $_GET['ID'];
 
-$result       = mysqli_query($conn, "SELECT * FROM registration_sc WHERE sc_id='$school_id' && user_type='school_coordinator' ");
+$result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$school_id' && user_type='school_coordinator' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $school_id      = $res['sc_id'];
+  $school_id      = $res['reg_id'];
   $firstname      = $res['firstname'];
   $lastname       = $res['lastname'];
   $username       = $res['username'];

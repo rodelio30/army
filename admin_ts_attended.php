@@ -71,10 +71,11 @@ $isAvailable = true;
                                                     $t_date        = $res['date_created'];
                                                     $t_time        = $res['time_created'];
                                                     }
+                                                    $time_formatted   = date("g:i a ", strtotime($t_time));
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href='admin_training_attended_view.php?ID=$at_training_id' class='linked-navigation'>$training_name</td>
-                                                        <td scope='row'>$t_date $t_time</td>
+                                                        <td scope='row'>$t_date $time_formatted</td>
                                                     </tr>
                                                 ";
                                                 }
@@ -87,10 +88,11 @@ $isAvailable = true;
                                                     $t_date        = $res['date_created'];
                                                     $t_time        = $res['time_created'];
                                                     }
+                                                    $time_formatted   = date("g:i a ", strtotime($t_time));
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href='admin_seminar_attended_view.php?ID=$at_seminar_id' class='linked-navigation'>$seminar_name</td>
-                                                        <td scope='row'>$t_date $t_time</td>
+                                                        <td scope='row'>$t_date $time_formatted</td>
                                                     </tr>
                                                 ";
                                                 }

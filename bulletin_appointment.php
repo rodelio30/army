@@ -11,19 +11,19 @@ if (isset($_POST['submit'])) {
   $status       = 'pending';
   $date         = date("Y-m-d");
   $time         = date("h:i:s");
-
-  // $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name'");
-  // if (mysqli_num_rows($duplicate) > 0) {
-  //   echo
-  //   "<script> alert('This Traning Has Already Taken'); </script>";
-  // } else {
+  
+  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name'");
+  if (mysqli_num_rows($duplicate) > 0) {
+    echo
+    "<script> alert('This Traning Has Already Taken'); </script>";
+  } else {
     // Checking if password confirmation match
     $query = "INSERT INTO appointments VALUES('','$name','$email','$cnumber','$subject','$text','$status','$app_date','$app_time','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("Hi ' . $name . '! We Set your appointment, please wait for the approval, will send you an update for text or email!.")</script>';
     header('Refresh: 0; url=bulletin_appointment.php');
-  // }
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -54,17 +54,17 @@ if (isset($_POST['submit'])) {
                             <div class="card-body">
                                 <div class="m-sm-4">
                                 <form method="post"  autocomplete="off" >
-                                <div class="row">
+                                <div class="row mb-2">
                                     <div class="col-md-6 form-group">
                                     <label>Appointment Date</label>
                                     <input type="date" name="app_date" class="form-control" id="app_date" placeholder="Your Name" required>
                                     </div>
                                     <div class="col-md-6 form-group">
                                     <label>Appointment Time</label>
-                                    <input type="time" class="form-control" name="app_time" id="app_time" placeholder="Your Email" required>
+                                    <input type="time" class="form-control" name="app_time" id="app_time" min="08:00" max="17:00" placeholder="Your Time" required>
+                                    <small>Office hours are 8am to 5pm</small>
                                     </div>
                                 </div>
-                                <br>
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Complete Name" required>
                                     <br>
                                 <div class="row">
@@ -72,8 +72,7 @@ if (isset($_POST['submit'])) {
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                     </div>
                                     <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <!-- <input type="text" name="cnumber" class="form-control" id="cnumber" placeholder="Your Contact Number" required> -->
-                                      <input type="tel" id="cnumber" class="form-control"  name="cnumber" placeholder="000-0000-000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" required>
+                                    <input type="tel" id="cnumber" class="form-control"  name="cnumber" placeholder="(+63)" pattern="[0-9]{10}" required>
                                     </div>
                                 </div>
                                 <div class="form-group mt-3">
@@ -84,7 +83,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <br>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-outline-success contact-submit" name="submit">Set Appointment</button>
+                                    <button type="submit" class="btn btn-outline-success contact-submit" name="submit">Submit</button>
                                 </div>
                                 </form>  
                                 </div>
@@ -98,7 +97,18 @@ if (isset($_POST['submit'])) {
     </main>
 
     <script src="js/app.js"></script>
+    <script>
+    function getISODate(){
+    var d = new Date();
+    return d.getFullYear() + '-' + 
+            ('0' + (d.getMonth()+1)).slice(-2) + '-' +
+            ('0' + d.getDate()).slice(-2);
+    }
 
+    window.onload = function() {
+        document.getElementById('app_date').setAttribute('min',getISODate());
+    }
+    </script>
 </body>
 
 </html>

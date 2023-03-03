@@ -5,6 +5,7 @@ if (!empty($_SESSION["id"])) {
 }
 if (isset($_POST["submit"])) {
 	$rank            = $_POST["rank"];
+	$afpsn           = $_POST["afpsn"];
 	$school_name     = $_POST["school_name"];
 	$school_address  = $_POST["school_address"];
 	$firstname       = $_POST["firstname"];
@@ -20,14 +21,14 @@ if (isset($_POST["submit"])) {
 	$time            = date("H:i:s");;
 
 	// Checkng if duplicate email
-	$duplicate = mysqli_query($conn, "SELECT * FROM registration_sc WHERE username = '$username' OR  email = '$email'");
+	$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email'");
 	if (mysqli_num_rows($duplicate) > 0) {
 		echo
 		"<script> alert('Username or Email Has Already Taken'); </script>";
 	} else {
 		// Checking if password confirmation match
 		if ($password == $confirmpassword) {
-			$query = "INSERT INTO registration_sc VALUES('','$firstname','$lastname','$username','$email','$password','$school_name','$school_address','$rank','$user_type','$status','$user_status','$date', '$time')";
+      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$rank','','$afpsn','$school_name','$school_address','$status','$user_status', '$date', '$time')";
 			mysqli_query($conn, $query);
 
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";
@@ -64,9 +65,9 @@ if (isset($_POST["submit"])) {
 											</label>
 											<select name="school_name" class="form-control">
 												<?php
-												$result = mysqli_query($conn, "select school_name from schools where status='active'") or die("Query School List is inncorrect........");
-												while (list($school_name) = mysqli_fetch_array($result)) {
-													echo "<option value='$school_name'>$school_name</option>";
+												$result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
+												while (list($school_name,$acronym) = mysqli_fetch_array($result)) {
+													echo "<option value='$acronym'>$school_name</option>";
 												}
 												?>
 											</select>
