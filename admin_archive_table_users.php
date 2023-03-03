@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-        <h2>Archive List for Users</h2>
+        <h2>Archive Users List</h2>
               <table id="example" class="table table-hover my-0" style="width:100%">
                   <thead>
                       <tr>
@@ -27,14 +27,20 @@
                               <td>$user_status</td>
                               <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
                                     <td id='action-print'>
-                                    <a href=\"archive/army_users/army_users_delete.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
-                                    <a href=\"archive/army_users/army_users_active.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this Event be active again?')\" class='btn btn-outline-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
+                                    <a href=\"archive/army_users/army_users_delete.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want to Delete this Registered User permanent?')\" class='btn btn-outline-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+                                    <a href=\"archive/army_users/army_users_active.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this Registered User be active again?')\" class='btn btn-outline-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
                                     </td>
                           </tr>
                       ";
                           }
                       } else {
-                          echo " <tr>	<td colspan='5' class='text-center'>No Registered User </td></tr>";
+                          echo " <tr>
+                                <td></td>
+                                <td></td>
+                                    <td class='text-center'>No Registered User </td>
+                                <td></td>
+                                <td></td>
+                            </tr>";
                       }
                       ?>
                   </tbody>

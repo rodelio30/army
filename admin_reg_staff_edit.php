@@ -26,8 +26,9 @@ if (isset($_POST['update'])) {
   $time_modified  = date("h:i:s");
 
   if($up_status == 'disapproved'){
-  echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved!.")</script>';
+  echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved! It will go to Archive List.")</script>';
     mysqli_query($conn, "update registration_user set status = '$up_status' where reg_id = '$staff_id'") or die("Query 4 is incorrect....");
+    header('Refresh: 0; url=admin_reg_staff.php');
   }
   else{
   if($up_user_status == 'inactive'){

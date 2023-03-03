@@ -3,7 +3,10 @@ include '../../include/connect.php';
 
 $user_id = $_GET['ID'];
 
-$sql = "DELETE FROM army_users WHERE id = $user_id ";
+$date = date("Y-m-d");
+$time = date("h:i:s");
+
+$sql = "UPDATE registration_user SET status='pending', date='$date', time = '$time' WHERE reg_id=$user_id";
 
 if ($conn->query($sql) === TRUE) {
   header("Refresh:0.4; url=../../admin_archive.php");

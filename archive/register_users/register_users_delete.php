@@ -3,7 +3,7 @@ include '../../include/connect.php';
 
 $user_id = $_GET['ID'];
 
-$sql = "DELETE FROM army_users WHERE id = $user_id ";
+$sql = "DELETE FROM registration_user WHERE reg_id = $user_id ";
 
 if ($conn->query($sql) === TRUE) {
   header("Refresh:0.4; url=../../admin_archive.php");

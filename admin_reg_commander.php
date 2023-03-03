@@ -44,7 +44,7 @@ include 'system_checker.php';
                                         include 'counter/registration_counter.php';
                                     //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if($commander_counter > 0) {
-                                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE (status = 'pending' || status = 'disapproved') && user_type='commander' ORDER BY date") or die("Query for latest commander....");
+                                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status = 'pending' && user_type='commander' ORDER BY date") or die("Query for latest commander....");
                                             while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                 echo "
                                                     <tr>	
