@@ -89,10 +89,18 @@ include 'system_checker.php';
                                                     }
                                                 }
                                             } else {
-                                                echo " <tr>	
-                                                        <td>No Active aor</td>
-                                                        <td></td>
-                                                        </tr>";
+                                                if($isSadmin){
+                                                    echo " <tr>	
+                                                            <td></td>
+                                                            <td>No Active aor</td>
+                                                            <td></td>
+                                                            </tr>";
+                                                } else {
+                                                    echo " <tr>	
+                                                            <td>No Active aor</td>
+                                                            <td></td>
+                                                            </tr>";
+                                                        }
                                             }
                                             ?>
                                         </tbody>

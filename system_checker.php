@@ -1,5 +1,4 @@
 <?php
-
 require 'include/connect.php';
 $isSadmin    = false;
 $isAdmin     = false;

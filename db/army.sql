@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 02:57 PM
+-- Generation Time: Mar 02, 2023 at 11:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -44,7 +44,10 @@ CREATE TABLE `announcements` (
 --
 
 INSERT INTO `announcements` (`ann_id`, `img`, `title`, `description`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, '', 'First Title', 'First Description 2', 'active', '2023-02-21', '09:24:17.000000', '2023-02-27', '11:29:31.000000');
+(1, 'istockphoto-1338134336-170667a.jpg', 'First Title', 'First Description 2', 'active', '2023-02-21', '09:24:17.000000', '2023-02-27', '11:29:31.000000'),
+(2, 'Participations A4.png', 'Admin Announce', 'Sample Announce', 'inactive', '2023-03-01', '05:22:33.000000', '2023-03-01', '05:22:33.000000'),
+(3, 'download (3).jpg', 'This image is uploaded by admin', 'High, Hello World', 'inactive', '2023-03-01', '05:27:15.000000', '2023-03-01', '05:27:15.000000'),
+(4, 'download (3).jpg', 'Image Staff', 'This image is uploaded by staff', 'inactive', '2023-03-01', '05:28:14.000000', '2023-03-01', '05:28:14.000000');
 
 -- --------------------------------------------------------
 
@@ -79,7 +82,8 @@ INSERT INTO `aor` (`aor_id`, `company_name`, `place`, `status`) VALUES
 (1, 'Headquarter', 'Palayan CIty', 'active'),
 (2, 'Headquarter', 'Cabanatuan City', 'active'),
 (3, 'Alpha', 'Gapan City', 'active'),
-(4, 'Bravo', 'Science City of Muñoz', 'active');
+(4, 'Bravo', 'Science City of Muñoz', 'active'),
+(5, 'Headquarter', 'Bongabon', 'active');
 
 -- --------------------------------------------------------
 
@@ -148,16 +152,16 @@ INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastnam
 (1, 'download (2).jpg', 'Rodelio', '', 'Domingo', 'gwapo', 'rodel@sample.com', 'admin', 'sadmin', 'Private', 'Charlie', 'sladkjf=234234saefq3245325w', '', '', 'standby', 'active', '2023-02-17', '03:32:22.000000', '2023-02-17', '06:51:07.000000'),
 (3, 'download (1).jpg', 'Sample', '', 'Sample', 'lvl3', 'sample3@sample.com', 'sample', 'reservist', 'none', 'Alpha', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-21', '04:40:47.000000'),
 (4, 'download (1).jpg', 'Sample', '', 'Sample', 'lvl4 comsldkfj', 'sample4@sample.com', 'sample', 'commander', 'First Lieutenant', 'none', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-21', '11:43:23.000000'),
-(15, 'download (1).jpg', 'Rodelio', 'B', 'Domingo', 'reservist', 'reservist@sample.com', 'sample', 'reservist', 'Major', '', '', '', '', 'retired', 'active', NULL, '00:00:00.000000', '2023-02-20', '04:23:20.000000'),
+(15, 'download (1).jpg', 'Rodelio', 'B', 'Domingo', 'reservist', 'reservist@sample.com', 'sample', 'reservist', 'Major', 'Bravo', '', '', '', 'retired', 'active', NULL, '00:00:00.000000', '2023-03-01', '09:21:39.000000'),
 (24, 'ava3.webp', 'Sample', '', 'Testing', 'testschool', 'testschool@sample.com', 'sample', 'school_coordinator', '', 'none', '', 'NEUST', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-28', '01:05:21.000000'),
-(25, '', 'Private', '', 'Domingo', 'prinon', 'prinon@sample.com', 'sample', 'reservist', 'Private', '', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-27', '08:37:55.000000'),
-(26, 'download (1).jpg', 'Captain', '', 'Bravo', 'capbra', 'capbra@sample.com', 'sample', 'staff', 'none', 'none', '', '', '', 'ready', 'active', NULL, '00:00:00.000000', '2023-02-17', '07:55:15.000000'),
+(25, '', 'Private', '', 'Domingo', 'prinon', 'prinon@sample.com', 'sample', 'reservist', 'Private', 'Headquarter', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-03-01', '09:21:31.000000'),
+(26, 'istockphoto-1338134336-170667a.jpg', 'Captain', '', 'Bravo', 'capbra', 'capbra@sample.com', 'sample', 'staff', 'none', 'Charlie', '', '', '', 'ready', 'active', NULL, '00:00:00.000000', '2023-03-01', '09:21:45.000000'),
 (27, 'smile.png', 'Colonel', '', 'Domingo', 'coldom', 'coldom@sample.com', 'sample', 'admin', 'Private', 'Alpha', '', '', '', 'standby', 'active', NULL, '00:00:00.000000', '2023-02-17', '07:11:44.000000'),
-(28, 'istockphoto-1338134336-170667a.jpg', 'Commander', '', 'Alpha', 'comaplh', 'comaplh@sample.com', 'sample', 'commander', 'Command Sergeant Major', 'Alpha', 'dfsdf-sdflkjsdf-dfl;kjdf', '', '', 'standby', 'active', '2023-02-17', '04:49:15.000000', '2023-02-17', '04:49:15.000000'),
+(28, 'istockphoto-1338134336-170667a.jpg', 'Commander', '', 'Alpha', 'comaplh', 'comaplh@sample.com', 'sample', 'commander', 'Command Sergeant Major', 'Bravo', 'dfsdf-sdflkjsdf-dfl;kjdf', '', '', 'standby', 'active', '2023-02-17', '04:49:15.000000', '2023-03-01', '09:19:39.000000'),
 (30, 'download (4).jpg', 'Staff', '', 'Sirjint', 'ssalp', 'ssalp@sample.com', 'sample', 'admin', 'Staff Sergeant', 'Alpha', 'sdfsadf-sdfsdf-', '', '', 'standby', 'active', '2023-02-17', '04:51:17.000000', '2023-02-17', '04:51:17.000000'),
 (31, '', 'staff', '', 'huhu', 'staffuhhu', 'staffhuhu@sample.com', 'sample', 'staff', 'none', 'none', '', '', '', 'standby', 'active', '2023-02-17', '04:53:47.000000', '2023-02-17', '04:53:47.000000'),
 (32, '', 'Cab', '', 'coordinator', 'cabcoo', 'cabcoo@gmail.com', 'sample', 'school_coordinator', 'None', 'none', '', 'CLSU', 'Cab NE', 'standby', 'active', '2023-02-17', '04:58:50.000000', '2023-02-28', '02:59:46.000000'),
-(33, '', 'Pri', '', 'Admin', 'priadmin', 'priadmin@sample.com', 'samplle', 'admin', 'Private', 'Headquarter', 'sdfasdfwtt4sdfgedfg', '', '', 'standby', 'active', '2023-02-17', '06:50:32.000000', '2023-02-17', '06:50:32.000000'),
+(33, '', 'Pri', '', 'Admin', 'priadmin', 'priadmin@sample.com', 'example', 'admin', 'Private', 'Headquarter', 'sdfasdfwtt4sdfgedfg', '', '', 'standby', 'active', '2023-02-17', '06:50:32.000000', '2023-02-17', '06:50:32.000000'),
 (34, '', 'sdfasdfas', '', 'sadfsadfsd', 'sdsdseef', 'sdfsdfo@sjldhfosadf.iodsjfg', 'sample', 'staff', 'Private First Class', 'Alpha', 'sdfasdf', '', '', 'ready', 'active', '2023-02-26', '02:58:18.000000', '2023-02-26', '02:58:18.000000'),
 (35, '', 'sadfsadf', '', 'sadfsadf', 'sadfsdf', 'sdf@saldkjf.com', 'sample', 'admin', 'Private First Class', 'Headquarter', 'sadfsadf', '', '', 'standby', 'active', '2023-02-27', '03:45:26.000000', '2023-02-27', '03:45:26.000000');
 
@@ -230,7 +234,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `rank_letter`, `company_name`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
-(1, 'A', 'Headquarter', 'active', '2023-02-16', '10:26:46.000000', '2023-02-16', '10:31:54.000000', 'gwapo'),
+(1, 'A', 'Headquarter', 'active', '2023-02-16', '10:26:46.000000', '2023-03-01', '01:12:16.000000', 'gwapo'),
 (2, 'B', 'Alpha', 'active', '2023-02-16', '10:27:29.000000', '2023-02-16', '10:34:56.000000', 'gwapo'),
 (3, 'C', 'Bravo', 'active', '2023-02-16', '10:27:40.000000', '2023-02-17', '09:18:40.000000', 'gwapo'),
 (4, 'D', 'Charlie', 'active', '2023-02-16', '10:27:53.000000', '2023-02-17', '11:26:55.000000', 'gwapo');
@@ -460,8 +464,9 @@ INSERT INTO `rotc_graduates` (`rg_id`, `name`, `afpsn`, `date_of_birth`, `home_a
 (1, 'Rodelio Domingo', 'sldfjjs-k2h3oisd', '1997-12-30', 'Munoz, Nueva Ecija, Philippines', '2020-2021', 25, 'Male', 'CLSU', 'active', '2023-02-27', '10:24:13.000000', '2023-02-28', '09:14:09.000000'),
 (3, 'Third User', 'lskadjfkkljd-2ljk', '2008-07-10', 'Purok Guro', '2020-2021', 14, 'Female', 'CLSU', 'active', '2023-02-28', '09:08:12.000000', '2023-02-28', '09:12:55.000000'),
 (4, 'NEUST my student', 'lskdjf-sdfkj2', '1998-12-30', 'Jaan lang', '2023-2024', 24, 'Male', '', 'archive', '2023-02-28', '11:13:50.000000', '2023-02-28', '11:14:42.000000'),
-(11, 'NE Final Test', 'lkasdjf-dhjkll1kojfoi1h', '1997-12-29', 'NE Cab Philippines', '2020-2021', 25, 'Male', 'NEUST', 'active', '2023-02-28', '01:08:36.000000', '2023-02-28', '01:08:36.000000'),
-(12, 'Staff Add', 'sjdflkiovn1lkjdfoi2p3k=', '1999-12-02', 'Bayan ng munoz', '2019-2020', 23, 'Female', 'CLSU', 'active', '2023-02-28', '01:10:32.000000', '2023-02-28', '01:10:32.000000');
+(11, 'NE Final Testing', 'lkasdjf-dhjkll1kojfoi1h', '1997-12-29', 'NE Cab Philippines', '2020-2021', 25, 'Male', 'NEUST', 'active', '2023-02-28', '01:08:36.000000', '2023-03-01', '04:28:40.000000'),
+(12, 'Staff Add', 'sjdflkiovn1lkjd', '1999-12-02', 'Bayan ng munoz', '2019-2020', 23, 'Female', 'CLSU', 'active', '2023-02-28', '01:10:32.000000', '2023-03-01', '04:11:50.000000'),
+(13, 'School Input rotc graduate', 'osjdf-sdfkj1', '2000-11-30', 'There only', '2019-2020', 22, 'Female', 'NEUST', 'active', '2023-03-01', '01:59:13.000000', '2023-03-01', '01:59:13.000000');
 
 -- --------------------------------------------------------
 
@@ -522,8 +527,8 @@ CREATE TABLE `schools` (
 --
 
 INSERT INTO `schools` (`school_id`, `school_name`, `acronym`, `description`, `school_address`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
-(1, 'Central Luzon State University', 'CLSU', 'My College Now Today', 'My School', 'active', '2023-02-15', '07:01:56.000000', '2023-02-16', '06:40:19.000000', 'gwapo'),
-(2, 'Nueva Ecija University of Santo Tomas', 'NEUST', 'Their College', '', 'active', '2023-02-15', '08:41:58.000000', '2023-02-15', '08:41:58.000000', 'gwapo');
+(1, 'Central Luzon State University', 'CLSU', 'My College Now Today', 'My School Here', 'Active', '2023-02-15', '07:01:56.000000', '2023-03-01', '01:56:46.000000', 'gwapo'),
+(2, 'Nueva Ecija University of Santo Tomas', 'NEUST', 'Their College', 'This is my home', 'Active', '2023-02-15', '08:41:58.000000', '2023-03-01', '01:56:59.000000', 'gwapo');
 
 -- --------------------------------------------------------
 
@@ -549,7 +554,7 @@ CREATE TABLE `seminars` (
 --
 
 INSERT INTO `seminars` (`seminar_id`, `seminar_name`, `description`, `link`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, 'First Seminar', 'My Initial Seminar', 'https://www.facebook.com/', 'inactive', 0, '2023-02-21', '08:45:26.000000', '2023-02-28', '09:54:07.000000');
+(1, 'First Seminar', 'My Initial Seminar', 'https://www.facebook.com/', 'active', 0, '2023-02-21', '08:45:26.000000', '2023-03-01', '04:35:32.000000');
 
 -- --------------------------------------------------------
 
@@ -570,7 +575,8 @@ CREATE TABLE `seminar_attendance` (
 --
 
 INSERT INTO `seminar_attendance` (`att_id`, `seminar_id`, `user_id`, `date_attended`, `time_attended`) VALUES
-(1, 1, 15, '2023-02-28', '09:48:51.000000');
+(1, 1, 15, '2023-02-28', '09:48:51.000000'),
+(2, 1, 25, '2023-03-01', '05:00:28.000000');
 
 -- --------------------------------------------------------
 
@@ -631,7 +637,7 @@ CREATE TABLE `trainings` (
 --
 
 INSERT INTO `trainings` (`training_id`, `training_name`, `description`, `link`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, 'First Training', 'First Training forever', 'https://github.com/rodelio30/army', 'inactive', 0, '2023-02-21', '08:20:25.000000', '2023-02-28', '09:53:43.000000'),
+(1, 'First Training', 'First Training forever', 'https://github.com/rodelio30/army', 'active', 0, '2023-02-21', '08:20:25.000000', '2023-03-01', '05:00:23.000000'),
 (2, 'Rodelio Profile', 'High this is me', 'https://www.facebook.com/', 'inactive', 0, '2023-02-28', '04:47:05.000000', '2023-02-28', '04:47:39.000000');
 
 -- --------------------------------------------------------
@@ -653,7 +659,8 @@ CREATE TABLE `training_attendance` (
 --
 
 INSERT INTO `training_attendance` (`att_id`, `training_id`, `user_id`, `date_attended`, `time_attended`) VALUES
-(1, 1, 15, '2023-02-28', '09:08:16.000000');
+(1, 1, 15, '2023-02-28', '09:08:16.000000'),
+(2, 1, 25, '2023-03-01', '05:17:17.000000');
 
 --
 -- Indexes for dumped tables
@@ -793,7 +800,7 @@ ALTER TABLE `training_attendance`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `ann_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ann_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ann_descrip`
@@ -805,7 +812,7 @@ ALTER TABLE `ann_descrip`
 -- AUTO_INCREMENT for table `aor`
 --
 ALTER TABLE `aor`
-  MODIFY `aor_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `aor_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `appointments`
@@ -871,7 +878,7 @@ ALTER TABLE `reservists`
 -- AUTO_INCREMENT for table `rotc_graduates`
 --
 ALTER TABLE `rotc_graduates`
-  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `rpi`
@@ -895,7 +902,7 @@ ALTER TABLE `seminars`
 -- AUTO_INCREMENT for table `seminar_attendance`
 --
 ALTER TABLE `seminar_attendance`
-  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -913,7 +920,7 @@ ALTER TABLE `trainings`
 -- AUTO_INCREMENT for table `training_attendance`
 --
 ALTER TABLE `training_attendance`
-  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
