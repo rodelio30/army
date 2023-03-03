@@ -21,18 +21,14 @@ while ($res   = mysqli_fetch_array($result)) {
 
 if (isset($_POST['update'])) {
   $up_status      = $_POST['status'];
-  $up_user_status = $_POST['user_status'];
+  $up_user_status = 'active';
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
   if($up_status == 'disapproved'){
   echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved!.")</script>';
     mysqli_query($conn, "update registration_user set status = '$up_status' where reg_id = '$commander_id'") or die("Query 4 is incorrect....");
-  }
-  else{
-  if($up_user_status == 'inactive'){
-  echo '<script type="text/javascript"> alert("User ' . $username . ' is inactive!.")</script>';
-    mysqli_query($conn, "update registration_user set user_status = '$up_user_status' where reg_id = '$commander_id'") or die("Query 4 is incorrect....");
+    header('Refresh: 0; url=admin_reg_commander.php');
   }
   else {
   $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
@@ -46,8 +42,6 @@ if (isset($_POST['update'])) {
     header('Refresh: 0; url=admin_reg_commander.php');
   }
   }
-  // End of Else in Inactive if
-}
 
 // $time_formatted  = date("g:i a ", strtotime($time_created));
 // $time_m_formatted  = date("g:i a ", strtotime($time_modified));
@@ -90,17 +84,8 @@ if (isset($_POST['update'])) {
                                         </select>
                                       </div>
                                     </div>
-                                    <div class="col-6">
-                                      <div class="mb-3">
-                                        <label class="form-label">Activate the Account?</label>
-                                        <select class="form-control" id="user_status" name="user_status">
-                                          <option value="active">Active</option>
-                                          <option value="inactive" selected>Inactive</option>
-                                        </select>
-                                      </div>
-                                    </div>
                                   </div>
-                                  <div class="text-center mt-3">
+                                  <div class="mt-3">
                                       <button type="submit" name="update" class="btn btn-md btn-outline-success">Update</button>
                                   </div>
                                 </form>
