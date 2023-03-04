@@ -46,7 +46,7 @@ include 'system_checker.php';
                                         <thead>
                                             <tr>
                                                 <th>AoR</th>
-                                                <th>Place</th>
+                                                <th>Location</th>
                                                 <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>

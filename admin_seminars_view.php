@@ -4,14 +4,16 @@ include 'system_checker.php';
 $seminars_id = $_GET['ID'];
 
 if (isset($_POST['update'])) {
-  $seminar_name   = $_POST['seminar_name'];
+  $seminar_name  = $_POST['seminar_name'];
   $description   = $_POST['description'];
-  $link          = $_POST['link'];
+  $venue         = $_POST['venue'];
+  $start_date    = $_POST['start_date'];
+  $end_date      = $_POST['end_date'];
   $status        = $_POST['status'];
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  mysqli_query($conn, "update seminars set seminar_name = '$seminar_name', description = '$description', link = '$link',  status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where seminar_id = '$seminars_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update seminars set seminar_name = '$seminar_name', description = '$description', venue = '$venue', start_date = '$start_date', end_date = '$end_date', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where seminar_id = '$seminars_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $seminar_name . ' updated!.")</script>';
   header('Refresh: 0; url=admin_seminars.php');
@@ -20,10 +22,12 @@ if (isset($_POST['update'])) {
 
 $result       = mysqli_query($conn, "SELECT * FROM seminars WHERE seminar_id='$seminars_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $seminars_id    = $res['seminar_id'];
-  $seminar_name   = $res['seminar_name'];
+  $seminars_id   = $res['seminar_id'];
+  $seminar_name  = $res['seminar_name'];
   $description   = $res['description'];
-  $link          = $res['link'];
+  $venue         = $res['venue'];
+  $start_date    = $res['start_date'];
+  $end_date      = $res['end_date'];
   $status        = $res['status'];
   $date_created  = $res['date_created'];
   $time_created  = $res['time_created'];
@@ -79,10 +83,28 @@ if ($status == "active") {
                     <br>
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Link</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Venue</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="url" class="form-control" id="link" name="link" value="<?php echo $link ?>" placeholder="Enter Link">
+                        <input type="text" class="form-control" id="venue" name="venue" value="<?php echo $venue ?>" placeholder="Enter Venue">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Start Date</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="date" class="form-control"  id="start_date" name="start_date" value="<?php echo $start_date?>">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>End Date</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo $end_date ?>" >
                       </div>
                     </div>
                     <br>
@@ -173,6 +195,33 @@ if ($status == "active") {
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery.dataTable.min.js"></script>
 
+    <script>
+      function getISODate(){
+      var d = new Date();
+      return d.getFullYear() + '-' + 
+              ('0' + (d.getMonth()+1)).slice(-2) + '-' +
+              ('0' + d.getDate()).slice(-2);
+      }
+
+      window.onload = function() {
+          document.getElementById('end_date').setAttribute('min',getISODate());
+      }
+    </script>
+    <script type="text/javascript">
+      $(function(){
+          var dtToday = new Date();
+      
+          var month = dtToday.getMonth() + 1;
+          var day = dtToday.getDate();
+          var year = dtToday.getFullYear();
+          if(month < 10)
+              month = '0' + month.toString();
+          if(day < 10)
+          day = '0' + day.toString();
+          var maxDate = year + '-' + month + '-' + day;
+          $('#start_date').attr('min', maxDate);
+      });
+</script>
 </body>
 
 </html>
