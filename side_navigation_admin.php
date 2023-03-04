@@ -116,27 +116,6 @@
                 </a>
             </li>
             
-
-            <?php 
-            // if($isStaff){
-
-            ?>
-            <li class="sidebar-header">
-                Students 
-            </li>
-
-            <li class="sidebar-item <?php echo $student_select ?>">
-                <a class="sidebar-link" href="admin_students.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item <?php echo $course_select ?>">
-                <a class="sidebar-link" href="admin_courses.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Courses</span>
-                </a>
-            </li>
-
             <li class="sidebar-header">
                Trainings and Seminars 
             </li>

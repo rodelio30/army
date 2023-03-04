@@ -98,10 +98,10 @@ if($isReservist || $isCommander || $isStaff) {
                     <br>
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Place</strong></h6>
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Location</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="place" name="place" value="<?php echo $place ?>" placeholder="Enter Place" <?php echo $disabled?>>
+                        <input type="text" class="form-control" id="place" name="place" value="<?php echo $place ?>" placeholder="Enter City/Municipality" <?php echo $disabled?>>
                       </div>
                     </div>
                     <br>

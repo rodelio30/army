@@ -60,8 +60,8 @@ if (isset($_POST['submit'])) {
                     </div>
                     <br>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Place</label>
-                      <input type="text" class="form-control" id="place" name="place" placeholder="Enter Place" required>
+                      <label for="exampleInputEmail1">Location</label>
+                      <input type="text" class="form-control" id="place" name="place" placeholder="Enter City/Municipality" required>
                     </div>
                     <br>
                     <div class="row">

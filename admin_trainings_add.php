@@ -4,19 +4,21 @@ include 'system_checker.php';
 
 if (isset($_POST['submit'])) {
   $training_name = $_POST['training_name'];
-  $link          = $_POST['link'];
+  $venue         = $_POST['venue'];
+  $start_date    = $_POST['start_date'];
+  $end_date      = $_POST['end_date'];
   $description   = $_POST['description'];
   $status        = 'inactive';
   $date          = date("Y-m-d");
   $time          = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' OR link = '$link'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' OR venue = '$venue'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
-    "<script> alert('This Traning or Link Has Already Taken'); </script>";
+    "<script> alert('This Traning or venue Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO trainings VALUES('','$training_name','$description','$link','$status','','$date','$time','$date','$time')";
+    $query = "INSERT INTO trainings VALUES('','$training_name','$description','$venue','$start_date','$end_date','$status','','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $training_name . ' Added!.")</script>';
@@ -48,13 +50,23 @@ if (isset($_POST['submit'])) {
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Training Name</label>
-                      <input type="text" class="form-control" id="training_name" name="training_name" placeholder="Enter training name" required autofocus>
+                      <label for="exampleInputEmail1">Training Title</label>
+                      <input type="text" class="form-control" id="training_name" name="training_name" placeholder="Enter training title" required autofocus>
                     </div>
                     <br>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Link</label>
-                      <input type="url" class="form-control" id="link" name="link" placeholder="Enter Link" required>
+                      <label for="exampleInputEmail1">Venue</label>
+                      <input type="text" class="form-control" id="venue" name="venue" placeholder="Enter Venue" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Date Stard</label>
+                      <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Date End</label>
+                      <input type="date" class="form-control" id="end_date" name="end_date" required>
                     </div>
                     <br>
                     <div class="form-group">
@@ -84,6 +96,34 @@ if (isset($_POST['submit'])) {
   </div>
 
   <script src="js/app.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+
+    <script>
+      function getISODate(){
+      var d = new Date();
+      return d.getFullYear() + '-' + 
+              ('0' + (d.getMonth()+1)).slice(-2) + '-' +
+              ('0' + d.getDate()).slice(-2);
+      }
+      window.onload = function() {
+          document.getElementById('end_date').setAttribute('min',getISODate());
+      }
+    </script>
+    <script type="text/javascript">
+      $(function(){
+          var dtToday = new Date();
+      
+          var month = dtToday.getMonth() + 1;
+          var day = dtToday.getDate();
+          var year = dtToday.getFullYear();
+          if(month < 10)
+              month = '0' + month.toString();
+          if(day < 10)
+          day = '0' + day.toString();
+          var maxDate = year + '-' + month + '-' + day;
+          $('#start_date').attr('min', maxDate);
+      });
+</script>
 
 </body>
 

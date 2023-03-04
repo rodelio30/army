@@ -7,7 +7,7 @@ if (isset($_POST['submit_training'])) {
   $date         = date("Y-m-d");
   $time         = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM training_attendance WHERE user_id = '$id'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM training_attendance WHERE user_id = '$id' && training_id = '$training_id'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('This User Has Already Attend to this Training'); </script>";
@@ -26,7 +26,7 @@ if (isset($_POST['submit_seminar'])) {
   $date         = date("Y-m-d");
   $time         = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM seminar_attendance WHERE user_id = '$id'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM seminar_attendance WHERE user_id = '$id' && seminar_id = '$seminar_id'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('This User Has Already Attend to this seminar'); </script>";
@@ -67,19 +67,19 @@ if (isset($_POST['submit_seminar'])) {
                           <thead>
                               <tr>
                                   <th>Available Training Name</th>
-                                  <th>Link</th>
+                                  <th>venue</th>
                                   <th id='action-print' class='float-end'>Action</th>
                               </tr>
                           </thead>
                           <tbody>
                               <?php
-                              $result = mysqli_query($conn, "select training_id, training_name, link from trainings where status='active'") or die("Query Training list inncorrect........");
-                              while (list($training_id, $training_name, $link) = mysqli_fetch_array($result)) {
+                              $result = mysqli_query($conn, "select training_id, training_name, venue from trainings where status='active'") or die("Query Training list inncorrect........");
+                              while (list($training_id, $training_name, $venue) = mysqli_fetch_array($result)) {
                               echo "
                                 <form method='post'>
                                 <tr>	
                                     <td>$training_name</td>
-                                    <td>$link</td>
+                                    <td>$venue</td>
                                     <input type='hidden' name='training_id' value='$training_id'>
                                     <td>
                                       <button type='submit' class='btn btn-outline-success' name='submit_training' style='float: right'>Attend</button>
@@ -88,13 +88,13 @@ if (isset($_POST['submit_seminar'])) {
                                 </form>
                               "; 
                               } 
-                              $result_seminar = mysqli_query($conn, "select seminar_id, seminar_name, link from seminars where status='active'") or die("Query seminar list inncorrect........");
-                              while (list($seminar_id, $seminar_name, $link) = mysqli_fetch_array($result_seminar)) {
+                              $result_seminar = mysqli_query($conn, "select seminar_id, seminar_name, venue from seminars where status='active'") or die("Query seminar list inncorrect........");
+                              while (list($seminar_id, $seminar_name, $venue) = mysqli_fetch_array($result_seminar)) {
                               echo "
                                 <form method='post'>
                                 <tr>	
                                     <td>$seminar_name</td>
-                                    <td>$link</td>
+                                    <td>$venue</td>
                                     <input type='hidden' name='seminar_id' value='$seminar_id'>
                                     <td>
                                       <button type='submit' class='btn btn-outline-success' name='submit_seminar' style='float: right'>Attend</button>

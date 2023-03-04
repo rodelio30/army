@@ -39,8 +39,8 @@ include 'system_checker.php';
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Date Modified</th>
+                                                <th>Title</th>
+                                                <th>Date</th>
                                                 <th>Status</th>
                                                 </th>
                                                 <?php if($isSadmin || $isAdmin || $isSchool) {
