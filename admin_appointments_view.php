@@ -98,7 +98,24 @@ if ($status == "approved") {
                         <h5><?php echo $text?></h5>
                       </div>
                     </div>
-
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Cellphone Number</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <h5>(+63) <?php echo $cnumber?></h5>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Email</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <h5><?php echo $email?></h5>
+                      </div>
+                    </div>
                     <br>
                     <div class="row">
                       <div class="col-sm-2">

@@ -8,9 +8,9 @@ if (isset($_POST['submit'])) {
   $email          = $_POST['email'];
   $cnumber        = $_POST['cnumber'];
   $purpose        = $_POST['purpose'];
-  $text           = $_POST['text'];
-  $date_appoint   = $_POST['date_appoint'];
-  $time_appoint   = $_POST['time_appoint'];
+  $text           = $_POST['message'];
+  $date_appoint   = $_POST['app_date'];
+  $time_appoint   = $_POST['app_time'];
   $status         = 'pending';
   $date           = date("Y-m-d");
   $time           = date("h:i:s");
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     "<script> alert('Date and Time Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO appointments VALUES('','$name','$email','$cnumber','$subject','$text','$status','$date_appoint','$time_appoint','$date','$time','$date','$time')";
+    $query = "INSERT INTO appointments VALUES('','$name','$email','$cnumber','$purpose','$text','$status','$date_appoint','$time_appoint','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
     
     echo '<script type="text/javascript"> alert("' . $purpose . ' Added!.")</script>';
