@@ -1,5 +1,6 @@
 <?php 
 require 'system_checker.php';
+include 'encryption.php';
 
 $user_id = $id;
 
@@ -8,6 +9,7 @@ if (isset($_POST['update'])) {
   $lastname      = $_POST['lastname'];
   $username      = $_POST['username'];
   $email         = $_POST['email'];
+  $password      = $_POST['password'];
   if($isSadmin) {
   $rank          = $_POST['rank'];
   }
@@ -24,17 +26,17 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  if($isSadmin){
-    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  } else if($isSchool) {
-    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  }
-  else {
-    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  }
+  // if($isSadmin){
+  //   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  // } else if($isSchool) {
+  //   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  // }
+  // else {
+  //   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  // }
 
-  echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
-  header('Refresh: 0; url=pages-profile.php');
+  // echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
+  // header('Refresh: 0; url=pages-profile.php');
   // End of Else in Inactive if
 }
 
@@ -46,6 +48,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $lastname      = $res['lastname'];
   $username      = $res['username'];
   $email         = $res['email'];
+  $password      = $res['password'];
   $type          = $res['type'];
   $user_rank     = $res['rank'];
   $company       = $res['company'];
@@ -221,6 +224,16 @@ if(empty($filename)){
                       </div>
                     </div>
                     <br>
+                    <div class="row" style="margin-bottom: -1rem;">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Password</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <input type="password" class="form-control" id="main_password" name="password" value="<?php echo $password ?>" placeholder="Enter Password">
+												<input type="checkbox" onclick="myFunction()"> Show Password
+                      </div>
+                    </div>
+                    <br>
                     <?php 
                     if($isSchool){
                       ?>
@@ -385,7 +398,8 @@ if(empty($filename)){
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+  <script src="js/app.js"></script>
+	<script src="js/pw.js"></script>
 
 </body>
 
