@@ -15595,3 +15595,7 @@ span.flatpickr-weekday {
 .print-hidden {
   display: none;
 }
+
+.font_small {
+  font-size: 10px;
+}

@@ -13,7 +13,11 @@ if (isset($_POST['update'])) {
   }
   $company       = $_POST['company'];
   $afpsn         = $_POST['afpsn'];
+
+  if($isSchool){
   $school_name   = $_POST['school_name'];
+  }
+
   $status        = $_POST['status'];
   $user_status   = $_POST['user_status'];
 
@@ -21,9 +25,12 @@ if (isset($_POST['update'])) {
   $time_modified = date("h:i:s");
 
   if($isSadmin){
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  } else {
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  } else if($isSchool) {
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  }
+  else {
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
   }
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
@@ -223,11 +230,14 @@ if(empty($filename)){
                       </div>
                       <div class="col-sm-10 text-secondary">
                           <select class="form-control" id="school_name" name="school_name">
+                            <option value="None">None</option>
                               <?php
                               $result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
                               while (list($school_name, $acronym) = mysqli_fetch_array($result)) {
                                   if($school_name_public == $acronym){
                                       echo "<option value='$acronym' selected>$acronym</option>";
+                                  } else if($acronym == 'None'){
+                                      echo "<option value='None' selected>None</option>";
                                   }
                                   else {
                                       echo "<option value='$acronym'>$acronym</option>";

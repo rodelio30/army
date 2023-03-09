@@ -44,7 +44,6 @@ include 'system_checker.php';
                                                 <th>Date of Birth</th>
                                                 <th>School Graduate</th>
                                                 <th>Date Graduated</th>
-                                                </th>
                                                 <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
@@ -104,22 +103,12 @@ include 'system_checker.php';
                                                     }
                                                 }
                                             } else {
-                                                    if($isSadmin || $isAdmin || $isSchool ){ 
+                                                    if($isSadmin){ 
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td class='text-center'>Empty Rotc Graduate</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                </tr>";
-                                                    } else if($isStaff){
-                                                        echo " <tr>	
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td class='text-center'>No ROTC Graduate</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>

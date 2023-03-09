@@ -82,7 +82,7 @@
                             </td>
                             <td colspan="2">
                                 <span class="small">Company </span> 
-                                <br> High <?php echo $company ?>
+                                <br> <?php echo $company ?>
                             </td>
                             <td colspan="5">
                                 <span class="small">Battalion / Brigade / Division</span> 
@@ -217,7 +217,7 @@
                             <td colspan="4">
                                 <span class="small">Email Address:
                                 </span> 
-                                <br><?php echo $email ?>
+                                <br><?php echo $email_user ?>
                             </td>
                         </tr>
                         <tr>

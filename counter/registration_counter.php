@@ -77,7 +77,7 @@ if ($result_commander->num_rows > 0) {
   $commander_counter = 0;
 }
 // This line is Counting for the number of school Register User
-$sql_school = "SELECT sc_id FROM registration_sc WHERE user_status = 'inactive' && user_type = 'school_coordinator' ";
+$sql_school = "SELECT reg_id FROM registration_user WHERE status = 'pending' && user_type = 'school_coordinator' ";
 $result_school = $conn->query($sql_school);
 
 if ($result_school->num_rows > 0) {
