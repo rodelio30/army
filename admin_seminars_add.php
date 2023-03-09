@@ -47,6 +47,9 @@ if (isset($_POST['submit'])) {
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="card-header" style="margin-bottom: -2rem;">
+                  <h5 class="card-title">Add new Seminar</h5>
+                </div>
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
@@ -59,14 +62,19 @@ if (isset($_POST['submit'])) {
                       <input type="text" class="form-control" id="venue" name="venue" placeholder="Enter Venue" required>
                     </div>
                     <br>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Date Stard</label>
-                      <input type="date" class="form-control" id="start_date" name="start_date" required>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Date End</label>
-                      <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Date Start</label>
+                          <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Date End</label>
+                          <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                      </div>
                     </div>
                     <br>
                     <div class="form-group">

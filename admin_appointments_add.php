@@ -52,6 +52,9 @@ if (isset($_POST['submit'])) {
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="card-header" style="margin-bottom: -2rem;">
+                  <h5 class="card-title">Add new Appointments</h5>
+                </div>
                 <div class="card-body">
                   <form method="post">
                     <div class="row mb-2">

@@ -56,14 +56,14 @@ include 'system_checker.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($trainings_counter > 0) {
 
-                                                $result = mysqli_query($conn, "select training_id, training_name, description, status, date_modified from trainings WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
-                                                while (list($training_id, $training_name, $description, $status, $date_modified) = mysqli_fetch_array($result)) {
+                                                $result = mysqli_query($conn, "select training_id, training_name, description, start_date, end_date, status, date_modified from trainings WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                while (list($training_id, $training_name, $description, $start_date, $end_date, $status, $date_modified) = mysqli_fetch_array($result)) {
                                                     $stat = ucfirst($status);
                                                     if($isSadmin || $isAdmin || $isSchool){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_trainings_view.php?ID=$training_id\" class='user-clicker'>$training_name</a></td>
-                                                        <td>$date_modified</td>
+                                                        <td>$start_date to $end_date</td>
                                                         <td>$stat</td>
                                                         <td id='action-print'><a href=\"archive/trainings/trainings_archive.php?ID=$training_id\" onClick=\"return confirm('Are you sure you want this training move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
