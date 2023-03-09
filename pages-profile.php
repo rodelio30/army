@@ -26,17 +26,17 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  // if($isSadmin){
-  //   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  // } else if($isSchool) {
-  //   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  // }
-  // else {
-  //   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
-  // }
+  if($isSadmin){
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  } else if($isSchool) {
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', school_name = '$school_name', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  }
+  else {
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  }
 
-  // echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
-  // header('Refresh: 0; url=pages-profile.php');
+  echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
+  header('Refresh: 0; url=pages-profile.php');
   // End of Else in Inactive if
 }
 
