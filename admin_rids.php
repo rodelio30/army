@@ -19,7 +19,7 @@ include 'system_checker.php';
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Reservist List
+                    <h1 class="h3 mb-3" id="action-print">Reservist List
                         <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>
                     </h1>
 
@@ -27,6 +27,8 @@ include 'system_checker.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <?php include 'print_header.php'?>
+                                    <h3 class="print-hidden"><strong>ROTC Graduate List</strong></h3>
                                     <table id="example" class="table table-hover my-0" style="width:100%">
                                         <thead>
                                             <tr>
@@ -67,29 +69,51 @@ include 'system_checker.php';
                                                         </tr>
                                                         "; 
                                                     } else if($isAdmin) {
-                                                    echo "
-                                                        <tr>	
-                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
-                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$company</a></td>
-                                                            <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
-                                                        </tr>
-                                                    ";
-                                                    } else {
-                                                    echo "
-                                                        <tr>	
-                                                            <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
-                                                            <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
-                                                        </tr>
-                                                    ";
+                                                        echo "
+                                                            <tr>	
+                                                                <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
+                                                                <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$company</a></td>
+                                                                <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
+                                                            </tr>
+                                                        ";
+                                                        } else {
+                                                        echo "
+                                                            <tr>	
+                                                                <td scope='row'><a href=\"admin_rids_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
+                                                                <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
+                                                            </tr>
+                                                        ";
+                                                        }
                                                     }
+                                            }
+                                            else {
+                                                if($isSadmin){
+                                                echo " <tr>	
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td class='text-center'>No Registered User </td>
+                                                        <td> </td>
+                                                    </tr>";
+                                                } else if($isSadmin){ 
+                                                echo " <tr>	
+                                                        <td> </td>
+                                                        <td class='text-center'>No Registered User </td>
+                                                        <td> </td>
+                                                    </tr>";
 
-                                                    }
-                                            } else {
-                                                echo " <tr>	<td colspan='4' class='text-center'>No Registered User </td></tr>";
+                                                } else {
+                                                echo " <tr>	
+                                                        <td> </td>
+                                                        <td class='text-center'>No Registered User </td>
+                                                    </tr>";
+
+                                                }
+
                                             }
                                             ?>
                                         </tbody>
                                     </table>
+                                    <?php include 'print_footer.php'?>
                                 </div>
                             </div>
                         </div>

@@ -98,8 +98,8 @@ $isAvailable = true;
                                                 }
                                             } else {
                                                 echo " <tr>	
+                                                        <td>No Data for Training and Seminar</td>
                                                         <td></td>
-                                                        <td>No Active seminar and Seminar</td>
                                                         </tr>";
                                             }
                                             ?>

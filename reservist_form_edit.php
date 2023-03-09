@@ -9,7 +9,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td style="width: 15%">Rank
+                            <td class="font_small">Rank
                         <select class="form-control" id="rank" name="rank">
                                 <option value="none">None</option>
                             <?php
@@ -26,24 +26,24 @@
                         </select>
                                 <!-- <br><?php echo $rank ?> -->
                             </td>
-                            <td colspan="3">Last Name
+                            <td class="font_small" colspan="3">Last Name
                                 <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname ?>" placeholder="Enter Lastname">
                             </td>
-                            <td colspan="2">Firstname
+                            <td class="font_small" colspan="2">Firstname
                                 <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="Enter Firstname">
                             </td>
-                            <td colspan="2">Middle Name
+                            <td class="font_small" colspan="2">Middle Name
                                 <input type="text" class="form-control" id="middle_name" name="middle_name" value="<?php echo $middle_name ?>" placeholder="Enter Middlename">
                             </td>
-                            <td colspan="2">AFPSN 
+                            <td class="font_small" colspan="2">AFPSN 
                                 <input type="text" class="form-control" id="afpsn" name="afpsn" value="<?php echo $afpsn ?>" placeholder="Enter AFPSN">
                             </td>
-                            <td colspan="2">BrSVC 
+                            <td class="font_small" colspan="2">BrSVC 
                                 <input type="text" class="form-control" id="brsvc" name="brsvc" value="<?php echo $brsvc ?>" placeholder="Enter BrSVC">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4">AFPOS / MOS
+                            <td class="font_small" colspan="4">AFPOS / MOS
                                 <select class="form-control" id="afpos" name="afpos">
                                 <option value="INF">INF</option>
                                 <option value="CAV">CAV</option>
@@ -58,7 +58,7 @@
                                 <option value="MNSA">MNSA</option>
                                 </select>
                             </td>
-                            <td colspan="8">Source of Commission / Enlistment 
+                            <td class="font_small" colspan="8">Source of Commission / Enlistment 
                                 <select class="form-control" id="soc_enlistment" name="soc_enlistment">
                                 <option value="MNSA">MNSA</option>
                                 <option value="ELECTED">ELECTED</option>
@@ -78,47 +78,47 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Initial Rank 
+                            <td class="font_small" colspan="2">Initial Rank 
                                 <input type="text" class="form-control" id="initial_rank" name="initial_rank" value="<?php echo $initial_rank ?>" placeholder="Enter initial_rank">
                             </td>
-                            <td colspan="2">Date of Comsn/Enlist 
+                            <td class="font_small" colspan="2">Date of Comsn/Enlist 
                                 <input type="date" class="form-control" id="date_of_comsn_enlist" name="date_of_comsn_enlist" value="<?php echo $date_of_comsn_enlist ?>" placeholder="Enter Date of Comsn/Enlist">
                             </td>
-                            <td colspan="3">Authority 
+                            <td class="font_small" colspan="3">Authority 
                                 <input type="text" class="form-control" id="authority" name="authority" value="<?php echo $authority ?>" placeholder="Enter authority">
                                  </td>
-                            <td colspan="3">Reservist Classification 
+                            <td class="font_small" colspan="3">Reservist Classification 
                                 <input type="text" class="form-control" id="status" name="status" value="<?php echo $status ?>" placeholder="Enter Status">
                             </td>
-                            <td>Mobilization Center
+                            <td class="font_small">Mobilization Center
                                 <input type="text" class="form-control" id="mobilization_center" name="mobilization_center" value="<?php echo $mobilization_center ?>" placeholder="Enter mobilization_center">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Designation 
+                            <td class="font_small" colspan="2">Designation 
                                 <input type="text" class="form-control" id="designation" name="designation" value="<?php echo $designation ?>" placeholder="Enter designation">
                             </td>
-                            <td colspan="2">Squad / Team / Section
+                            <td class="font_small" colspan="2">Squad / Team / Section
                                 <input type="text" class="form-control" id="squad" name="squad" value="<?php echo $squad ?>" placeholder="Enter squad">
                             </td>
-                            <td>Platoon
+                            <td class="font_small">Platoon
                                 <input type="text" class="form-control" id="platoon" name="platoon" value="<?php echo $platoon ?>" placeholder="Enter platoon">
                             </td>
-                            <td>Company
+                            <td class="font_small">Company
                                 <input type="text" class="form-control" id="company" name="company" value="<?php echo $company ?>" placeholder="Enter company">
                             </td>
-                            <td colspan="5">Battalion / Brigade / Division
+                            <td class="font_small" colspan="5">Battalion / Brigade / Division
                                 <input type="text" class="form-control" id="battalion" name="battalion" value="<?php echo $battalion ?>" placeholder="Enter battalion">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3">Size of Combat Shoes
+                            <td class="font_small" colspan="3">Size of Combat Shoes
                                 <input type="number" class="form-control" id="size_cs" name="size_cs" value="<?php echo $size_cs ?>" placeholder="Enter size_cs">
                             </td>
-                            <td>Size of Cap (cm)
+                            <td class="font_small">Size of Cap (cm)
                                 <input type="number" class="form-control" id="size_cap" name="size_cap" value="<?php echo $size_cap ?>" placeholder="Enter size_cap">
                             </td>
-                            <td colspan="7">Size of BDA
+                            <td class="font_small" colspan="7">Size of BDA
                                 <input type="number" class="form-control" id="size_bda" name="size_bda" value="<?php echo $size_bda ?>" placeholder="Enter size_bda">
                             </td>
                         </tr>
@@ -129,85 +129,85 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td colspan="3">Present Occupation
+                            <td class="font_small" colspan="3">Present Occupation
                                 <input type="text" class="form-control" id="p_o" name="p_o" value="<?php echo $p_o ?>" placeholder="Enter Personal Occupation ">
                             </td>
-                            <td colspan="2">Company Name & Address
+                            <td class="font_small" colspan="2">Company Name & Address
                                 <input type="text" class="form-control" id="company_name_address" name="company_name_address" value="<?php echo $company_name_address?>" placeholder="Enter Company Name and Address">
                             </td>
-                            <td colspan="2">Office Tel Nr
+                            <td class="font_small" colspan="2">Office Tel Nr
                                 <input type="number" class="form-control" id="tel_no" name="tel_no" value="<?php echo $tel_no?>" placeholder="Enter Office Telephone Number">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3">Home Address: Street/Barangay 
+                            <td class="font_small" colspan="3">Home Address: Street/Barangay 
                                 <input type="text" class="form-control" id="home_address" name="home_address" value="<?php echo $home_address?>" placeholder="Enter Home Address: Street/Baranggay">
                             </td>
-                            <td colspan="2">Town/Town/City/Province/Zip Code
+                            <td class="font_small" colspan="2">Town/Town/City/Province/Zip Code
                                 <input type="text" class="form-control" id="town" name="town" value="<?php echo $town?>" placeholder="Enter Town Address">
                             </td>
-                            <td colspan="2">Res. Tel. Nr
+                            <td class="font_small" colspan="2">Res. Tel. Nr
                                 <input type="number" class="form-control" id="res_tel_no" name="res_tel_no" value="<?php echo $res_tel_no?>" placeholder="Enter Resident Telephone Number">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="1">Mobile Tel Nr
-                                <input type="number" class="form-control" id="mobile_number" name="mobile_number" value="<?php echo $mobile_number?>" placeholder="Enter Mobile Number">
+                            <td class="font_small" colspan="2">Mobile Tel Nr
+                                <input type="number" class="form-control" id="mobile_number" name="mobile_number" pattern="[0-9]{11}" value="<?php echo $mobile_number?>" placeholder="Enter Mobile Number">
                             </td>
-                            <td colspan="1">Birthdate 
+                            <td class="font_small" colspan="1">Birthdate 
                                 <input type="date" class="form-control" id="birth_date" name="birth_date" value="<?php echo $birth_date?>" placeholder="Enter Birthdate">
                             </td>
-                            <td colspan="2">Birth Place (Municipality, Province)
+                            <td class="font_small" colspan="1">Birth Place (Municipality, Province)
                                 <input type="text" class="form-control" id="birth_place" name="birth_place" value="<?php echo $birth_place?>" placeholder="Enter Birth PLace">
                             </td>
-                            <td colspan="1">Age
+                            <td class="font_small" colspan="1">Age
                                 <input type="number" class="form-control" id="age" name="age" value="<?php echo $age?>" placeholder="Enter Age" disabled>
                                 <input type="hidden" class="form-control" id="age" name="age" value="<?php echo $age?>">
                             </td>
-                            <td colspan="1">Religion
+                            <td class="font_small" colspan="1">Religion
                                 <input type="text" class="form-control" id="religion" name="religion" value="<?php echo $religion?>" placeholder="Enter Religion">
                             </td>
-                            <td colspan="1">Blood Type
+                            <td class="font_small" colspan="1">Blood Type
                                 <input type="text" class="form-control" id="blood_type" name="blood_type" value="<?php echo $blood_type?>" placeholder="Enter Blood Type">
                             </td>
                         </tr>
                         <tr>
-                            <td>T.I.N.
+                            <td class="font_small">T.I.N.
                                 <input type="number" class="form-control" id="tin" name="tin" value="<?php echo $tin?>" placeholder="Enter T.I.N.">
 
                             </td>
-                            <td>SSS Nr.
+                            <td class="font_small">SSS Nr.
                                 <input type="number" class="form-control" id="sss" name="sss" value="<?php echo $sss?>" placeholder="Enter SSS Number">
                             </td>
-                            <td>PHILHEALTH Nr.
+                            <td class="font_small">PHILHEALTH Nr.
                                 <input type="number" class="form-control" id="philhealth" name="philhealth" value="<?php echo $philhealth?>" placeholder="Enter Philhealth Number">
                             </td>
-                            <td>Height: cm
+                            <td class="font_small">Height: cm
                                 <input type="number" class="form-control" id="height" name="height" value="<?php echo $height?>" placeholder="Enter Height">
                             </td>
-                            <td>Weight: kgs
+                            <td class="font_small">Weight: kgs
                                 <input type="number" class="form-control" id="weight" name="weight" value="<?php echo $weight?>" placeholder="Enter Weight">
                             </td>
-                            <td>Marital Status
+                            <td class="font_small">Marital Status
                                 <input type="text" class="form-control" id="marital_status" name="marital_status" value="<?php echo $marital_status?>" placeholder="Enter Marital Status">
                             </td>
-                            <td>Sex
+                            <td class="font_small">Sex
                                 <input type="text" class="form-control" id="sex" name="sex" value="<?php echo $sex?>" placeholder="Enter Sex">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3">FB Account:
+                            <td class="font_small" colspan="3">FB Account:
                                 <input type="text" class="form-control" id="fb_account" name="fb_account" value="<?php echo $fb_account?>" placeholder="Enter FB: Account">
                             </td>
-                            <td colspan="4">Email Address:
-                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email?>" placeholder="Enter Email Address">
+                            <td class="font_small" colspan="4">Email Address:
+                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email_user?>" placeholder="Enter Email Address">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3">Special Skills:
+                            <td class="font_small" colspan="3">Special Skills:
                                 <input type="text" class="form-control" id="special_skills" name="special_skills" value="<?php echo $special_skills?>" placeholder="Enter Special Skills">
                             </td>
-                            <td colspan="4">Language/Dialect Spoken:
+                            <td class="font_small" colspan="4">Language/Dialect Spoken:
                                 <input type="text" class="form-control" id="language" name="language" value="<?php echo $language?>" placeholder="Enter Language">
                             </td>
                         </tr>
@@ -218,14 +218,14 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Rank
+                            <td class="font_small">Rank
                                 <br>1.
                                 <input type="text" class="form-control" id="promo_rank" name="promo_rank" value="<?php echo $promo_rank?>" placeholder="Enter Rank">
                             </td>
-                            <td>Date of Rank
+                            <td class="font_small">Date of Rank
                                 <input type="date" class="form-control" id="date_of_rank" name="date_of_rank" value="<?php echo $date_of_rank?>" placeholder="Enter Date of Rank">
                             </td>
-                            <td colspan="2">Authority
+                            <td class="font_small" colspan="2">Authority
                                 <input type="text" class="form-control" id="rank_authority" name="rank_authority" value="<?php echo $rank_authority?>" placeholder="Enter Authority">
                             </td>
                         </tr>
@@ -237,14 +237,14 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Military Schooling
+                            <td class="font_small">Military Schooling
                                 <br>1.
                                 <input type="text" class="form-control" id="military_schooling" name="military_schooling" value="<?php echo $military_schooling?>" placeholder="Enter Military Schooling">
                             </td>
-                            <td colspan="2">School
+                            <td class="font_small" colspan="2">School
                                 <input type="text" class="form-control" id="school" name="school" value="<?php echo $school?>" placeholder="Enter School">
                             </td>
-                            <td>Date Graduated
+                            <td class="font_small">Date Graduated
                                 <input type="date" class="form-control" id="school_date_graduated" name="school_date_graduated" value="<?php echo $school_date_graduated?>" placeholder="Enter Date Graduated">
                             </td>
                         </tr>
@@ -256,13 +256,13 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Awards/Decoration 
+                            <td class="font_small">Awards/Decoration 
                                 <input type="text" class="form-control" id="awards" name="awards" value="<?php echo $awards?>" placeholder="Enter Awards">
                             </td>
-                            <td colspan="2">Authority
+                            <td class="font_small" colspan="2">Authority
                                 <input type="text" class="form-control" id="awards_authority" name="awards_authority" value="<?php echo $awards_authority?>" placeholder="Enter Authority">
                             </td>
-                            <td>Date Awarded
+                            <td class="font_small">Date Awarded
                                 <input type="date" class="form-control" id="date_awarded" name="date_awarded" value="<?php echo $date_awarded?>" placeholder="Enter Date Awarded">
                             </td>
                         </tr>
@@ -274,10 +274,10 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Relation <br>1.
+                            <td class="font_small">Relation <br>1.
                                 <input type="text" class="form-control" id="relation" name="relation" value="<?php echo $relation?>" placeholder="Enter Relation">
                         </td>
-                            <td>Name
+                            <td class="font_small">Name
                                 <input type="text" class="form-control" id="name" name="name" value="<?php echo $name?>" placeholder="Enter Name">
                             </td>
                         </tr>
@@ -289,13 +289,13 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Course <br>1.
+                            <td class="font_small">Course <br>1.
                                 <input type="text" class="form-control" id="course" name="course" value="<?php echo $course?>" placeholder="Enter Course">
                         </td>
-                            <td colspan="2">School
+                            <td class="font_small" colspan="2">School
                                 <input type="text" class="form-control" id="course_school" name="course_school" value="<?php echo $course_school?>" placeholder="Enter School">
                             </td>
-                            <td>Date Graduated
+                            <td class="font_small">Date Graduated
                                 <input type="date" class="form-control" id="course_date_graduated" name="course_date_graduated" value="<?php echo $course_date_graduated?>" placeholder="Enter Date Graduated">
                             </td>
                         </tr>
@@ -307,16 +307,16 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Unit <br>1.
+                            <td class="font_small">Unit <br>1.
                                 <input type="text" class="form-control" id="unit_cad" name="unit_cad" value="<?php echo $unit_cad?>" placeholder="Enter Unit">
                         </td>
-                            <td colspan="2">Purpose / Authority
+                            <td class="font_small" colspan="2">Purpose / Authority
                                 <input type="text" class="form-control" id="unit_authority" name="unit_authority" value="<?php echo $unit_authority?>" placeholder="Enter Purpose / Authority">
                         </td>
-                            <td>Date Start
+                            <td class="font_small">Date Start
                                 <input type="date" class="form-control" id="unit_date_started" name="unit_date_started" value="<?php echo $unit_date_started?>" placeholder="Enter Date Started">
                         </td>
-                            <td>Date End
+                            <td class="font_small">Date End
                                 <input type="date" class="form-control" id="unit_date_end" name="unit_date_end" value="<?php echo $unit_date_end?>" placeholder="Enter Date End">
                         </td>
                         </tr>
@@ -328,16 +328,16 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Unit
+                            <td class="font_small">Unit
                                 <input type="text" class="form-control" id="unit_assignment" name="unit_assignment" value="<?php echo $unit_assignment?>" placeholder="Enter Unit">
                         </td>
-                            <td colspan="2">Authority
+                            <td class="font_small" colspan="2">Authority
                                 <input type="text" class="form-control" id="assign_authority" name="assign_authority" value="<?php echo $assign_authority?>" placeholder="Enter Authority">
                         </td>
-                            <td>Date From
+                            <td class="font_small">Date From
                                 <input type="date" class="form-control" id="assign_date_from" name="assign_date_from" value="<?php echo $assign_date_from?>" placeholder="Enter Date From">
                         </td>
-                            <td>Date To
+                            <td class="font_small">Date To
                                 <input type="date" class="form-control" id="assign_date_to" name="assign_date_to" value="<?php echo $assign_date_to ?>" placeholder="Enter Date To">
                         </td>
                         </tr>
@@ -349,16 +349,16 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Position <br>1.
+                            <td class="font_small">Position <br>1.
                                 <input type="text" class="form-control" id="position" name="position" value="<?php echo $position?>" placeholder="Enter Position">
                         </td>
-                            <td colspan="2">Authority
+                            <td class="font_small" colspan="2">Authority
                                 <input type="text" class="form-control" id="pos_authority" name="pos_authority" value="<?php echo $pos_authority?>" placeholder="Enter Authority">
                         </td>
-                            <td>Date From
+                            <td class="font_small">Date From
                                 <input type="date" class="form-control" id="pos_date_from" name="pos_date_from" value="<?php echo $pos_date_from?>" placeholder="Enter Date From">
                         </td>
-                            <td>Date To
+                            <td class="font_small">Date To
                                 <input type="date" class="form-control" id="pos_date_to" name="pos_date_to" value="<?php echo $pos_date_to?>" placeholder="Enter Date To">
                         </td>
                         </tr>
