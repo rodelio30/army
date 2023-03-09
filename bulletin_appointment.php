@@ -68,12 +68,13 @@ if (isset($_POST['submit'])) {
                                 </div>
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Complete Name" required>
                                     <br>
-                                <div class="row">
+                                <div class="row" style="margin-bottom: -0.8rem;">
                                     <div class="col-md-6 form-group">
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                     </div>
-                                    <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <div class="col-md-6 form-group mt-0">
                                     <input type="tel" id="cnumber" class="form-control"  name="cnumber" placeholder="(+63)" pattern="[0-9]{10}" required>
+                                    <small>sample number: 9012345678</small>
                                     </div>
                                 </div>
                                 <div class="form-group mt-3">

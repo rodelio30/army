@@ -68,12 +68,12 @@ if (isset($_POST['submit_seminar'])) {
                               <tr>
                                   <th>Available Training Name</th>
                                   <th>venue</th>
-                                  <th id='action-print' class='float-end'>Action</th>
+                                  <th id='action-print'><span class='float-end'>Action</span></th>
                               </tr>
                           </thead>
                           <tbody>
                               <?php
-                              $result = mysqli_query($conn, "select training_id, training_name, venue from trainings where status='active'") or die("Query Training list inncorrect........");
+                                $result = mysqli_query($conn, "select training_id, training_name, venue from trainings where status='active'") or die("Query Training list inncorrect........");
                               while (list($training_id, $training_name, $venue) = mysqli_fetch_array($result)) {
                               echo "
                                 <form method='post'>
@@ -88,7 +88,7 @@ if (isset($_POST['submit_seminar'])) {
                                 </form>
                               "; 
                               } 
-                              $result_seminar = mysqli_query($conn, "select seminar_id, seminar_name, venue from seminars where status='active'") or die("Query seminar list inncorrect........");
+                                $result_seminar = mysqli_query($conn, "select seminar_id, seminar_name, venue from seminars where status='active'") or die("Query seminar list inncorrect........");
                               while (list($seminar_id, $seminar_name, $venue) = mysqli_fetch_array($result_seminar)) {
                               echo "
                                 <form method='post'>
