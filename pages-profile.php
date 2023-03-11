@@ -1,6 +1,6 @@
 <?php 
 require 'system_checker.php';
-include 'encryption.php';
+// include 'encryption.php';
 
 $user_id = $id;
 

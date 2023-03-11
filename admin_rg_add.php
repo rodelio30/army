@@ -145,6 +145,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                       <label for="exampleInputEmail1">School Graduated</label>
                         <select class="form-control" id="school_graduated" name="school_graduated">
+                          <option value="None">None</option>
                             <?php
                             $result = mysqli_query($conn, "select acronym from schools where status='active'") or die("Query School List is inncorrect........");
                             while (list($acronym) = mysqli_fetch_array($result)) {
