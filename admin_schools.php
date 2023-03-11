@@ -25,7 +25,7 @@ include 'system_checker.php';
                             </h1>
                         </div>
                         <div class="col-md-3">
-                            <?php if($isSadmin) {?>
+                            <?php if($isSadmin || $isAdmin || $isStaff) {?>
                                 <a <?php echo "href=\"admin_schools_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add School</a>
                             <?php }?>
                         </div>

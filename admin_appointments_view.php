@@ -22,6 +22,8 @@ while ($res   = mysqli_fetch_array($result)) {
 }
 
   $time_formatted   = date("G:i A ", strtotime($time_appoint));
+  $time_c_formatted   = date("G:i A ", strtotime($time_created));
+  $time_m_formatted   = date("G:i A ", strtotime($time_modified));
 
 if (isset($_POST['update'])) {
   $status         = $_POST['status'];
@@ -132,7 +134,7 @@ if ($status == "approved") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Time Appoinment</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <h5><?php echo $time_appoint?></h5>
+                        <h5><?php echo $time_formatted?></h5>
                       </div>
                     </div>
                     <br>
@@ -157,7 +159,7 @@ if ($status == "approved") {
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_created ?>
-                          <?php echo $time_created ?>
+                          <?php echo $time_c_formatted ?>
                         </div>
                       </div>
                     </div>
@@ -170,7 +172,7 @@ if ($status == "approved") {
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_modified ?>
-                          <?php echo $time_modified ?>
+                          <?php echo $time_m_formatted?>
                         </div>
                       </div>
                     </div>

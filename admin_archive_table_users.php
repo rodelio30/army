@@ -10,7 +10,7 @@
                           <th>Type</th>
                           <th>User Status</th>
                           <th>Status</th>
-                          <th id='action-print'>Action</th>
+                          <th id='action-print'><span class="float-end">Action</span> </th>
                       </tr>
                   </thead>
                   <tbody>

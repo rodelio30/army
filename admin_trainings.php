@@ -40,7 +40,7 @@ include 'system_checker.php';
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
-                                                <th>Date</th>
+                                                <th>Start Date and End Date</th>
                                                 <th>Status</th>
                                                 </th>
                                                 <?php if($isSadmin || $isAdmin || $isSchool) {

@@ -69,6 +69,7 @@ if (isset($_POST['update'])) {
                                             if ($appointments_counter > 0) {
                                                     $result = mysqli_query($conn, "select ap_id, name, purpose, text, status, date_appoint, time_appoint from appointments where status != 'archive' ORDER BY date_modified") or die("Query for Appointments....");
                                                 while (list($ap_id, $name, $purpose, $text, $status, $date_appoint, $time_appoint) = mysqli_fetch_array($result)) {
+                                                $time_formatted   = date("g:i a ", strtotime($time_appoint));
                                                     $color_me = '';
                                                     if($status == 'pending') {
                                                         $color_me = 'warning';
@@ -94,7 +95,7 @@ if (isset($_POST['update'])) {
                                                     <form method='post'>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$name</a></td>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$purpose</a></td>
-                                                    <td scope='row'>$date_appoint $time_appoint</td>
+                                                    <td scope='row'>$date_appoint $time_formatted</td>
                                                     <td>
                                                         <select class='badge bg-$color_me' id='status' value='$status' name='status'>
                                                         <option value='pending' $sel_pending>Pending</option>
@@ -118,7 +119,7 @@ if (isset($_POST['update'])) {
                                                     <form method='post'>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$name</a></td>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$purpose</a></td>
-                                                    <td scope='row'>$date_appoint $time_appoint</td>
+                                                    <td scope='row'>$date_appoint $time_formatted</td>
                                                     <td>
                                                         <select class='badge bg-$color_me' id='status' value='$status' name='status'>
                                                         <option value='pending' $sel_pending>Pending</option>

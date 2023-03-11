@@ -6,7 +6,6 @@ $company_id = $_GET['ID'];
 $result       = mysqli_query($conn, "SELECT * FROM company WHERE company_id='$company_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $company_id       = $res['company_id'];
-  $my_rank_letter         = $res['rank_letter'];
   $company_name      = $res['company_name'];
   $status         = $res['status'];
   $date_created   = $res['date_created'];
@@ -14,46 +13,24 @@ while ($res   = mysqli_fetch_array($result)) {
   $date_modified  = $res['date_modified'];
   $time_modified  = $res['time_modified'];
 }
-
+  $time_c_formatted   = date("G:i A ", strtotime($time_created));
+  $time_m_formatted   = date("G:i A ", strtotime($time_modified));
 if (isset($_POST['update'])) {
-  $rank_letter         = $_POST['rank_letter'];
-  $company_name      = $_POST['company_name'];
+  $company_name   = $_POST['company_name'];
   $status         = $_POST['status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM company WHERE rank_letter = '$rank_letter' && rank_letter != '$my_rank_letter'");
-  if (mysqli_num_rows($duplicate) > 0) {
-    echo
-    "<script> alert('company Classification has already taken'); </script>";
-  } else {
-  mysqli_query($conn, "update company set rank_letter = '$rank_letter', company_name = '$company_name', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where company_id = '$company_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update company set company_name = '$company_name', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where company_id = '$company_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $company_name . ' updated!.")</script>';
   header('Refresh: 0; url=admin_company.php');
-  }
   // End of Else in Inactive if
 }
 
 
 $sel_active   = "";
 $sel_inactive = "";
-
-$sel_a = "";
-$sel_b = "";
-$sel_c = "";
-$sel_d = "";
-
-if ($my_rank_letter == "A") {
-  $sel_a = "selected";
-} else if ($my_rank_letter == "B") {
-  $sel_b = "selected";
-} else if ($my_rank_letter == "C") {
-  $sel_c = "selected";
-} else if ($my_rank_letter == "D") {
-  $sel_d = "selected";
-}
-
 if ($status == "active") {
   $sel_active  = "selected";
 } else if ($status == "inactive") {
@@ -94,20 +71,6 @@ if($isStaff){
                   <form method="post" autocomplete="off">
                     <div class="row">
                       <div class="col-sm-2">
-                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Letter</strong></h6>
-                      </div>
-                      <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="rank_letter" name="rank_letter" <?php echo $disabled?>>
-                          <option value="A" <?php echo $sel_a ?>>A</option>
-                          <option value="B" <?php echo $sel_b ?> >B</option>
-                          <option value="C" <?php echo $sel_c ?> >C</option>
-                          <option value="D" <?php echo $sel_d ?> >D</option>
-                        </select>
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-2">
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company Name</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
@@ -136,7 +99,7 @@ if($isStaff){
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_created ?>
-                          <?php echo $time_created ?>
+                          <?php echo $time_c_formatted ?>
                         </div>
                       </div>
                     </div>
@@ -149,7 +112,7 @@ if($isStaff){
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_modified ?>
-                          <?php echo $time_modified ?>
+                          <?php echo $time_m_formatted ?>
                         </div>
                       </div>
                     </div>

@@ -35,6 +35,9 @@ while ($res   = mysqli_fetch_array($result)) {
   $time_modified = $res['time_modified'];
 }
 
+  $time_c_formatted   = date("G:i A ", strtotime($time_created));
+  $time_m_formatted   = date("G:i A ", strtotime($time_modified));
+  
 $sel_active   = "";
 $sel_inactive = "";
 
@@ -138,7 +141,7 @@ if ($status == "active") {
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_created ?>
-                          <?php echo $time_created ?>
+                          <?php echo $time_c_formatted ?>
                         </div>
                       </div>
                     </div>
@@ -151,7 +154,7 @@ if ($status == "active") {
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_modified ?>
-                          <?php echo $time_modified ?>
+                          <?php echo $time_m_formatted ?>
                         </div>
                       </div>
                     </div>

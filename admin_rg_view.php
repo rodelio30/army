@@ -4,7 +4,7 @@ include 'system_checker.php';
 
 $rg_id = $_GET['ID'];
 
-$result       = mysqli_query($conn, "SELECT * FROM rotc_graduates WHERE rg_id='$rg_id'");
+$result       = mysqli_query($conn, "SELECT * FROM reservists WHERE rg_id='$rg_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $rg_id           = $res['rg_id'];
   $firstname       = $res['firstname'];
@@ -24,6 +24,8 @@ while ($res   = mysqli_fetch_array($result)) {
   $date_modified   = $res['date_modified'];
   $time_modified   = $res['time_modified'];
 }
+  $time_c_formatted   = date("G:i A ", strtotime($time_created));
+  $time_m_formatted   = date("G:i A ", strtotime($time_modified));
 
 if (isset($_POST['update'])) {
   $fname          = $_POST['firstname'];
@@ -48,13 +50,13 @@ if (isset($_POST['update'])) {
   // if($afpsn != $afpsn_now) {
 
   // }
-  $duplicate = mysqli_query($conn, "SELECT * FROM rotc_graduates WHERE afpsn = '$afpsn_now' && afpsn != '$afpsn'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn = '$afpsn_now' && afpsn != '$afpsn'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
 
-  mysqli_query($conn, "update rotc_graduates set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
 
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
@@ -96,7 +98,7 @@ $disabled = 'disabled';
       <main class="content">
         <div class="container-fluid p-0">
           <h1 class="h3 mb-3"><a href="admin_rg.php" class="linked-navigation">Reservist List</a> /
-            <?php echo $firstname .''. $lastname?></h1>
+            <?php echo $firstname .' '. $lastname?></h1>
 
           <div class="row">
             <div class="col-12">
@@ -253,7 +255,7 @@ $disabled = 'disabled';
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_created ?>
-                          <?php echo $time_created ?>
+                          <?php echo $time_c_formatted ?>
                         </div>
                       </div>
                     </div>
@@ -266,7 +268,7 @@ $disabled = 'disabled';
                       <div class="col-sm-10 text-secondary">
                         <div class="flatpickr-weekwrapper">
                           <?php echo $date_modified ?>
-                          <?php echo $time_modified ?>
+                          <?php echo $time_m_formatted ?>
                         </div>
                       </div>
                     </div>

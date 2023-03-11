@@ -1,15 +1,15 @@
 <?php
 include '../../include/connect.php';
 
-$rg_id = $_GET['ID'];
+$user_id = $_GET['ID'];
 
 $date_modified = date("Y-m-d");
 $time_modified = date("h:i:s");
 
-$sql = "UPDATE reservists SET status='archive', date_modified='$date_modified', time_modified='$time_modified' WHERE rg_id=$rg_id";
+$sql = "UPDATE army_users SET user_status='archive', date_modified='$date_modified', time_modified='$time_modified' WHERE id=$user_id";
 
 if ($conn->query($sql) === TRUE) {
-  header("Refresh:0.4; url=../../admin_rg.php");
+  header("Refresh:0.4; url=../../admin_rids.php");
 } else {
   echo "Error updating record: " . $conn->error;
 }

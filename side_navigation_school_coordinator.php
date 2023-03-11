@@ -23,14 +23,14 @@
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">ROTC Graduates</span>
                 </a>
             </li>
-
+<!-- 
             <hr>
             <li class="sidebar-item <?php echo $schools_select ?>">
                 <a class="sidebar-link" href="admin_schools.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">School</span>
                 </a>
             </li>
-            <hr>
+            <hr> -->
 
 <!-- 
             <li class="sidebar-item <?php echo $course_select ?>">
