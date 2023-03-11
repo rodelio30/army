@@ -50,7 +50,7 @@ include 'system_checker.php';
 
                                             if ($users_counter > 0) {
                                                 if($isSadmin){
-                                                    $result = mysqli_query($conn, "select id, username, type, company, status, user_status, date_modified, time_modified from army_users WHERE user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select id, username, type, company, status, user_status, date_modified, time_modified from army_users WHERE user_status!='archive' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }elseif ($isAdmin || $isStaff){
                                                     $result = mysqli_query($conn, "select id, username, type, company, status, user_status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }

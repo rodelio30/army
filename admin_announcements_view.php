@@ -116,7 +116,7 @@ if(empty($filename)){
                       </div>
                     </div>
 
-                  <div class="form-group ms-2 me-2">
+                  <div class="form-group ms-4 me-4">
 
                   <form method="post" autocomplete="off">
                     <div class="row">
@@ -185,6 +185,7 @@ if(empty($filename)){
                       </div>
                     </div>
                   </form>
+                  <br>
                 </div>
               </div>
             </div>

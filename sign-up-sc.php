@@ -64,6 +64,7 @@ if (isset($_POST["submit"])) {
 											<label class="form-label">School Name <span class="input_required">*</span>
 											</label>
 											<select name="school_name" class="form-control">
+												<option value="None">None</option>
 												<?php
 												$result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
 												while (list($school_name,$acronym) = mysqli_fetch_array($result)) {
@@ -77,7 +78,6 @@ if (isset($_POST["submit"])) {
 											<input class="form-control form-control-lg" type="text" name="school_address" placeholder="Enter Brgy., Municipality/City, Province" autofocus required />
 										</div>
 										<div class="mb-2">
-											<label class="form-label">Rank</label>
 											<label class="form-label">Rank Classification </label>
 											<select class="form-control" id="rank" name="rank">
 													<option value="none">None</option>

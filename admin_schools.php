@@ -92,7 +92,7 @@ include 'system_checker.php';
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td colspan='2' class='text-center'>No Active School</td>
+                                                                <td class='text-center'>No Active School</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 </tr>";
@@ -100,7 +100,7 @@ include 'system_checker.php';
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td colspan='2' class='text-center'>No Active School</td>
+                                                                <td class='text-center'>No Active School</td>
                                                                 <td></td>
                                                                 </tr>";
                                                     }

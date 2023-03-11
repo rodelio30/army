@@ -2,14 +2,13 @@
 include 'system_checker.php';
 
 $isAvailable = false;
-$result = mysqli_query($conn, "select training_id, training_name from trainings where status='active'") or die("Query Training list inncorrect........");
-while (list($training_id, $training_name) = mysqli_fetch_array($result)) {
-$isAvailable = true;
-// echo "<option value='$training_id'>$training_name</option>";
+$result = mysqli_query($conn, "select training_id from trainings where status='active'") or die("Query Training list inncorrect........");
+while (list($training_id) = mysqli_fetch_array($result)) {
+    $isAvailable = true;
 } 
-$result_seminar = mysqli_query($conn, "select seminar_id, seminar_name from seminars where status='active'") or die("Query Training list inncorrect........");
-while (list($seminar_id, $seminar_name) = mysqli_fetch_array($result_seminar)) {
-$isAvailable = true;
+$result_seminar = mysqli_query($conn, "select seminar_id from seminars where status='active'") or die("Query Training list inncorrect........");
+while (list($seminar_id) = mysqli_fetch_array($result_seminar)) {
+    $isAvailable = true;
 } 
 ?>
 <!DOCTYPE html>
@@ -98,8 +97,8 @@ $isAvailable = true;
                                                 }
                                             } else {
                                                 echo " <tr>	
+                                                        <td>No Data for Training and Seminar</td>
                                                         <td></td>
-                                                        <td>No Active seminar and Seminar</td>
                                                         </tr>";
                                             }
                                             ?>

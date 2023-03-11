@@ -93,7 +93,7 @@ if (isset($_POST['rids_update'])) {
     $pos_date_to           = $_POST['pos_date_to'];
 
 
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query Reservist is incorrect....");
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name',email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query Reservist is incorrect....");
   
   mysqli_query($conn, "update rpi set brsvc = '$brsvc', afpos_mos = '$afpos', soc_enlistment = '$soc_enlistment', initial_rank = '$initial_rank', date_of_comsn_enlist = '$date_of_comsn_enlist', authority = '$authority', mobilization_center = '$mobilization_center', designation = '$designation', squad = '$squad', platoon = '$platoon', battalion = '$battalion', size_cs = '$size_cs', size_cap = '$size_cap', size_bda = '$size_bda' where reservist_id = '$user_id'") or die("Query RPI is incorrect....");
 

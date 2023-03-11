@@ -29,16 +29,29 @@
                             $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status='pending' && user_type != 'admin' && user_type != 'sadmin' ORDER BY date") or die("Query for latest reservist....");
                         }
                     while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
-                        $user_view = 'admin_reg_'.$user_type.'_view.php';
-                        echo "
-                            <tr>	
-                                <td scope='row'><a href=\"$user_view?ID=$reg_id\" class='user-clicker'>$username</a></td>
-                                <td>$user_type</td>
-                                <td>$rank</td>
-                                <td>$date $time</td>
-                                <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
-                            </tr>
-                        ";
+                        if($user_type != 'school_coordinator'){
+                            $user_view = 'admin_reg_'.$user_type.'_view.php';
+                            echo "
+                                <tr>	
+                                    <td scope='row'><a href=\"$user_view?ID=$reg_id\" class='user-clicker'>$username</a></td>
+                                    <td>$user_type</td>
+                                    <td>$rank</td>
+                                    <td>$date $time</td>
+                                    <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                                </tr>
+                            ";
+                        } else {
+                            $user_view = 'admin_reg_school_view.php';
+                            echo "
+                                <tr>	
+                                    <td scope='row'><a href=\"$user_view?ID=$reg_id\" class='user-clicker'>$username</a></td>
+                                    <td>$user_type</td>
+                                    <td>$rank</td>
+                                    <td>$date $time</td>
+                                    <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                                </tr>
+                            ";
+                        }
                     }
                     // Viewing User Registered 
                     $result_sc = mysqli_query($conn, "select sc_id, username, user_type, rank, status, date, time from registration_sc WHERE status='pending' ORDER BY date") or die("Query for latest School Coordinator....");
