@@ -36,7 +36,12 @@
                 }
         }
           else {
-            echo " <tr>	<td></td><td>No Attendee </td></tr>";
+                if($isSadmin){ 
+                    echo " <tr>	<td></td><td>No Attendee </td>	<td></td></tr>";
+                }
+                else {
+                    echo " <tr>	<td></td><td>No Attendee </td></tr>";
+                }
         }
         ?>
     </tbody>

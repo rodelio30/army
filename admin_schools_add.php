@@ -47,10 +47,10 @@ if (isset($_POST['submit'])) {
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Latest School</h5>
+                  <h5 class="card-title mb-0">New School</h5>
                 </div>
                 <div class="card-body">
-                  <form method="post">
+                  <form method="post" autocomplete="off">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Acronym</label>
                       <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Enter School Acronym" required autofocus>

@@ -27,7 +27,7 @@ include 'admin_rids_query.php';
                           <?php if(!$isReservist) {
                             ?>
                           <a href="admin_rids.php" class="linked-navigation">Reservist List </a> / 
-                          <?php echo $username ?>
+                          <?php echo $firstname .' '. $lastname ?>
                             <?php
                           } ?>
                             <button onclick="window.print();" class="btn btn-outline-primary" id="print-btn"><span data-feather="printer"></span> Print</button>

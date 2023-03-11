@@ -40,7 +40,6 @@ include 'system_checker.php';
                                     <table id="example" class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Rank Letter</th>
                                                 <th>Company</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
@@ -61,7 +60,6 @@ include 'system_checker.php';
                                                     if($isSadmin){
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$rank_letter</a></td>
                                                         <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$company_name</a></td>
                                                         <td>$date_modified</td>
                                                         <td>$status</td>
@@ -71,7 +69,6 @@ include 'system_checker.php';
                                                     } else { 
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$rank_letter</a></td>
                                                         <td scope='row'><a href=\"admin_company_view.php?ID=$company_id\" class='user-clicker'>$company_name</a></td>
                                                         <td>$date_modified</td>
                                                         <td>$status</td>

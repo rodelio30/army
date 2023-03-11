@@ -32,13 +32,13 @@ if (isset($_POST['submit'])) {
   // echo "<script>console.log('" . $diff->y. "');</script>";
   $age                  = $diff->y;
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM rotc_graduates WHERE afpsn = '$afpsn'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn = '$afpsn'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO rotc_graduates VALUES('','$firstname','$m_i','$lastname','$afpsn','$rank','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$date','$time','$date','$time')";
+    $query = "INSERT INTO reservists VALUES('','$firstname','$m_i','$lastname','$afpsn','$rank','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname . ' Added!.")</script>';
