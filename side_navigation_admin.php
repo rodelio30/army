@@ -25,7 +25,7 @@
 
             <li class="sidebar-item <?php echo $users_select ?>">
                 <a class="sidebar-link" href="admin_users.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
                 </a>
             </li>
 
@@ -94,25 +94,25 @@
 
             <li class="sidebar-item <?php echo $schools_select ?>">
                 <a class="sidebar-link" href="admin_schools.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">School</span>
+                    <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">School</span>
                 </a>
             </li>
 
             <li class="sidebar-item <?php echo $rank_select ?>">
                 <a class="sidebar-link" href="admin_ranks.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Rank Classification</span>
+                    <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Rank Classification</span>
                 </a>
             </li>
 
             <li class="sidebar-item <?php echo $company_select ?>">
                 <a class="sidebar-link" href="admin_company.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Company</span>
+                    <i class="align-middle" data-feather="shield"></i> <span class="align-middle">Company</span>
                 </a>
             </li>
 
             <li class="sidebar-item <?php echo $aor_select ?>">
                 <a class="sidebar-link" href="admin_aor.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Area of Responsibility</span>
+                    <i class="align-middle" data-feather="map"></i> <span class="align-middle">Area of Responsibility</span>
                 </a>
             </li>
             
@@ -122,13 +122,13 @@
 
             <li class="sidebar-item <?php echo $training_select ?>">
                 <a class="sidebar-link" href="admin_trainings.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Trainings</span>
+                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Trainings</span>
                 </a>
             </li>
 
             <li class="sidebar-item <?php echo $seminar_select ?>">
                 <a class="sidebar-link" href="admin_seminars.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Seminars</span>
+                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Seminars</span>
                 </a>
             </li>
 
@@ -138,7 +138,7 @@
 
             <li class="sidebar-item <?php echo $announce_select ?>">
                 <a class="sidebar-link" href="admin_announcements.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Announcements</span>
+                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Announcements</span>
                 </a>
             </li>
 
@@ -148,7 +148,7 @@
 
             <li class="sidebar-item <?php echo $appoint_select ?>">
                 <a class="sidebar-link" href="admin_appointments.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Appointments</span>
+                    <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Appointments</span>
                 </a>
             </li>
 

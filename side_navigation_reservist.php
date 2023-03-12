@@ -19,7 +19,7 @@
 
             <li class="sidebar-item <?php echo $aor_select ?>">
                 <a class="sidebar-link" href="admin_aor.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Area of Responsibility</span>
+                    <i class="align-middle" data-feather="map"></i> <span class="align-middle">Area of Responsibility</span>
                 </a>
             </li>
 
@@ -27,7 +27,7 @@
 
             <li class="sidebar-item <?php echo $ts_select ?>">
                 <a class="sidebar-link" href="admin_ts_attended.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Training and Seminars</span>
+                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Training and Seminars</span>
                 </a>
             </li>
 
