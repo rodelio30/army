@@ -6,6 +6,7 @@ if (isset($_POST['submit'])) {
   $firstname     = $_POST['firstname'];
   $m_i           = $_POST['m_i'];
   $lastname      = $_POST['lastname'];
+  $extname      = $_POST['extname'];
   $afpsn         = $_POST['afpsn'];
   $rank          = $_POST['rank'];
   $birth_date    = $_POST['birth_date'];
@@ -38,7 +39,7 @@ if (isset($_POST['submit'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO reservists VALUES('','$firstname','$m_i','$lastname','$afpsn','$rank','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$date','$time','$date','$time')";
+    $query = "INSERT INTO reservists VALUES('','$firstname','$m_i','$lastname','$extname','$afpsn','$rank','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname . ' Added!.")</script>';
@@ -74,17 +75,21 @@ if (isset($_POST['submit'])) {
                   <form method="post">
                     <div class="form-group">
                       <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                           <label for="exampleInputEmail1">First Name</label>
                           <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required autofocus>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                           <label for="exampleInputEmail1">Middle Initial</label>
-                          <input type="text" class="form-control" id="m_i" name="m_i" placeholder="Enter Middle Initial" required autofocus>
+                          <input type="text" class="form-control" id="m_i" name="m_i" placeholder="Enter Middle Initial">
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                           <label for="exampleInputEmail1">Last Name</label>
-                          <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required autofocus>
+                          <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
+                        </div>
+                        <div class="col-3">
+                          <label for="exampleInputEmail1">Extension Name</label>
+                          <input type="text" class="form-control" id="extname" name="extname" placeholder="Enter Extension Name">
                         </div>
                       </div>
                     </div>

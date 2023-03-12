@@ -58,17 +58,17 @@ include 'system_checker.php';
                                             if ($rg_counter > 0) {
 
                                                 if($isSchool){
-                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, status from reservists WHERE status != 'archive' && school_graduated = '$school_name_public' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, status from reservists WHERE status != 'archive' && school_graduated = '$school_name_public' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 } else{
-                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, status from reservists WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, status from reservists WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
 
-                                                while (list($rg_id, $firstname, $middle_initial, $lastname, $afpsn, $rank, $date_of_birth, $home_address, $date_graduated, $school_graduated, $status) = mysqli_fetch_array($result)) {
+                                                while (list($rg_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank, $date_of_birth, $home_address, $date_graduated, $school_graduated, $status) = mysqli_fetch_array($result)) {
                                                     if($isSadmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$rank</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
                                                         <td>$school_graduated</td>
@@ -81,7 +81,7 @@ include 'system_checker.php';
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$rank</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
                                                         <td>$school_graduated</td>
@@ -93,7 +93,7 @@ include 'system_checker.php';
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$rank</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
                                                         <td>$school_graduated</td>

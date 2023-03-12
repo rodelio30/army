@@ -10,6 +10,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $firstname       = $res['firstname'];
   $middle_initial  = $res['middle_initial'];
   $lastname        = $res['lastname'];
+  $extname         = $res['extname'];
   $afpsn           = $res['afpsn'];
   $rank            = $res['rank'];
   $date_of_birth   = $res['date_of_birth'];
@@ -31,6 +32,7 @@ if (isset($_POST['update'])) {
   $fname          = $_POST['firstname'];
   $minitial       = $_POST['middle_initial'];
   $lname          = $_POST['lastname'];
+  $ename          = $_POST['extname'];
   $afpsn_now      = $_POST['afpsn'];
   $rank_now       = $_POST['rank'];
   $date_graduated = $_POST['date_graduated'];
@@ -56,7 +58,7 @@ if (isset($_POST['update'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
 
-  mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
 
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
@@ -114,14 +116,17 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <div class="row">
-                          <div class="col-4">
+                          <div class="col-3">
                             <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="Enter First Name" <?php echo $disabled ?>>
                           </div>
-                          <div class="col-4">
+                          <div class="col-3">
                             <input type="text" class="form-control" id="middle_initial" name="middle_initial" value="<?php echo $middle_initial ?>" placeholder="Enter Middle Initial" <?php echo $disabled ?>>
                           </div>
-                          <div class="col-4">
+                          <div class="col-3">
                             <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname ?>" placeholder="Enter Last Name" <?php echo $disabled ?>>
+                          </div>
+                          <div class="col-3">
+                            <input type="text" class="form-control" id="extname" name="extname" value="<?php echo $extname ?>" placeholder="Enter Extention Name" <?php echo $disabled ?>>
                           </div>
                         </div>
                       </div>
