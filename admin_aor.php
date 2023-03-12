@@ -91,13 +91,13 @@ include 'system_checker.php';
                                             } else {
                                                 if($isSadmin){
                                                     echo " <tr>	
+                                                            <td>No Record found</td>
                                                             <td></td>
-                                                            <td>No Active aor</td>
                                                             <td></td>
                                                             </tr>";
                                                 } else {
                                                     echo " <tr>	
-                                                            <td>No Active aor</td>
+                                                            <td>No Record found</td>
                                                             <td></td>
                                                             </tr>";
                                                         }
