@@ -1,21 +1,50 @@
 <?php
-  // Plaintext password entered by the user 
-  $unencrypted_password = "Cloudways@123"; 
+    
+// Store a string into the variable which
+// need to be Encrypted
+$simple_string = "Welcome to GeeksforGeeks";
   
-  // The hashed password can be retrieved from database 
-//   $hash ="2y10D6pwJsA5KKdUs7tlrIC3z.we7QZR58wx9gEiuLlQ/dr7E/Rtnj9Ce";
+// Display the original string
+echo "<br> Original String: " . $simple_string . "\n";
+  
+// Store cipher method
+$ciphering = "BF-CBC";
+  
+// Use OpenSSl encryption method
+$iv_length = openssl_cipher_iv_length($ciphering);
+$options = 0;
+  
+// Use random_bytes() function which gives
+// randomly 16 digit values
+$encryption_iv = random_bytes($iv_length);
+  
+// Alternatively, we can use any 16 digit
+// characters or numeric for iv
+$encryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
+  
+// Encryption of string process starts
+$encryption = openssl_encrypt($simple_string, $ciphering,
+        $encryption_key, $options, $encryption_iv);
+  
+// Display the encrypted string
+echo "Encrypted String: " . $encryption . "\n";
 
-  $hash = password_hash($unencrypted_password, PASSWORD_DEFAULT); 
   
-  // Verify the hash code against the unencrypted password entered 
-  $verify = password_verify($unencrypted_password, $hash); 
+// Display the encrypted string
+echo "Encrypted String: " . $encryption . "\n";
   
-  // Print the result depending if they match 
-  if ($verify) {
-       echo 'Correct Password!'; 
-       }
- 
-  else { 
-      echo 'Password is Incorrect';
-       } 
+// Decryption of string process starts
+// Used random_bytes() which gives randomly
+// 16 digit values
+$decryption_iv = random_bytes($iv_length);
+  
+// Store the decryption key
+$decryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
+  
+// Descrypt the string
+$decryption = openssl_decrypt ($encryption, $ciphering,
+            $decryption_key, $options, $encryption_iv);
+  
+// Display the decrypted string
+echo "Decrypted String: " . $decryption;
 ?>

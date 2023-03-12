@@ -14,7 +14,7 @@ if (isset($_POST['update'])) {
   $place_new         = $_POST['place'];
   $status        = $_POST['status'];
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM aor WHERE place = '$place_new'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM aor WHERE place = '$place_new' && place != '$place'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('Area of Responsibilty has already taken'); </script>";

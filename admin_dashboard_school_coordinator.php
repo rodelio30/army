@@ -9,7 +9,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Totla Number of Graduates</h5>
+                                    <h5 class="card-title">Total Number of ROTC Graduates</h5>
                                 </div>
                             </div>
                             <h1 class="mt-3 mb-1"><?php echo $own_school_counter ;?></h1>
