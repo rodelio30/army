@@ -31,15 +31,15 @@ $ts = $trainings_counter + $seminars_counter;
                     </a>
                 </div>
                 <div class="col-sm-3">
-                    <a href="admin_appointments.php" class="linked-navigation">
+                    <a href="admin_trainings.php" class="linked-navigation">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Appointments</h5>
+                                    <h5 class="card-title">Trainings and Seminars</h5>
                                 </div>
                             </div>
-                            <h1 class="mt-3 mb-1"><?php echo $appointments_counter ?></h1>
+                            <h1 class="mt-3 mb-1"><?php echo $ts ?></h1>
                         </div>
                     </div>
                     </a>
@@ -59,15 +59,15 @@ $ts = $trainings_counter + $seminars_counter;
                     </a>
                 </div>
                 <div class="col-sm-3">
-                    <a href="admin_trainings.php" class="linked-navigation">
+                    <a href="admin_appointments.php" class="linked-navigation">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Trainings and Seminars</h5>
+                                    <h5 class="card-title">Appointments</h5>
                                 </div>
                             </div>
-                            <h1 class="mt-3 mb-1"><?php echo $ts ?></h1>
+                            <h1 class="mt-3 mb-1"><?php echo $appointments_counter ?></h1>
                         </div>
                     </div>
                     </a>
