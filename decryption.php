@@ -1,23 +1,18 @@
 <?php
-
-// Decryption of string process starts
-// Used random_bytes() which gives randomly
-// 16 digit values
-$decryption_iv = random_bytes($iv_length);
-
-// Store the decryption key
-$decryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
-
-// Descrypt the string
-$decryption = openssl_decrypt(
-    $encryption,
-    $ciphering,
-    $decryption_key,
-    $options,
-    $encryption_iv
-);
-
-// Display the decrypted string
-
-echo "<br> Decrypted String: " . $decryption;
+  // Plaintext password entered by the user
+  // $plaintext_password = "Password@123";
+  $plaintext_password = "admin";
+  
+  // The hashed password retrieved from database
+  $hash = "$2y$10$4zw93ZAsDahFU8YohvuTdOOKeOoUXUFoviJc1x0i3wASgS0am8mpi";
+  
+  // Verify the hash against the password entered
+  $verify = password_verify($plaintext_password, $hash);
+  
+  // Print the result depending if they match
+  if ($verify) {
+      echo '<br>Password Verified!';
+  } else {
+      echo '<br>Incorrect Password!';
+  }
 ?>

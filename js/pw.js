@@ -14,3 +14,11 @@ function myConfirm() {
       cpw_ele.type = "password";
     }
   }
+function myNew() {
+    var npw_ele = document.getElementById("new_password");
+    if (npw_ele.type === "password") {
+      npw_ele.type = "text";
+    } else {
+      npw_ele.type = "password";
+    }
+  }

@@ -1,4 +1,5 @@
 <?php
+// include 'decrypt_function.php';
 require 'include/connect.php';
 if(!empty($_SESSION["id"])){
   header("Location: index.php");
@@ -20,7 +21,9 @@ if(isset($_POST["submit_admin"])){
   $result = mysqli_query($conn, "SELECT * FROM army_users WHERE username = '$usernameemail' OR email = '$usernameemail'");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
-    if($password == $row['password']){
+    // if($password == $row['password']){
+    // if(password_verify($password, $row['password']) || $password == $row['password']){
+    if(password_verify($password, $row['password'])){
       $_SESSION["login"] = true;
       $_SESSION["id"] = $row["id"];
       header("Location: index.php");
