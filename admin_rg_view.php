@@ -6,43 +6,45 @@ $rg_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM reservists WHERE rg_id='$rg_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $rg_id           = $res['rg_id'];
-  $firstname       = $res['firstname'];
-  $middle_initial  = $res['middle_initial'];
-  $lastname        = $res['lastname'];
-  $extname         = $res['extname'];
-  $afpsn           = $res['afpsn'];
-  $rank            = $res['rank'];
-  $date_of_birth   = $res['date_of_birth'];
-  $home_address    = $res['home_address'];
-  $date_graduated  = $res['date_graduated'];
-  $age             = $res['age'];
-  $sex             = $res['sex'];
+  $rg_id            = $res['rg_id'];
+  $firstname        = $res['firstname'];
+  $middle_initial   = $res['middle_initial'];
+  $lastname         = $res['lastname'];
+  $extname          = $res['extname'];
+  $afpsn            = $res['afpsn'];
+  $rank             = $res['rank'];
+  $date_of_birth    = $res['date_of_birth'];
+  $home_address     = $res['home_address'];
+  $date_graduated   = $res['date_graduated'];
+  $age              = $res['age'];
+  $sex              = $res['sex'];
   $school_graduated = $res['school_graduated'];
-  $status          = $res['status'];
-  $user_status     = $res['user_status'];
-  $date_created    = $res['date_created'];
-  $time_created    = $res['time_created'];
-  $date_modified   = $res['date_modified'];
-  $time_modified   = $res['time_modified'];
+  $status           = $res['status'];
+  $user_status      = $res['user_status'];
+  $date_created     = $res['date_created'];
+  $time_created     = $res['time_created'];
+  $date_modified    = $res['date_modified'];
+  $time_modified    = $res['time_modified'];
 }
   $time_c_formatted   = date("G:i A ", strtotime($time_created));
   $time_m_formatted   = date("G:i A ", strtotime($time_modified));
 
 if (isset($_POST['update'])) {
-  $fname          = $_POST['firstname'];
-  $minitial       = $_POST['middle_initial'];
-  $lname          = $_POST['lastname'];
-  $ename          = $_POST['extname'];
-  $afpsn_now      = $_POST['afpsn'];
-  $rank_now       = $_POST['rank'];
-  $date_graduated = $_POST['date_graduated'];
-  $date_of_birth  = $_POST['date_of_birth'];
-  $home_address   = $_POST['home_address'];
-  $status         = $_POST['status'];
-  $user_status    = $_POST['user_status'];
-  $date_modified  = date("Y-m-d");
-  $time_modified  = date("h:i:s");
+  $fname            = $_POST['firstname'];
+  $minitial         = $_POST['middle_initial'];
+  $lname            = $_POST['lastname'];
+  $ename            = $_POST['extname'];
+  $afpsn_now        = $_POST['afpsn'];
+  $rank_now         = $_POST['rank'];
+  $date_graduated   = $_POST['date_graduated'];
+  $date_of_birth    = $_POST['date_of_birth'];
+  $home_address     = $_POST['home_address'];
+  $sex              = $_POST['sex'];
+  $school_graduated = $_POST['school_graduated'];
+  $status           = $_POST['status'];
+  $user_status      = $_POST['user_status'];
+  $date_modified    = date("Y-m-d");
+  $time_modified    = date("h:i:s");
 
   // Computation of Age
   $bday = new DateTime($date_of_birth);
@@ -60,8 +62,21 @@ if (isset($_POST['update'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
 
-  mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
+  if($user_status == 'inactive') {
+    mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
+  } else if($user_status == 'active') {
+    $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+     if (mysqli_query($conn, $query_reservist)) {
+      // Inserting other info for reservist in personal information
+        mysqli_query($conn, "insert into personal_information (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
 
+      // Inserting other info for reservist in reservist personal information
+        mysqli_query($conn, "insert into rpi (reservist_id) values('$rg_id')")  or die("Query RPI is incorrect.....");
+
+      // Inserting other info for reservist in below information
+        mysqli_query($conn, "insert into below_info (reservist_id) values('$rg_id')")  or die("Query Below Info is incorrect.....");
+     }
+  }
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
   header('Refresh: 0; url=admin_rg.php');
@@ -248,8 +263,8 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Sex</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                      <?php if($isAdmin || $isSchool) {?>
-                        <input type="text" class="form-control" id="sex" name="sex" value="<?php echo ucfirst($status) ?>" disabled>
+                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
+                        <input type="text" class="form-control" id="sex" name="sex" value="<?php echo ucfirst($sex) ?>" disabled>
                         <input type="hidden" id="sex" name="sex" value="<?php echo $sex?>">
                         <?php } else { ?>
                           <select class="form-control" id="sex" value="<?php echo $sex?>" name="sex" <?php echo $disabled ?>>
@@ -265,7 +280,24 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>School Graduated</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="school_graduated" name="school_graduated" value="<?php echo $school_graduated?>" placeholder="Enter School Gradute" <?php echo $disabled?>>
+                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
+                        <input type="text" class="form-control" id="school_graduated" name="school_graduated" value="<?php echo ucfirst($school_graduated) ?>" disabled>
+                        <input type="hidden" id="school_graduated" name="school_graduated" value="<?php echo $school_graduated?>">
+                        <?php } else { ?>
+                        <select class="form-control" id="school_graduated" name="school_graduated">
+                            <option value="none">None</option>
+                          <?php
+                          $result = mysqli_query($conn, "select acronym from schools where status='active'") or die("Query School List is inncorrect........");
+                          while (list($acronym) = mysqli_fetch_array($result)) {
+                            if($acronym == $school_graduated) {
+                              echo "<option value='$acronym' selected>$acronym</option>";
+                            } else {
+                              echo "<option value='$acronym'>$acronym</option>";
+                            }
+                          }
+                          ?>
+                        </select>
+                        <?php }?>
                       </div>
                     </div>
                     <br>
@@ -275,11 +307,11 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
 
-                      <?php if($isAdmin || $isSchool) {?>
+                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
                         <input type="text" class="form-control" id="status" name="status" value="<?php echo ucfirst($status) ?>" disabled>
                         <input type="hidden" id="status" name="status" value="<?php echo $status ?>">
                       <?php } else { ?>
-                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status" <?php echo $disabled ?>>
+                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
                           <option value="Pending" <?php echo $sel_pend ?>>Pending</option>
                           <option value="Ready" <?php echo $sel_ready ?>>Ready</option>
                           <option value="Standby" <?php echo $sel_standby ?>>Standby</option>
@@ -295,11 +327,11 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
 
-                      <?php if($isAdmin || $isSchool) {?>
+                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
                         <input type="text" class="form-control" id="user_status" name="user_status" value="<?php echo ucfirst($user_status) ?>" disabled>
                         <input type="hidden" id="user_status" name="user_status" value="<?php echo $user_status ?>">
                       <?php } else { ?>
-                        <select class="form-control" id="user_status" value="<?php echo $user_status ?>" name="user_status" <?php echo $disabled ?>>
+                        <select class="form-control" id="user_status" value="<?php echo $user_status ?>" name="user_status">
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>

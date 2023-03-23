@@ -61,10 +61,10 @@ include 'system_checker.php';
                                                 if($isSchool){
                                                 $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, user_status from reservists WHERE user_status != 'archive' && school_graduated = '$school_name_public' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 } else{
-                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, status from reservists WHERE user_status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank, date_of_birth, home_address, date_graduated, school_graduated, user_status from reservists WHERE user_status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
 
-                                                while (list($rg_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank, $date_of_birth, $home_address, $date_graduated, $school_graduated, $status) = mysqli_fetch_array($result)) {
+                                                while (list($rg_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank, $date_of_birth, $home_address, $date_graduated, $school_graduated, $user_status) = mysqli_fetch_array($result)) {
                                                     if($isSadmin){
                                                     echo "
                                                     <tr>	
@@ -74,7 +74,7 @@ include 'system_checker.php';
                                                         <td>$date_of_birth</td>
                                                         <td>$school_graduated</td>
                                                         <td>$date_graduated</td>
-                                                        <td>$status</td>
+                                                        <td>$user_status</td>
                                                         <td id='action-print'><a href=\"archive/reservist/reservist_archive.php?ID=$rg_id\" onClick=\"return confirm('Are you sure you want this rg move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
@@ -88,7 +88,7 @@ include 'system_checker.php';
                                                         <td>$date_of_birth</td>
                                                         <td>$school_graduated</td>
                                                         <td>$date_graduated</td>
-                                                        <td>$status</td>
+                                                        <td>$user_status</td>
                                                     </tr>
                                                 ";
                                                     }
@@ -101,7 +101,7 @@ include 'system_checker.php';
                                                         <td>$date_of_birth</td>
                                                         <td>$school_graduated</td>
                                                         <td>$date_graduated</td>
-                                                        <td>$status</td>
+                                                        <td>$user_status</td>
                                                     </tr>
                                                 ";
                                                     }
