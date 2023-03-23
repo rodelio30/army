@@ -21,16 +21,6 @@ if ($result_all->num_rows > 0) {
 } 
 
 // This line is Counting for the number of Reservist Register User
-$sql_sc_all = "SELECT sc_id FROM registration_sc WHERE user_status = 'inactive' ";
-$result_sc_all = $conn->query($sql_sc_all);
-
-if ($result_sc_all->num_rows > 0) {
-  while ($row = $result_sc_all->fetch_assoc()) {
-    $registered_counter++;
-  }
-} 
-
-// This line is Counting for the number of Reservist Register User
 $sql = "SELECT reg_id FROM registration_user WHERE user_status = 'inactive' && user_type = 'reservist' ";
 $result = $conn->query($sql);
 

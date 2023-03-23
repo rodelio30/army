@@ -18,7 +18,8 @@
                       include 'counter/users_counter.php';
 
                       if ($users_counter > 0) {
-                          $result = mysqli_query($conn, "select id, username, type, status, user_status, date_modified, time_modified from army_users WHERE user_status='archive' && id != $id && type!='reservist' ORDER BY date_modified") or die("Query for latest reservist....");
+                        //   $result = mysqli_query($conn, "select id, username, type, status, user_status, date_modified, time_modified from army_users WHERE user_status='archive' && id != $id && type!='reservist' ORDER BY date_modified") or die("Query for latest reservist....");
+                          $result = mysqli_query($conn, "select id, username, type, status, user_status, date_modified, time_modified from army_users WHERE user_status='archive' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                           while (list($army_id, $username, $user_type, $status, $user_status, $date, $time) = mysqli_fetch_array($result)) {
                               echo "
                           <tr>	

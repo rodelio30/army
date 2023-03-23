@@ -2,13 +2,13 @@
 include '../../include/connect.php';
 
 $user_id = $_GET['ID'];
+$army_id = $_GET['AID'];
 
 $date_modified = date("Y-m-d");
 $time_modified = date("h:i:s");
 
 // user id getter
-$army_id = 0;
-$result       = mysqli_query($conn, "SELECT * FROM reservists WHERE rg_id='$user_id'");
+$result       = mysqli_query($conn, "SELECT * FROM reservists WHERE army_id='$army_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $army_id = $res['army_id'];
 }
@@ -20,7 +20,7 @@ if($army_id != 0) {
 $sql = "UPDATE reservists SET user_status='archive', date_modified='$date_modified', time_modified='$time_modified' WHERE rg_id=$user_id";
 
 if ($conn->query($sql) === TRUE) {
-  header("Refresh:0.4; url=../../admin_rg.php");
+  header("Refresh:0.4; url=../../admin_rids.php");
 } else {
   echo "Error updating record: " . $conn->error;
 }
