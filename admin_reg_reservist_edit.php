@@ -25,6 +25,7 @@ if (isset($_POST['update'])) {
   $up_user_status = 'active';
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
+  $school_graduated = 'None';
 
   if($up_status == 'disapproved'){
   echo '<script type="text/javascript"> alert("User ' . $username . ' is disapproved! It will go to Archive List.")</script>';
@@ -32,23 +33,27 @@ if (isset($_POST['update'])) {
     header('Refresh: 0; url=admin_reg_reservist.php');
   }
   else{
-    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+    // inserting reservist to army table for log in credentials
+    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','','$company','','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+    // inserting reservist to reservist table
+    $query_reservist  = "INSERT INTO reservists VALUES('','$firstname','','$lastname','','$afpsn','$rank','','','','','','','$school_graduated','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+     mysqli_query($conn, $query_reservist);
+
      if (mysqli_query($conn, $query_army_user)) {
+        if($user_type == 'reservist'){
+          $result_get_id = mysqli_query($conn, "SELECT * FROM army_users WHERE username ='$username' && type='reservist'");
+          while ($res   = mysqli_fetch_array($result_get_id)) {
+            $reserve_id= $res['id'];
+          }
+          // Inserting other info for reservist in personal information
+            mysqli_query($conn, "insert into personal_information (reservist_id) values('$reserve_id')")  or die("Query Personal Information is incorrect.....");
 
-      if($user_type == 'reservist'){
-        $result_get_id = mysqli_query($conn, "SELECT * FROM army_users WHERE username ='$username' && type='reservist'");
-        while ($res   = mysqli_fetch_array($result_get_id)) {
-          $reserve_id= $res['id'];
+          // Inserting other info for reservist in reservist personal information
+            mysqli_query($conn, "insert into rpi (reservist_id) values('$reserve_id')")  or die("Query RPI is incorrect.....");
+
+          // Inserting other info for reservist in below information
+            mysqli_query($conn, "insert into below_info (reservist_id) values('$reserve_id')")  or die("Query Below Info is incorrect.....");
         }
-        // Inserting other info for reservist
-          mysqli_query($conn, "insert into personal_information (reservist_id) values('$reserve_id')")  or die("Query Personal Information is incorrect.....");
-
-        // Inserting other info for reservist
-          mysqli_query($conn, "insert into rpi (reservist_id) values('$reserve_id')")  or die("Query RPI is incorrect.....");
-
-        // Inserting other info for reservist
-          mysqli_query($conn, "insert into below_info (reservist_id) values('$reserve_id')")  or die("Query Below Info is incorrect.....");
-      }
 
       $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
        mysqli_query($conn, $query_del_reservist);

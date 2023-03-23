@@ -49,7 +49,7 @@ while ($res   = mysqli_fetch_array($result)) {
                       <?php 
                       if($isSadmin || $isAdmin){
                       ?>
-                        <a <?php echo "href=\"admin_reg_reservist_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+                        <a <?php echo "href=\"admin_reg_reservist_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-success mb-0" style="float:right">Update</a>
                       <?php } ?>
                     </div>
                   </div> 

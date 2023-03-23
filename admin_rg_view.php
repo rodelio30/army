@@ -20,6 +20,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $sex             = $res['sex'];
   $school_graduated = $res['school_graduated'];
   $status          = $res['status'];
+  $user_status     = $res['user_status'];
   $date_created    = $res['date_created'];
   $time_created    = $res['time_created'];
   $date_modified   = $res['date_modified'];
@@ -39,6 +40,7 @@ if (isset($_POST['update'])) {
   $date_of_birth  = $_POST['date_of_birth'];
   $home_address   = $_POST['home_address'];
   $status         = $_POST['status'];
+  $user_status    = $_POST['user_status'];
   $date_modified  = date("Y-m-d");
   $time_modified  = date("h:i:s");
 
@@ -58,7 +60,7 @@ if (isset($_POST['update'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
 
-  mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
 
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
@@ -66,14 +68,41 @@ if (isset($_POST['update'])) {
   }
 }
 
+// for Status
+$sel_pend    = "";
+$sel_ready   = "";
+$sel_standby = "";
+$sel_retired = "";
+
+// for User Status
 $sel_active   = "";
 $sel_inactive = "";
 
+// for User Sex
+$sel_male      = "";
+$sel_female   = "";
 
-if ($status == "active") {
+
+if ($status == "Pending") {
+  $sel_pend = "selected";
+} else if ($status == "Ready") {
+  $sel_ready = "selected";
+} else if ($status == "Standby") {
+  $sel_standby = "selected";
+} else if ($status == "Retired") {
+  $sel_retired = "selected";
+}
+
+if ($user_status == "active") {
   $sel_active  = "selected";
-} else if ($status == "inactive") {
+} else if ($user_status == "inactive") {
   $sel_inactive = "selected";
+}
+
+if ($sex == "Male") {
+  $sel_male   = "selected";
+} else if ($sex == "Female") {
+  $sel_female = "selected";
 }
 
 $disabled = '';
@@ -219,7 +248,15 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Sex</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="sex" name="sex" value="<?php echo $sex?>" placeholder="Enter Sex" disabled>
+                      <?php if($isAdmin || $isSchool) {?>
+                        <input type="text" class="form-control" id="sex" name="sex" value="<?php echo ucfirst($status) ?>" disabled>
+                        <input type="hidden" id="sex" name="sex" value="<?php echo $sex?>">
+                        <?php } else { ?>
+                          <select class="form-control" id="sex" value="<?php echo $sex?>" name="sex" <?php echo $disabled ?>>
+                            <option value="Male" <?php echo $sel_male ?>>Male</option>
+                            <option value="Female" <?php echo $sel_female ?>>Female</option>
+                          </select>
+                        <?php }?>
                       </div>
                     </div>
                     <br>
@@ -228,7 +265,7 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>School Graduated</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="school_graduated" name="school_graduated" value="<?php echo $school_graduated?>" placeholder="Enter School Gradute" disabled>
+                        <input type="text" class="form-control" id="school_graduated" name="school_graduated" value="<?php echo $school_graduated?>" placeholder="Enter School Gradute" <?php echo $disabled?>>
                       </div>
                     </div>
                     <br>
@@ -243,6 +280,26 @@ $disabled = 'disabled';
                         <input type="hidden" id="status" name="status" value="<?php echo $status ?>">
                       <?php } else { ?>
                         <select class="form-control" id="status" value="<?php echo $status ?>" name="status" <?php echo $disabled ?>>
+                          <option value="Pending" <?php echo $sel_pend ?>>Pending</option>
+                          <option value="Ready" <?php echo $sel_ready ?>>Ready</option>
+                          <option value="Standby" <?php echo $sel_standby ?>>Standby</option>
+                          <option value="Retired" <?php echo $sel_retired ?>>Retired</option>
+                        </select>
+                      <?php }?>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>User Status</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+
+                      <?php if($isAdmin || $isSchool) {?>
+                        <input type="text" class="form-control" id="user_status" name="user_status" value="<?php echo ucfirst($user_status) ?>" disabled>
+                        <input type="hidden" id="user_status" name="user_status" value="<?php echo $user_status ?>">
+                      <?php } else { ?>
+                        <select class="form-control" id="user_status" value="<?php echo $user_status ?>" name="user_status" <?php echo $disabled ?>>
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>

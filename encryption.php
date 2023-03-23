@@ -28,10 +28,6 @@ $encryption = openssl_encrypt($simple_string, $ciphering,
   
 // Display the encrypted string
 echo "Encrypted String: " . $encryption . "\n";
-
-  
-// Display the encrypted string
-echo "Encrypted String: " . $encryption . "\n";
   
 // Decryption of string process starts
 // Used random_bytes() which gives randomly
