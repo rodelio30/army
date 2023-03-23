@@ -1,5 +1,9 @@
 <?php
 include 'system_checker.php';
+if($isSchool || $isCommander || $isReservist){
+  header("Location: index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

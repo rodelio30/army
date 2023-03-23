@@ -1,5 +1,8 @@
 <?php 
 include 'system_checker.php';
+if(!$isSadmin){
+  header("Location: index.php");
+}
 // include 'admin_checker.php';
 
 $reservist_id = $_GET['ID'];

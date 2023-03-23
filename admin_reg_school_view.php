@@ -1,5 +1,8 @@
 <?php
 include 'system_checker.php';
+if(!$isSadmin){
+  header("Location: index.php");
+}
 
 $school_id = $_GET['ID'];
 

@@ -1,6 +1,8 @@
-
 <?php
 include 'system_checker.php';
+if($isReservist){
+  header("Location: index.php");
+}
 
 $rg_id = $_GET['ID'];
 

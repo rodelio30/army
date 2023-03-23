@@ -1,5 +1,8 @@
 <?php
 include 'system_checker.php';
+if($isSchool || $isCommander){
+  header("Location: index.php");
+}
 
 $seminars_id = $_GET['ID'];
 

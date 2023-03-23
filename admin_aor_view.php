@@ -1,5 +1,8 @@
 <?php
 include 'system_checker.php';
+if($isSchool){
+  header("Location: index.php");
+}
 
 $aor_id = $_GET['ID'];
 

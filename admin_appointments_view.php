@@ -1,6 +1,8 @@
-
 <?php
 include 'system_checker.php';
+if($isSchool || $isCommander || $isReservist){
+  header("Location: index.php");
+}
 
 $appointments_id = $_GET['ID'];
 

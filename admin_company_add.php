@@ -1,5 +1,8 @@
 <?php
 include 'system_checker.php';
+if($isSchool || $isCommander || $isReservist){
+  header("Location: index.php");
+}
 // un_public is username of the user who logged in
 
 if (isset($_POST['submit'])) {

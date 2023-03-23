@@ -1,5 +1,8 @@
 <?php 
 include 'system_checker.php';
+if($isSchool){
+  header("Location: index.php");
+}
 
 $user_id = $_GET['ID'];
 

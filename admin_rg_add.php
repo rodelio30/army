@@ -1,5 +1,8 @@
 <?php
 include 'system_checker.php';
+if($isReservist){
+  header("Location: index.php");
+}
   // echo "<script>console.log('High this is me " . $school_name_public. "');</script>";
 
 if (isset($_POST['submit'])) {

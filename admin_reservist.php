@@ -1,5 +1,10 @@
 <?php 
-$user_id = $id;
+
+$result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE army_id=$id");
+// $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
+while ($res   = mysqli_fetch_array($result_get_id)) {
+  $user_id = $res['rg_id'];
+}
 include 'admin_rids_query.php';
 ?>
 <main class="content">
@@ -14,18 +19,8 @@ include 'admin_rids_query.php';
             <a <?php echo "href=\"admin_rids_edit.php?ID=" . $user_id ."\"" ?> style="float: right" id="action-print" class="btn btn-outline-primary">&nbsp Edit Info</a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-12 col-xxl-12 d-flex">
-            <div class="w-100">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <?php include 'reservist_form.php'?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <?php 
+  include 'reservist_form.php';
+  ?>
   </div>
 </main>
