@@ -1,20 +1,20 @@
 <?php 
-$result       = mysqli_query($conn, "SELECT * FROM army_users WHERE id='$user_id'");
+$result       = mysqli_query($conn, "SELECT * FROM reservists WHERE rg_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $user_id       = $res['id'];
-  $firstname     = $res['firstname'];
-  $middle_name   = $res['middle_name'];
-  $lastname      = $res['lastname'];
-  $username      = $res['username'];
-  $email_user         = $res['email'];
-  $type          = $res['type'];
-  $rank          = $res['rank'];
-  $company       = $res['company'];
-  $afpsn         = $res['afpsn'];
-  $status        = $res['status'];
-  $user_status   = $res['user_status'];
-  $date_modified = $res['date_modified'];
-  $time_modified = $res['time_modified'];
+  $user_id        = $res['rg_id'];
+  $army_id        = $res['army_id'];
+  $firstname      = $res['firstname'];
+  $middle_name    = $res['middle_initial'];
+  $lastname       = $res['lastname'];
+  // $username       = $res['username'];
+  $extname        = $res['extname'];
+  $rank           = $res['rank'];
+  $company        = $res['company'];
+  $afpsn          = $res['afpsn'];
+  $status         = $res['status'];
+  $user_status    = $res['user_status'];
+  $date_modified  = $res['date_modified'];
+  $time_modified  = $res['time_modified'];
 }
   $result_rpi       = mysqli_query($conn, "SELECT * FROM rpi WHERE reservist_id='$user_id'");
   while ($res   = mysqli_fetch_array($result_rpi)) {
