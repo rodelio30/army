@@ -1,5 +1,7 @@
 <?php
 require 'include/connect.php';
+// include 'encrypt.php';
+// include 'decryption.php';
 if(!empty($_SESSION["id"])){
   header("Location: index.php");
 }
@@ -28,7 +30,8 @@ if(isset($_POST["submit"])){
   else{
 		// Checking if password confirmation match
     if($password == $confirmpassword){
-      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$status', '$user_status','$date', '$time')";
+			$hash_pass = password_hash($password, PASSWORD_DEFAULT);
+      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$hash_pass','$user_type','$rank','$company','$afpsn','','','$status', '$user_status','$date', '$time')";
       mysqli_query($conn, $query);
 
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";

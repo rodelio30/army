@@ -226,7 +226,7 @@ if(empty($filename)){
                       </div>
                     </div>
                     <br>
-                    <div class="row" style="margin-bottom: -1rem;">
+                    <!-- <div class="row" style="margin-bottom: -1rem;">
                       <div class="col-sm-2">
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Password</strong></h6>
                       </div>
@@ -235,7 +235,7 @@ if(empty($filename)){
 												<input type="checkbox" onclick="myFunction()"> Show Password
                       </div>
                     </div>
-                    <br>
+                    <br> -->
                     <?php 
                     if($isSchool){
                       ?>
@@ -381,6 +381,7 @@ if(empty($filename)){
                     <hr>
                     <div class="row" id="action-print">
                       <div class="col-6">
+                        <a href="admin_change_pass.php?ID=<?php echo $id?>" class="btn btn-md btn-outline-primary" style="float:left">Change Password</a>
                       </div>
                       <div class="col-6">
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
