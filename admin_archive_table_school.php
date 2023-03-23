@@ -9,7 +9,7 @@
                             <th>Name</th>
                             <th>Date Modified</th>
                             <th>Status</th>
-                            <th id="action-print"><span class="float-end me-5">Action</span> </th>
+                            <th id="action-print"><span class="float-end">Action</span> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,13 @@
                             ";
                             }
                         } else {
-                            echo " <tr>	<td></td> <td></td> <td colspan='2' class='text-center'>No Active School</td> <td></td> <td></td> </tr>";
+                            echo " <tr>	
+                            <td></td> 
+                            <td></td> 
+                            <td class='text-center'>No Active School</td> 
+                            <td></td> 
+                            <td></td> 
+                            </tr>";
                         }
                         ?>
                     </tbody>

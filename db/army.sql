@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 12, 2023 at 02:18 PM
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 18, 2023 at 12:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `army_testing`
+-- Database: `army`
 --
 
 -- --------------------------------------------------------
@@ -105,7 +105,7 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`ap_id`, `name`, `email`, `number`, `purpose`, `text`, `status`, `date_appoint`, `time_appoint`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(12, 'Rodelio Domingo', 'rodel@sample.com', '9273756299', 'Testing', 'To show if working', 'pending', '2023-03-09', '08:05:00.000000', '2023-03-09', '08:01:58.000000', '2023-03-09', '08:02:25.000000');
+(12, 'Rodelio Domingo', 'rodel@sample.com', '9273756299', 'Testing', 'To show if working', 'approved', '2023-03-09', '08:05:00.000000', '2023-03-09', '08:01:58.000000', '2023-03-17', '01:43:34.000000');
 
 -- --------------------------------------------------------
 
@@ -146,7 +146,8 @@ INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastnam
 (46, '', 'Admin', '', 'First', 'fiadmin', 'fiadmin@sample.com', 'sample', 'admin', 'Private', 'none', 'sdfsdf-sdf1', '', '', 'standby', 'active', '2023-03-09', '06:13:13.000000', '2023-03-11', '10:49:26.000000'),
 (47, '', 'Staff', '', 'First', 'fistaff', 'fistaff@sample.com', 'sample', 'staff', 'Private', 'None', '', '', '', 'retired', 'active', '2023-03-09', '06:14:09.000000', '2023-03-09', '06:14:24.000000'),
 (48, '', 'School', '', 'First', 'fischool', 'fischool@sample.com', 'sample', 'school_coordinator', 'Private', 'none', '', 'None', 'No School Address', 'standby', 'active', '2023-03-09', '06:22:05.000000', '2023-03-09', '06:41:41.000000'),
-(49, '', 'Commander', '', 'First', 'ficommander', 'ficommander@sample.com', 'sample', 'commander', 'Private', 'None', 'sdfsadf', '', '', 'retired', 'active', '2023-03-09', '06:22:56.000000', '2023-03-09', '06:24:55.000000');
+(49, '', 'Commander', '', 'First', 'ficommander', 'ficommander@sample.com', 'sample', 'commander', 'Private', 'None', 'sdfsadf', '', '', 'retired', 'active', '2023-03-09', '06:22:56.000000', '2023-03-09', '06:24:55.000000'),
+(55, '', 'Coor', '', 'Deleter', 'codelete', 'codelete@sample.com', 'sample', 'school_coordinator', 'none', 'None', '', 'None', 'N/A', 'standby', 'active', '2023-03-17', '02:57:13.000000', '2023-03-17', '02:57:29.000000');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,7 @@ INSERT INTO `company` (`company_id`, `rank_letter`, `company_name`, `status`, `d
 (7, 'B', 'Bravo', 'active', '2023-03-11', '09:49:57.000000', '2023-03-11', '10:26:01.000000', 'admin'),
 (8, 'C', 'Charlie', 'active', '2023-03-11', '09:50:07.000000', '2023-03-11', '10:26:07.000000', 'admin'),
 (9, 'D', 'Headquarter', 'active', '2023-03-11', '09:50:20.000000', '2023-03-11', '10:26:13.000000', 'admin'),
-(10, '', 'Delta', 'active', '2023-03-11', '10:29:20.000000', '2023-03-11', '10:29:26.000000', 'admin');
+(10, '', 'Delta', 'archive', '2023-03-11', '10:29:20.000000', '2023-03-17', '02:57:51.000000', 'admin');
 
 -- --------------------------------------------------------
 
@@ -731,7 +732,7 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `army_users`
 --
 ALTER TABLE `army_users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `below_info`
@@ -773,7 +774,7 @@ ALTER TABLE `registration_sc`
 -- AUTO_INCREMENT for table `registration_user`
 --
 ALTER TABLE `registration_user`
-  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `reservists`
