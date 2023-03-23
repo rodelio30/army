@@ -93,12 +93,19 @@ if (isset($_POST['rids_update'])) {
     $pos_date_to           = $_POST['pos_date_to'];
 
 
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name',email = '$email', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query Reservist is incorrect....");
+  // update info for army_users
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name',email = '$email', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$army_id'") or die("Query Reservist is incorrect....");
   
+  // update info for reservist 
+  mysqli_query($conn, "update reservists set firstname = '$firstname', lastname = '$lastname', middle_initial = '$middle_name', extname = '$extname', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$user_id'") or die("Query Reservist is incorrect....");
+  
+  // update info for reservist personal information
   mysqli_query($conn, "update rpi set brsvc = '$brsvc', afpos_mos = '$afpos', soc_enlistment = '$soc_enlistment', initial_rank = '$initial_rank', date_of_comsn_enlist = '$date_of_comsn_enlist', authority = '$authority', mobilization_center = '$mobilization_center', designation = '$designation', squad = '$squad', platoon = '$platoon', battalion = '$battalion', size_cs = '$size_cs', size_cap = '$size_cap', size_bda = '$size_bda' where reservist_id = '$user_id'") or die("Query RPI is incorrect....");
 
+  // update info for personal information
   mysqli_query($conn, "update personal_information set p_o = '$p_o', company_name_address = '$company_name_address', tel_no = '$tel_no', home_address = '$home_address', town = '$town', res_tel_no = '$res_tel_no', mobile_number = '$mobile_number', birth_date = '$birth_date', birth_place = '$birth_place', age = '$age', religion = '$religion', blood_type = '$blood_type', tin = '$tin', sss = '$sss', philhealth = '$philhealth', height = '$height', weight = '$weight', marital_status = '$marital_status', sex = '$sex', fb_account = '$fb_account', email = '$email', special_skills = '$special_skills', language = '$language' where reservist_id = '$user_id'") or die("Query Personal Information is incorrect....");
 
+  // update info for below information 
   mysqli_query($conn, "update below_info set 
     rank = '$promo_rank',
     date_of_rank = '$date_of_rank',
@@ -153,7 +160,7 @@ if (isset($_POST['rids_update'])) {
                         <h1 class="h3 mb-3 header-dash">
                           <?php if(!$isReservist) {
                             ?>
-                          <a href="admin_rids.php" class="linked-navigation">Reservist List </a> / <a href="admin_rids_view.php?ID=<?php echo $user_id?>" class="linked-navigation"><?php echo $username ?> </a> 
+                          <a href="admin_rids.php" class="linked-navigation">Reservist List </a> / <a href="admin_rids_view.php?ID=<?php echo $user_id?>" class="linked-navigation"><?php echo $firstname . ' ' . $lastname?> </a> 
                             <?php
                           } ?>
                         </h1>

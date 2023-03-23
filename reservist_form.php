@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-12">
-        <div class="card" id="add-top">
+        <!-- <div class="card" id="add-top"> -->
+        <div class="card">
             <div class="card-body">
             <?php include 'print_header.php'?>
             <h1 class="h3 mb-0 mt-2 text-center">PHILIPPINE ARMY</h1>
@@ -22,9 +23,13 @@
                                 <span class="small">Firstname</span> 
                                 <br> <?php echo $firstname ?>
                             </td>
-                            <td colspan="3">
+                            <td colspan="2">
                                 <span class="small">Middle Name</span> 
                                 <br><?php echo $middle_name ?>
+                            </td>
+                            <td colspan="1">
+                                <span class="small">Extension Name</span> 
+                                <br><?php echo $extname ?>
                             </td>
                             <td colspan="2"> 
                                 <span class="small">AFPSN</span> 
@@ -217,7 +222,7 @@
                             <td colspan="4">
                                 <span class="small">Email Address:
                                 </span> 
-                                <br><?php echo $email_user ?>
+                                <br><?php echo $email ?>
                             </td>
                         </tr>
                         <tr>

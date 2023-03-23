@@ -32,8 +32,11 @@
                             <td class="font_small" colspan="2">Firstname
                                 <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="Enter Firstname">
                             </td>
-                            <td class="font_small" colspan="2">Middle Name
+                            <td class="font_small">Middle Name
                                 <input type="text" class="form-control" id="middle_name" name="middle_name" value="<?php echo $middle_name ?>" placeholder="Enter Middlename">
+                            </td>
+                            <td class="font_small">Extension Name
+                                <input type="text" class="form-control" id="extname" name="extname" value="<?php echo $extname ?>" placeholder="Enter Extension Name">
                             </td>
                             <td class="font_small" colspan="2">AFPSN 
                                 <input type="text" class="form-control" id="afpsn" name="afpsn" value="<?php echo $afpsn ?>" placeholder="Enter AFPSN">
@@ -200,7 +203,7 @@
                                 <input type="text" class="form-control" id="fb_account" name="fb_account" value="<?php echo $fb_account?>" placeholder="Enter FB: Account">
                             </td>
                             <td class="font_small" colspan="4">Email Address:
-                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email_user?>" placeholder="Enter Email Address">
+                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email?>" placeholder="Enter Email Address">
                             </td>
                         </tr>
                         <tr>
@@ -368,7 +371,7 @@
 
                     <div class="row">
                       <div class="col-6">
-                        <a href="admin_rids_view.php?ID=<?php echo $id?>" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
+                        <a href="admin_rids_view.php?ID=<?php echo $user_id?>" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
                         <button type="submit" name="rids_update" class="btn btn-md btn-outline-success m-2 mb-3" style="float:right">Update</button>
