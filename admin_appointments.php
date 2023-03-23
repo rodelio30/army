@@ -1,5 +1,9 @@
 <?php 
 include 'system_checker.php';
+if($isSchool || $isCommander || $isReservist){
+  header("Location: index.php");
+}
+
 if (isset($_POST['update'])) {
   $app_id         = $_POST['app_id'];
   $purpose        = $_POST['purpose'];

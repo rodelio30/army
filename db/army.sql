@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 18, 2023 at 12:54 AM
+-- Generation Time: Mar 23, 2023 at 11:19 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `army`
+-- Database: `army_uat`
 --
 
 -- --------------------------------------------------------
@@ -38,13 +38,6 @@ CREATE TABLE `announcements` (
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `announcements`
---
-
-INSERT INTO `announcements` (`ann_id`, `img`, `title`, `description`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(5, 'news.png', 'Balita', 'This news broom', 'active', '2023-03-09', '07:58:39.000000', '2023-03-09', '07:58:48.000000');
 
 -- --------------------------------------------------------
 
@@ -71,13 +64,6 @@ CREATE TABLE `aor` (
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `aor`
---
-
-INSERT INTO `aor` (`aor_id`, `company_name`, `place`, `status`) VALUES
-(6, 'Charlie', 'Palayan City', 'active');
-
 -- --------------------------------------------------------
 
 --
@@ -99,13 +85,6 @@ CREATE TABLE `appointments` (
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `appointments`
---
-
-INSERT INTO `appointments` (`ap_id`, `name`, `email`, `number`, `purpose`, `text`, `status`, `date_appoint`, `time_appoint`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(12, 'Rodelio Domingo', 'rodel@sample.com', '9273756299', 'Testing', 'To show if working', 'approved', '2023-03-09', '08:05:00.000000', '2023-03-09', '08:01:58.000000', '2023-03-17', '01:43:34.000000');
 
 -- --------------------------------------------------------
 
@@ -141,13 +120,7 @@ CREATE TABLE `army_users` (
 --
 
 INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank`, `company`, `afpsn`, `school_name`, `school_address`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, '', 'Army', '', 'Admin', 'admin', 'army@gmail.com', 'admin', 'sadmin', 'none', 'none', '', '', '', 'standby', 'active', '2023-03-04', '00:58:24.441520', '2023-03-09', '10:16:47.000000'),
-(45, '', 'Rodelio', '', 'Domingo', 'rodel', 'rodel@sample.com', 'sample', 'reservist', 'Private', 'None', 'asdjkfh-sj1ksldf', '', '', 'ready', 'active', '2023-03-09', '05:43:23.000000', '2023-03-11', '10:10:30.000000'),
-(46, '', 'Admin', '', 'First', 'fiadmin', 'fiadmin@sample.com', 'sample', 'admin', 'Private', 'none', 'sdfsdf-sdf1', '', '', 'standby', 'active', '2023-03-09', '06:13:13.000000', '2023-03-11', '10:49:26.000000'),
-(47, '', 'Staff', '', 'First', 'fistaff', 'fistaff@sample.com', 'sample', 'staff', 'Private', 'None', '', '', '', 'retired', 'active', '2023-03-09', '06:14:09.000000', '2023-03-09', '06:14:24.000000'),
-(48, '', 'School', '', 'First', 'fischool', 'fischool@sample.com', 'sample', 'school_coordinator', 'Private', 'none', '', 'None', 'No School Address', 'standby', 'active', '2023-03-09', '06:22:05.000000', '2023-03-09', '06:41:41.000000'),
-(49, '', 'Commander', '', 'First', 'ficommander', 'ficommander@sample.com', 'sample', 'commander', 'Private', 'None', 'sdfsadf', '', '', 'retired', 'active', '2023-03-09', '06:22:56.000000', '2023-03-09', '06:24:55.000000'),
-(55, '', 'Coor', '', 'Deleter', 'codelete', 'codelete@sample.com', 'sample', 'school_coordinator', 'none', 'None', '', 'None', 'N/A', 'standby', 'active', '2023-03-17', '02:57:13.000000', '2023-03-17', '02:57:29.000000');
+(1, '', 'Army', '', 'Admin', 'admin', 'super_army@gmail.com', 'admin', 'sadmin', '', '', '', '', '', 'standby', 'active', '2023-03-23', '18:17:14.000000', '2023-03-23', '18:17:14.000000');
 
 -- --------------------------------------------------------
 
@@ -186,14 +159,6 @@ CREATE TABLE `below_info` (
   `pos_date_to` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `below_info`
---
-
-INSERT INTO `below_info` (`bi_id`, `reservist_id`, `rank`, `date_of_rank`, `rank_authority`, `military_schooling`, `school`, `school_date_graduated`, `awards`, `awards_authority`, `date_awarded`, `relation`, `name`, `course`, `course_school`, `course_date_graduated`, `unit_cad`, `unit_authority`, `unit_date_started`, `unit_date_end`, `unit_assignment`, `assign_authority`, `assign_date_from`, `assign_date_to`, `position`, `pos_authority`, `pos_date_from`, `pos_date_to`) VALUES
-(7, 45, 'Private', '0000-00-00', '', '', '', '0000-00-00', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00', '0000-00-00'),
-(8, 54, '', '0000-00-00', '', '', '', '0000-00-00', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', '', '0000-00-00', '0000-00-00');
-
 -- --------------------------------------------------------
 
 --
@@ -210,35 +175,6 @@ CREATE TABLE `company` (
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL,
   `uploader` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `company`
---
-
-INSERT INTO `company` (`company_id`, `rank_letter`, `company_name`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
-(6, 'A', 'Alpha', 'active', '2023-03-11', '09:49:46.000000', '2023-03-11', '10:27:56.000000', 'admin'),
-(7, 'B', 'Bravo', 'active', '2023-03-11', '09:49:57.000000', '2023-03-11', '10:26:01.000000', 'admin'),
-(8, 'C', 'Charlie', 'active', '2023-03-11', '09:50:07.000000', '2023-03-11', '10:26:07.000000', 'admin'),
-(9, 'D', 'Headquarter', 'active', '2023-03-11', '09:50:20.000000', '2023-03-11', '10:26:13.000000', 'admin'),
-(10, '', 'Delta', 'archive', '2023-03-11', '10:29:20.000000', '2023-03-17', '02:57:51.000000', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `courses`
---
-
-CREATE TABLE `courses` (
-  `course_id` int(250) NOT NULL,
-  `course_name` varchar(200) NOT NULL,
-  `description` varchar(250) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `student_count` int(250) NOT NULL,
-  `date_created` date NOT NULL,
-  `time_created` time(6) NOT NULL,
-  `date_modified` date NOT NULL,
-  `time_modified` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -275,14 +211,6 @@ CREATE TABLE `personal_information` (
   `language` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `personal_information`
---
-
-INSERT INTO `personal_information` (`pi_id`, `reservist_id`, `p_o`, `company_name_address`, `tel_no`, `home_address`, `town`, `res_tel_no`, `mobile_number`, `birth_date`, `birth_place`, `age`, `religion`, `blood_type`, `tin`, `sss`, `philhealth`, `height`, `weight`, `marital_status`, `sex`, `fb_account`, `email`, `special_skills`, `language`) VALUES
-(7, 45, '', '', 0, '', '', '', '09273756299', '0000-00-00', '', 0, '', '', '', '', '', 0, 0, '', '', '', 'rodel@sample.com', '', ''),
-(8, 54, '', '', 0, '', '', '', '', '0000-00-00', '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -300,36 +228,6 @@ CREATE TABLE `ranks` (
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL,
   `uploader` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ranks`
---
-
-INSERT INTO `ranks` (`rank_id`, `ranked`, `acronym`, `rank_name`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
-(18, 0, 'Pvt', 'Private', 'active', '2023-03-09', '05:42:18.000000', '2023-03-09', '05:42:36.000000', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `registration_sc`
---
-
-CREATE TABLE `registration_sc` (
-  `sc_id` int(100) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `school_name` varchar(100) NOT NULL,
-  `school_address` varchar(100) NOT NULL,
-  `rank` varchar(100) NOT NULL,
-  `user_type` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `user_status` varchar(10) NOT NULL,
-  `date` date NOT NULL,
-  `time` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -365,12 +263,14 @@ CREATE TABLE `registration_user` (
 
 CREATE TABLE `reservists` (
   `rg_id` int(250) NOT NULL,
+  `army_id` int(200) NOT NULL,
   `firstname` varchar(250) NOT NULL,
   `middle_initial` varchar(20) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `extname` varchar(10) NOT NULL,
   `afpsn` varchar(250) NOT NULL,
   `rank` varchar(100) NOT NULL,
+  `company` varchar(20) NOT NULL,
   `date_of_birth` date NOT NULL,
   `home_address` varchar(250) NOT NULL,
   `date_graduated` varchar(250) NOT NULL,
@@ -378,22 +278,12 @@ CREATE TABLE `reservists` (
   `sex` varchar(20) NOT NULL,
   `school_graduated` varchar(250) NOT NULL,
   `status` varchar(30) NOT NULL,
+  `user_status` varchar(10) NOT NULL,
   `date_created` date NOT NULL,
   `time_created` time(6) NOT NULL,
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `reservists`
---
-
-INSERT INTO `reservists` (`rg_id`, `firstname`, `middle_initial`, `lastname`, `extname`, `afpsn`, `rank`, `date_of_birth`, `home_address`, `date_graduated`, `age`, `sex`, `school_graduated`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(17, 'Rodelio', 'Bago', 'Domingo', '', 'alskdjfo=iodjf1', 'none', '1997-12-30', 'Poblacion West, SCM, Nueva Ecija', '2025-2026', 25, 'Male', 'None', 'archive', '2023-03-09', '06:43:39.000000', '2023-03-11', '09:42:24.000000'),
-(18, 'Analyn', 'M. ', 'Paraguison', '', 'lskdjf-sdh1', 'none', '2002-08-18', 'Rang Ayan, Munoz, Nueva Ecija', '2019-2020', 20, 'Female', '', 'active', '2023-03-11', '09:45:48.000000', '2023-03-12', '09:10:12.000000'),
-(19, 'Shai', 'B.', 'Obedoza', '', 'flaksdfpsdkfj1lkf2', 'none', '2000-03-06', 'Rang Ayan, Munoz, Nueva Ecija', '2019-2020', 23, 'Female', 'None', 'active', '2023-03-11', '09:47:42.000000', '2023-03-12', '09:11:21.000000'),
-(20, 'Rodel', 'B.', 'Domingo', '', 'lkjdf=dfj2lk', 'none', '1997-12-30', 'Munoz, Nueva Ecija', '2019-2020', 25, 'Male', 'None', 'active', '2023-03-11', '11:00:16.000000', '2023-03-11', '11:00:16.000000'),
-(21, 'Rodelio', 'B.', 'Domingo', 'Jr.', 'kljdf-dfjl10jkdf7 ', 'none', '1997-12-30', 'Munoz, Nueva Ecija', '2019-2020', 25, 'Male', 'None', 'active', '2023-03-12', '09:05:24.000000', '2023-03-12', '09:08:09.000000');
 
 -- --------------------------------------------------------
 
@@ -420,14 +310,6 @@ CREATE TABLE `rpi` (
   `size_bda` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `rpi`
---
-
-INSERT INTO `rpi` (`rpi_id`, `reservist_id`, `brsvc`, `afpos_mos`, `soc_enlistment`, `initial_rank`, `date_of_comsn_enlist`, `authority`, `mobilization_center`, `designation`, `squad`, `platoon`, `battalion`, `size_cs`, `size_cap`, `size_bda`) VALUES
-(7, 45, '', 'INF', 'MNSA', '', '', '', '', '', '', '', '', 0, 0, 0),
-(8, 54, '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -447,14 +329,6 @@ CREATE TABLE `schools` (
   `time_modified` time(6) NOT NULL,
   `uploader` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `schools`
---
-
-INSERT INTO `schools` (`school_id`, `school_name`, `acronym`, `description`, `school_address`, `status`, `date_created`, `time_created`, `date_modified`, `time_modified`, `uploader`) VALUES
-(3, 'Central Luzon State University', 'CLSU', 'Best School', 'Munoz, Nueva Ecija', 'inactive', '2023-03-11', '10:32:17.000000', '2023-03-11', '10:32:17.000000', 'admin'),
-(4, 'Nueva Ecija University of Santo Thomas', 'NEUST', 'Broom', 'Cab', 'inactive', '2023-03-11', '10:51:35.000000', '2023-03-11', '10:51:35.000000', 'fiadmin');
 
 -- --------------------------------------------------------
 
@@ -477,15 +351,6 @@ CREATE TABLE `seminars` (
   `time_modified` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `seminars`
---
-
-INSERT INTO `seminars` (`seminar_id`, `seminar_name`, `description`, `venue`, `start_date`, `end_date`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(3, 'First Seminar', 'First Seminar for the philippines', 'Munoz', '2023-03-09', '2023-03-10', 'active', 0, '2023-03-09', '07:07:13.000000', '2023-03-12', '08:43:15.000000'),
-(4, 'Second Seminar', 'Jaan lang', 'San Jose', '2023-03-09', '2023-03-10', 'active', 0, '2023-03-09', '07:39:24.000000', '2023-03-12', '08:43:09.000000'),
-(5, 'Final Seminar', 'Every day is lifer', 'Munoz', '2023-03-13', '2023-03-15', 'inactive', 0, '2023-03-11', '10:12:03.000000', '2023-03-11', '10:12:03.000000');
-
 -- --------------------------------------------------------
 
 --
@@ -498,38 +363,6 @@ CREATE TABLE `seminar_attendance` (
   `user_id` int(250) NOT NULL,
   `date_attended` date NOT NULL,
   `time_attended` time(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `seminar_attendance`
---
-
-INSERT INTO `seminar_attendance` (`att_id`, `seminar_id`, `user_id`, `date_attended`, `time_attended`) VALUES
-(5, 3, 45, '2023-03-12', '09:15:36.000000');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `students`
---
-
-CREATE TABLE `students` (
-  `student_id` int(250) NOT NULL,
-  `id_no` varchar(250) NOT NULL,
-  `firstname` varchar(250) NOT NULL,
-  `lastname` varchar(250) NOT NULL,
-  `address` varchar(250) NOT NULL,
-  `birth_date` date NOT NULL,
-  `grade` varchar(20) NOT NULL,
-  `afpsn` varchar(250) NOT NULL,
-  `course` varchar(250) NOT NULL,
-  `semester` varchar(20) NOT NULL,
-  `academic_year` varchar(20) NOT NULL,
-  `date_created` date NOT NULL,
-  `time_created` time(6) NOT NULL,
-  `date_modified` date NOT NULL,
-  `time_modified` time(6) NOT NULL,
-  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -552,15 +385,6 @@ CREATE TABLE `trainings` (
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `trainings`
---
-
-INSERT INTO `trainings` (`training_id`, `training_name`, `description`, `venue`, `start_date`, `end_date`, `status`, `student_count`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(5, 'First Training', 'Events', 'CLSU', '2023-03-09', '2023-03-10', 'archive', 0, '2023-03-09', '06:56:24.000000', '2023-03-11', '11:10:54.000000'),
-(6, 'Second Training', 'Jaan lang', 'Munoz', '2023-03-09', '2023-03-10', 'archive', 0, '2023-03-09', '07:38:52.000000', '2023-03-11', '11:10:52.000000'),
-(7, 'Final Training', 'Everyday', 'Pag asa gym', '2023-03-13', '2023-03-14', 'inactive', 0, '2023-03-11', '10:11:36.000000', '2023-03-11', '10:11:36.000000');
 
 -- --------------------------------------------------------
 
@@ -623,12 +447,6 @@ ALTER TABLE `company`
   ADD PRIMARY KEY (`company_id`);
 
 --
--- Indexes for table `courses`
---
-ALTER TABLE `courses`
-  ADD PRIMARY KEY (`course_id`);
-
---
 -- Indexes for table `personal_information`
 --
 ALTER TABLE `personal_information`
@@ -639,12 +457,6 @@ ALTER TABLE `personal_information`
 --
 ALTER TABLE `ranks`
   ADD PRIMARY KEY (`rank_id`);
-
---
--- Indexes for table `registration_sc`
---
-ALTER TABLE `registration_sc`
-  ADD PRIMARY KEY (`sc_id`);
 
 --
 -- Indexes for table `registration_user`
@@ -681,12 +493,6 @@ ALTER TABLE `seminars`
 --
 ALTER TABLE `seminar_attendance`
   ADD PRIMARY KEY (`att_id`);
-
---
--- Indexes for table `students`
---
-ALTER TABLE `students`
-  ADD PRIMARY KEY (`student_id`);
 
 --
 -- Indexes for table `trainings`
@@ -732,13 +538,13 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `army_users`
 --
 ALTER TABLE `army_users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `below_info`
 --
 ALTER TABLE `below_info`
-  MODIFY `bi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `bi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -747,16 +553,10 @@ ALTER TABLE `company`
   MODIFY `company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `courses`
---
-ALTER TABLE `courses`
-  MODIFY `course_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  MODIFY `pi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ranks`
@@ -765,28 +565,22 @@ ALTER TABLE `ranks`
   MODIFY `rank_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `registration_sc`
---
-ALTER TABLE `registration_sc`
-  MODIFY `sc_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `registration_user`
 --
 ALTER TABLE `registration_user`
-  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `reservists`
 --
 ALTER TABLE `reservists`
-  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `rpi`
 --
 ALTER TABLE `rpi`
-  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `schools`
@@ -805,12 +599,6 @@ ALTER TABLE `seminars`
 --
 ALTER TABLE `seminar_attendance`
   MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `students`
---
-ALTER TABLE `students`
-  MODIFY `student_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trainings`

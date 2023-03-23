@@ -1,5 +1,8 @@
 <?php
 include 'system_checker.php';
+if($isSchool || $isCommander || $isReservist){
+  header("Location: index.php");
+}
 
 $ranks_id = $_GET['ID'];
 
