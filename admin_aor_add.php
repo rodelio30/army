@@ -67,7 +67,6 @@ if (isset($_POST['submit'])) {
                       <label for="exampleInputEmail1">Company Name</label>
                       <!-- <input type="text" class="form-control" id="name" name="name" placeholder="Enter company Name" required> -->
                       <select class="form-control" id="company_name" name="company_name">
-                        <option value="None">None</option>
                           <?php
                           $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
                           while (list($company_name) = mysqli_fetch_array($result)) {

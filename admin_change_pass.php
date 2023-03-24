@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
             $hash_pass = password_hash($new_password, PASSWORD_DEFAULT);
             mysqli_query($conn, "update army_users set password = '$hash_pass' where id = '$id'") or die("Query 4 is incorrect....");
 
-            echo "<script type='text/javascript'>alert('Password Change!'); document.location='pages-profile.php' </script>";
+            echo "<script type='text/javascript'>alert('Password Change! You are automatically log out!'); document.location='include/sign-out.php' </script>";
         }
         else{
         echo

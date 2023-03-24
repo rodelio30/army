@@ -9,6 +9,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#training-contents" id="training-tab" data-bs-toggle="tab">Trainings</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#attendee-contents" id="attendee-tab" data-bs-toggle="tab">Attendee</a>
+          </li>
         </ul>
         <div class="tab-content">
           <div id="seminar-contents" class="tab-pane active">
@@ -16,6 +19,9 @@
           </div>
           <div id="training-contents" class="tab-pane">
             <?php include 'admin_archive_table_trainings.php';?>
+         </div>
+          <div id="attendee-contents" class="tab-pane">
+            <?php include 'admin_archive_table_attendee.php';?>
          </div>
          </div>
       </div>
