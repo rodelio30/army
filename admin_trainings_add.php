@@ -15,10 +15,10 @@ if (isset($_POST['submit'])) {
   $date          = date("Y-m-d");
   $time          = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' OR venue = '$venue'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' AND start_date = '$start_date' AND end_date = '$end_date'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
-    "<script> alert('This Traning or venue Has Already Taken'); </script>";
+    "<script> alert('The information has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
     $query = "INSERT INTO trainings VALUES('','$training_name','$description','$venue','$start_date','$end_date','$status','','$date','$time','$date','$time')";
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Description</label>
-                      <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" required>
+                      <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
                     </div>
                     <br>
                     <div class="row">

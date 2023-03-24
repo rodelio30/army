@@ -48,6 +48,32 @@ if ($status == "active") {
 } else if ($status == "inactive") {
   $sel_inactive = "selected";
 }
+
+if (isset($_POST['sem_approved'])) {
+  $att_id    = $_POST['att_id'];
+  $firstname = $_POST['firstname'];
+  $lastname  = $_POST['lastname'];
+  $status    = 'Approved';
+
+  mysqli_query($conn, "update seminar_attendance set status = '$status' where att_id = '$att_id'") or die("Query 4 is incorrect....");
+
+  echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
+  header('Refresh: 0; url=admin_seminars_view.php?ID=' . $seminars_id . '');
+  // End of Else in Inactive if
+}
+
+if (isset($_POST['sem_declined'])) {
+  $att_id    = $_POST['att_id'];
+  $firstname = $_POST['firstname'];
+  $lastname  = $_POST['lastname'];
+  $status    = 'Declined';
+
+  mysqli_query($conn, "update seminar_attendance set status = '$status' where att_id = '$att_id'") or die("Query 4 is incorrect....");
+
+  echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
+  header('Refresh: 0; url=admin_seminars_view.php?ID=' . $seminars_id . '');
+  // End of Else in Inactive if
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

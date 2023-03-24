@@ -17,7 +17,9 @@
             <th>Attendee</th>
             <th>Date / Time Attended</th>
             <th>Status</th>
+            <?php if(!$isReservist) {?>
             <th>Action</th>
+            <?php } ?>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +27,7 @@
         include 'counter/training_attendance_counter.php';
 
         if ($training_attendance_counter > 0) {
-                $result = mysqli_query($conn, "select att_id, training_id, user_id, date_attended, time_attended, status from training_attendance WHERE training_id = $trainings_id && status != 'Declined'ORDER BY att_id") or die("Query for Training Attendance Error....");
+                $result = mysqli_query($conn, "select att_id, training_id, user_id, date_attended, time_attended, status from training_attendance WHERE training_id = $trainings_id && status != 'Declined' ORDER BY att_id") or die("Query for Training Attendance Error....");
             while (list($att_id, $at_training_id, $at_user_id, $date_attended, $time_attended, $status) = mysqli_fetch_array($result)) {
                 $time_formatted   = date("g:i a ", strtotime($time_attended));
                 $result_tn       = mysqli_query($conn, "SELECT * FROM trainings WHERE training_id='$at_training_id'");
@@ -39,55 +41,53 @@
                   $firstname = $res['firstname'];
                   $lastname  = $res['lastname'];
                 }
-                if($status == 'Pending'){
-                echo "
-                    <tr>	
-                        <form method='post'>
-                            <td>$firstname $lastname</td>
-                            <td>$date_attended $time_formatted</td>
-                            <td>$status</td>
-                            <td>
-                            
-                            <button type='submit' name='approved' class='btn btn-md btn-outline-primary '>Approved</button>
-                            | 
-                            <button type='submit' name='declined' class='btn btn-md btn-outline-warning'>Declined</button>
-                            </td>
-                            <input type='hidden' name='training_id' value='$training_id'>
-                            <input type='hidden' name='att_id' value='$att_id'>
-                            <input type='hidden' name='firstname' value='$firstname'>
-                            <input type='hidden' name='lastname' value='$lastname'>
-                        </form>
-                    </tr>
-                    "; 
-                } else if($status == 'Approved') {
-                echo "
-                    <tr>	
-                        <form method='post'>
-                            <td>$firstname $lastname</td>
-                            <td>$date_attended $time_formatted</td>
-                            <td>$status</td>
-                            <td>
-                            <button type='submit' name='declined' class='btn btn-md btn-outline-warning'>Declined</button>
-                            </td>
-                            <input type='hidden' name='training_id' value='$training_id'>
-                            <input type='hidden' name='att_id' value='$att_id'>
-                            <input type='hidden' name='firstname' value='$firstname'>
-                            <input type='hidden' name='lastname' value='$lastname'>
-                        </form>
-                    </tr>
-                    "; 
-                }
-                else {
-                echo "
-                    <tr>	
-                            <td>$firstname $lastname</td>
-                            <td>$date_attended $time_formatted</td>
-                            <td>$status</td>
-                            <td>
-                            </td>
-                    </tr>
-                    "; 
-                }
+                    if($status == 'Pending' && !$isReservist){
+                    echo "
+                        <tr>	
+                            <form method='post'>
+                                <td>$firstname $lastname</td>
+                                <td>$date_attended $time_formatted</td>
+                                <td>$status</td>
+                                <td>
+                                
+                                <button type='submit' name='approved' class='btn btn-md btn-outline-primary '>Approved</button>
+                                | 
+                                <button type='submit' name='declined' class='btn btn-md btn-outline-warning'>Declined</button>
+                                </td>
+                                <input type='hidden' name='training_id' value='$training_id'>
+                                <input type='hidden' name='att_id' value='$att_id'>
+                                <input type='hidden' name='firstname' value='$firstname'>
+                                <input type='hidden' name='lastname' value='$lastname'>
+                            </form>
+                        </tr>
+                        "; 
+                    } else if($status == 'Approved' && !$isReservist) {
+                    echo "
+                        <tr>	
+                            <form method='post'>
+                                <td>$firstname $lastname</td>
+                                <td>$date_attended $time_formatted</td>
+                                <td>$status</td>
+                                <td>
+                                <button type='submit' name='declined' class='btn btn-md btn-outline-warning'>Declined</button>
+                                </td>
+                                <input type='hidden' name='training_id' value='$training_id'>
+                                <input type='hidden' name='att_id' value='$att_id'>
+                                <input type='hidden' name='firstname' value='$firstname'>
+                                <input type='hidden' name='lastname' value='$lastname'>
+                            </form>
+                        </tr>
+                        "; 
+                    }
+                    else {
+                    echo "
+                        <tr>	
+                                <td>$firstname $lastname</td>
+                                <td>$date_attended $time_formatted</td>
+                                <td>$status</td>
+                        </tr>
+                        "; 
+                    }
                 }
         }
           else {

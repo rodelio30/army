@@ -16,10 +16,11 @@ if (isset($_POST['submit'])) {
   $date          = date("Y-m-d");
   $time          = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM seminars WHERE seminar_name = '$seminar_name'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM seminars WHERE seminar_name = '$seminar_name' AND start_date = '$start_date' AND end_date = '$end_date'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' AND start_date = '$start_date' AND end_date = '$end_date'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
-    "<script> alert('This Traning Has Already Taken'); </script>";
+    "<script> alert('This information has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
     $query = "INSERT INTO seminars VALUES('','$seminar_name','$description','$venue','$start_date','$end_date','$status','','$date','$time','$date','$time')";

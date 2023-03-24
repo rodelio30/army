@@ -25,8 +25,8 @@
                                     <td scope='row'>$purpose</td>
                                     <td>$date_appoint</td>
                                     <td id='action-print'>
-                                    <a href=\"archive/appointments/appointments_delete.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
-                                    <a href=\"archive/appointments/appointments_active.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want this Announcement return to active?')\" class='btn btn-outline-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
+                                    <a href=\"archive/appointments/appointments_delete.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+                                    <a href=\"archive/appointments/appointments_active.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want this Announcement return to active?')\" class='btn btn-outline-primary btn-sm float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
                                     </td>
                                 </tr>
                             ";

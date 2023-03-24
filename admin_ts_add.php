@@ -25,7 +25,7 @@ if (isset($_POST['submit_seminar'])) {
   $seminar_id  = $_POST['seminar_id'];
   $date         = date("Y-m-d");
   $time         = date("h:i:s");
-  $status       = 'pending';
+  $status       = 'Pending';
 
   $duplicate = mysqli_query($conn, "SELECT * FROM seminar_attendance WHERE user_id = '$id' && seminar_id = '$seminar_id'");
   if (mysqli_num_rows($duplicate) > 0) {
@@ -78,14 +78,14 @@ if (isset($_POST['submit_seminar'])) {
                               while (list($training_id, $training_name, $venue) = mysqli_fetch_array($result)) {
                               echo "
                                 <form method='post'>
-                                <tr>	
-                                    <td>$training_name</td>
-                                    <td>$venue</td>
-                                    <input type='hidden' name='training_id' value='$training_id'>
-                                    <td>
-                                      <button type='submit' class='btn btn-outline-success' name='submit_training' style='float: right'>Attend</button>
-                                    </td>
-                                </tr>
+                                  <tr>	
+                                      <td>$training_name</td>
+                                      <td>$venue</td>
+                                      <input type='hidden' name='training_id' value='$training_id'>
+                                      <td>
+                                        <button type='submit' class='btn btn-outline-success' name='submit_training' style='float: right'>Attend</button>
+                                      </td>
+                                  </tr>
                                 </form>
                               "; 
                               } 
@@ -133,8 +133,8 @@ if (isset($_POST['submit_seminar'])) {
   <script src="js/app.js"></script>
 
     <!-- This line below is the jquery for the datatables -->
-    <script src="js/jquery-3.5.1.js"></script>
-    <script src="js/jquery.dataTable.min.js"></script>
+    <!-- <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.dataTable.min.js"></script> -->
 </body>
 
 </html>
