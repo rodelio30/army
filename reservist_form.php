@@ -335,7 +335,7 @@
                                 <span class="small">Name
                                 </span> 
 
-                                <br><?php echo $name ?>
+                                <br><?php echo $dependents_name ?>
                             </td>
                         </tr>
                     </tbody>

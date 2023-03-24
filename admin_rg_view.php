@@ -91,17 +91,18 @@ if (isset($_POST['update'])) {
   if($user_status == 'inactive') {
     mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
   } else if($user_status == 'active') {
-    $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
-     if (mysqli_query($conn, $query_reservist)) {
-      // Inserting other info for reservist in personal information
-        mysqli_query($conn, "insert into personal_information (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
 
-      // Inserting other info for reservist in reservist personal information
-        mysqli_query($conn, "insert into rpi (reservist_id) values('$rg_id')")  or die("Query RPI is incorrect.....");
-
-      // Inserting other info for reservist in below information
-        mysqli_query($conn, "insert into below_info (reservist_id) values('$rg_id')")  or die("Query Below Info is incorrect.....");
-     }
+    $checker_id = mysqli_query($conn, "SELECT * FROM rids WHERE reservist_id = '$rg_id'");
+    if (mysqli_num_rows($checker_id) > 0) {
+      $query_reservist = "update reservists set status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+      mysqli_query($conn, $query_reservist);
+    } else {
+      $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+      if (mysqli_query($conn, $query_reservist)) {
+        // Inserting other info for reservist in personal information
+          mysqli_query($conn, "insert into rids (reservist_id) values('$rg_id')")  or die("Query RIDS is incorrect.....");
+      }
+    }
   }
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
