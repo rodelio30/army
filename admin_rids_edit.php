@@ -103,14 +103,40 @@ if (isset($_POST['rids_update'])) {
   mysqli_query($conn, "update reservists set firstname = '$firstname', lastname = '$lastname', middle_initial = '$middle_name', extname = '$extname', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$user_id'") or die("Query Reservist is incorrect....");
   
   // update info for reservist personal information
-  mysqli_query($conn, "update rpi set brsvc = '$brsvc', afpos_mos = '$afpos', soc_enlistment = '$soc_enlistment', initial_rank = '$initial_rank', date_of_comsn_enlist = '$date_of_comsn_enlist', authority = '$authority', mobilization_center = '$mobilization_center', designation = '$designation', squad = '$squad', platoon = '$platoon', battalion = '$battalion', size_cs = '$size_cs', size_cap = '$size_cap', size_bda = '$size_bda' where reservist_id = '$user_id'") or die("Query RPI is incorrect....");
-
-  // update info for personal information
-  mysqli_query($conn, "update personal_information set p_o = '$p_o', company_name_address = '$company_name_address', tel_no = '$tel_no', home_address = '$home_address', town = '$town', res_tel_no = '$res_tel_no', mobile_number = '$mobile_number', birth_date = '$birth_date', birth_place = '$birth_place', age = '$age', religion = '$religion', blood_type = '$blood_type', tin = '$tin', sss = '$sss', philhealth = '$philhealth', height = '$height', weight = '$weight', marital_status = '$marital_status', sex = '$sex', fb_account = '$fb_account', email = '$email', special_skills = '$special_skills', language = '$language' where reservist_id = '$user_id'") or die("Query Personal Information is incorrect....");
-
-  // update info for below information 
-  mysqli_query($conn, "update below_info set 
-    rank = '$promo_rank',
+  mysqli_query($conn, "update rids set 
+    brsvc = '$brsvc',
+    afpos_mos = '$afpos', 
+    soc_enlistment = '$soc_enlistment', 
+    initial_rank = '$initial_rank', 
+    date_of_comsn_enlist = '$date_of_comsn_enlist', 
+    authority = '$authority', 
+    mobilization_center = '$mobilization_center', 
+    designation = '$designation', 
+    squad = '$squad', 
+    platoon = '$platoon', 
+    battalion = '$battalion', 
+    size_cs = '$size_cs', 
+    size_cap = '$size_cap', 
+    size_bda = '$size_bda',
+    p_o = '$p_o', 
+    company_name_address = '$company_name_address', 
+    tel_no = '$tel_no',
+    town = '$town', 
+    res_tel_no = '$res_tel_no', 
+    mobile_number = '$mobile_number', 
+    birth_place = '$birth_place', 
+    religion = '$religion', 
+    blood_type = '$blood_type', 
+    tin = '$tin', 
+    sss = '$sss', 
+    philhealth = '$philhealth', 
+    height = '$height', 
+    weight = '$weight', 
+    marital_status = '$marital_status', 
+    fb_account = '$fb_account', 
+    email = '$email', 
+    special_skills = '$special_skills', 
+    language = '$language',
     date_of_rank = '$date_of_rank',
     rank_authority = '$rank_authority',
     military_schooling = '$military_schooling',
@@ -120,7 +146,7 @@ if (isset($_POST['rids_update'])) {
     awards_authority = '$awards_authority',
     date_awarded = '$date_awarded',
     relation = '$relation',
-    name = '$name',
+    dependents_name = '$name',
     course = '$course',
     course_school = '$course_school',
     course_date_graduated = '$course_date_graduated',

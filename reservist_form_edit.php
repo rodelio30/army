@@ -281,7 +281,7 @@
                                 <input type="text" class="form-control" id="relation" name="relation" value="<?php echo $relation?>" placeholder="Enter Relation">
                         </td>
                             <td class="font_small">Name
-                                <input type="text" class="form-control" id="name" name="name" value="<?php echo $name?>" placeholder="Enter Name">
+                                <input type="text" class="form-control" id="name" name="name" value="<?php echo $dependents_name?>" placeholder="Enter Name">
                             </td>
                         </tr>
                     </tbody>
