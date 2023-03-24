@@ -50,6 +50,11 @@ if (isset($_POST['submit'])) {
     header('Refresh: 0; url=admin_rg.php');
   }
 }
+
+// this line below is the maximum year for the users not below 15 years
+$date = date("Y-m-d"); // date you want to upgade
+
+$date_max = date("Y-m-d", strtotime($date ." -15 year") );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +123,7 @@ if (isset($_POST['submit'])) {
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date of Birth</label>
-                      <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Enter Birthdate" required>
+                      <input type="date" class="form-control" id="birth_date" name="birth_date" max="<?php echo $date_max; ?>" placeholder="Enter Birthdate" required>
                     </div>
                     <br>
                     <div class="form-group">
