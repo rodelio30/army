@@ -5,8 +5,18 @@ if($isSchool){
 }
 // un_public is username of the user who logged in
 
+$com_name = '';
+
+if(isset($_GET['com_name'])){
+  $com_name = $_GET['com_name'];
+}
+
 if (isset($_POST['submit'])) {
-  $company_name = $_POST['company_name'];
+  if($com_name == ''){
+    $company_name = $_POST['company_name'];
+  } else {
+    $company_name = $com_name;
+  }
   $place        = $_POST['place'];
   $status       = 'active';
   $date         = date("Y-m-d");
@@ -49,6 +59,10 @@ if (isset($_POST['submit'])) {
               <div class="card">
                 <div class="card-body">
                   <form method="post" autocomplete="off">
+                    <?php 
+                  if($com_name == ''){ 
+                    ?>
+
                     <div class="form-group">
                       <label for="exampleInputEmail1">Company Name</label>
                       <!-- <input type="text" class="form-control" id="name" name="name" placeholder="Enter company Name" required> -->
@@ -63,6 +77,7 @@ if (isset($_POST['submit'])) {
                       </select>
                     </div>
                     <br>
+<?php } ?>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Location</label>
                       <input type="text" class="form-control" id="place" name="place" placeholder="Enter City/Municipality" required>
@@ -73,7 +88,7 @@ if (isset($_POST['submit'])) {
                         <a href="admin_aor.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Insert</button>
+                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Add</button>
                       </div>
                     </div>
                   </form>

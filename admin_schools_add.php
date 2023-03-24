@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Description</label>
-                      <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" required>
+                      <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" >
                     </div>
                     <br>
                     <div class="row">

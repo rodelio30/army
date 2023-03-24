@@ -1,6 +1,6 @@
 <?php 
 include 'system_checker.php';
-if($isSchool || $isCommander || $isReservist){
+if($isSchool || $isReservist){
   header("Location: index.php");
 }
 ?>
@@ -47,7 +47,7 @@ if($isSchool || $isCommander || $isReservist){
                                             include 'counter/users_counter.php';
 
                                             if ($users_counter > 0) {
-                                                    $result = mysqli_query($conn, "select rg_id, army_id, firstname, lastname, status, date_modified, time_modified from reservists WHERE user_status='active' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select rg_id, army_id, firstname, lastname, status, date_modified, time_modified from reservists WHERE user_status='active' && status != 'Pending' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($rg_id, $army_id, $firstname, $lastname, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
                                                     if($status == 'Pending') {

@@ -53,6 +53,15 @@
  visibility: none; 
 }
 
+.dataTables_wrapper .dataTables_info{
+  display: none;
+ visibility: none; 
+} 
+
+/* .card {
+
+} */
+
 #action-print {
   display: none;
   visibility: none;

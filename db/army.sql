@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 23, 2023 at 11:19 AM
+-- Generation Time: Mar 23, 2023 at 01:07 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -120,7 +120,7 @@ CREATE TABLE `army_users` (
 --
 
 INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank`, `company`, `afpsn`, `school_name`, `school_address`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, '', 'Army', '', 'Admin', 'admin', 'super_army@gmail.com', 'admin', 'sadmin', '', '', '', '', '', 'standby', 'active', '2023-03-23', '18:17:14.000000', '2023-03-23', '18:17:14.000000');
+(1, '', 'Army', '', 'Admin', 'admin', 'super_army@gmail.com', '$2y$10$QyMX7LaDblg5PAt3zI.VfO5RJK.5bsZuITUitaAfXnlI8Qec5YSEu', 'sadmin', '', '', '', '', '', 'standby', 'active', '2023-03-23', '18:17:14.000000', '2023-03-23', '18:17:14.000000');
 
 -- --------------------------------------------------------
 

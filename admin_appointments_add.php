@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 
   $time_formatted   = date("g:i a ", strtotime($time_appoint));
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM appointments WHERE date_appoint = '$date_appoint' OR  time_appoint = '$time_formatted' ");
+  $duplicate = mysqli_query($conn, "SELECT * FROM appointments WHERE date_appoint = '$date_appoint' AND  time_appoint = '$time_formatted' ");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('Date and Time Has Already Taken'); </script>";
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="col-md-6 form-group mt-3 mt-md-0">
                         <!-- <input type="text" name="cnumber" class="form-control" id="cnumber" placeholder="Your Contact Number" required> -->
-                        <input type="tel" id="cnumber" class="form-control"  name="cnumber" placeholder="(+63)" pattern="[0-9]{10}" required>
+                        <input type="tel" id="cnumber" class="form-control"  name="cnumber" placeholder="9xxxxxxxxx" pattern="[0-9]{10}" required>
                         </div>
                     </div>
                     <div class="form-group mt-3">
@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
                         <a href="admin_appointments.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Insert</button>
+                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Add</button>
                       </div>
                     </div>
                   </form>

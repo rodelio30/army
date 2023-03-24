@@ -1,7 +1,7 @@
   <div class="col-12 col-lg-12 col-xxl-12 d-flex">
     <div class="card flex-fill">
       <div class="card-header">
-        <h2>View the List</h2>
+        <h2>View List By</h2>
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link active" href="#school-contents" id="login-tab" data-bs-toggle="tab">Schools</a>
