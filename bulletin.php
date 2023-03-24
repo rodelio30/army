@@ -25,7 +25,7 @@
             if (!mysqli_select_db($conn, 'army')) {
                 $SelcErr = "Database Not Selected";
             }
-                $result = mysqli_query($conn, "select img, title, description from announcements WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                $result = mysqli_query($conn, "select img, title, description from announcements WHERE status = 'active' ORDER BY date_modified") or die("Query for latest reservist....");
                 while (list($img, $title, $description) = mysqli_fetch_array($result)) {
                     echo "
                     <div class='row featurette'>

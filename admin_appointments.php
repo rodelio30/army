@@ -63,7 +63,9 @@ if (isset($_POST['update'])) {
                                                 <th>Purpose</th>
                                                 <th>Date & Time</th>
                                                 <th>Status</th>
-                                                <th id='action-print'><span >Action</span</th>
+                                                <?php if($isSadmin || $isAdmin) { ?>
+                                                    <th id='action-print'><span >Action</span</th>
+                                                <?php } ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -79,64 +81,30 @@ if (isset($_POST['update'])) {
                                                         $color_me = 'warning';
                                                     } else if($status == 'approved') {
                                                         $color_me = 'success';
-                                                    } else if($status == 'declined') {
-                                                        $color_me = 'danger';
-                                                    }
+                                                    } 
                                                     $sel_pending  = "";
                                                     $sel_approved = "";
-                                                    $sel_declined= "";
 
-                                                    if ($status == "approved") {
-                                                    $sel_approved = "selected";
-                                                    } else if ($status == "pending") {
-                                                    $sel_pending = "selected";
-                                                    } else if ($status == "declined") {
-                                                    $sel_declined = "selected";
-                                                    }
                                                     if($isSadmin || $isAdmin){
                                                     echo "
                                                 <tr>	
-                                                    <form method='post'>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$name</a></td>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$purpose</a></td>
                                                     <td scope='row'>$date_appoint $time_formatted</td>
-                                                    <td>
-                                                        <select class='badge bg-$color_me' id='status' value='$status' name='status'>
-                                                        <option value='pending' $sel_pending>Pending</option>
-                                                        <option value='approved' $sel_approved>Approved</option>
-                                                        <option value='declined' $sel_declined>Declined</option>
-                                                        </select>
-                                                    </td>
-                                                    <input type='hidden' name='app_id' value='$ap_id'>
-                                                    <input type='hidden' name='purpose' value='$purpose'>
+                                                    <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
                                                     <td id='action-print'>
-                                                        <button type='submit' name='update' class='btn btn-md btn-outline-primary '>Update</button>
                                                         <a href=\"archive/appointments/appointments_archive.php?ID=$ap_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md'><span><span data-feather='package'></span>&nbsp Archive</a>
                                                     </td>
-                                                    </form>
                                                 </tr>
                                                         "; 
 
                                                     } else {
                                                     echo "
                                                 <tr>	
-                                                    <form method='post'>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$name</a></td>
                                                     <td scope='row'><a href=\"admin_appointments_view.php?ID=$ap_id\" class='user-clicker'>$purpose</a></td>
                                                     <td scope='row'>$date_appoint $time_formatted</td>
-                                                    <td>
-                                                        <select class='badge bg-$color_me' id='status' value='$status' name='status'>
-                                                        <option value='pending' $sel_pending>Pending</option>
-                                                        <option value='approved' $sel_approved>Approved</option>
-                                                        <option value='declined' $sel_declined>Declined</option>
-                                                        </select>
-                                                    </td>
-                                                    <input type='hidden' name='app_id' value='$ap_id'>
-                                                    <input type='hidden' name='purpose' value='$purpose'>
-                                                    <td id='action-print'>
-                                                        <button type='submit' name='update' class='btn btn-md btn-outline-primary '>Update</button>
-                                                    </td>
-                                                    </form>
+                                                    <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
                                                 </tr>
                                                         "; 
 
