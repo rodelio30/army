@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
                         <a href="admin_announcements.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Insert</button>
+                        <button type="submit" class="btn btn-outline-success" name="submit" style="float: right">Add</button>
                       </div>
                     </div>
                   </form>

@@ -38,7 +38,7 @@ if($isSchool || $isCommander || $isReservist){
                                 <div class="card-body">
                                     <?php include 'print_header.php'?>
                                     <h3 class="print-hidden"><strong>Rank List</strong></h3>
-                                    <table id="example" class="table table-striped" style="width:100%">
+                                    <table id="example" class="table" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th width="2%">Rank</th>

@@ -93,7 +93,7 @@ if (isset($_POST['update'])) {
                                                     } else if ($status == "declined") {
                                                     $sel_declined = "selected";
                                                     }
-                                                    if($isSadmin){
+                                                    if($isSadmin || $isAdmin){
                                                     echo "
                                                 <tr>	
                                                     <form method='post'>

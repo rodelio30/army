@@ -18,6 +18,12 @@
             <li class="sidebar-header">
                 RIDS Info 
             </li>
+            
+            <li class="sidebar-item <?php echo $rotc_select ?>">
+                <a class="sidebar-link" href="admin_rg.php">
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Reservist</span>
+                </a>
+            </li>
 
             <li class="sidebar-item <?php echo $rids_select ?>">
                 <a class="sidebar-link" href="admin_rids.php">
@@ -25,11 +31,6 @@
                 </a>
             </li>
 
-            <li class="sidebar-item <?php echo $rotc_select ?>">
-                <a class="sidebar-link" href="admin_rg.php">
-                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Reservist</span>
-                </a>
-            </li>
 
             <hr>
 

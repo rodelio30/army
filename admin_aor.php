@@ -45,7 +45,7 @@ if($isSchool){
                                     <?php include 'print_header.php'?>
                                     <!-- <h3 class="print-hidden"><strong>Rank List</strong></h3> -->
                                     <h3 class="text-center">CITY/MUNICIPALITY</h3>
-                                    <table id="example" class="table table-striped" style="width:100%">
+                                    <table id="example" class="table" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>AoR</th>

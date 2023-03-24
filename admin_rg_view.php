@@ -31,6 +31,30 @@ while ($res   = mysqli_fetch_array($result)) {
   $time_c_formatted   = date("G:i A ", strtotime($time_created));
   $time_m_formatted   = date("G:i A ", strtotime($time_modified));
 
+if (isset($_POST['update_staff'])) {
+  $status           = $_POST['status'];
+  $user_status      = $_POST['user_status'];
+  $date_modified    = date("Y-m-d");
+  $time_modified    = date("h:i:s");
+
+  if($user_status == 'inactive') {
+    mysqli_query($conn, "update reservists set status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
+  } else if($user_status == 'active') {
+    $query_reservist = "update reservists set status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+     if (mysqli_query($conn, $query_reservist)) {
+      // Inserting other info for reservist in personal information
+        mysqli_query($conn, "insert into personal_information (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
+
+      // Inserting other info for reservist in reservist personal information
+        mysqli_query($conn, "insert into rpi (reservist_id) values('$rg_id')")  or die("Query RPI is incorrect.....");
+
+      // Inserting other info for reservist in below information
+        mysqli_query($conn, "insert into below_info (reservist_id) values('$rg_id')")  or die("Query Below Info is incorrect.....");
+     }
+  }
+  echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
+  header('Refresh: 0; url=admin_rg.php');
+}
 if (isset($_POST['update'])) {
   $fname            = $_POST['firstname'];
   $minitial         = $_POST['middle_initial'];
@@ -86,7 +110,6 @@ if (isset($_POST['update'])) {
 }
 
 // for Status
-$sel_pend    = "";
 $sel_ready   = "";
 $sel_standby = "";
 $sel_retired = "";
@@ -99,10 +122,7 @@ $sel_inactive = "";
 $sel_male      = "";
 $sel_female   = "";
 
-
-if ($status == "Pending") {
-  $sel_pend = "selected";
-} else if ($status == "Ready") {
+if ($status == "Ready") {
   $sel_ready = "selected";
 } else if ($status == "Standby") {
   $sel_standby = "selected";
@@ -123,7 +143,7 @@ if ($sex == "Male") {
 }
 
 $disabled = '';
-if($isStaff){
+if($isStaff || $isCommander){
 $disabled = 'disabled';
 }
 
@@ -192,7 +212,7 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Classification</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="rank" name="rank">
+                        <select class="form-control" id="rank" name="rank"<?php echo $disabled ?>>
                             <option value="none">None</option>
                           <?php
                           $result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
@@ -232,7 +252,7 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
                         <!-- <input type="text" class="form-control" id="date_graduated" name="date_graduated" value="<?php echo $date_graduated ?>"disabled> -->
-                        <select class="form-control" id="date_graduated"name="date_graduated">
+                        <select class="form-control" id="date_graduated"name="date_graduated"<?php echo $disabled ?>>
                           <?php  
                           $year_start = 1999;
                           $year_end   = 2000;
@@ -309,12 +329,11 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
 
-                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
+                      <?php if($isSchool || $isCommander) {?>
                         <input type="text" class="form-control" id="status" name="status" value="<?php echo ucfirst($status) ?>" disabled>
                         <input type="hidden" id="status" name="status" value="<?php echo $status ?>">
                       <?php } else { ?>
                         <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
-                          <option value="Pending" <?php echo $sel_pend ?>>Pending</option>
                           <option value="Ready" <?php echo $sel_ready ?>>Ready</option>
                           <option value="Standby" <?php echo $sel_standby ?>>Standby</option>
                           <option value="Retired" <?php echo $sel_retired ?>>Retired</option>
@@ -329,7 +348,7 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
 
-                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
+                      <?php if($isSchool || $isCommander) {?>
                         <input type="text" class="form-control" id="user_status" name="user_status" value="<?php echo ucfirst($user_status) ?>" disabled>
                         <input type="hidden" id="user_status" name="user_status" value="<?php echo $user_status ?>">
                       <?php } else { ?>
@@ -374,8 +393,10 @@ $disabled = 'disabled';
                         <a href="admin_rg.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <?php if(!$isStaff) {?>
+                        <?php if(!$isStaff && !$isCommander) {?>
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php } else if($isStaff) {?>
+                        <button type="submit" name="update_staff" class="btn btn-md btn-outline-success" style="float:right">Update</button>
                         <?php } ?>
                       </div>
                     </div>

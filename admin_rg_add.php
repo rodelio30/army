@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 
   $date_graduated = $_POST['date_graduated'];
   $sex            = $_POST['sex'];
-  $status         = 'pending';
+  $status         = 'Standby';
   $user_status    = 'inactive';
   $date           = date("Y-m-d");
   $time           = date("h:i:s");
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO reservists VALUES('','$firstname','$m_i','$lastname','$extname','$afpsn','$rank','','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$user_status','$date','$time','$date','$time')";
+    $query = "INSERT INTO reservists VALUES('','','$firstname','$m_i','$lastname','$extname','$afpsn','$rank','','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$user_status','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname . ' Added!.")</script>';
