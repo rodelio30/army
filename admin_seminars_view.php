@@ -1,6 +1,6 @@
 <?php
 include 'system_checker.php';
-if($isSchool || $isCommander){
+if($isSchool){
   header("Location: index.php");
 }
 
@@ -74,6 +74,10 @@ if (isset($_POST['sem_declined'])) {
   header('Refresh: 0; url=admin_seminars_view.php?ID=' . $seminars_id . '');
   // End of Else in Inactive if
 }
+$disabled = '';
+if($isCommander) {
+  $disabled = 'disabled';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +112,7 @@ if (isset($_POST['sem_declined'])) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Seminar Name</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="seminar_name" name="seminar_name" value="<?php echo $seminar_name?>" placeholder="Enter seminar Name">
+                        <input type="text" class="form-control" id="seminar_name" name="seminar_name" value="<?php echo $seminar_name?>" placeholder="Enter seminar Name"<?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -117,7 +121,7 @@ if (isset($_POST['sem_declined'])) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Venue</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="venue" name="venue" value="<?php echo $venue ?>" placeholder="Enter Venue">
+                        <input type="text" class="form-control" id="venue" name="venue" value="<?php echo $venue ?>" placeholder="Enter Venue"<?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -126,7 +130,7 @@ if (isset($_POST['sem_declined'])) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Start Date</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="date" class="form-control"  id="start_date" name="start_date" value="<?php echo $start_date?>">
+                        <input type="date" class="form-control"  id="start_date" name="start_date" value="<?php echo $start_date?>"<?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -135,7 +139,7 @@ if (isset($_POST['sem_declined'])) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>End Date</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo $end_date ?>" >
+                        <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo $end_date ?>" <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -144,7 +148,7 @@ if (isset($_POST['sem_declined'])) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="description" name="description" value="<?php echo $description ?>" placeholder="Enter Description ">
+                        <input type="text" class="form-control" id="description" name="description" value="<?php echo $description ?>" placeholder="Enter Description "<?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -153,7 +157,7 @@ if (isset($_POST['sem_declined'])) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
+                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status"<?php echo $disabled ?>>
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>
@@ -192,7 +196,9 @@ if (isset($_POST['sem_declined'])) {
                         <a href="admin_seminars.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
-                        <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php if(!$isCommander) { ?>
+                          <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php } ?>
                       </div>
                     </div>
                   </form>

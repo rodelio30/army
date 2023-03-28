@@ -1,6 +1,6 @@
 <?php
 include 'system_checker.php';
-if($isSchool || $isCommander){
+if($isSchool){
   header("Location: index.php");
 }
 // un_public is username of the user who logged in

@@ -28,7 +28,11 @@ if($isReservist){
                             </h1>
                         </div>
                         <div class="col-md-3">
+                            <?php if(!$isCommander) {
+                            ?>
                             <a <?php echo "href=\"admin_rg_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add Reservist</a>
+                            <?php }
+                            ?>
                         </div>
                     </div>
 
