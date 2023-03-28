@@ -15,8 +15,15 @@
         include 'counter/company_aor_counter.php';
 
         if ($company_aor_counter > 0) {
-                $result = mysqli_query($conn, "select aor_id, company_name, place, status from aor WHERE status = 'active' && company_name = '$company_name' ORDER BY place") or die("Query for Training Attendance Error....");
-            while (list($aor_id, $company_name, $place, $status) = mysqli_fetch_array($result)) {
+            $result = mysqli_query($conn, "select aor_id, company_id, place, status from aor WHERE status = 'active' && company_id = '$company_id' ORDER BY place") or die("Query for Training Attendance Error....");
+            while (list($aor_id, $company_id, $place, $status) = mysqli_fetch_array($result)) {
+
+                // Get the company name
+                // $result_company       = mysqli_query($conn, "SELECT * FROM company WHERE company_id = '$company_id'");
+                // while ($res      = mysqli_fetch_array($result_company)) {
+                //   $company_name = $res['company_name'];
+                // }
+
                 if($isSadmin){
                     echo "
                         <tr>	
@@ -37,10 +44,10 @@
         }
           else {
                 if($isSadmin){ 
-                    echo " <tr>	<td></td><td>No Attendee </td>	<td></td></tr>";
+                    echo " <tr>	<td></td><td>No AOR</td>	<td></td></tr>";
                 }
                 else {
-                    echo " <tr>	<td></td><td>No Attendee </td></tr>";
+                    echo " <tr>	<td></td><td>No AOR</td></tr>";
                 }
         }
         ?>

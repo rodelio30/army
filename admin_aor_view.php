@@ -8,12 +8,12 @@ $aor_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM aor WHERE aor_id='$aor_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $company_name   = $res['company_name'];
+  $company_id   = $res['company_id'];
   $place          = $res['place'];
   $status         = $res['status'];
 }
 if (isset($_POST['update'])) {
-  $company_name  = $_POST['company_name'];
+  $company_id  = $_POST['company_id'];
   $place_new         = $_POST['place'];
   $status        = $_POST['status'];
 
@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
     "<script> alert('Area of Responsibilty has already taken'); </script>";
   } 
   else {
-  mysqli_query($conn, "update aor set company_name = '$company_name', place = '$place_new', status = '$status' where aor_id = '$aor_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update aor set company_id = '$company_id', place = '$place_new', status = '$status' where aor_id = '$aor_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $place_new . ' updated!.")</script>';
   header('Refresh: 0; url=admin_aor.php');
@@ -83,15 +83,15 @@ if($isReservist || $isCommander || $isStaff) {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company Name</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <!-- <input type="text" class="form-control" id="company_name" name="company_name" value="<?php echo $company_name ?>" placeholder="Enter company Name"> -->
-                      <select class="form-control" id="company_name" name="company_name" <?php echo $disabled ?>>
+                        <!-- <input type="text" class="form-control" id="company_id" name="company_id" value="<?php echo $company_id ?>" placeholder="Enter company Name"> -->
+                      <select class="form-control" id="company_id" name="company_id" <?php echo $disabled ?>>
                           <?php
-                          $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
-                          while (list($c_name) = mysqli_fetch_array($result)) {
-                            if($c_name == $company_name) {
-                            echo "<option value='$c_name' selected>$c_name</option>";
+                          $result = mysqli_query($conn, "select company_id, company_name from company where status='active'") or die("Query School List is inncorrect........");
+                          while (list($c_id, $company_name) = mysqli_fetch_array($result)) {
+                            if($c_id == $company_id) {
+                            echo "<option value='$company_id' selected>$company_name</option>";
                             }else {
-                            echo "<option value='$c_name'>$c_name</option>";
+                            echo "<option value='$company_id'>$company_name</option>";
                             }
                           }
                           ?>

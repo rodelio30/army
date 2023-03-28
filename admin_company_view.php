@@ -8,8 +8,8 @@ $company_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM company WHERE company_id='$company_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $company_id       = $res['company_id'];
-  $company_name      = $res['company_name'];
+  $company_id     = $res['company_id'];
+  $company_name   = $res['company_name'];
   $status         = $res['status'];
   $date_created   = $res['date_created'];
   $time_created   = $res['time_created'];
