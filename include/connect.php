@@ -6,7 +6,7 @@ $conn = mysqli_connect("localhost", "root", "");
 if (!$conn) {
   $ConnErr = "Not Connected to the Server";
 }
-if (!mysqli_select_db($conn, 'army_uat')) {
+if (!mysqli_select_db($conn, 'army')) {
 // if (!mysqli_select_db($conn, 'army')) {
   $SelcErr = "Database Not Selected";
 }
