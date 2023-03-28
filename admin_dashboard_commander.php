@@ -1,6 +1,4 @@
 <?php 
-include 'counter/users_counter.php';
-include 'counter/users_pending_counter.php';
 include 'counter/staff_reserve_counter.php';
 ?>
 <div class="row">
@@ -16,7 +14,7 @@ include 'counter/staff_reserve_counter.php';
                                     <h5 class="card-title">Active Reservist</h5>
                                 </div>
                             </div>
-                            <h1 class="mt-3 mb-1"><?php echo $reservist_counter ;?></h1>
+                            <h1 class="mt-3 mb-1"><?php echo $reserve_counter ;?></h1>
                         </div></a>
                     </div>
                 </div>
@@ -26,10 +24,10 @@ include 'counter/staff_reserve_counter.php';
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Active ROTC Graduates</h5>
+                                    <h5 class="card-title">Inactive Reservist</h5>
                                 </div>
                             </div>
-                            <h1 class="mt-3 mb-1"><?php echo $reserve_counter;?></h1>
+                            <h1 class="mt-3 mb-1"><?php echo $inactive_reserve_counter;?></h1>
                         </div></a>
                     </div>
                 </div>
