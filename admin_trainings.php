@@ -1,6 +1,6 @@
 <?php
 include 'system_checker.php';
-if($isSchool || $isCommander){
+if($isSchool){
   header("Location: index.php");
 }
 ?>
@@ -28,8 +28,10 @@ if($isSchool || $isCommander){
                             </h1>
                         </div>
                         <div class="col-md-3">
+                            <?php if(!$isCommander) { ?>
                             <a <?php echo "href=\"admin_trainings_add.php\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add
                                 Training</a>
+                                <?php } ?>
                         </div>
                     </div>
 

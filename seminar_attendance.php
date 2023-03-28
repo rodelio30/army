@@ -4,7 +4,7 @@
             <th>Attendee</th>
             <th>Date / Time Attended</th>
             <th>Status</th>
-            <?php if(!$isReservist) {?>
+            <?php if(!$isReservist && !$isCommander) {?>
             <th>Action</th>
             <?php } ?>
         </tr>
@@ -28,7 +28,7 @@
                   $firstname = $res['firstname'];
                   $lastname  = $res['lastname'];
                 }
-                    if($status == 'Pending' && !$isReservist){
+                    if($status == 'Pending' && !$isReservist && !$isCommander){
                     echo "
                         <tr>	
                             <form method='post'>
@@ -48,7 +48,7 @@
                             </form>
                         </tr>
                         "; 
-                    } else if($status == 'Approved' && !$isReservist) {
+                    } else if($status == 'Approved' && !$isReservist && !$isCommander) {
                     echo "
                         <tr>	
                             <form method='post'>
@@ -78,12 +78,20 @@
                 }
         }
           else {
-            echo " <tr>	
-            <td></td>
-            <td>No Attendee </td>
-            <td></td>
-            <td></td>
-            </tr>";
+            if(!$isReservist && !$isCommander){ 
+                echo " <tr>	
+                <td></td>
+                <td>No Attendee </td>
+                <td></td>
+                <td></td>
+                </tr>";
+            } else {
+                echo " <tr>	
+                <td></td>
+                <td>No Attendee </td>
+                <td></td>
+                </tr>";
+            }
         }
         ?>
     </tbody>

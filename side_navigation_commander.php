@@ -30,6 +30,25 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">RIDS</span>
                 </a>
             </li>
+            
+            
+            <li class="sidebar-header">
+               Trainings and Seminars 
+            </li>
+
+            <li class="sidebar-item <?php echo $training_select ?>">
+                <a class="sidebar-link" href="admin_trainings.php">
+                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Trainings</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item <?php echo $seminar_select ?>">
+                <a class="sidebar-link" href="admin_seminars.php">
+                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Seminars</span>
+                </a>
+            </li>
+
+
 
 
             <hr>
@@ -41,7 +60,6 @@
             </li>
             
             <hr>
-
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
                     <div id="oras" class="clock-position ms-4 mb-2">
