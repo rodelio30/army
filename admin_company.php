@@ -81,13 +81,18 @@ if($isSchool || $isCommander || $isReservist){
                                                     }
                                                 }
                                             } else {
-                                                echo " <tr>	
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>No Active company</td>
+                                                if($isSadmin) {
+                                                echo " <tr>	<td></td>
+                                                        <td class='text-center'>No Active company</td>
                                                         <td></td>
                                                         <td></td>
                                                         </tr>";
+                                                } else {
+                                                echo " <tr>	<td></td>
+                                                        <td>No Active company</td>
+                                                        <td></td>
+                                                        </tr>";
+                                                }
                                             }
                                             ?>
                                         </tbody>
