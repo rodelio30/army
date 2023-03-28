@@ -45,7 +45,7 @@ if($isSchool || $isCommander || $isReservist){
                                                 <th>Description</th>
                                                 <th>Date Modified</th>
                                                 <th>Status</th>
-                                                <?php if($isSadmin || $isAdmin) { ?>
+                                                <?php if($isSadmin) { ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
                                                 <?php } ?>
                                             </tr>
@@ -57,7 +57,7 @@ if($isSchool || $isCommander || $isReservist){
                                             if ($ranks_counter > 0) {
                                                 $result = mysqli_query($conn, "select rank_id, acronym, rank_name, status, date_modified from ranks WHERE status != 'archive' ORDER BY rank_id DESC") or die("Query for latest reservist....");
                                                 while (list($rank_id, $acronym, $rank_name, $status, $date_modified) = mysqli_fetch_array($result)) {
-                                                    if($isSadmin || $isAdmin){
+                                                    if($isSadmin){
                                                     echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_ranks_view.php?ID=$rank_id\" class='user-clicker'>$acronym</a></td>
@@ -79,7 +79,7 @@ if($isSchool || $isCommander || $isReservist){
                                                     }
                                                 }
                                             } else {
-                                                if($isSadmin || $isAdmin){ 
+                                                if($isSadmin){ 
                                                     echo " <tr>	
                                                             <td></td>
                                                             <td></td>

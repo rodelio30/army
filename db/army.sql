@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 23, 2023 at 01:07 PM
+-- Generation Time: Mar 24, 2023 at 04:10 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -120,44 +120,7 @@ CREATE TABLE `army_users` (
 --
 
 INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank`, `company`, `afpsn`, `school_name`, `school_address`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, '', 'Army', '', 'Admin', 'admin', 'super_army@gmail.com', '$2y$10$QyMX7LaDblg5PAt3zI.VfO5RJK.5bsZuITUitaAfXnlI8Qec5YSEu', 'sadmin', '', '', '', '', '', 'standby', 'active', '2023-03-23', '18:17:14.000000', '2023-03-23', '18:17:14.000000');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `below_info`
---
-
-CREATE TABLE `below_info` (
-  `bi_id` int(250) NOT NULL,
-  `reservist_id` int(250) NOT NULL,
-  `rank` varchar(250) NOT NULL,
-  `date_of_rank` date NOT NULL,
-  `rank_authority` varchar(250) NOT NULL,
-  `military_schooling` varchar(250) NOT NULL,
-  `school` varchar(250) NOT NULL,
-  `school_date_graduated` date NOT NULL,
-  `awards` varchar(250) NOT NULL,
-  `awards_authority` varchar(250) NOT NULL,
-  `date_awarded` date NOT NULL,
-  `relation` varchar(250) NOT NULL,
-  `name` varchar(250) NOT NULL,
-  `course` varchar(100) NOT NULL,
-  `course_school` varchar(250) NOT NULL,
-  `course_date_graduated` date NOT NULL,
-  `unit_cad` varchar(250) NOT NULL,
-  `unit_authority` varchar(250) NOT NULL,
-  `unit_date_started` date NOT NULL,
-  `unit_date_end` date NOT NULL,
-  `unit_assignment` varchar(100) NOT NULL,
-  `assign_authority` varchar(250) NOT NULL,
-  `assign_date_from` date NOT NULL,
-  `assign_date_to` date NOT NULL,
-  `position` varchar(100) NOT NULL,
-  `pos_authority` varchar(350) NOT NULL,
-  `pos_date_from` date NOT NULL,
-  `pos_date_to` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(1, '', 'Super', '', 'Admin', 'supadmin', 'supadmin@gmail.com', '$2y$10$Wyd1S0N2J0gqf2HZxnXbfu/MxG60a6IatOqaXSAxwFRWgtt9sshq.', 'sadmin', '', '', '', '', '', '', '', '2023-03-24', '23:09:12.000000', '2023-03-24', '23:09:12.000000');
 
 -- --------------------------------------------------------
 
@@ -175,40 +138,6 @@ CREATE TABLE `company` (
   `date_modified` date NOT NULL,
   `time_modified` time(6) NOT NULL,
   `uploader` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_information`
---
-
-CREATE TABLE `personal_information` (
-  `pi_id` int(250) NOT NULL,
-  `reservist_id` int(250) NOT NULL,
-  `p_o` varchar(250) NOT NULL,
-  `company_name_address` varchar(250) NOT NULL,
-  `tel_no` int(250) NOT NULL,
-  `home_address` varchar(250) NOT NULL,
-  `town` varchar(250) NOT NULL,
-  `res_tel_no` varchar(250) NOT NULL,
-  `mobile_number` varchar(250) NOT NULL,
-  `birth_date` date NOT NULL,
-  `birth_place` varchar(250) NOT NULL,
-  `age` int(50) NOT NULL,
-  `religion` varchar(50) NOT NULL,
-  `blood_type` varchar(50) NOT NULL,
-  `tin` varchar(30) NOT NULL,
-  `sss` varchar(30) NOT NULL,
-  `philhealth` varchar(30) NOT NULL,
-  `height` int(40) NOT NULL,
-  `weight` int(40) NOT NULL,
-  `marital_status` varchar(30) NOT NULL,
-  `sex` varchar(10) NOT NULL,
-  `fb_account` varchar(250) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `special_skills` varchar(250) NOT NULL,
-  `language` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -288,10 +217,10 @@ CREATE TABLE `reservists` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rpi`
+-- Table structure for table `rids`
 --
 
-CREATE TABLE `rpi` (
+CREATE TABLE `rids` (
   `rpi_id` int(250) NOT NULL,
   `reservist_id` int(250) NOT NULL,
   `brsvc` varchar(100) NOT NULL,
@@ -307,7 +236,51 @@ CREATE TABLE `rpi` (
   `battalion` varchar(100) NOT NULL,
   `size_cs` int(100) NOT NULL,
   `size_cap` int(100) NOT NULL,
-  `size_bda` int(100) NOT NULL
+  `size_bda` int(100) NOT NULL,
+  `p_o` varchar(50) NOT NULL,
+  `company_name_address` varchar(100) NOT NULL,
+  `tel_no` int(20) NOT NULL,
+  `town` varchar(100) NOT NULL,
+  `res_tel_no` int(30) NOT NULL,
+  `mobile_number` int(10) NOT NULL,
+  `birth_place` varchar(100) NOT NULL,
+  `religion` varchar(20) NOT NULL,
+  `blood_type` varchar(10) NOT NULL,
+  `tin` varchar(30) NOT NULL,
+  `sss` varchar(30) NOT NULL,
+  `philhealth` varchar(30) NOT NULL,
+  `height` int(20) NOT NULL,
+  `weight` int(20) NOT NULL,
+  `marital_status` varchar(20) NOT NULL,
+  `fb_account` varchar(100) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `special_skills` varchar(30) NOT NULL,
+  `language` varchar(30) NOT NULL,
+  `date_of_rank` date NOT NULL,
+  `rank_authority` varchar(30) NOT NULL,
+  `military_schooling` varchar(50) NOT NULL,
+  `school` varchar(40) NOT NULL,
+  `school_date_graduated` date NOT NULL,
+  `awards` varchar(30) NOT NULL,
+  `awards_authority` varchar(20) NOT NULL,
+  `date_awarded` date NOT NULL,
+  `relation` varchar(30) NOT NULL,
+  `dependents_name` varchar(30) NOT NULL,
+  `course` varchar(30) NOT NULL,
+  `course_school` varchar(40) NOT NULL,
+  `course_date_graduated` date NOT NULL,
+  `unit_cad` varchar(30) NOT NULL,
+  `unit_authority` varchar(30) NOT NULL,
+  `unit_date_started` date NOT NULL,
+  `unit_date_end` date NOT NULL,
+  `unit_assignment` varchar(30) NOT NULL,
+  `assign_authority` varchar(30) NOT NULL,
+  `assign_date_from` date NOT NULL,
+  `assign_date_to` date NOT NULL,
+  `position` varchar(30) NOT NULL,
+  `pos_authority` varchar(30) NOT NULL,
+  `pos_date_from` date NOT NULL,
+  `pos_date_to` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -362,7 +335,8 @@ CREATE TABLE `seminar_attendance` (
   `seminar_id` int(250) NOT NULL,
   `user_id` int(250) NOT NULL,
   `date_attended` date NOT NULL,
-  `time_attended` time(6) NOT NULL
+  `time_attended` time(6) NOT NULL,
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -397,7 +371,8 @@ CREATE TABLE `training_attendance` (
   `training_id` int(250) NOT NULL,
   `user_id` int(250) NOT NULL,
   `date_attended` date NOT NULL,
-  `time_attended` time(6) NOT NULL
+  `time_attended` time(6) NOT NULL,
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -435,22 +410,10 @@ ALTER TABLE `army_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `below_info`
---
-ALTER TABLE `below_info`
-  ADD PRIMARY KEY (`bi_id`);
-
---
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
   ADD PRIMARY KEY (`company_id`);
-
---
--- Indexes for table `personal_information`
---
-ALTER TABLE `personal_information`
-  ADD PRIMARY KEY (`pi_id`);
 
 --
 -- Indexes for table `ranks`
@@ -471,9 +434,9 @@ ALTER TABLE `reservists`
   ADD PRIMARY KEY (`rg_id`);
 
 --
--- Indexes for table `rpi`
+-- Indexes for table `rids`
 --
-ALTER TABLE `rpi`
+ALTER TABLE `rids`
   ADD PRIMARY KEY (`rpi_id`);
 
 --
@@ -514,7 +477,7 @@ ALTER TABLE `training_attendance`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `ann_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ann_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ann_descrip`
@@ -526,37 +489,25 @@ ALTER TABLE `ann_descrip`
 -- AUTO_INCREMENT for table `aor`
 --
 ALTER TABLE `aor`
-  MODIFY `aor_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `aor_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `ap_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ap_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `army_users`
 --
 ALTER TABLE `army_users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
---
--- AUTO_INCREMENT for table `below_info`
---
-ALTER TABLE `below_info`
-  MODIFY `bi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `personal_information`
---
-ALTER TABLE `personal_information`
-  MODIFY `pi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ranks`
@@ -568,49 +519,49 @@ ALTER TABLE `ranks`
 -- AUTO_INCREMENT for table `registration_user`
 --
 ALTER TABLE `registration_user`
-  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `reservists`
 --
 ALTER TABLE `reservists`
-  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `rpi`
+-- AUTO_INCREMENT for table `rids`
 --
-ALTER TABLE `rpi`
-  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `rids`
+  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `seminars`
 --
 ALTER TABLE `seminars`
-  MODIFY `seminar_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `seminar_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `seminar_attendance`
 --
 ALTER TABLE `seminar_attendance`
-  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `training_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `training_attendance`
 --
 ALTER TABLE `training_attendance`
-  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

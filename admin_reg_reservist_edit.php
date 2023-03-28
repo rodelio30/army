@@ -56,13 +56,7 @@ if (isset($_POST['update'])) {
             $rg_id = $res['rg_id'];
           }
           // Inserting other info for reservist in personal information
-            mysqli_query($conn, "insert into personal_information (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
-
-          // Inserting other info for reservist in reservist personal information
-            mysqli_query($conn, "insert into rpi (reservist_id) values('$rg_id')")  or die("Query RPI is incorrect.....");
-
-          // Inserting other info for reservist in below information
-            mysqli_query($conn, "insert into below_info (reservist_id) values('$rg_id')")  or die("Query Below Info is incorrect.....");
+            mysqli_query($conn, "insert into rids (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
         }
 
       $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
