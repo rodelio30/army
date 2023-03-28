@@ -2,7 +2,7 @@
 $company_aor_counter = 0;
 
 // This line is Counting for the number of Registered company_aor
-$sql = "SELECT aor_id FROM aor where company_name = '$company_name'";
+$sql = "SELECT aor_id FROM aor where company_id = '$company_id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

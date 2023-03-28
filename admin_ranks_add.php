@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                   <form method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Rank</label>
-                      <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Enter Rank Abbreviation" required>
+                      <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Enter Rank Abbreviation" autofocus required>
                     </div>
                     <br>
                     <div class="form-group">

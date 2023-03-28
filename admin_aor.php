@@ -62,13 +62,14 @@ if($isSchool){
                                             include 'counter/aor_counter.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($aor_counter > 0) {
-                                                $result = mysqli_query($conn, "select aor_id, company_name, place from aor WHERE status != 'archive' ORDER BY company_name") or die("Query for latest reservist....");
-                                                while (list($aor_id, $company_name, $place) = mysqli_fetch_array($result)) {
+                                                $result = mysqli_query($conn, "select aor_id, company_id, place from aor WHERE status != 'archive' ORDER BY company_id") or die("Query for latest reservist....");
+                                                while (list($aor_id, $company_id, $place) = mysqli_fetch_array($result)) {
 
                                                     // getting the status of Company Commander
-                                                    $result_active  = mysqli_query($conn, "SELECT * FROM company WHERE status='active' && company_name = '$company_name'");
+                                                    $result_active  = mysqli_query($conn, "SELECT * FROM company WHERE status='active' && company_id = '$company_id '");
                                                     while ($res  = mysqli_fetch_array($result_active)) {
-                                                    $status_com = $res['status'];
+                                                    $status_com   = $res['status'];
+                                                    $company_name = $res['company_name'];
                                                     if($status_com == 'active') {
                                                         if($isSadmin){
                                                                     echo "

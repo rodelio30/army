@@ -22,13 +22,13 @@ if (isset($_POST['submit'])) {
   $date         = date("Y-m-d");
   $time         = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM aor WHERE place = '$place'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM aor WHERE place LIKE '%$place'%");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('Area of Responsibility Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO aor VALUES('','$company_name','$place','$status')";
+    $query = "INSERT INTO aor VALUES('','$company_id','$place','$status')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $place . ' Added!.")</script>';
@@ -68,9 +68,9 @@ if (isset($_POST['submit'])) {
                       <!-- <input type="text" class="form-control" id="name" name="name" placeholder="Enter company Name" required> -->
                       <select class="form-control" id="company_name" name="company_name">
                           <?php
-                          $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
-                          while (list($company_name) = mysqli_fetch_array($result)) {
-                            echo "<option value='$company_name'>$company_name</option>";
+                          $result = mysqli_query($conn, "select company_id, company_name from company where status='active'") or die("Query School List is inncorrect........");
+                          while (list($company_id, $company_name) = mysqli_fetch_array($result)) {
+                            echo "<option value='$company_id'>$company_name</option>";
                           }
                           ?>
                       </select>
