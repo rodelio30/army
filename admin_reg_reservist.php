@@ -55,7 +55,7 @@ if(!$isSadmin){
                                                 <tr>	
                                                     <td scope='row'><a href=\"admin_reg_reservist_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>
                                                     <td>$rank_name</td>
-                                                    <td>$company</td>
+                                                    <td>$company_name</td>
                                                     <td>$date $time</td>
                                                     <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
                                                 </tr>
