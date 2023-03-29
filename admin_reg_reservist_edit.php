@@ -46,7 +46,7 @@ if (isset($_POST['update'])) {
           $result_get_id = mysqli_query($conn, "SELECT * FROM army_users WHERE username ='$username' && type='reservist'");
           // $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
           while ($res   = mysqli_fetch_array($result_get_id)) {
-            $reserve_id= $res['id'];
+            $reserve_id= $res['army_id'];
           }
           // Inserting other info for reservist in reservist table 
             mysqli_query($conn, "INSERT INTO reservists VALUES('','$reserve_id','$firstname','','$lastname','','$afpsn','$rank_id','$company_id','','','','','','$school_id','Pending','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')")  or die("Query Reservist Table is incorrect.....");
@@ -54,10 +54,10 @@ if (isset($_POST['update'])) {
           // #####this line below is to get the is of the reservist who can log in to the system
           $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
           while ($res   = mysqli_fetch_array($result_get_id)) {
-            $reservist_id = $res['reservist_id'];
+            $res_id = $res['reservist_id'];
           }
           // Inserting other info for reservist in personal information
-            mysqli_query($conn, "insert into rids (reservist_id) values('$reservist_id')")  or die("Query Personal Information is incorrect.....");
+            mysqli_query($conn, "insert into rids (reservist_id) values('$res_id')")  or die("Query Personal Information is incorrect.....");
         }
 
       $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
