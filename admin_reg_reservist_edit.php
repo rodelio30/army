@@ -15,8 +15,9 @@ while ($res   = mysqli_fetch_array($result)) {
   $username     = $res['username'];
   $email        = $res['email'];
   $password     = $res['password'];
-  $rank_id         = $res['rank_id'];
-  $company_id      = $res['company_id'];
+  $rank_id      = $res['rank_id'];
+  $company_id   = $res['company_id'];
+  $school_id    = $res['school_id'];
   $afpsn        = $res['afpsn'];
   $status       = $res['status'];
   $user_status  = $res['user_status'];
@@ -37,7 +38,7 @@ if (isset($_POST['update'])) {
   }
   else{
     // inserting reservist to army table for log in credentials
-    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','','$company_id','','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','','$company_id','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
 
      if (mysqli_query($conn, $query_army_user)) {
         if($user_type == 'reservist'){
@@ -48,7 +49,7 @@ if (isset($_POST['update'])) {
             $reserve_id= $res['id'];
           }
           // Inserting other info for reservist in reservist table 
-            mysqli_query($conn, "INSERT INTO reservists VALUES('','$reserve_id','$firstname','','$lastname','','$afpsn','$rank_id','','','','','','$school_id','Pending','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')")  or die("Query Reservist Table is incorrect.....");
+            mysqli_query($conn, "INSERT INTO reservists VALUES('','$reserve_id','$firstname','','$lastname','','$afpsn','$rank_id','$company_id','','','','','','$school_id','Pending','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')")  or die("Query Reservist Table is incorrect.....");
 
           // #####this line below is to get the is of the reservist who can log in to the system
           $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");

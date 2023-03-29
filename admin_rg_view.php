@@ -14,13 +14,13 @@ while ($res   = mysqli_fetch_array($result)) {
   $lastname         = $res['lastname'];
   $extname          = $res['extname'];
   $afpsn            = $res['afpsn'];
-  $rank             = $res['rank'];
+  $rank_id          = $res['rank_id'];
   $date_of_birth    = $res['date_of_birth'];
   $home_address     = $res['home_address'];
   $date_graduated   = $res['date_graduated'];
   $age              = $res['age'];
   $sex              = $res['sex'];
-  $school_graduated = $res['school_graduated'];
+  $school_id        = $res['school_id'];
   $status           = $res['status'];
   $user_status      = $res['user_status'];
   $date_created     = $res['date_created'];
@@ -43,13 +43,7 @@ if (isset($_POST['update_staff'])) {
     $query_reservist = "update reservists set status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
      if (mysqli_query($conn, $query_reservist)) {
       // Inserting other info for reservist in personal information
-        mysqli_query($conn, "insert into personal_information (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
-
-      // Inserting other info for reservist in reservist personal information
-        mysqli_query($conn, "insert into rpi (reservist_id) values('$rg_id')")  or die("Query RPI is incorrect.....");
-
-      // Inserting other info for reservist in below information
-        mysqli_query($conn, "insert into below_info (reservist_id) values('$rg_id')")  or die("Query Below Info is incorrect.....");
+        mysqli_query($conn, "insert into rids (reservist_id) values('$rg_id')")  or die("Query RIDS  is incorrect.....");
      }
   }
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
@@ -61,12 +55,12 @@ if (isset($_POST['update'])) {
   $lname            = $_POST['lastname'];
   $ename            = $_POST['extname'];
   $afpsn_now        = $_POST['afpsn'];
-  $rank_now         = $_POST['rank'];
+  $rank_id_now      = $_POST['rank_id'];
   $date_graduated   = $_POST['date_graduated'];
   $date_of_birth    = $_POST['date_of_birth'];
   $home_address     = $_POST['home_address'];
   $sex              = $_POST['sex'];
-  $school_graduated = $_POST['school_graduated'];
+  $school_id        = $_POST['school_id'];
   $status           = $_POST['status'];
   $user_status      = $_POST['user_status'];
   $date_modified    = date("Y-m-d");
@@ -89,20 +83,22 @@ if (isset($_POST['update'])) {
   } else {
 
   if($user_status == 'inactive') {
-    mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
-  } else if($user_status == 'active') {
+    mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'") or die("Query 4 is incorrect....");
 
+  } else if($user_status == 'active') {
     $checker_id = mysqli_query($conn, "SELECT * FROM rids WHERE reservist_id = '$rg_id'");
-    if (mysqli_num_rows($checker_id) > 0) {
-      $query_reservist = "update reservists set status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
-      mysqli_query($conn, $query_reservist);
-    } else {
-      $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank = '$rank_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_graduated = '$school_graduated', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
-      if (mysqli_query($conn, $query_reservist)) {
-        // Inserting other info for reservist in personal information
-          mysqli_query($conn, "insert into rids (reservist_id) values('$rg_id')")  or die("Query RIDS is incorrect.....");
+      if (mysqli_num_rows($checker_id) > 0) {
+        // $query_reservist = "update reservists set status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+        $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+        mysqli_query($conn, $query_reservist);
+      } 
+      else {
+        $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$rg_id'";
+        if (mysqli_query($conn, $query_reservist)) {
+          // Inserting other info for reservist in personal information
+            mysqli_query($conn, "insert into rids (reservist_id) values('$rg_id')")  or die("Query RIDS is incorrect.....");
+        }
       }
-    }
   }
 
   echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname .' updated!.")</script>';
@@ -213,15 +209,15 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Classification</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="rank" name="rank"<?php echo $disabled ?>>
+                        <select class="form-control" id="rank_id" name="rank_id"<?php echo $disabled ?>>
                             <option value="none">None</option>
                           <?php
-                          $result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
-                          while (list($rank_name) = mysqli_fetch_array($result)) {
-                            if($rank == $rank_name) {
-                              echo "<option value='$rank_name' selected>$rank_name</option>";
+                          $result = mysqli_query($conn, "select rank_id, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+                          while (list($r_id, $rank_name) = mysqli_fetch_array($result)) {
+                            if($rank_id == $r_id) {
+                              echo "<option value='$r_id' selected>$rank_name</option>";
                             } else {
-                              echo "<option value='$rank_name'>$rank_name</option>";
+                              echo "<option value='$r_id'>$rank_name</option>";
                             }
                           }
                           ?>
@@ -262,7 +258,7 @@ $disabled = 'disabled';
                             $year_end++;
                             $ay = $year_start . '-' .$year_end;
                             if($ay == $date_graduated) {
-                              echo "<option value='$year_start-$year_end' selected>$year_start-$year_end</option>";
+                              echo "<option value='$date_graduated' selected>$year_start-$year_end</option>";
                             } else {
                               echo "<option value='$year_start-$year_end'>$year_start-$year_end</option>";
                             }
@@ -287,7 +283,7 @@ $disabled = 'disabled';
                       </div>
                       <div class="col-sm-10 text-secondary">
                       <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
-                        <input type="text" class="form-control" id="sex" name="sex" value="<?php echo ucfirst($sex) ?>" disabled>
+                        <input type="text" class="form-control" id="sex" name="sex" value="<?php echo $sex != '' ? ucfirst($sex) : 'N/A' ?>" disabled>
                         <input type="hidden" id="sex" name="sex" value="<?php echo $sex?>">
                         <?php } else { ?>
                           <select class="form-control" id="sex" value="<?php echo $sex?>" name="sex" <?php echo $disabled ?>>
@@ -303,19 +299,32 @@ $disabled = 'disabled';
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>School Graduated</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {?>
-                        <input type="text" class="form-control" id="school_graduated" name="school_graduated" value="<?php echo ucfirst($school_graduated) ?>" disabled>
-                        <input type="hidden" id="school_graduated" name="school_graduated" value="<?php echo $school_graduated?>">
+                      <?php if($isAdmin || $isSchool || $isStaff || $isCommander) {
+                          // Get the school name
+                          if($school_id != 0){
+                            $result_school  = mysqli_query($conn, "SELECT * FROM schools WHERE school_id = '$school_id'");
+                            while ($res     = mysqli_fetch_array($result_school)) {
+                              $school_name = $res['school_name'];
+                            }
+                          } else {
+                            $school_name = 'None';
+                          }
+                        ?>
+                        <input type="text" class="form-control" id="school_id" name="school_id" value="<?php echo $school_name ?>" disabled>
+                        <input type="hidden" id="school_id" name="school_id" value="<?php echo $school_id?>">
                         <?php } else { ?>
-                        <select class="form-control" id="school_graduated" name="school_graduated">
-                            <option value="none">None</option>
+                        <select class="form-control" id="school_id" name="school_id">
                           <?php
-                          $result = mysqli_query($conn, "select acronym from schools where status='active'") or die("Query School List is inncorrect........");
-                          while (list($acronym) = mysqli_fetch_array($result)) {
-                            if($acronym == $school_graduated) {
-                              echo "<option value='$acronym' selected>$acronym</option>";
-                            } else {
-                              echo "<option value='$acronym'>$acronym</option>";
+                            if($school_id == '0'){
+                              echo "<option value='$sch_id' selected>None</option>";
+                            }
+                          $result = mysqli_query($conn, "select school_id, school_name from schools where status='active'") or die("Query School List is inncorrect........");
+                          while (list($sch_id, $school_name) = mysqli_fetch_array($result)) {
+                            if($school_id == $sch_id) {
+                              echo "<option value='$sch_id' selected>$school_name</option>";
+                            }
+                             else {
+                              echo "<option value='$sch_id'>$school_name</option>";
                             }
                           }
                           ?>
