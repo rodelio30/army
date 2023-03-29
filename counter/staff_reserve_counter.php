@@ -3,7 +3,7 @@ $reserve_counter    = 0;
 $inactive_reserve_counter    = 0;
 
 // This line is Counting for the number of Registered Rotc Graduate
-$sql_rg = "SELECT rg_id FROM reservists WHERE user_status = 'active'";
+$sql_rg = "SELECT reservist_id FROM reservists WHERE user_status = 'active'";
 $result_rg = $conn->query($sql_rg);
 
 if ($result_rg->num_rows > 0) {
@@ -14,7 +14,7 @@ if ($result_rg->num_rows > 0) {
   $reserve_counter = 0;
 } 
 // This line is Counting for the number of Registered Rotc Graduate
-$sql_rg_inactive = "SELECT rg_id FROM reservists WHERE user_status = 'inactive'";
+$sql_rg_inactive = "SELECT reservist_id FROM reservists WHERE user_status = 'inactive'";
 $result_rg_inactive  = $conn->query($sql_rg_inactive);
 
 if ($result_rg_inactive->num_rows > 0) {

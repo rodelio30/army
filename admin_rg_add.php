@@ -159,11 +159,11 @@ $date_max = date("Y-m-d", strtotime($date ." -15 year") );
                     <div class="form-group">
                       <label for="exampleInputEmail1">School Graduated</label>
                         <select class="form-control" id="school_id" name="school_id">
-                          <option value="None">None</option>
+                          <option value="0">None</option>
                             <?php
-                            $result = mysqli_query($conn, "select acronym from schools where status='active'") or die("Query School List is inncorrect........");
-                            while (list($acronym) = mysqli_fetch_array($result)) {
-                              echo "<option value='$acronym'>$acronym</option>";
+                            $result = mysqli_query($conn, "select school_id, school_name from schools where status='active'") or die("Query School List is inncorrect........");
+                            while (list($school_id, $school_name) = mysqli_fetch_array($result)) {
+                              echo "<option value='$school_id'>$school_name</option>";
                             }
                             ?>
                         </select>

@@ -97,7 +97,7 @@ if (isset($_POST['rids_update'])) {
 
 
   // update info for army_users
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name',email = '$email', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$army_id'") or die("Query Reservist is incorrect....");
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name',email = '$email', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where army_id = '$army_id'") or die("Query Reservist is incorrect....");
   
   // update info for reservist 
   mysqli_query($conn, "update reservists set firstname = '$firstname', lastname = '$lastname', middle_initial = '$middle_name', extname = '$extname', rank_id = '$rank_id', company_id = '$company_id', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$user_id'") or die("Query Reservist is incorrect....");

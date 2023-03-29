@@ -53,16 +53,20 @@ if(!$isSadmin){
 
                                             if ($users_counter > 0) {
                                                 if($isSadmin){
-                                                    $result = mysqli_query($conn, "select id, username, type, company_id, status, user_status, date_modified, time_modified from army_users WHERE user_status!='archive' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select army_id, username, type, company_id, status, user_status, date_modified, time_modified from army_users WHERE user_status!='archive' && army_id != $army_id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }elseif ($isAdmin || $isStaff){
-                                                    $result = mysqli_query($conn, "select id, username, type, company_id, status, user_status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select army_id, username, type, company_id, status, user_status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && army_id != $army_id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
                                                 while (list($army_id, $username, $user_type, $company_id, $status, $user_status, $date, $time) = mysqli_fetch_array($result)) {
 
                                                     // Get the company name
-                                                    $result_company       = mysqli_query($conn, "SELECT * FROM company WHERE company_id = '$company_id'");
-                                                    while ($res      = mysqli_fetch_array($result_company)) {
-                                                      $company_name = $res['company_name'];
+                                                    if($company_id != 0) {
+                                                        $result_company       = mysqli_query($conn, "SELECT * FROM company WHERE company_id = '$company_id'");
+                                                        while ($res      = mysqli_fetch_array($result_company)) {
+                                                        $company_name = $res['company_name'];
+                                                        }
+                                                    } else {
+                                                        $company_name = 'None';
                                                     }
 
                                                     $color_me = '';

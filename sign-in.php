@@ -1,7 +1,7 @@
 <?php
 // include 'decrypt_function.php';
 require 'include/connect.php';
-if(!empty($_SESSION["id"])){
+if(!empty($_SESSION["army_id"])){
   header("Location: index.php");
 }
 if(isset($_POST["submit_admin"])){
@@ -25,7 +25,7 @@ if(isset($_POST["submit_admin"])){
     // if(password_verify($password, $row['password']) || $password == $row['password']){
     if(password_verify($password, $row['password'])){
       $_SESSION["login"] = true;
-      $_SESSION["id"] = $row["id"];
+      $_SESSION["army_id"] = $row["army_id"];
       header("Location: index.php");
     }
     else{

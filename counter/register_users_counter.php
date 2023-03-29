@@ -20,7 +20,7 @@ if ($result->num_rows > 0) {
 
 
 // This line is Counting for the number of Registered Reservist User
-$sql_reservist = "SELECT id FROM army_users WHERE type='reservist' && user_status = 'active' ";
+$sql_reservist = "SELECT army_id FROM army_users WHERE type='reservist' && user_status = 'active' ";
 $result_reservist = $conn->query($sql_reservist);
 
 if ($result_reservist->num_rows > 0) {
@@ -32,7 +32,7 @@ if ($result_reservist->num_rows > 0) {
 } 
 
 // This line is Counting for the number of Registered Admin User
-$sql_admin = "SELECT id FROM army_users WHERE type='admin' && user_status = 'active' ";
+$sql_admin = "SELECT army_id FROM army_users WHERE type='admin' && user_status = 'active' ";
 $result_admin = $conn->query($sql_admin);
 
 if ($result_admin->num_rows > 0) {
@@ -44,7 +44,7 @@ if ($result_admin->num_rows > 0) {
 } 
 
 // This line is Counting for the number of Registered staff User
-$sql_staff = "SELECT id FROM army_users WHERE type='staff' && user_status = 'active' ";
+$sql_staff = "SELECT army_id FROM army_users WHERE type='staff' && user_status = 'active' ";
 $result_staff = $conn->query($sql_staff);
 
 if ($result_staff->num_rows > 0) {
@@ -56,7 +56,7 @@ if ($result_staff->num_rows > 0) {
 } 
 
 // This line is Counting for the number of Registered commander User
-$sql_commander = "SELECT id FROM army_users WHERE type='commander' && user_status = 'active' ";
+$sql_commander = "SELECT army_id FROM army_users WHERE type='commander' && user_status = 'active' ";
 $result_commander = $conn->query($sql_commander);
 
 if ($result_commander->num_rows > 0) {
@@ -68,7 +68,7 @@ if ($result_commander->num_rows > 0) {
 } 
 
 // This line is Counting for the number of Registered school User
-$sql_school = "SELECT id FROM army_users WHERE type='school_coordinator' && user_status = 'active' ";
+$sql_school = "SELECT army_id FROM army_users WHERE type='school_coordinator' && user_status = 'active' ";
 $result_school = $conn->query($sql_school);
 
 if ($result_school->num_rows > 0) {
