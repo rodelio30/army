@@ -8,12 +8,12 @@ if (isset($_POST['submit_training'])) {
   $time         = date("h:i:s");
   $status       = 'Pending';
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM training_attendance WHERE user_id = '$id' && training_id = '$training_id'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM training_attendance WHERE army_id = '$army_id' && training_id = '$training_id'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo "<script> alert('This User Has Already Attend to this Training'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO training_attendance VALUES('','$training_id','$id','$date','$time','$status')";
+    $query = "INSERT INTO training_attendance VALUES('','$training_id','$army_id','$date','$time','$status')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $un_public. ' Attended!.")</script>';
@@ -27,13 +27,13 @@ if (isset($_POST['submit_seminar'])) {
   $time         = date("h:i:s");
   $status       = 'Pending';
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM seminar_attendance WHERE user_id = '$id' && seminar_id = '$seminar_id'");
+  $duplicate = mysqli_query($conn, "SELECT * FROM seminar_attendance WHERE army_id = '$army_id' && seminar_id = '$seminar_id'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('This User Has Already Attend to this seminar'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO seminar_attendance VALUES('','$seminar_id','$id','$date','$time','$status')";
+    $query = "INSERT INTO seminar_attendance VALUES('','$seminar_id','$army_id','$date','$time','$status')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $un_public. ' Attended!.")</script>';

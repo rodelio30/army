@@ -4,7 +4,7 @@ $seminar_attendance_counter = 0;
 $ts_counter = 0;
 
 // This line is Counting for the number of training attendance
-$sql = "SELECT att_id FROM training_attendance where user_id = '$id'";
+$sql = "SELECT att_id FROM training_attendance where army_id = '$army_id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
 } 
 
 // This line is Counting for the number of seminar attendance
-$sql = "SELECT att_id FROM seminar_attendance where user_id = '$id'";
+$sql = "SELECT att_id FROM seminar_attendance where army_id = '$army_id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

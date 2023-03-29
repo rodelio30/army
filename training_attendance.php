@@ -27,8 +27,8 @@
         include 'counter/training_attendance_counter.php';
 
         if ($training_attendance_counter > 0) {
-                $result = mysqli_query($conn, "select att_id, training_id, user_id, date_attended, time_attended, status from training_attendance WHERE training_id = $trainings_id && status != 'Declined' ORDER BY att_id") or die("Query for Training Attendance Error....");
-            while (list($att_id, $at_training_id, $at_user_id, $date_attended, $time_attended, $status) = mysqli_fetch_array($result)) {
+                $result = mysqli_query($conn, "select att_id, training_id, army_id, date_attended, time_attended, status from training_attendance WHERE training_id = $trainings_id && status != 'Declined' ORDER BY att_id") or die("Query for Training Attendance Error....");
+            while (list($att_id, $at_training_id, $at_army_id, $date_attended, $time_attended, $status) = mysqli_fetch_array($result)) {
                 $time_formatted   = date("g:i a ", strtotime($time_attended));
                 $result_tn       = mysqli_query($conn, "SELECT * FROM trainings WHERE training_id='$at_training_id'");
                 while ($res      = mysqli_fetch_array($result_tn)) {
@@ -36,7 +36,7 @@
                   $training_name = $res['training_name'];
                 }
 
-                $result_un   = mysqli_query($conn, "SELECT * FROM army_users WHERE id='$at_user_id'");
+                $result_un   = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id='$at_army_id'");
                 while ($res  = mysqli_fetch_array($result_un)) {
                   $firstname = $res['firstname'];
                   $lastname  = $res['lastname'];
