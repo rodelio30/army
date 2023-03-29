@@ -35,7 +35,8 @@ while (list($seminar_id) = mysqli_fetch_array($result_seminar)) {
                             </h1>
                         </div>
                         <div class="col-md-3">
-                            <?php if(!$isAvailable) { 
+                            <?php 
+                            if(!$isAvailable) { 
                                     echo "<a href=\"admin_ts_attended.php\" onClick=\"return confirm('No Available Training and Seminar for today')\" class='btn btn-outline-success float-end' id='action-print'><span data-feather='user-plus'></span>&nbsp Add Training or Seminar</a>";
                                 ?>
                             <?php } else { ?>
