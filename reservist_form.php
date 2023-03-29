@@ -13,7 +13,7 @@
                         <tr>
                             <td>
                                 <span class="small">Rank</span> 
-                                <br><strong><?php echo $rank ?></strong> 
+                                <br><strong><?php echo $rank_name ?></strong> 
                             </td>
                             <td colspan="3">
                                 <span class="small">Last Name</span> 
@@ -87,7 +87,7 @@
                             </td>
                             <td colspan="2">
                                 <span class="small">Company </span> 
-                                <br> <?php echo $company ?>
+                                <br> <?php echo $company_name ?>
                             </td>
                             <td colspan="5">
                                 <span class="small">Battalion / Brigade / Division</span> 
@@ -247,9 +247,7 @@
                             <td>
                                 <span class="small">Rank
                                 </span> 
-                                <br>1.
-                                <br><?php echo $promo_rank?>
-                            </td>
+                                <br>1. <?php echo $rank_name ?> </td>
                             <td>
                                 <span class="small">Date of Rank
                                 </span> 

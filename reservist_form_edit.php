@@ -108,7 +108,23 @@
                                 <input type="text" class="form-control" id="platoon" name="platoon" value="<?php echo $platoon ?>" placeholder="Enter platoon">
                             </td>
                             <td class="font_small">Company
-                                <input type="text" class="form-control" id="company" name="company" value="<?php echo $company ?>" placeholder="Enter company">
+                                <!-- <input type="text" class="form-control" id="company_id" name="company_id" value="<?php echo $company_id ?>" placeholder="Enter company"> -->
+                                <select class="form-control" id="company_id" name="company_id">
+                                <?php
+                                    if($company_id == '0'){
+                                    echo "<option value='$company_id' selected>None</option>";
+                                    }
+                                $result = mysqli_query($conn, "select company_id, company_name from company where status='active'") or die("Query School List is inncorrect........");
+                                while (list($r_id, $company_name) = mysqli_fetch_array($result)) {
+                                    if($company_id == $r_id) {
+                                    echo "<option value='$r_id' selected>$company_name</option>";
+                                    }
+                                    else {
+                                    echo "<option value='$r_id'>$company_name</option>";
+                                    }
+                                }
+                                ?>
+                                </select>
                             </td>
                             <td class="font_small" colspan="5">Battalion / Brigade / Division
                                 <input type="text" class="form-control" id="battalion" name="battalion" value="<?php echo $battalion ?>" placeholder="Enter battalion">
@@ -222,8 +238,24 @@
                     <tbody>
                         <tr>
                             <td class="font_small">Rank
-                                <br>1.
-                                <input type="text" class="form-control" id="promo_rank" name="promo_rank" value="<?php echo $promo_rank?>" placeholder="Enter Rank">
+                                1.
+                                <!-- <input type="text" class="form-control" id="rank_id" name="rank_id" value="<?php echo $rank_name?>" placeholder="Enter Rank"> -->
+                                <select class="form-control" id="rank_id" name="rank_id">
+                                <?php
+                                    if($rank_id == '0'){
+                                    echo "<option value='$rank_id' selected>None</option>";
+                                    }
+                                $result = mysqli_query($conn, "select rank_id, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+                                while (list($r_id, $rank_name) = mysqli_fetch_array($result)) {
+                                    if($rank_id == $r_id) {
+                                    echo "<option value='$r_id' selected>$rank_name</option>";
+                                    }
+                                    else {
+                                    echo "<option value='$r_id'>$rank_name</option>";
+                                    }
+                                }
+                                ?>
+                                </select>
                             </td>
                             <td class="font_small">Date of Rank
                                 <input type="date" class="form-control" id="date_of_rank" name="date_of_rank" value="<?php echo $date_of_rank?>" placeholder="Enter Date of Rank">

@@ -1,20 +1,20 @@
 <?php 
-$result       = mysqli_query($conn, "SELECT * FROM reservists WHERE rg_id='$user_id'");
+$result       = mysqli_query($conn, "SELECT * FROM reservists WHERE reservist_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $user_id        = $res['rg_id'];
+  $user_id        = $res['reservist_id'];
   $army_id        = $res['army_id'];
   $firstname      = $res['firstname'];
   $middle_name    = $res['middle_initial'];
   $lastname       = $res['lastname'];
   $extname        = $res['extname'];
-  $rank           = $res['rank'];
-  $company        = $res['company'];
+  $rank_id        = $res['rank_id'];
+  $company_id     = $res['company_id'];
   $afpsn          = $res['afpsn'];
   $home_address   = $res['home_address'];
   $birth_date     = $res['date_of_birth'];
   $age            = $res['age'];
   $sex            = $res['sex'];
-  $promo_rank     = $res['rank'];
+  // $promo_rank     = $res['rank'];
   $status         = $res['status'];
   $user_status    = $res['user_status'];
   $date_modified  = $res['date_modified'];
@@ -86,4 +86,25 @@ while ($res   = mysqli_fetch_array($result)) {
     $pos_date_from         = $res['pos_date_from'];
     $pos_date_to           = $res['pos_date_to'];
   } 
+
+// Get the rank name
+if($rank_id != 0) {
+  $result_rank = mysqli_query($conn, "SELECT * FROM ranks WHERE rank_id = '$rank_id'");
+  while ($res      = mysqli_fetch_array($result_rank)) {
+    $rank_name = $res['rank_name'];
+  }
+} else {
+    $rank_name = 'None';
+}
+
+// Get the company name
+if($company_id != 0) {
+  $result_company       = mysqli_query($conn, "SELECT * FROM company WHERE company_id = '$company_id'");
+  while ($res      = mysqli_fetch_array($result_company)) {
+    $company_name = $res['company_name'];
+  }
+} else {
+    $company_name = 'None';
+}
+
 ?>

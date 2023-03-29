@@ -66,12 +66,12 @@ if($isReservist){
                                             if ($rg_counter > 0) {
 
                                                 if($isSchool){
-                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' && school_id = '$public_school_id' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' && school_id = '$public_school_id' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 } else{
-                                                $result = mysqli_query($conn, "select rg_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
 
-                                                while (list($rg_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank_id, $date_of_birth, $home_address, $date_graduated, $school_id, $user_status) = mysqli_fetch_array($result)) {
+                                                while (list($reservist_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank_id, $date_of_birth, $home_address, $date_graduated, $school_id, $user_status) = mysqli_fetch_array($result)) {
 
                                                     // Get the School name
                                                     if($school_id == 0) {
@@ -86,23 +86,23 @@ if($isReservist){
                                                     if($isSadmin){
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$rank_id</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_id</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
                                                         <td>$school_name</td>
                                                         <td>$date_graduated</td>
                                                         <td>$user_status</td>
-                                                        <td id='action-print'><a href=\"archive/reservist/reservist_archive.php?ID=$rg_id\" onClick=\"return confirm('Are you sure you want this rg move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
+                                                        <td id='action-print'><a href=\"archive/reservist/reservist_archive.php?ID=$reservist_id\" onClick=\"return confirm('Are you sure you want this rg move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
                                                     } 
                                                     else if ($isStaff) {
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$rank_id</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_id</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
                                                         <td>$school_name</td>
                                                         <td>$date_graduated</td>
@@ -113,9 +113,9 @@ if($isReservist){
                                                     else {
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$rank_id</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$rg_id\" class='user-clicker'>$afpsn</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_id</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
                                                         <td>$school_name</td>
                                                         <td>$date_graduated</td>

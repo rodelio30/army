@@ -12,8 +12,8 @@ if (isset($_POST['rids_update'])) {
   $firstname     = $_POST['firstname'];
   $lastname      = $_POST['lastname'];
   $middle_name   = $_POST['middle_name'];
-  $rank          = $_POST['rank'];
-  $company       = $_POST['company'];
+  $rank_id       = $_POST['rank_id'];
+  $company_id    = $_POST['company_id'];
   $afpsn         = $_POST['afpsn'];
   $status        = $_POST['status'];
 
@@ -68,7 +68,7 @@ if (isset($_POST['rids_update'])) {
     $language             = $_POST['language'];
 
     // This line below is to get the below information of RIDS form
-    $promo_rank            = $_POST['rank'];
+    // $promo_rank            = $_POST['rank'];
     $date_of_rank          = $_POST['date_of_rank'];
     $rank_authority        = $_POST['rank_authority'];
     $military_schooling    = $_POST['military_schooling'];
@@ -100,7 +100,7 @@ if (isset($_POST['rids_update'])) {
   mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', middle_name = '$middle_name',email = '$email', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$army_id'") or die("Query Reservist is incorrect....");
   
   // update info for reservist 
-  mysqli_query($conn, "update reservists set firstname = '$firstname', lastname = '$lastname', middle_initial = '$middle_name', extname = '$extname', rank = '$rank', company = '$company', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where rg_id = '$user_id'") or die("Query Reservist is incorrect....");
+  mysqli_query($conn, "update reservists set firstname = '$firstname', lastname = '$lastname', middle_initial = '$middle_name', extname = '$extname', rank_id = '$rank_id', company_id = '$company_id', afpsn = '$afpsn', status = '$status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$user_id'") or die("Query Reservist is incorrect....");
   
   // update info for reservist personal information
   mysqli_query($conn, "update rids set 
@@ -163,7 +163,17 @@ if (isset($_POST['rids_update'])) {
     pos_date_from = '$pos_date_from',
     pos_date_to = '$pos_date_to' where reservist_id = '$user_id'") or die("Query Below Information is incorrect....");
   
-  echo '<script type="text/javascript"> alert(" ' . $rank . ' ' . $firstname. ' ' . $lastname . ' updated!.")</script>';
+    // Get the rank name
+    $rank_name      = '';
+    if($rank_id == 0) { 
+      $rank_name = '';
+    } else {
+      $result_rank = mysqli_query($conn, "SELECT * FROM ranks WHERE rank_id = '$rank_id'");
+      while ($res      = mysqli_fetch_array($result_rank)) {
+      $rank_name = $res['rank_name'];
+      }
+    }
+  echo '<script type="text/javascript"> alert(" ' . $rank_name . ' ' . $firstname. ' ' . $lastname . ' updated!.")</script>';
   header('Refresh: 0; url=admin_rids_view.php?ID='.$user_id.'');
   // End of Else in Inactive if
 }

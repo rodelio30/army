@@ -54,10 +54,10 @@ if (isset($_POST['update'])) {
           // #####this line below is to get the is of the reservist who can log in to the system
           $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
           while ($res   = mysqli_fetch_array($result_get_id)) {
-            $rg_id = $res['rg_id'];
+            $reservist_id = $res['reservist_id'];
           }
           // Inserting other info for reservist in personal information
-            mysqli_query($conn, "insert into rids (reservist_id) values('$rg_id')")  or die("Query Personal Information is incorrect.....");
+            mysqli_query($conn, "insert into rids (reservist_id) values('$reservist_id')")  or die("Query Personal Information is incorrect.....");
         }
 
       $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
