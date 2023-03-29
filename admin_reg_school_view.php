@@ -8,21 +8,20 @@ $school_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$school_id' && user_type='school_coordinator' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $school_id      = $res['reg_id'];
+  $sch_id         = $res['reg_id'];
   $firstname      = $res['firstname'];
   $lastname       = $res['lastname'];
   $username       = $res['username'];
   $email          = $res['email'];
-  $school_name    = $res['school_name'];
-  $school_address = $res['school_address'];
-  $rank           = $res['rank'];
+  $school_id      = $res['school_id'];
+  $rank_id        = $res['rank_id'];
   $user_type      = $res['user_type'];
   $status         = $res['status'];
   $user_status    = $res['user_status'];
   $date           = $res['date'];
   $time           = $res['time'];
 }
-
+include 'admin_query_getter_school.php';
 // $time_formatted  = date("g:i a ", strtotime($time_created));
 // $time_m_formatted  = date("g:i a ", strtotime($time_modified));
 ?>
@@ -52,7 +51,7 @@ while ($res   = mysqli_fetch_array($result)) {
               <?php 
               if($isSadmin || $isAdmin){
               ?>
-              <a <?php echo "href=\"admin_reg_school_edit.php?ID=$school_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+              <a <?php echo "href=\"admin_reg_school_edit.php?ID=$sch_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
               <?php } ?>
             </div>
           </div>
@@ -135,7 +134,7 @@ while ($res   = mysqli_fetch_array($result)) {
                     </div>
                     <div class="col-sm-9 text-secondary">
                       <div class="flatpickr-weekwrapper">
-                        <?php echo $rank ?>
+                        <?php echo $rank_name ?>
                       </div>
                     </div>
                   </div>

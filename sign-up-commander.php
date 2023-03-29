@@ -4,9 +4,9 @@ if(!empty($_SESSION["id"])){
   header("Location: index.php");
 }
 if(isset($_POST["submit"])){
-  $rank            = $_POST["rank"];
+  $rank_id            = $_POST["rank_id"];
   $afpsn           = $_POST["afpsn"];
-  $company         = $_POST["company"];
+  $company_id         = $_POST["company_id"];
   $firstname       = $_POST["firstname"];
   $lastname        = $_POST["lastname"];
   $username        = $_POST["username"];
@@ -23,6 +23,7 @@ if(isset($_POST["submit"])){
   $duplicate_afpsn = mysqli_query($conn, "SELECT * FROM army_users WHERE afpsn = '$afpsn'");
   if(mysqli_num_rows($duplicate_afpsn) > 0){
     echo "<script> alert('AFPSN Has Already Taken'); </script>";
+		header("Location: sign-up-commander.php");
   }
 	// Checkng if duplicate email, username and afpsn in registration
   $duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email' OR afpsn = '$afpsn'");
@@ -34,7 +35,7 @@ if(isset($_POST["submit"])){
 		// Checking if password confirmation match
     if($password == $confirmpassword){
 			$hash_pass = password_hash($password, PASSWORD_DEFAULT);
-      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$hash_pass','$user_type','$rank','$company','$afpsn','','','$status', '$user_status', '$date', '$time')";
+      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$hash_pass','$user_type','$rank_id','$company_id','$afpsn','','$status', '$user_status', '$date', '$time')";
       mysqli_query($conn, $query);
 
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";
@@ -70,13 +71,13 @@ if(isset($_POST["submit"])){
 										<div class="mb-3">
 										<label class="form-label">Rank Classification <span class="input_required">*</span>
 											</label>
-											<select class="form-control" id="rank" name="rank">
-													<option value="none">None</option>
+											<select class="form-control" id="rank_id" name="rank_id">
+													<option value="0">None</option>
 												<?php
-												$result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
-												while (list($rank_name) = mysqli_fetch_array($result)) {
-													echo "<option value='$rank_name'>$rank_name</option>";
-												}
+													$result = mysqli_query($conn, "select rank_id, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+													while (list($rank_id, $rank_name) = mysqli_fetch_array($result)) {
+														echo "<option value='$rank_id'>$rank_name</option>";
+													}
 												?>
 											</select>
 										</div>
@@ -91,13 +92,13 @@ if(isset($_POST["submit"])){
 										<div class="mb-3">
 											<label class="form-label">Company <span class="input_required">*</span>
 													</label>
-													<select class="form-control" id="company" name="company">
-														<option value="none">None</option>
+													<select class="form-control" id="company_id" name="company_id">
+														<option value="0">None</option>
 														<?php
-														$result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
-														while (list($company_name) = mysqli_fetch_array($result)) {
-															echo "<option value='$company_name'>$company_name</option>";
-														}
+															$result = mysqli_query($conn, "select company_id, company_name from company where status='active'") or die("Query School List is inncorrect........");
+															while (list($company_id, $company_name) = mysqli_fetch_array($result)) {
+																echo "<option value='$company_id'>$company_name</option>";
+															}
 														?>
 													</select>
 										</div>

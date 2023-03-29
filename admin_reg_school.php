@@ -47,8 +47,10 @@ if(!$isSadmin){
                                     include 'counter/registration_counter.php';
                                     //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                     if($sc_counter > 0) {
-                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE status = 'pending' && user_type='school_coordinator' ORDER BY date") or die("Query for latest reservist....");
-                                        while (list($reg_id, $username, $school_name, $school_address, $user_type, $status, $date, $time) = mysqli_fetch_array($result)) {
+                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank_id, school_id, status, date, time from registration_user WHERE status = 'pending' && user_type='school_coordinator' ORDER BY date") or die("Query for latest reservist....");
+                                        while (list($reg_id, $username, $user_type, $rank_id, $school_id, $status, $date, $time) = mysqli_fetch_array($result)) {
+                                                // include 'admin_query_getter.php';
+                                                include 'admin_query_getter_school.php';
                                                 echo "
                                                     <tr>	
                                                         <td scope='row'><a href=\"admin_reg_school_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>

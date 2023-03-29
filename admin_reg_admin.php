@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'system_checker.php';
 if(!$isSadmin){
   header("Location: index.php");
@@ -48,18 +48,19 @@ if(!$isSadmin){
                                       echo "<script>console.log('" . $admin_counter . "');</script>";
 
                                         if($admin_counter > 0) {
-                                        $result = mysqli_query($conn, "select reg_id, username, user_type, rank, company, status, date, time from registration_user WHERE user_type='admin' && status = 'pending' ORDER BY date") or die("Query for latest reservist....");
-                                        while (list($reg_id, $username, $user_type, $rank, $company, $status, $date, $time) = mysqli_fetch_array($result)) {
-                                            echo "
-                                                <tr>	
-                                                    <td scope='row'><a href=\"admin_reg_admin_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>
-                                                    <td>$rank</td>
-                                                    <td>$company</td>
-                                                    <td>$date $time</td>
-                                                    <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
-                                                </tr>
-                                            ";
-                                        }
+                                            $result = mysqli_query($conn, "select reg_id, username, user_type, rank_id, company_id, school_id, status, date, time from registration_user WHERE user_type='admin' && status = 'pending' ORDER BY date") or die("Query for latest reservist....");
+                                            while (list($reg_id, $username, $user_type, $rank_id, $company_id, $school_id, $status, $date, $time) = mysqli_fetch_array($result)) {
+                                                include 'admin_query_getter.php';
+                                                echo "
+                                                    <tr>	
+                                                        <td scope='row'><a href=\"admin_reg_admin_view.php?ID=$reg_id\" class='user-clicker'>$username</a></td>
+                                                        <td>$rank_name</td>
+                                                        <td>$company_name</td>
+                                                        <td>$date $time</td>
+                                                        <td><span class='badge bg-warning' style='font-size: 12px;'>$status</span></td>
+                                                    </tr>
+                                                ";
+                                            }
                                         }
                                         else {
                                                 echo " <tr>	
