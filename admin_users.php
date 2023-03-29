@@ -53,11 +53,18 @@ if(!$isSadmin){
 
                                             if ($users_counter > 0) {
                                                 if($isSadmin){
-                                                    $result = mysqli_query($conn, "select id, username, type, company, status, user_status, date_modified, time_modified from army_users WHERE user_status!='archive' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select id, username, type, company_id, status, user_status, date_modified, time_modified from army_users WHERE user_status!='archive' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }elseif ($isAdmin || $isStaff){
-                                                    $result = mysqli_query($conn, "select id, username, type, company, status, user_status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                    $result = mysqli_query($conn, "select id, username, type, company_id, status, user_status, date_modified, time_modified from army_users WHERE type != 'admin' && type != 'sadmin' && user_status='active' && id != $id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
-                                                while (list($army_id, $username, $user_type, $company, $status, $user_status, $date, $time) = mysqli_fetch_array($result)) {
+                                                while (list($army_id, $username, $user_type, $company_id, $status, $user_status, $date, $time) = mysqli_fetch_array($result)) {
+
+                                                    // Get the company name
+                                                    $result_company       = mysqli_query($conn, "SELECT * FROM company WHERE company_id = '$company_id'");
+                                                    while ($res      = mysqli_fetch_array($result_company)) {
+                                                      $company_name = $res['company_name'];
+                                                    }
+
                                                     $color_me = '';
                                                     if($status == 'pending') {
                                                         $color_me = 'warning';
@@ -73,7 +80,7 @@ if(!$isSadmin){
                                                 <tr>	
                                                     <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
                                                     <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$user_type</a></td>
-                                                    <td>$company</td>
+                                                    <td>$company_name</td>
                                                     <td>$user_status</td>
                                                     <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
                                                     <td id='action-print'><a href=\"archive/army_users/army_users_archive.php?ID=$army_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md'><span><span data-feather='package'></span>&nbsp Archive</a></td>
@@ -85,7 +92,7 @@ if(!$isSadmin){
                                                         <tr>	
                                                             <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$username</a></td>
                                                             <td scope='row'><a href=\"admin_users_view.php?ID=$army_id\" class='user-clicker'>$user_type</a></td>
-                                                            <td>$company</td>
+                                                            <td>$company_id</td>
                                                             <td>$user_status</td>
                                                             <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
                                                         </tr>

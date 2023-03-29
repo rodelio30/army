@@ -8,15 +8,14 @@ $school_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM registration_user WHERE reg_id='$school_id' && user_type='school_coordinator' ");
 while ($res   = mysqli_fetch_array($result)) {
-  $school_id      = $res['reg_id'];
+  $sch_id         = $res['reg_id'];
   $firstname      = $res['firstname'];
   $lastname       = $res['lastname'];
   $username       = $res['username'];
   $email          = $res['email'];
-  $school_name    = $res['school_name'];
-  $school_address = $res['school_address'];
+  $school_id      = $res['school_id'];
   $password       = $res['password'];
-  $rank           = $res['rank'];
+  $rank_id        = $res['rank_id'];
   $status         = $res['status'];
   $user_status    = $res['user_status'];
   $user_type      = $res['user_type'];
@@ -33,10 +32,10 @@ if (isset($_POST['update'])) {
     mysqli_query($conn, "update registration_user set status = '$up_status' where reg_id = '$school_id'") or die("Query 4 is incorrect....");
     header('Refresh: 0; url=admin_reg_school.php');
   } else {
-    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','','','$school_name','$school_address','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+    $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank_id','','','$school_id','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
 
       if (mysqli_query($conn, $query_army_user)) {
-        $query_del_school = "DELETE FROM registration_user WHERE reg_id = $school_id";
+        $query_del_school = "DELETE FROM registration_user WHERE reg_id = $sch_id";
         mysqli_query($conn, $query_del_school);
       }
       echo '<script type="text/javascript"> alert("User ' . $username . ' updated!.")</script>';
@@ -65,7 +64,7 @@ if (isset($_POST['update'])) {
       <main class="content">
         <div class="container-fluid p-0">
           <h1 class="h3 mb-3"><a href="admin_reg_school.php" class="linked-navigation">School Coordinator List
-            </a> / <a href="admin_reg_school_view.php?ID=<?php echo $school_id ?>" class="linked-navigation"><?php echo $firstname . ' ' . $lastname ?> </a> / Edit</h1>
+            </a> / <a href="admin_reg_school_view.php?ID=<?php echo $sch_id ?>" class="linked-navigation"><?php echo $firstname . ' ' . $lastname ?> </a> / Edit</h1>
           <div class="row">
             <div class="col-12">
               <div class="card">

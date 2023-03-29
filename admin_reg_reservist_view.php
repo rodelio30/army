@@ -15,14 +15,15 @@ while ($res   = mysqli_fetch_array($result)) {
   $username     = $res['username'];
   $email        = $res['email'];
   $user_type    = $res['user_type'];
-  $rank         = $res['rank'];
-  $company      = $res['company'];
+  $rank_id         = $res['rank_id'];
+  $company_id      = $res['company_id'];
   $afpsn        = $res['afpsn'];
   $status       = $res['status'];
   $user_status  = $res['user_status'];
   $date         = $res['date'];
   $time         = $res['time'];
 }
+include 'admin_query_getter.php';
 
 // $time_formatted  = date("g:i a ", strtotime($time_created));
 // $time_m_formatted  = date("g:i a ", strtotime($time_modified));
@@ -113,7 +114,7 @@ while ($res   = mysqli_fetch_array($result)) {
                                   </div>
                                   <div class="col-sm-9 text-secondary">
                                     <div class="flatpickr-weekwrapper">
-                                      <?php echo $rank ?>
+                                      <?php echo $rank_name ?>
                                     </div>
                                   </div>
                                 </div>
@@ -124,7 +125,7 @@ while ($res   = mysqli_fetch_array($result)) {
                                   </div>
                                   <div class="col-sm-9 text-secondary">
                                     <div class="flatpickr-weekwrapper">
-                                      <?php echo $company ?>
+                                      <?php echo $company_name ?>
                                     </div>
                                   </div>
                                 </div>

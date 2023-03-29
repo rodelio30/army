@@ -14,8 +14,8 @@ while ($res   = mysqli_fetch_array($result)) {
   $username     = $res['username'];
   $email        = $res['email'];
   $password     = $res['password'];
-  $rank         = $res['rank'];
-  $company      = $res['company'];
+  $rank_id      = $res['rank_id'];
+  $company_id      = $res['company_id'];
   $afpsn        = $res['afpsn'];
   $status       = $res['status'];
   $user_status  = $res['user_status'];
@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
     header('Refresh: 0; url=admin_reg_admin.php');
   }
   else {
-  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank','$company','$afpsn','','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
+  $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank_id','$company_id','$afpsn','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
      if (mysqli_query($conn, $query_army_user)) {
         
       $query_del_admin = "DELETE FROM registration_user WHERE reg_id = $admin_id";

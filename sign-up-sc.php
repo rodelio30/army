@@ -4,10 +4,9 @@ if (!empty($_SESSION["id"])) {
 	header("Location: index.php");
 }
 if (isset($_POST["submit"])) {
-	$rank            = $_POST["rank"];
+	$rank_id         = $_POST["rank_id"];
 	$afpsn           = $_POST["afpsn"];
-	$school_name     = $_POST["school_name"];
-	$school_address  = $_POST["school_address"];
+	$school_id       = $_POST["school_id"];
 	$firstname       = $_POST["firstname"];
 	$lastname        = $_POST["lastname"];
 	$username        = $_POST["username"];
@@ -20,24 +19,30 @@ if (isset($_POST["submit"])) {
 	$date            = date("Y-m-d");
 	$time            = date("H:i:s");;
 
-	// Checkng if duplicate afpsn for all users
-  $duplicate_afpsn = mysqli_query($conn, "SELECT * FROM army_users WHERE afpsn = '$afpsn'");
-  if(mysqli_num_rows($duplicate_afpsn) > 0){
-    echo "<script> alert('AFPSN Has Already Taken'); </script>";
-  }
+	if($afpsn != '') {
+		// Checkng if duplicate afpsn for all users
+		$duplicate_afpsn = mysqli_query($conn, "SELECT * FROM army_users WHERE afpsn = '$afpsn'");
+		if(mysqli_num_rows($duplicate_afpsn) > 0){
+			echo "<script> alert('AFPSN Has Already Taken'); </script>";
+			header("Location: sign-up-sc.php");
+		}
+	}
 	// Checkng if duplicate email, username and afpsn in registration
-	$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email' OR afpsn = '$afpsn'");
+	if($afpsn != ''){
+		$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email' OR afpsn = '$afpsn'");
+	} else{
+		$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email'");
+	}
 	if (mysqli_num_rows($duplicate) > 0) {
-		echo
-		"<script> alert('Username or Email Has Already Taken'); </script>";
+		echo "<script> alert('Username or Email Has Already Taken'); </script>";
 	} else {
 		// Checking if password confirmation match
 		if ($password == $confirmpassword) {
 			$hash_pass = password_hash($password, PASSWORD_DEFAULT);
-      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$hash_pass','$user_type','$rank','','$afpsn','$school_name','$school_address','$status','$user_status', '$date', '$time')";
+      $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$hash_pass','$user_type','$rank_id','','$afpsn','$school_id','$status','$user_status', '$date', '$time')";
 			mysqli_query($conn, $query);
-
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";
+
 		} else {
 			echo
 			"<script> alert('Password Does Not Match'); </script>";
@@ -69,29 +74,26 @@ if (isset($_POST["submit"])) {
 										<div class="mb-2">
 											<label class="form-label">School Name <span class="input_required">*</span>
 											</label>
-											<select name="school_name" class="form-control">
-												<option value="None">None</option>
+											<select name="school_id" class="form-control">
+													<option value="0">None</option>
 												<?php
-												$result = mysqli_query($conn, "select school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
-												while (list($school_name,$acronym) = mysqli_fetch_array($result)) {
-													echo "<option value='$acronym'>$school_name</option>";
+												$result = mysqli_query($conn, "select school_id, school_name, acronym from schools where status='active'") or die("Query School List is inncorrect........");
+												while (list($school_id, $school_name,$acronym) = mysqli_fetch_array($result)) {
+													echo "<option value='$school_id'>$school_name</option>";
 												}
 												?>
 											</select>
 										</div>
-										<div class="mb-2">
-											<label class="form-label">School Address <span class="input_required">*</span> </label>
-											<input class="form-control form-control-lg" type="text" name="school_address" placeholder="Enter Brgy., Municipality/City, Province" autofocus required />
-										</div>
+										
 										<div class="mb-2">
 											<label class="form-label">Rank Classification </label>
-											<select class="form-control" id="rank" name="rank">
-													<option value="none">None</option>
+											<select class="form-control" id="rank_id" name="rank_id">
+													<option value="0">None</option>
 												<?php
-												$result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
-												while (list($rank_name) = mysqli_fetch_array($result)) {
-													echo "<option value='$rank_name'>$rank_name</option>";
-												}
+													$result = mysqli_query($conn, "select rank_id, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+													while (list($rank_id, $rank_name) = mysqli_fetch_array($result)) {
+														echo "<option value='$rank_id'>$rank_name</option>";
+													}
 												?>
 											</select>
 										</div>
