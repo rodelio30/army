@@ -49,6 +49,10 @@ if ($status == "active") {
 } else if ($status == "inactive") {
   $sel_inactive = "selected";
 }
+$disabled = '';
+if($isStaff) {
+  $disabled = 'disabled';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +87,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="acronym" name="acronym" value="<?php echo $my_acronym ?>" placeholder="Enter Rank Abbreviation">
+                        <input type="text" class="form-control" id="acronym" name="acronym" value="<?php echo $my_acronym ?>" placeholder="Enter Rank Abbreviation" <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -92,7 +96,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank Description</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <input type="text" class="form-control" id="rank_name" name="rank_name" value="<?php echo $rank_name ?>" placeholder="Enter Rank Title">
+                        <input type="text" class="form-control" id="rank_name" name="rank_name" value="<?php echo $rank_name ?>" placeholder="Enter Rank Title" <?php echo $disabled ?>>
                       </div>
                     </div>
                     <br>
@@ -101,7 +105,7 @@ if ($status == "active") {
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status">
+                        <select class="form-control" id="status" value="<?php echo $status ?>" name="status" <?php echo $disabled ?>>
                           <option value="active" <?php echo $sel_active ?>>Active</option>
                           <option value="inactive" <?php echo $sel_inactive ?>>Inactive
                           </option>
@@ -140,7 +144,9 @@ if ($status == "active") {
                         <a href="admin_ranks.php" class="btn btn-md btn-outline-warning" style="float:left">Cancel</a>
                       </div>
                       <div class="col-6">
+                        <?php if(!$isStaff) {?>
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>
+                        <?php } ?>
                       </div>
                     </div>
                   </form>

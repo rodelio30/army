@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
   $time          = date("h:i:s");
 
   $duplicate = mysqli_query($conn, "SELECT * FROM seminars WHERE seminar_name = '$seminar_name' AND start_date = '$start_date' AND end_date = '$end_date'");
-  $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' AND start_date = '$start_date' AND end_date = '$end_date'");
+  // $duplicate = mysqli_query($conn, "SELECT * FROM trainings WHERE training_name = '$training_name' AND start_date = '$start_date' AND end_date = '$end_date'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('This information has Already Taken'); </script>";

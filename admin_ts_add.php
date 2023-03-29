@@ -76,34 +76,41 @@ if (isset($_POST['submit_seminar'])) {
                               <?php
                                 $result = mysqli_query($conn, "select training_id, training_name, venue from trainings where status='active'") or die("Query Training list inncorrect........");
                               while (list($training_id, $training_name, $venue) = mysqli_fetch_array($result)) {
-                              echo "
-                                <form method='post'>
-                                  <tr>	
-                                      <td>$training_name</td>
-                                      <td>$venue</td>
-                                      <input type='hidden' name='training_id' value='$training_id'>
-                                      <td>
-                                        <button type='submit' class='btn btn-outline-success' name='submit_training' style='float: right'>Attend</button>
-                                      </td>
-                                  </tr>
-                                </form>
-                              "; 
-                              } 
+                                  echo "
+                                    <form method='post'>
+                                      <tr>	
+                                          <td>$training_name</td>
+                                          <td>$venue</td>
+                                          <input type='hidden' name='training_id' value='$training_id'>
+                                          <td>
+                                            <button type='submit' class='btn btn-outline-success' name='submit_training' style='float: right'>Attend</button>
+                                          </td>
+                                      </tr>
+                                    </form>
+                                  "; 
+                                }
                                 $result_seminar = mysqli_query($conn, "select seminar_id, seminar_name, venue from seminars where status='active'") or die("Query seminar list inncorrect........");
                               while (list($seminar_id, $seminar_name, $venue) = mysqli_fetch_array($result_seminar)) {
-                              echo "
-                                <form method='post'>
-                                <tr>	
-                                    <td>$seminar_name</td>
-                                    <td>$venue</td>
-                                    <input type='hidden' name='seminar_id' value='$seminar_id'>
-                                    <td>
-                                      <button type='submit' class='btn btn-outline-success' name='submit_seminar' style='float: right'>Attend</button>
-                                    </td>
-                                </tr>
-                                </form>
-                              "; 
-                              } 
+                                    echo "
+                                      <form method='post'>
+                                      <tr>	
+                                          <td>$seminar_name</td>
+                                          <td>$venue</td>
+                                          <input type='hidden' name='seminar_id' value='$seminar_id'>
+                                          <td>
+                                            <button type='submit' class='btn btn-outline-success' name='submit_seminar' style='float: right'>Attend</button>
+                                          </td>
+                                      </tr>
+                                      </form>
+                                    "; 
+                                    } 
+                              // echo "
+                              //   <tr>	
+                              //       <td></td>
+                              //       <td>You have already attended the available Trainings and Seminars</td>
+                              //       <td> </td>
+                              //   </tr>
+                              // "; 
                               ?>
                           </tbody>
                           </table>
