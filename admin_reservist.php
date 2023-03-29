@@ -1,9 +1,9 @@
 <?php 
 
-$result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE army_id=$id");
+$result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE army_id=$army_id");
 // $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
 while ($res   = mysqli_fetch_array($result_get_id)) {
-  $user_id = $res['rg_id'];
+  $user_id = $res['reservist_id'];
 }
 include 'admin_rids_query.php';
 ?>

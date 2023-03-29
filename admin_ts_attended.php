@@ -62,7 +62,7 @@ while (list($seminar_id) = mysqli_fetch_array($result_seminar)) {
                                             include 'counter/ts_counter.php';
                                             //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                                             if ($ts_counter > 0) {
-                                                $result = mysqli_query($conn, "select att_id, training_id, user_id from training_attendance WHERE user_id = '$id' ORDER BY att_id") or die("Query for attendance....");
+                                                $result = mysqli_query($conn, "select att_id, training_id, army_id from training_attendance WHERE army_id = '$army_id' ORDER BY att_id") or die("Query for attendance....");
                                                 while (list($att_id, $at_training_id, $at_user_id) = mysqli_fetch_array($result)) {
                                                     $result_tn       = mysqli_query($conn, "SELECT * FROM trainings WHERE training_id='$at_training_id'");
                                                     while ($res      = mysqli_fetch_array($result_tn)) {
@@ -79,7 +79,7 @@ while (list($seminar_id) = mysqli_fetch_array($result_seminar)) {
                                                 ";
                                                 }
 
-                                                $result_seminar = mysqli_query($conn, "select att_id, seminar_id, user_id from seminar_attendance WHERE user_id = '$id' ORDER BY att_id") or die("Query for attendance....");
+                                                $result_seminar = mysqli_query($conn, "select att_id, seminar_id, army_id from seminar_attendance WHERE army_id = '$army_id' ORDER BY att_id") or die("Query for attendance....");
                                                 while (list($att_id, $at_seminar_id, $at_user_id) = mysqli_fetch_array($result_seminar)) {
                                                     $result_tn       = mysqli_query($conn, "SELECT * FROM seminars WHERE seminar_id='$at_seminar_id'");
                                                     while ($res      = mysqli_fetch_array($result_tn)) {
