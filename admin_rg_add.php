@@ -17,9 +17,9 @@ if (isset($_POST['submit'])) {
   
   
   if($isSchool) {
-    $school_address = $school_name_public;
+    $school_id = $public_school_id;
   } else {
-    $school_address = $_POST['school_graduated'];
+    $school_id = $_POST['school_id'];
   }
 
   $date_graduated = $_POST['date_graduated'];
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     "<script> alert('AFPSN Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO reservists VALUES('','','$firstname','$m_i','$lastname','$extname','$afpsn','$rank','','$birth_date','$home_address','$date_graduated','$age','$sex','$school_address','$status','$user_status','$date','$time','$date','$time')";
+    $query = "INSERT INTO reservists VALUES('','','$firstname','$m_i','$lastname','$extname','$afpsn','$rank','','$birth_date','$home_address','$date_graduated','$age','$sex','$school_id','$status','$user_status','$date','$time','$date','$time')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $firstname . ' '. $lastname . ' Added!.")</script>';
@@ -158,7 +158,7 @@ $date_max = date("Y-m-d", strtotime($date ." -15 year") );
                     ?> 
                     <div class="form-group">
                       <label for="exampleInputEmail1">School Graduated</label>
-                        <select class="form-control" id="school_graduated" name="school_graduated">
+                        <select class="form-control" id="school_id" name="school_id">
                           <option value="None">None</option>
                             <?php
                             $result = mysqli_query($conn, "select acronym from schools where status='active'") or die("Query School List is inncorrect........");
