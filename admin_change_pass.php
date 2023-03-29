@@ -5,7 +5,7 @@ if(isset($_POST["submit"])){
   $new_password     = $_POST["new_password"];
   $confirm_password = $_POST["confirm_password"];
 
-  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id ");
+  $result = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id = $army_id ");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
     // if($password == $row['password']){
@@ -13,7 +13,7 @@ if(isset($_POST["submit"])){
         // Checkng if duplicate email
         if($new_password == $confirm_password){
             $hash_pass = password_hash($new_password, PASSWORD_DEFAULT);
-            mysqli_query($conn, "update army_users set password = '$hash_pass' where id = '$id'") or die("Query 4 is incorrect....");
+            mysqli_query($conn, "update army_users set password = '$hash_pass' where army_id = '$army_id'") or die("Query 4 is incorrect....");
 
             echo "<script type='text/javascript'>alert('Password Change! You are automatically log out!'); document.location='include/sign-out.php' </script>";
         }
@@ -46,7 +46,7 @@ if(isset($_POST["submit"])){
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3"><a href="pages-profile.php?ID=<?php echo $id; ?>"class="linked-navigation">Profile </a> / Change Password</h1>
+                    <h1 class="h3 mb-3"><a href="pages-profile.php?ID=<?php echo $army_id; ?>"class="linked-navigation">Profile </a> / Change Password</h1>
 
                     <div class="row">
                         <div class="col-12">

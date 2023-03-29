@@ -12,29 +12,31 @@ if (isset($_POST['update'])) {
   $username      = $_POST['username'];
   $email         = $_POST['email'];
   // $user_type     = $_POST['type'];
-  $company       = $_POST['company'];
+  $rank_id       = $_POST['rank_id'];
+  $company_id    = $_POST['company_id'];
   $status        = $_POST['status'];
   $user_status   = $_POST['user_status'];
 
   $date_modified = date("Y-m-d");
   $time_modified = date("h:i:s");
 
-  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company = '$company', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank_id = '$rank_id', company_id = '$company_id', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where army_id = '$user_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
   header('Refresh: 0; url=admin_users.php');
   // End of Else in Inactive if
 }
 
-$result       = mysqli_query($conn, "SELECT * FROM army_users WHERE id='$user_id'");
+$result       = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $user_id       = $res['id'];
+  $user_id       = $res['army_id'];
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
   $username      = $res['username'];
   $email         = $res['email'];
   $type          = $res['type'];
-  $company       = $res['company'];
+  $rank_id       = $res['rank_id'];
+  $company_id    = $res['company_id'];
   $status        = $res['status'];
   $user_status   = $res['user_status'];
   $date_modified = $res['date_modified'];
@@ -138,20 +140,43 @@ if ($user_status == "active") {
                     <br>
                     <div class="row">
                       <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Rank</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <select class="form-control" id="rank_id" name="rank_id">
+                            <?php
+                              if($rank_id == '0'){
+                                  echo "<option value='$rank_id' selected>None</option>";
+                                }
+                            $result = mysqli_query($conn, "select rank_id, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+                            while (list($r_id, $r_name) = mysqli_fetch_array($result)) {
+                              if($r_id == $rank_id) {
+                                echo "<option value='$r_id' selected>$r_name</option>";
+                              } else {
+                                echo "<option value='$r_id'>$r_name</option>";
+                              }
+                            }
+                            ?>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
                         <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company</strong></h6>
                       </div>
                       <div class="col-sm-10 text-secondary">
-                        <select class="form-control" id="company" name="company">
-                          <option value="None">None</option>
+                        <select class="form-control" id="company_id" name="company_id">
                             <?php
-                            $result = mysqli_query($conn, "select company_name from company where status='active'") or die("Query School List is inncorrect........");
-                            while (list($c_name) = mysqli_fetch_array($result)) {
-                              if($c_name == $company) {
-                                echo "<option value='$c_name' selected>$c_name</option>";
-                              } else if($c_name == 'None'){
-                                echo "<option value='None' selected>None</option>";
+                              if($company_id == '0'){
+                                  echo "<option value='$company_id' selected>None</option>";
+                                }
+                            $result = mysqli_query($conn, "select company_id, company_name from company where status='active'") or die("Query School List is inncorrect........");
+                            while (list($comp_id, $c_name) = mysqli_fetch_array($result)) {
+                              if($comp_id == $company_id) {
+                                echo "<option value='$comp_id' selected>$c_name</option>";
                               } else {
-                                echo "<option value='$c_name'>$c_name</option>";
+                                echo "<option value='$comp_id'>$c_name</option>";
                               }
                             }
                             ?>

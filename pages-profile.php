@@ -2,11 +2,11 @@
 require 'system_checker.php';
 // include 'encryption.php';
 
-$user_id = $id;
+$user_id = $army_id;
 
-$result       = mysqli_query($conn, "SELECT * FROM army_users WHERE id='$user_id'");
+$result       = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $user_id       = $res['id'];
+  $user_id       = $res['army_id'];
   $user_img      = $res['user_img'];
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
@@ -62,12 +62,12 @@ if (isset($_POST['update'])) {
   $time_modified = date("h:i:s");
 
   if($isSadmin){
-    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank_id = '$rank_id', company_id = '$company_id', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', rank_id = '$rank_id', company_id = '$company_id', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where army_id = '$user_id'") or die("Query 4 is incorrect....");
   } else if($isSchool) {
-    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company_id = '$company_id', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company_id = '$company_id', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where army_id = '$user_id'") or die("Query 4 is incorrect....");
   }
   else {
-    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company_id = '$company_id', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where id = '$user_id'") or die("Query 4 is incorrect....");
+    mysqli_query($conn, "update army_users set firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', company_id = '$company_id', afpsn = '$afpsn', status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where army_id = '$user_id'") or die("Query 4 is incorrect....");
   }
 
   echo '<script type="text/javascript"> alert("' . $username . ' updated!.")</script>';
@@ -126,7 +126,7 @@ if(empty($filename)){
 
   // echo "<script>console.log('" . $email . "');</script>";
   // This line below is to update a specific faculty user
-  mysqli_query($conn, "update army_users set user_img = '$filename' where id = '$id'") or die("Query Changing image is incorrect....");
+  mysqli_query($conn, "update army_users set user_img = '$filename' where army_id = '$army_id'") or die("Query Changing image is incorrect....");
 
   // removing image in folder
   if(!empty($user_img)){
@@ -398,7 +398,7 @@ if($isSchool) {
                     <hr>
                     <div class="row" id="action-print">
                       <div class="col-6">
-                        <a href="admin_change_pass.php?ID=<?php echo $id?>" class="btn btn-md btn-outline-primary" style="float:left">Change Password</a>
+                        <a href="admin_change_pass.php?ID=<?php echo $army_id?>" class="btn btn-md btn-outline-primary" style="float:left">Change Password</a>
                       </div>
                       <div class="col-6">
                         <button type="submit" name="update" class="btn btn-md btn-outline-success" style="float:right">Update</button>

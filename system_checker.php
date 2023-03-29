@@ -7,11 +7,12 @@ $isCommander = false;
 $isSchool    = false;
 $isReservist = false;
 
-if (!empty($_SESSION["id"])) {
-  $id          = $_SESSION["id"];
-  $result      = mysqli_query($conn, "SELECT * FROM army_users WHERE id = $id");
+if (!empty($_SESSION["army_id"])) {
+  $army_id     = $_SESSION["army_id"];
+
+  $result      = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id = $army_id");
   $row         = mysqli_fetch_assoc($result);
-  $user_id     = $row["id"];
+  $user_id     = $row["army_id"];
   $fn_public   = $row["firstname"];
   $ln_public   = $row["lastname"];
   $un_public   = $row["username"];
