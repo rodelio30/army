@@ -5,30 +5,30 @@ if($isSchool){
 }
 // un_public is username of the user who logged in
 
-$com_name = '';
+$com_id = '';
 
-if(isset($_GET['com_name'])){
-  $com_name = $_GET['com_name'];
+if(isset($_GET['com_id'])){
+  $com_id = $_GET['com_id'];
 }
 
 if (isset($_POST['submit'])) {
-  if($com_name == ''){
+  if($com_id== ''){
     $company_name = $_POST['company_name'];
   } else {
-    $company_name = $com_name;
+    $company_name = $com_id;
   }
   $place        = $_POST['place'];
   $status       = 'active';
   $date         = date("Y-m-d");
   $time         = date("h:i:s");
 
-  $duplicate = mysqli_query($conn, "SELECT * FROM aor WHERE place LIKE '%$place'%");
+  $duplicate = mysqli_query($conn, "SELECT * FROM aor WHERE place LIKE '%$place%'");
   if (mysqli_num_rows($duplicate) > 0) {
     echo
     "<script> alert('Area of Responsibility Has Already Taken'); </script>";
   } else {
     // Checking if password confirmation match
-    $query = "INSERT INTO aor VALUES('','$company_id','$place','$status')";
+    $query = "INSERT INTO aor VALUES('','$company_name','$place','$status')";
     mysqli_query($conn, $query);
 
     echo '<script type="text/javascript"> alert("' . $place . ' Added!.")</script>';
@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
                 <div class="card-body">
                   <form method="post" autocomplete="off">
                     <?php 
-                  if($com_name == ''){ 
+                  if($com_id == ''){ 
                     ?>
 
                     <div class="form-group">
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                       </select>
                     </div>
                     <br>
-<?php } ?>
+                  <?php } ?>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Location</label>
                       <input type="text" class="form-control" id="place" name="place" placeholder="Enter City/Municipality" required>

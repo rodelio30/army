@@ -50,20 +50,21 @@ if($isSchool || $isReservist){
                                                     $result = mysqli_query($conn, "select reservist_id, army_id, firstname, lastname, status, date_modified, time_modified from reservists WHERE user_status='active' && status != 'Pending' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 while (list($reservist_id, $army_id, $firstname, $lastname, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
-                                                    if($status == 'Pending') {
+                                                    if($status == 'Pending' || $status == 'pending') {
                                                         $color_me = 'warning';
-                                                    } else if($status == 'Ready') {
+                                                    } else if($status == 'Ready' || $status == 'ready') {
                                                         $color_me = 'success';
-                                                    } else if($status == 'Standby') {
+                                                    } else if($status == 'Standby' || $status == 'standby') {
                                                         $color_me = 'primary';
-                                                    } else if($status == 'Retired') {
+                                                    } else if($status == 'Retired' || $status == 'retired') {
                                                         $color_me = 'secondary';
                                                     }
+                                                    $up_status = ucfirst($status);
                                                     if($isSadmin) {
                                                     echo "
                                                         <tr>	
                                                             <td scope='row'><a href=\"admin_rids_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $lastname</a></td>
-                                                            <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
+                                                            <td><span class='badge bg-$color_me' style='font-size: 12px;'>$up_status</span></td>
                                                             <td id='action-print'><a href=\"archive/reservist/rids_archive.php?ID=$reservist_id&AID=$army_id\" onClick=\"return confirm('Are you sure you want this user to archive?')\" class='btn btn-outline-warning btn-md float-end'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                         </tr>
                                                         "; 
@@ -71,7 +72,7 @@ if($isSchool || $isReservist){
                                                         echo "
                                                             <tr>	
                                                             <td scope='row'><a href=\"admin_rids_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $lastname</a></td>
-                                                                <td><span class='badge bg-$color_me' style='font-size: 12px;'>$status</span></td>
+                                                                <td><span class='badge bg-$color_me' style='font-size: 12px;'>$up_status</span></td>
                                                             </tr>
                                                         ";
                                                         } else {

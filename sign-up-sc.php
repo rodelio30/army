@@ -19,7 +19,7 @@ if (isset($_POST["submit"])) {
 	$date            = date("Y-m-d");
 	$time            = date("H:i:s");;
 
-	if($afpsn != '') {
+	if(!empty($afpsn)){
 		// Checkng if duplicate afpsn for all users
 		$duplicate_afpsn = mysqli_query($conn, "SELECT * FROM army_users WHERE afpsn = '$afpsn'");
 		if(mysqli_num_rows($duplicate_afpsn) > 0){
@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
 		}
 	}
 	// Checkng if duplicate email, username and afpsn in registration
-	if($afpsn != ''){
+	if(!empty($afpsn)){
 		$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email' OR afpsn = '$afpsn'");
 	} else{
 		$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email'");

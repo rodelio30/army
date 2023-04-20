@@ -148,7 +148,7 @@ if($isStaff){
                         <div class="col-md-3">
                             <?php if($isSadmin || $isAdmin) {
                             ?>
-                            <a <?php echo "href=\"admin_aor_add.php?com_name=$company_name\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add new AoR</a>
+                            <a <?php echo "href=\"admin_aor_add.php?com_id=$company_id\"" ?> style="float: right" id="action-print" class="btn btn-outline-success"><span data-feather="user-plus"></span>&nbsp Add new AoR</a>
                             <?php }
                             ?>
 

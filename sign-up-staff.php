@@ -19,14 +19,22 @@ if(isset($_POST["submit"])){
 	$date            = date("Y-m-d");
   $time            = date("H:i:s");;
 
+	// Checkng if afpsn is not empty
+	if(!empty($afpsn)) {
 	// Checkng if duplicate afpsn for all users
-  $duplicate_afpsn = mysqli_query($conn, "SELECT * FROM army_users WHERE afpsn = '$afpsn'");
-  if(mysqli_num_rows($duplicate_afpsn) > 0){
-    echo "<script> alert('AFPSN Has Already Taken'); </script>";
-		header("Location: sign-up-staff.php");
-  }
+		$duplicate_afpsn = mysqli_query($conn, "SELECT * FROM army_users WHERE afpsn = '$afpsn'");
+		if(mysqli_num_rows($duplicate_afpsn) > 0){
+			echo "<script> alert('AFPSN Has Already Taken'); </script>";
+			header("Location: sign-up-staff.php");
+		}
+	}
 	// Checkng if duplicate email, username and afpsn in registration
-  $duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email' OR afpsn = '$afpsn'");
+	if(!empty($afpsn)) {
+		$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email' OR afpsn = '$afpsn'");
+	} else {
+		$duplicate = mysqli_query($conn, "SELECT * FROM registration_user WHERE username = '$username' OR  email = '$email'");
+	}
+	
   if(mysqli_num_rows($duplicate) > 0){
     echo
     "<script> alert('Username or Email Has Already Taken'); </script>";

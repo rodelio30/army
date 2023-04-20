@@ -60,7 +60,7 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td class='text-center'>Empty Registration</td>
+                                <td class='text-center'>No Data for Registration</td>
                                 <td></td>
                                 <td></td>
                             </tr>

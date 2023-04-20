@@ -87,14 +87,14 @@ if($isSchool){
                                                     if($isSadmin || $isAdmin){ 
                                                         echo " <tr>	
                                                                 <td></td>
+                                                                <td class='text-center'>No Data for Seminar</td>
                                                                 <td></td>
-                                                                <td>Empty seminar</td>
                                                                 <td></td>
                                                                 </tr>";
                                                     } else {
                                                         echo " <tr>	
                                                                 <td></td>
-                                                                <td colspan='2' class='text-center'>Empty seminar</td>
+                                                                <td class='text-center'>No Data for Seminar</td>
                                                                 <td></td>
                                                                 </tr>";
                                                     }

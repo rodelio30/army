@@ -49,7 +49,7 @@ if (isset($_POST['update'])) {
             $reserve_id= $res['army_id'];
           }
           // Inserting other info for reservist in reservist table 
-            mysqli_query($conn, "INSERT INTO reservists VALUES('','$reserve_id','$firstname','','$lastname','','$afpsn','$rank_id','$company_id','','','','','','$school_id','Pending','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')")  or die("Query Reservist Table is incorrect.....");
+            mysqli_query($conn, "INSERT INTO reservists VALUES('','$reserve_id','$firstname','','$lastname','','$afpsn','$rank_id','$company_id','','','','','','$school_id','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')")  or die("Query Reservist Table is incorrect.....");
 
           // #####this line below is to get the is of the reservist who can log in to the system
           $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
