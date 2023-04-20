@@ -95,7 +95,7 @@ if($isSchool || $isCommander || $isReservist){
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td class='text-center'>No Active School</td>
+                                                                <td class='text-center'>No Data for School</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 </tr>";
@@ -103,7 +103,7 @@ if($isSchool || $isCommander || $isReservist){
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td class='text-center'>No Active School</td>
+                                                                <td class='text-center'>No Data for School</td>
                                                                 <td></td>
                                                                 </tr>";
                                                     }

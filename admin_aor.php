@@ -95,13 +95,13 @@ if($isSchool){
                                             } else {
                                                 if($isSadmin){
                                                     echo " <tr>	
-                                                            <td>No Record found</td>
+                                                            <td>No Data for Area of Responsibile</td>
                                                             <td></td>
                                                             <td></td>
                                                             </tr>";
                                                 } else {
                                                     echo " <tr>	
-                                                            <td>No Record found</td>
+                                                            <td>No Data for Area of Responsibile</td>
                                                             <td></td>
                                                             </tr>";
                                                         }

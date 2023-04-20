@@ -83,7 +83,7 @@ if($isSchool || $isCommander || $isReservist){
                                                     echo " <tr>	
                                                             <td></td>
                                                             <td></td>
-                                                            <td colspan='2' class='text-center'>No Active Rank Classification</td>
+                                                            <td colspan='2' class='text-center'>No Datat for Rank Classification</td>
                                                             <td></td>
                                                             <td></td>
                                                             </tr>";
@@ -91,7 +91,7 @@ if($isSchool || $isCommander || $isReservist){
                                                     echo " <tr>	
                                                             <td></td>
                                                             <td></td>
-                                                            <td colspan='2' class='text-center'>No Active Rank Classification</td>
+                                                            <td colspan='2' class='text-center'>No Datat for Rank Classification</td>
                                                             <td></td>
                                                             </tr>";
                                                 }

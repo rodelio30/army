@@ -44,10 +44,10 @@
         }
           else {
                 if($isSadmin){ 
-                    echo " <tr>	<td></td><td>No AOR</td>	<td></td></tr>";
+                    echo " <tr>	<td></td><td>No Data for Area of Responsibility</td>	<td></td></tr>";
                 }
                 else {
-                    echo " <tr>	<td></td><td>No AOR</td></tr>";
+                    echo " <tr>	<td></td><td>No Data for Area of Responsibility</td></tr>";
                 }
         }
         ?>

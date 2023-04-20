@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 24, 2023 at 04:10 PM
+-- Generation Time: Mar 29, 2023 at 01:07 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -59,7 +59,7 @@ CREATE TABLE `ann_descrip` (
 
 CREATE TABLE `aor` (
   `aor_id` int(250) NOT NULL,
-  `company_name` varchar(250) NOT NULL,
+  `company_id` int(100) NOT NULL,
   `place` varchar(250) NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -93,7 +93,7 @@ CREATE TABLE `appointments` (
 --
 
 CREATE TABLE `army_users` (
-  `id` int(255) NOT NULL,
+  `army_id` int(255) NOT NULL,
   `user_img` varchar(250) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `middle_name` varchar(100) NOT NULL,
@@ -102,11 +102,10 @@ CREATE TABLE `army_users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(1000) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `rank` varchar(100) NOT NULL,
-  `company` varchar(100) NOT NULL,
+  `rank_id` int(100) NOT NULL,
+  `company_id` int(100) NOT NULL,
   `afpsn` varchar(250) NOT NULL,
-  `school_name` varchar(250) NOT NULL,
-  `school_address` varchar(250) NOT NULL,
+  `school_id` int(100) NOT NULL,
   `status` varchar(30) NOT NULL,
   `user_status` varchar(20) NOT NULL,
   `date_created` date DEFAULT NULL,
@@ -119,8 +118,8 @@ CREATE TABLE `army_users` (
 -- Dumping data for table `army_users`
 --
 
-INSERT INTO `army_users` (`id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank`, `company`, `afpsn`, `school_name`, `school_address`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, '', 'Super', '', 'Admin', 'supadmin', 'supadmin@gmail.com', '$2y$10$Wyd1S0N2J0gqf2HZxnXbfu/MxG60a6IatOqaXSAxwFRWgtt9sshq.', 'sadmin', '', '', '', '', '', '', '', '2023-03-24', '23:09:12.000000', '2023-03-24', '23:09:12.000000');
+INSERT INTO `army_users` (`army_id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank_id`, `company_id`, `afpsn`, `school_id`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
+(1, '', 'Super', '', 'Admin', 'supadmin', 'supadmin@gmail.com', '$2y$10$K7yKqRNnZt2SeY396SuRn.yJZBmXVRNmNWrwiHcFxWb14dGbudoYu', 'sadmin', 0, 0, '', 0, 'ready', 'active', NULL, '00:00:00.000000', NULL, '00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -173,11 +172,10 @@ CREATE TABLE `registration_user` (
   `email` varchar(30) NOT NULL,
   `password` varchar(100) NOT NULL,
   `user_type` varchar(40) NOT NULL,
-  `rank` varchar(100) NOT NULL,
-  `company` varchar(100) NOT NULL,
+  `rank_id` int(100) NOT NULL,
+  `company_id` int(100) NOT NULL,
   `afpsn` varchar(100) NOT NULL,
-  `school_name` varchar(250) NOT NULL,
-  `school_address` varchar(250) NOT NULL,
+  `school_id` int(100) NOT NULL,
   `status` varchar(20) NOT NULL,
   `user_status` varchar(10) NOT NULL,
   `date` date NOT NULL,
@@ -191,21 +189,21 @@ CREATE TABLE `registration_user` (
 --
 
 CREATE TABLE `reservists` (
-  `rg_id` int(250) NOT NULL,
+  `reservist_id` int(250) NOT NULL,
   `army_id` int(200) NOT NULL,
   `firstname` varchar(250) NOT NULL,
   `middle_initial` varchar(20) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `extname` varchar(10) NOT NULL,
   `afpsn` varchar(250) NOT NULL,
-  `rank` varchar(100) NOT NULL,
-  `company` varchar(20) NOT NULL,
+  `rank_id` int(100) NOT NULL,
+  `company_id` int(100) NOT NULL,
   `date_of_birth` date NOT NULL,
   `home_address` varchar(250) NOT NULL,
   `date_graduated` varchar(250) NOT NULL,
   `age` int(250) NOT NULL,
   `sex` varchar(20) NOT NULL,
-  `school_graduated` varchar(250) NOT NULL,
+  `school_id` int(100) NOT NULL,
   `status` varchar(30) NOT NULL,
   `user_status` varchar(10) NOT NULL,
   `date_created` date NOT NULL,
@@ -333,7 +331,7 @@ CREATE TABLE `seminars` (
 CREATE TABLE `seminar_attendance` (
   `att_id` int(250) NOT NULL,
   `seminar_id` int(250) NOT NULL,
-  `user_id` int(250) NOT NULL,
+  `army_id` int(250) NOT NULL,
   `date_attended` date NOT NULL,
   `time_attended` time(6) NOT NULL,
   `status` varchar(10) NOT NULL
@@ -369,7 +367,7 @@ CREATE TABLE `trainings` (
 CREATE TABLE `training_attendance` (
   `att_id` int(250) NOT NULL,
   `training_id` int(250) NOT NULL,
-  `user_id` int(250) NOT NULL,
+  `army_id` int(250) NOT NULL,
   `date_attended` date NOT NULL,
   `time_attended` time(6) NOT NULL,
   `status` varchar(10) NOT NULL
@@ -407,7 +405,7 @@ ALTER TABLE `appointments`
 -- Indexes for table `army_users`
 --
 ALTER TABLE `army_users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`army_id`);
 
 --
 -- Indexes for table `company`
@@ -431,7 +429,7 @@ ALTER TABLE `registration_user`
 -- Indexes for table `reservists`
 --
 ALTER TABLE `reservists`
-  ADD PRIMARY KEY (`rg_id`);
+  ADD PRIMARY KEY (`reservist_id`);
 
 --
 -- Indexes for table `rids`
@@ -489,7 +487,7 @@ ALTER TABLE `ann_descrip`
 -- AUTO_INCREMENT for table `aor`
 --
 ALTER TABLE `aor`
-  MODIFY `aor_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `aor_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `appointments`
@@ -501,67 +499,67 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `army_users`
 --
 ALTER TABLE `army_users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `army_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `ranks`
 --
 ALTER TABLE `ranks`
-  MODIFY `rank_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `rank_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `registration_user`
 --
 ALTER TABLE `registration_user`
-  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `reservists`
 --
 ALTER TABLE `reservists`
-  MODIFY `rg_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `reservist_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `rids`
 --
 ALTER TABLE `rids`
-  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `seminars`
 --
 ALTER TABLE `seminars`
-  MODIFY `seminar_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `seminar_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `seminar_attendance`
 --
 ALTER TABLE `seminar_attendance`
-  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `training_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `training_attendance`
 --
 ALTER TABLE `training_attendance`
-  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `att_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

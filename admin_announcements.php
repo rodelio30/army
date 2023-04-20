@@ -84,14 +84,15 @@ if($isSchool || $isCommander || $isReservist){
                                                     if($isSadmin || $isAdmin){ 
                                                         echo " <tr>	
                                                                 <td></td>
-                                                                <td colspan='2' class='text-center'>Empty Announcement</td>
+                                                                <td class='text-center'>No Data for Announcement</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 </tr>";
                                                     } else {
                                                         echo " <tr>	
                                                                 <td></td>
-                                                                <td colspan='2' class='text-center'>Empty Announcement</td>
+                                                                <td class='text-center'>No Data for Announcement</td>
+                                                                <td></td>
                                                                 <td></td>
                                                                 </tr>";
                                                     }

@@ -83,13 +83,13 @@ if($isSchool || $isCommander || $isReservist){
                                             } else {
                                                 if($isSadmin) {
                                                 echo " <tr>	<td></td>
-                                                        <td class='text-center'>No Active company</td>
+                                                        <td class='text-center'>No Data for Company</td>
                                                         <td></td>
                                                         <td></td>
                                                         </tr>";
                                                 } else {
                                                 echo " <tr>	<td></td>
-                                                        <td>No Active company</td>
+                                                        <td class='text-center'>No Data for Company</td>
                                                         <td></td>
                                                         </tr>";
                                                 }

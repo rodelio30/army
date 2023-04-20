@@ -130,8 +130,8 @@ if($isReservist){
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td class='text-center'>Empty Rotc Graduate</td>
                                                                 <td></td>
+                                                                <td class='text-center'>No data available for Reservist</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
@@ -140,8 +140,8 @@ if($isReservist){
                                                         echo " <tr>	
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td class='text-center'>No ROTC Graduate</td>
                                                                 <td></td>
+                                                                <td class='text-center'>No data available for Reservist</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>

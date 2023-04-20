@@ -115,7 +115,7 @@ if (isset($_POST['update'])) {
                                                 echo " <tr>
                                                 <td></td>
                                                 <td></td>
-                                                	<td class='text-center'>No Registered Appointment </td>
+                                                	<td class='text-center'>No Data for Appointment </td>
                                                 <td></td>
                                                 <td></td>
                                                     </tr>";
