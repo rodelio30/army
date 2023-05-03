@@ -37,6 +37,16 @@ if (isset($_POST['update'])) {
   $query_army_user = "INSERT INTO army_users VALUES('','','$firstname','','$lastname','$username','$email','$password','$user_type','$rank_id','$company_id','$afpsn','','$up_status','$up_user_status','$date_modified','$time_modified','$date_modified','$time_modified')";
      if (mysqli_query($conn, $query_army_user)) {
         
+      // this line below is to get the id of the user who register to the system 
+      $result_get_id = mysqli_query($conn, "SELECT * FROM army_users WHERE username ='$username' && afpsn = '$afpsn'");
+      // $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
+      while ($res   = mysqli_fetch_array($result_get_id)) {
+        $army_id = $res['army_id'];
+      }
+      // Inserting user agreement data 
+        mysqli_query($conn, "update agreement set army_id = '$army_id' where army_id = '$admin_id'") or die("Query 4 is incorrect....");
+
+      // Delete the registration process of admin
       $query_del_admin = "DELETE FROM registration_user WHERE reg_id = $admin_id";
         mysqli_query($conn, $query_del_admin);
      }
