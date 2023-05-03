@@ -28,4 +28,7 @@
 
     <!-- This line below is for Datatables -->
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
+      <!-- List below is the js for charts -->
+    <script type="text/javascript" src="css/charts/loader.js"></script>
 </head>
