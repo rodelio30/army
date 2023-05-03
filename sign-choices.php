@@ -2,6 +2,9 @@
 require 'include/connect.php';
 if(!empty($_SESSION["id"])){
   header("Location: index.php");
+} 
+if(!($_SESSION["agree"])) {
+  header("Location: sign_up_agree.php");
 }
 ?>
 <!DOCTYPE html>
@@ -29,26 +32,33 @@ if(!empty($_SESSION["id"])){
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-4">
-                                    <div class="text-center mb-4">
+                                    <div class="text-center">
+                                        <!-- <a href="sign_up_agree.php" class="linked-navigation">Terms and Conditions</a> -->
                                         <!-- <img src="img/avatars/army_logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" /> -->
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                    <a href="sign-up-admin.php" class="btn btn-md btn-outline-success choices m-2" >Admin</a>
+                                            <a href="sign-up-admin.php" class="btn btn-md btn-outline-success choices m-2" >Admin</a>
                                         </div>
                                         <div class="col">
-                                    <a href="sign-up-staff.php" class="btn btn-md btn-outline-success choices m-2">Admin Staff</a>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
-                                    <a href="sign-up-sc.php" class="btn btn-md btn-outline-success choices m-2">School Coordinator</a>
-                                        </div>
-                                        <div class="col">
-                                    <a href="sign-up-commander.php" class="btn btn-md btn-outline-success choices m-2">Company Commander</a>
+                                            <a href="sign-up-staff.php" class="btn btn-md btn-outline-success choices m-2">Admin Staff</a>
                                         </div>
                                         <div class="w-100"></div>
                                         <div class="col">
-                                    <a href="sign-up-reservist.php" class="btn btn-md btn-outline-success choices m-2">Reservist</a>
+                                            <a href="sign-up-sc.php" class="btn btn-md btn-outline-success choices m-2">School Coordinator</a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="sign-up-commander.php" class="btn btn-md btn-outline-success choices m-2">Company Commander</a>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <a href="sign-up-reservist.php" class="btn btn-md btn-outline-success choices m-2">Reservist</a>
+                                        </div>
+                                        <div class="col">
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <a href="include/sign-out.php" class="btn btn-md btn-outline-warning m-2" style="float:left">Cancel</a>
                                         </div>
                                         <div class="col">
                                         </div>
