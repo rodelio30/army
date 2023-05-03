@@ -58,6 +58,9 @@ if (isset($_POST['update'])) {
           }
           // Inserting other info for reservist in personal information
             mysqli_query($conn, "insert into rids (reservist_id) values('$res_id')")  or die("Query Personal Information is incorrect.....");
+
+          // Inserting user agreement data 
+            mysqli_query($conn, "update agreement set army_id = '$reserve_id' where army_id = '$reservist_id'") or die("Query 4 is incorrect....");
         }
 
       $query_del_reservist = "DELETE FROM registration_user WHERE reg_id = $reservist_id";
