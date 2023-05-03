@@ -36,9 +36,19 @@ if(isset($_POST["submit"])){
     if($password == $confirmpassword){
 			$hash_pass = password_hash($password, PASSWORD_DEFAULT);
       $query = "INSERT INTO registration_user VALUES('','$firstname','$lastname','$username','$email','$hash_pass','$user_type','$rank_id','$company_id','$afpsn','','$status', '$user_status', '$date', '$time')";
-      mysqli_query($conn, $query);
+			if(mysqli_query($conn, $query)) {
+          // this line below is to get the id of the user who register to the system 
+          $result_get_id = mysqli_query($conn, "SELECT * FROM registration_user WHERE username ='$username' && afpsn = '$afpsn'");
+          // $result_get_id = mysqli_query($conn, "SELECT * FROM reservists WHERE afpsn ='$afpsn'");
+          while ($res   = mysqli_fetch_array($result_get_id)) {
+            $reg_id = $res['reg_id'];
+          }
+					$check_agree = $_SESSION["agree"];
+          // Inserting user agreement data 
+            mysqli_query($conn, "INSERT INTO agreement VALUES('','$reg_id','$check_agree','$time','$date')")  or die("Query Reservist Table is incorrect.....");
 
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";
+			}
     }
     else{
       echo

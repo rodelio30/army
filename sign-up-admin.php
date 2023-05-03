@@ -45,8 +45,9 @@ if(isset($_POST["submit"])){
           while ($res   = mysqli_fetch_array($result_get_id)) {
             $reg_id = $res['reg_id'];
           }
-          // Inserting other info for reservist in reservist table 
-            mysqli_query($conn, "INSERT INTO agreement VALUES('','$reg_id','$time','$date')")  or die("Query Reservist Table is incorrect.....");
+					$check_agree = $_SESSION["agree"];
+          // Inserting user agreement data 
+            mysqli_query($conn, "INSERT INTO agreement VALUES('','$reg_id','$check_agree','$time','$date')")  or die("Query Reservist Table is incorrect.....");
 
 			echo "<script type='text/javascript'>alert('Registration Successful, Please wait for the approval'); document.location='sign-in.php' </script>";
 			}
