@@ -92,8 +92,7 @@ if(isset($_POST["submit_admin"])){
 											</small> -->
                                         </div>
                                         <div class="text-center mt-4">
-                                            <button type="submit" name="submit_admin"
-                                                class="btn btn-md btn-outline-success">Sign in</button>
+                                            <button type="submit" name="submit_admin" class="btn btn-md btn-outline-success">Sign in</button>
                                             <div>
                                                 <label class="form-check mt-3">
                                                     <span class="form-check-label">

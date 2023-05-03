@@ -17,7 +17,7 @@
           <a class="nav-link" href="sign-in.php">Sign In</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="sign-choices.php">Sign Up</a>
+          <a class="nav-link" href="sign_up_agree.php">Sign Up</a>
         </li>
       </ul>
       </span>

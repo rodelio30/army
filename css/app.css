@@ -15599,3 +15599,8 @@ span.flatpickr-weekday {
 .font_small {
   font-size: 10px;
 }
+
+.agree {
+  text-align: justify;
+  text-justify: inter-word;
+}
