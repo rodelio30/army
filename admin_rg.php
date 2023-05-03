@@ -83,10 +83,19 @@ if($isReservist){
                                                         }
                                                     }
 
+                                                    if($rank_id == 0) {
+                                                        $rank_acro = 'None';
+                                                    } else{
+                                                        $result_rank = mysqli_query($conn, "SELECT * FROM ranks WHERE rank_id = '$rank_id'");
+                                                        while ($res      = mysqli_fetch_array($result_rank)) {
+                                                            $rank_acro = $res['acronym'];
+                                                        }
+                                                    }
+
                                                     if($isSadmin){
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_id</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_acro</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
@@ -100,7 +109,7 @@ if($isReservist){
                                                     else if ($isStaff) {
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_id</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_acro</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>
@@ -113,7 +122,7 @@ if($isReservist){
                                                     else {
                                                     echo "
                                                     <tr>	
-                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_id</a></td>
+                                                        <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$rank_acro</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$firstname $middle_initial $lastname $extname</a></td>
                                                         <td scope='row'><a href=\"admin_rg_view.php?ID=$reservist_id\" class='user-clicker'>$afpsn</a></td>
                                                         <td>$date_of_birth</td>

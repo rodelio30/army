@@ -10,9 +10,9 @@
       </ul>
       <span class="">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="bulletin_appointment.php">Appointment</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="sign-in.php">Sign In</a>
         </li>

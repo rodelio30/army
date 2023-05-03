@@ -1,6 +1,7 @@
 <?php
 include 'system_checker.php';
-if($isSchool || $isCommander || $isReservist){
+// if($isSchool || $isCommander || $isReservist){
+if(!empty($_SESSION["army_id"])){
   header("Location: index.php");
 }
 

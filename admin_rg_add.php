@@ -113,9 +113,9 @@ $date_max = date("Y-m-d", strtotime($date ." -15 year") );
 											<select class="form-control" id="rank" name="rank">
 													<option value="none">None</option>
 												<?php
-												$result = mysqli_query($conn, "select rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
-												while (list($rank_name) = mysqli_fetch_array($result)) {
-													echo "<option value='$rank_name'>$rank_name</option>";
+												$result = mysqli_query($conn, "select rank_id, rank_name from ranks where status='active'") or die("Query School List is inncorrect........");
+												while (list($rank_id, $rank_name) = mysqli_fetch_array($result)) {
+													echo "<option value='$rank_id'>$rank_name</option>";
 												}
 												?>
 											</select>
