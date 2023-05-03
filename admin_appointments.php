@@ -1,6 +1,7 @@
 <?php 
 include 'system_checker.php';
-if($isSchool || $isCommander || $isReservist){
+// if($isSchool || $isCommander || $isReservist){
+if(!empty($_SESSION["army_id"])){
   header("Location: index.php");
 }
 
@@ -79,6 +80,8 @@ if (isset($_POST['update'])) {
                                                     $color_me = '';
                                                     if($status == 'pending') {
                                                         $color_me = 'warning';
+                                                    } else if($status == 'declined') {
+                                                        $color_me = 'danger';
                                                     } else if($status == 'approved') {
                                                         $color_me = 'success';
                                                     } 

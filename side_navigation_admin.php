@@ -142,15 +142,15 @@
                 </a>
             </li>
 
-            <li class="sidebar-header">
+            <!-- <li class="sidebar-header">
                 Appointments 
-            </li>
+            </li> -->
 
-            <li class="sidebar-item <?php echo $appoint_select ?>">
+            <!-- <li class="sidebar-item <?php echo $appoint_select ?>">
                 <a class="sidebar-link" href="admin_appointments.php">
                     <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Appointments</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- <li class="sidebar-header">
                         Tools & Components
