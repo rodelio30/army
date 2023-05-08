@@ -4,7 +4,7 @@ include '../../include/connect.php';
 $school_id = $_GET['ID'];
 
 $date_modified = date("Y-m-d");
-$time_modified = date("h:i:s");
+$time_modified = date("H:i:s");
 
 $sql = "UPDATE schools SET status='active', date_modified='$date_modified', time_modified='$time_modified' WHERE school_id=$school_id";
 

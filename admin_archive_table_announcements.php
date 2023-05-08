@@ -17,16 +17,17 @@
                         include 'counter/announcements_counter.php';
                         //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                         if ($archive_announcements_counter > 0) {
-                            $result = mysqli_query($conn, "select ann_id, title, status, date_modified from announcements WHERE status = 'archive' ORDER BY date_modified") or die("Query for announcements Archive....");
-                            while (list($ann_id, $title, $status, $date_modified) = mysqli_fetch_array($result)) {
+                            $result = mysqli_query($conn, "select ann_id, title, status, date_modified, time_modified from announcements WHERE status = 'archive' ORDER BY date_modified") or die("Query for announcements Archive....");
+                            while (list($ann_id, $title, $status, $date_modified, $time_modified) = mysqli_fetch_array($result)) {
+                            $time_formatted   = date("g:i A ", strtotime($time_modified));
                                 echo "
                                 <tr>	
                                     <td scope='row'>$title</td>
-                                    <td>$date_modified</td>
+                                    <td>$date_modified $time_formatted</td>
                                     <td>$status</td>
                                     <td id='action-print'>
-                                    <a href=\"archive/announcements/announcements_delete.php?ID=$ann_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
-                                    <a href=\"archive/announcements/announcements_active.php?ID=$ann_id\" onClick=\"return confirm('Are you sure you want this Announcement return to active?')\" class='btn btn-outline-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
+                                    <a href=\"archive/announcements/announcements_delete.php?ID=$ann_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+                                    <a href=\"archive/announcements/announcements_active.php?ID=$ann_id\" onClick=\"return confirm('Are you sure you want this Announcement return to active?')\" class='btn btn-outline-primary btn-sm float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
                                     </td>
                                 </tr>
                             ";
