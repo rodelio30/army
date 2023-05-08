@@ -4,7 +4,7 @@ include '../../include/connect.php';
 $user_id = $_GET['ID'];
 
 $date_modified = date("Y-m-d");
-$time_modified = date("h:i:s");
+$time_modified = date("H:i:s");
 
 // user type getter
 $result       = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id='$user_id'");

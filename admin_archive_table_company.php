@@ -15,12 +15,13 @@
                         <?php
                         include 'counter/company_counter.php';
                         if ($archive_company_counter > 0) {
-                            $result_company = mysqli_query($conn, "select company_id,  company_name, status, date_modified from company WHERE status = 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
-                            while (list($company_id, $company_name, $status, $date_modified) = mysqli_fetch_array($result_company)) {
+                            $result_company = mysqli_query($conn, "select company_id,  company_name, status, date_modified, time_modified from company WHERE status = 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                            while (list($company_id, $company_name, $status, $date_modified, $time_modified) = mysqli_fetch_array($result_company)) {
+                            $time_formatted   = date("g:i A ", strtotime($time_modified));
                                 echo "
                                 <tr>	
                                     <td scope='row'>$company_name</td>
-                                    <td>$date_modified</td>
+                                    <td>$date_modified $time_formatted</td>
                                     <td>$status</td>
                                     <td id='action-print'>
                                     <a href=\"archive/company/company_delete.php?ID=$company_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>

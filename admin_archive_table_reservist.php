@@ -8,6 +8,7 @@
                       <tr>
                           <th>Name</th>
                           <th>User Status</th>
+                          <th>Date Modified</th>
                           <th id='action-print'><span class="float-end">Action</span> </th>
                       </tr>
                   </thead>
@@ -18,13 +19,15 @@
                       if ($users_counter > 0) {
                           $result = mysqli_query($conn, "select reservist_id, firstname, lastname, user_status, date_modified, time_modified from reservists WHERE user_status='archive' ORDER BY date_modified") or die("Query for latest reservist....");
                           while (list($reservist_id, $firstname, $lastname, $user_status, $date, $time) = mysqli_fetch_array($result)) {
+                            $time_formatted   = date("g:i A ", strtotime($time));
                               echo "
                           <tr>	
                               <td>$firstname $lastname</td>
                               <td>$user_status</td>
+                              <td>$date $time_formatted</td>
                                 <td id='action-print'>
-                                <a href=\"archive/reservist/reservist_delete.php?ID=$reservist_id\" onClick=\"return confirm('Are you sure you want to Delete this Reservist permanent?')\" class='btn btn-outline-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
-                                <a href=\"archive/reservist/reservist_active.php?ID=$reservist_id\" onClick=\"return confirm('Are you sure you want this Reservist return to active again?')\" class='btn btn-outline-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
+                                <a href=\"archive/reservist/reservist_delete.php?ID=$reservist_id\" onClick=\"return confirm('Are you sure you want to Delete this Reservist permanent?')\" class='btn btn-outline-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+                                <a href=\"archive/reservist/reservist_active.php?ID=$reservist_id\" onClick=\"return confirm('Are you sure you want this Reservist return to active again?')\" class='btn btn-outline-primary btn-sm float-end'><span data-feather='file-plus'></span>&nbsp Active?</a>
                                 </td>
                           </tr>
                       ";
@@ -33,6 +36,7 @@
                           echo " <tr>
                                 <td></td>
                                 <td class='text-center'>No Registered User </td>
+                                <td></td>
                                 <td></td>
                             </tr>";
                       }

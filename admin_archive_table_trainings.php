@@ -17,12 +17,13 @@
                         include 'counter/trainings_counter.php';
                         //   echo "<script>console.log('" . $reservist_counter . "');</script>";
                         if ($archive_trainings_counter > 0) {
-                            $result = mysqli_query($conn, "select training_id, training_name, status, date_modified from trainings WHERE status = 'archive' ORDER BY date_modified") or die("Query for trainings Archive....");
-                            while (list($training_id, $training_name, $status, $date_modified) = mysqli_fetch_array($result)) {
+                            $result = mysqli_query($conn, "select training_id, training_name, status, date_modified, time_modified from trainings WHERE status = 'archive' ORDER BY date_modified") or die("Query for trainings Archive....");
+                            while (list($training_id, $training_name, $status, $date_modified, $time_modified) = mysqli_fetch_array($result)) {
+                            $time_formatted   = date("g:i A ", strtotime($time_modified));
                                 echo "
                                 <tr>	
                                     <td scope='row'>$training_name</td>
-                                    <td>$date_modified</td>
+                                    <td>$date_modified $time_formatted</td>
                                     <td>$status</td>
                                     <td id='action-print'>
                                     <a href=\"archive/trainings/trainings_delete.php?ID=$training_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>

@@ -15,12 +15,13 @@
                         <?php
                         include 'counter/ranks_counter.php';
                         if ($archive_ranks_counter > 0) {
-                            $result_ranks = mysqli_query($conn, "select rank_id, ranked, rank_name, status, date_modified from ranks WHERE status = 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
-                            while (list($rank_id, $ranked, $rank_name, $status, $date_modified) = mysqli_fetch_array($result_ranks)) {
+                            $result_ranks = mysqli_query($conn, "select rank_id, ranked, rank_name, status, date_modified, time_modified from ranks WHERE status = 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                            while (list($rank_id, $ranked, $rank_name, $status, $date_modified, $time_modified) = mysqli_fetch_array($result_ranks)) {
+                            $time_formatted   = date("g:i A ", strtotime($time_modified));
                                 echo "
                                 <tr>	
                                     <td scope='row'>$rank_name</td>
-                                    <td>$date_modified</td>
+                                    <td>$date_modified $time_formatted</td>
                                     <td>$status</td>
                                     <td id='action-print'>
                                     <a href=\"archive/ranks/ranks_delete.php?ID=$rank_id\" onClick=\"return confirm('Are you sure you want to Delete this Event permanent?')\" class='btn btn-outline-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
