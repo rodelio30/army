@@ -1,4 +1,3 @@
-<?php include 'counter/school_reserve_counter.php'?>
 <div class="row">
     <div class="col-xl-12 col-xxl-12 d-flex">
         <div class="w-100">

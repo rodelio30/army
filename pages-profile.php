@@ -6,24 +6,24 @@ $user_id = $army_id;
 
 $result       = mysqli_query($conn, "SELECT * FROM army_users WHERE army_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $user_id       = $res['army_id'];
-  $user_img      = $res['user_img'];
-  $firstname     = $res['firstname'];
-  $lastname      = $res['lastname'];
-  $username      = $res['username'];
-  $email         = $res['email'];
-  $password      = $res['password'];
-  $type          = $res['type'];
-  $user_rank_id     = $res['rank_id'];
+  $user_id        = $res['army_id'];
+  $user_img       = $res['user_img'];
+  $firstname      = $res['firstname'];
+  $lastname       = $res['lastname'];
+  $username       = $res['username'];
+  $email          = $res['email'];
+  $password       = $res['password'];
+  $type           = $res['type'];
+  $user_rank_id   = $res['rank_id'];
   $user_school_id = $res['school_id'];
-  $company_id       = $res['company_id'];
-  $afpsn         = $res['afpsn'];
-  $status        = $res['status'];
-  $user_status   = $res['user_status'];
-  $date_created  = $res['date_created'];
-  $time_created  = $res['time_created'];
-  $date_modified = $res['date_modified'];
-  $time_modified = $res['time_modified'];
+  $company_id     = $res['company_id'];
+  $afpsn          = $res['afpsn'];
+  $status         = $res['status'];
+  $user_status    = $res['user_status'];
+  $date_created   = $res['date_created'];
+  $time_created   = $res['time_created'];
+  $date_modified  = $res['date_modified'];
+  $time_modified  = $res['time_modified'];
 }
   $time_c_formatted   = date("G:i A ", strtotime($time_created));
   $time_m_formatted   = date("G:i A ", strtotime($time_modified));
@@ -265,7 +265,7 @@ if($isSchool) {
                               <?php
                               $result = mysqli_query($conn, "select school_id, school_name from schools where status='active'") or die("Query School List is inncorrect........");
                               while (list($sch_id, $school_name) = mysqli_fetch_array($result)) {
-                                  if($sch_id == $school_id){
+                                  if($sch_id == $user_school_id){
                                       echo "<option value='$sch_id' selected>$school_name</option>";
                                   }
                                   else {

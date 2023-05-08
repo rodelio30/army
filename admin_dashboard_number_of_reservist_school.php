@@ -1,8 +1,7 @@
  <?php 
-    include 'counter/reservist_sex_counter.php';
 
 //  $sql ="SELECT date_graduated, count(*) as total FROM reservists where user_status = 'active' GROUP BY date_graduated";
-    $sql_reservist ="SELECT sex, count(*) as number FROM reservists where status != 'archive' && sex !='' && user_status = 'active' GROUP BY sex";
+    $sql_reservist ="SELECT sex, count(*) as number FROM reservists where status != 'archive' && sex !='' && user_status = 'active' && school_id = '$public_school_id' GROUP BY sex";
     $result_reservist = mysqli_query($conn,$sql_reservist);
     // $chart_data ="";
     while ($row = mysqli_fetch_array($result_reservist)) { 
@@ -12,12 +11,11 @@
     $number[] = $row['number'];
 }
     // This line below is to get data query for reservists
-    $sql ="SELECT reservists.date_graduated, count(*) as total, schools.acronym FROM reservists INNER JOIN schools ON reservists.school_id=schools.school_id where user_status = 'active' group by date_graduated;";
+    $sql ="SELECT reservists.date_graduated, count(*) as total FROM reservists INNER JOIN schools ON reservists.school_id=schools.school_id where user_status = 'active' && reservists.school_id = '$public_school_id' group by date_graduated;";
     $result = mysqli_query($conn,$sql);
     $chart_data="";
     while ($row = mysqli_fetch_array($result)) { 
 
-    $schoolname[] =$row['acronym'];
     // $month[]  = date_format(date_create( $row['TRANSDATE']),"M d, Y")  ;
     $month[] = $row['date_graduated'];
     $sales[] = $row['total'];
@@ -53,18 +51,18 @@
                                     </div>
                                 </div>
 
-                                <table class="table mb-0">
+                                <!-- <table class="table mb-0">
                                     <tbody>
                                         <tr>
                                             <td>Male</td>
-                                            <td class="text-end"><?php echo $male_counter; ?></td>
+                                            <td class="text-end"><?php echo $school_male ; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Female</td>
-                                            <td class="text-end"><?php echo $female_counter ;?></td>
+                                            <td class="text-end"><?php echo $school_female ;?></td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> -->
                             </div>
                         </div>
                     </div>
