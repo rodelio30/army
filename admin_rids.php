@@ -47,7 +47,11 @@ if($isSchool || $isReservist){
                                             include 'counter/users_counter.php';
 
                                             if ($users_counter > 0) {
+                                                if(!$isCommander){
                                                     $result = mysqli_query($conn, "select reservist_id, army_id, firstname, lastname, status, date_modified, time_modified from reservists WHERE user_status='active' && status != 'Pending' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                } else {
+                                                    $result = mysqli_query($conn, "select reservist_id, army_id, firstname, lastname, status, date_modified, time_modified from reservists WHERE user_status='active' && status != 'Pending' && company_id = $public_company_id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                }
                                                 while (list($reservist_id, $army_id, $firstname, $lastname, $status, $date, $time) = mysqli_fetch_array($result)) {
                                                     $color_me = '';
                                                     if($status == 'Pending' || $status == 'pending') {
