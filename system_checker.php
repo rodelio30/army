@@ -20,6 +20,7 @@ if (!empty($_SESSION["army_id"])) {
   $type        = $row["type"];
   $status      = $row["status"];
   $user_status = $row["user_status"];
+  $public_company_id = $row["company_id"];
 
   if($rank_id_pub != 0) {
     $result_rank = mysqli_query($conn, "SELECT * FROM ranks WHERE rank_id = $rank_id_pub");
@@ -50,19 +51,10 @@ if (!empty($_SESSION["army_id"])) {
       }
       $isSchool = true;
     } if($type == 'commander') {
-      $isCommander = true;
+      $isCommander       = true;
     } if($type == 'reservist') {
       $isReservist = true;
     }
-    // if ($type == 'reservist') {
-    //   header("location: lvl3/index.php");
-    // }
-    // if ($type == 'school_coordinator') {
-    //   header("location: lvl4/index.php");
-    // }
-    // if ($type == 'commander') {
-    //   header("location: lvl5/index.php");
-    // }
   } else {
     echo "<script> alert('Sorry, your account is inactive. Please wait for the approval'); </script>";
   }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 20, 2023 at 08:23 AM
+-- Generation Time: May 08, 2023 at 09:58 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,8 +18,22 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `army_final`
+-- Database: `army_uat`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agreement`
+--
+
+CREATE TABLE `agreement` (
+  `agree_id` int(100) NOT NULL,
+  `army_id` int(100) NOT NULL,
+  `check_agreement` int(10) NOT NULL,
+  `created_time` time(6) NOT NULL,
+  `created_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,7 +133,7 @@ CREATE TABLE `army_users` (
 --
 
 INSERT INTO `army_users` (`army_id`, `user_img`, `firstname`, `middle_name`, `lastname`, `username`, `email`, `password`, `type`, `rank_id`, `company_id`, `afpsn`, `school_id`, `status`, `user_status`, `date_created`, `time_created`, `date_modified`, `time_modified`) VALUES
-(1, '', 'Super', '', 'Admin', 'supadmin', 'superadmin@gmail.com', '$2y$10$K7yKqRNnZt2SeY396SuRn.yJZBmXVRNmNWrwiHcFxWb14dGbudoYu', 'sadmin', 0, 0, '', 0, 'standby', 'active', '2023-04-20', '14:21:37.000000', '2023-04-20', '14:21:37.000000');
+(1, '', 'Super', '', 'Admin', 'supadmin', 'supadmin@gmail.com', '$2y$10$K7yKqRNnZt2SeY396SuRn.yJZBmXVRNmNWrwiHcFxWb14dGbudoYu', 'sadmin', 0, 0, '', 0, 'ready', 'active', '2023-05-08', '15:20:08.000000', '2023-05-08', '15:20:08.000000');
 
 -- --------------------------------------------------------
 
@@ -378,6 +392,12 @@ CREATE TABLE `training_attendance` (
 --
 
 --
+-- Indexes for table `agreement`
+--
+ALTER TABLE `agreement`
+  ADD PRIMARY KEY (`agree_id`);
+
+--
 -- Indexes for table `announcements`
 --
 ALTER TABLE `announcements`
@@ -472,6 +492,12 @@ ALTER TABLE `training_attendance`
 --
 
 --
+-- AUTO_INCREMENT for table `agreement`
+--
+ALTER TABLE `agreement`
+  MODIFY `agree_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
@@ -499,7 +525,7 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `army_users`
 --
 ALTER TABLE `army_users`
-  MODIFY `army_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `army_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -517,25 +543,25 @@ ALTER TABLE `ranks`
 -- AUTO_INCREMENT for table `registration_user`
 --
 ALTER TABLE `registration_user`
-  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `reg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `reservists`
 --
 ALTER TABLE `reservists`
-  MODIFY `reservist_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `reservist_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `rids`
 --
 ALTER TABLE `rids`
-  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `rpi_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `school_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `seminars`
