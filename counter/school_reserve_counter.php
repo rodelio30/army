@@ -3,6 +3,7 @@ $reserve_counter    = 0;
 $own_school_counter = 0;
 $school_male        = 0;
 $school_female      = 0;
+$total_counter      = 0;
 
 // This line is Counting for the number of Registered Rotc Graduate
 $sql_rg = "SELECT reservist_id FROM reservists WHERE status != 'archive'";
@@ -47,5 +48,16 @@ if ($result_rg->num_rows > 0) {
     }
   } else {
     $school_female = 0;
+  } 
+
+  $sql_total = "SELECT reservist_id FROM reservists WHERE status != 'archive' && school_id = '$public_school_id'";
+  $result_total = $conn->query($sql_total);
+
+  if ($result_total->num_rows > 0) {
+    while ($row = $result_total->fetch_assoc()) {
+      $total_counter++;
+    }
+  } else {
+    $total_counter = 0;
   } 
 ?>

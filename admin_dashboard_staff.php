@@ -11,7 +11,7 @@ $ts = $trainings_counter + $seminars_counter;
 <main class="content">
   <div class="container-fluid p-0">
     <h1 class="h3 mb-3"><strong>Number of Reservist</strong> Dashboard</h1>
-    <?php include "admin_dashboard_number_of_reservist.php"?>
+    <?php include "admin_dashboard_stat_adstaff.php"?>
 
     <h1 class="h3 mb-3"><strong>Analytic</strong> Dashboard</h1>
 <div class="row">
