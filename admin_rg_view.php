@@ -8,13 +8,14 @@ $reservist_id = $_GET['ID'];
 
 $result       = mysqli_query($conn, "SELECT * FROM reservists WHERE reservist_id='$reservist_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $reservist_id            = $res['reservist_id'];
+  $reservist_id     = $res['reservist_id'];
   $firstname        = $res['firstname'];
   $middle_initial   = $res['middle_initial'];
   $lastname         = $res['lastname'];
   $extname          = $res['extname'];
   $afpsn            = $res['afpsn'];
   $rank_id          = $res['rank_id'];
+  $company_id       = $res['company_id'];
   $date_of_birth    = $res['date_of_birth'];
   $home_address     = $res['home_address'];
   $date_graduated   = $res['date_graduated'];
@@ -56,6 +57,7 @@ if (isset($_POST['update'])) {
   $ename            = $_POST['extname'];
   $afpsn_now        = $_POST['afpsn'];
   $rank_id_now      = $_POST['rank_id'];
+  $company_id_now   = $_POST['company_id'];
   $date_graduated   = $_POST['date_graduated'];
   $date_of_birth    = $_POST['date_of_birth'];
   $home_address     = $_POST['home_address'];
@@ -83,17 +85,17 @@ if (isset($_POST['update'])) {
   } else {
 
   if($user_status == 'inactive') {
-    mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'") or die("Query 4 is incorrect....");
+    mysqli_query($conn, "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now', company_id = '$company_id_now', date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'") or die("Query 4 is incorrect....");
 
   } else if($user_status == 'active') {
     $checker_id = mysqli_query($conn, "SELECT * FROM rids WHERE reservist_id = '$reservist_id'");
       if (mysqli_num_rows($checker_id) > 0) {
         // $query_reservist = "update reservists set status = '$status', user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'";
-        $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'";
+        $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now', company_id = '$company_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'";
         mysqli_query($conn, $query_reservist);
       } 
       else {
-        $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'";
+        $query_reservist = "update reservists set firstname = '$fname', middle_initial = '$minitial', lastname = '$lname', extname = '$ename', afpsn = '$afpsn_now', rank_id = '$rank_id_now', company_id = '$company_id_now',date_of_birth = '$date_of_birth', home_address = '$home_address', date_graduated = '$date_graduated', age = '$age', sex = '$sex', school_id = '$school_id', status = '$status',user_status = '$user_status', date_modified = '$date_modified', time_modified = '$time_modified' where reservist_id = '$reservist_id'";
         if (mysqli_query($conn, $query_reservist)) {
           // Inserting other info for reservist in personal information
             mysqli_query($conn, "insert into rids (reservist_id) values('$reservist_id')")  or die("Query RIDS is incorrect.....");
@@ -218,6 +220,27 @@ $disabled = 'disabled';
                               echo "<option value='$r_id' selected>$rank_name</option>";
                             } else {
                               echo "<option value='$r_id'>$rank_name</option>";
+                            }
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <h6 class="mb-0 flatpickr-weekwrapper"><strong>Company Commander</strong></h6>
+                      </div>
+                      <div class="col-sm-10 text-secondary">
+                        <select class="form-control" id="company_id" name="company_id" <?php echo $disabled ?>>
+                            <option value="none">None</option>
+                          <?php
+                          $result = mysqli_query($conn, "select company_id, company_name from company where status='active'") or die("Query Company List is inncorrect........");
+                          while (list($c_id, $company_name) = mysqli_fetch_array($result)) {
+                            if($company_id == $c_id) {
+                              echo "<option value='$c_id' selected>$company_name</option>";
+                            } else {
+                              echo "<option value='$c_id'>$company_name</option>";
                             }
                           }
                           ?>
