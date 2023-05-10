@@ -18,7 +18,7 @@ $ts = $trainings_counter + $seminars_counter;
     <div class="col-xl-12 col-xxl-12 d-flex">
         <div class="w-100">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="admin_rg.php" class="linked-navigation">
                     <div class="card">
                         <div class="card-body">
@@ -33,7 +33,7 @@ $ts = $trainings_counter + $seminars_counter;
 
                     </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="admin_trainings.php" class="linked-navigation">
                     <div class="card">
                         <div class="card-body">
@@ -47,7 +47,7 @@ $ts = $trainings_counter + $seminars_counter;
                     </div>
                     </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="admin_announcements.php" class="linked-navigation">
                     <div class="card">
                         <div class="card-body">
@@ -57,20 +57,6 @@ $ts = $trainings_counter + $seminars_counter;
                                 </div>
                             </div>
                             <h1 class="mt-3 mb-1"><?php echo $announcements_counter?></h1>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="admin_appointments.php" class="linked-navigation">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col mt-0">
-                                    <h5 class="card-title">Appointments</h5>
-                                </div>
-                            </div>
-                            <h1 class="mt-3 mb-1"><?php echo $appointments_counter ?></h1>
                         </div>
                     </div>
                     </a>
