@@ -31,6 +31,7 @@
 <div class="card-body py-1 pt-0">
     <div class="row">
         <div class="col-4 p-3 pt-0">
+            <p class="text-center" style="font-size: 1rem; font-weight: bold;">Ready</p>
             <div class="chart chart-sm">
                 <canvas id="chartjs-dashboard-pie-ready"></canvas>
             </div>
@@ -52,6 +53,7 @@
             </table>
         </div>
         <div class="col-4 p-3 pt-0">
+            <p class="text-center" style="font-size: 1rem; font-weight: bold;">Standby</p>
             <div class="chart chart-sm">
                 <canvas id="chartjs-dashboard-pie-standby"></canvas>
             </div>
@@ -73,6 +75,7 @@
             </table>
         </div>
         <div class="col-4 p-3 pt-0">
+            <p class="text-center" style="font-size: 1rem; font-weight: bold;">Retired</p>
             <div class="chart chart-sm">
                 <canvas id="chartjs-dashboard-pie-retired"></canvas>
             </div>

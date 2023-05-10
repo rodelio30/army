@@ -50,7 +50,8 @@
 							},
 							stacked: false,
 							ticks: {
-								stepSize: 20
+								stepSize: 5,
+                beginAtZero: true
 							}
 						}],
 						xAxes: [{

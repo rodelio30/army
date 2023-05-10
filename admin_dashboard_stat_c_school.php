@@ -20,7 +20,7 @@ if ($result_schools->num_rows > 0) {
 }
 ?>
 <div class="card-header">
-    <h5 class="card-title mb-0 text-center">Total of Number of ROTC Graduates by School Year</h5>
+    <h5 class="card-title mb-0 text-center">Total Number of ROTC Graduates by School Year</h5>
 </div>
 <div class="card-body py-3">
   <div class="table-responsive">
