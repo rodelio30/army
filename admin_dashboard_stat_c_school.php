@@ -1,6 +1,6 @@
 <?php 
 // query academic years from student table
-$sql_years = "SELECT DISTINCT date_graduated FROM reservists where school_id = '$public_school_id' GROUP BY date_graduated ASC";
+$sql_years = "SELECT DISTINCT date_graduated FROM reservists where school_id = '$public_school_id' && date_graduated != '' GROUP BY date_graduated ASC";
 $result_years = $conn->query($sql_years);
 $years = array();
 if ($result_years->num_rows > 0) {
