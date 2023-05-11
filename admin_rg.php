@@ -51,7 +51,7 @@ if($isReservist){
                                                 <th>Date of Birth</th>
                                                 <th>School Graduated</th>
                                                 <th>Date Graduated</th>
-                                                <th>User Status</th>
+                                                <th>Reservist Classification</th>
                                                 <?php if($isSadmin) {
                                                 ?>
                                                 <th id="action-print"><span class="float-end me-5">Action</span> </th>
@@ -66,16 +66,16 @@ if($isReservist){
                                             if ($rg_counter > 0) {
 
                                                 if($isSchool){
-                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' && school_id = '$public_school_id' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE status != 'archive' && school_id = '$public_school_id' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 } 
                                                 else if($isCommander){
-                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' && company_id = $public_company_id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE status != 'archive' && company_id = $public_company_id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
                                                 else{
-                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, user_status from reservists WHERE user_status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
 
-                                                while (list($reservist_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank_id, $date_of_birth, $home_address, $date_graduated, $school_id, $user_status) = mysqli_fetch_array($result)) {
+                                                while (list($reservist_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank_id, $date_of_birth, $home_address, $date_graduated, $school_id, $status) = mysqli_fetch_array($result)) {
 
                                                     // Get the School name
                                                     if($school_id == 0) {
@@ -105,7 +105,7 @@ if($isReservist){
                                                         <td>$date_of_birth</td>
                                                         <td>$school_name</td>
                                                         <td>$date_graduated</td>
-                                                        <td>$user_status</td>
+                                                        <td>$status</td>
                                                         <td id='action-print'><a href=\"archive/reservist/reservist_archive.php?ID=$reservist_id\" onClick=\"return confirm('Are you sure you want this rg move to archive?')\" class='btn btn-outline-warning btn-md float-end ms-2'><span><span data-feather='package'></span>&nbsp Archive</a></td>
                                                     </tr>
                                                 ";
@@ -119,7 +119,7 @@ if($isReservist){
                                                         <td>$date_of_birth</td>
                                                         <td>$school_name</td>
                                                         <td>$date_graduated</td>
-                                                        <td>$user_status</td>
+                                                        <td>$status</td>
                                                     </tr>
                                                 ";
                                                     }
@@ -132,7 +132,7 @@ if($isReservist){
                                                         <td>$date_of_birth</td>
                                                         <td>$school_name</td>
                                                         <td>$date_graduated</td>
-                                                        <td>$user_status</td>
+                                                        <td>$status</td>
                                                     </tr>
                                                 ";
                                                     }

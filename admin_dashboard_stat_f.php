@@ -1,6 +1,6 @@
 <?php 
 // Define the academic years to display
-$sql_years = "SELECT DISTINCT date_graduated FROM reservists GROUP BY date_graduated ASC";
+$sql_years = "SELECT DISTINCT date_graduated FROM reservists WHERE date_graduated != ''  GROUP BY date_graduated ASC";
 $result_years = $conn->query($sql_years);
 $years = array();
 if ($result_years->num_rows > 0) {
