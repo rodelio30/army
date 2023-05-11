@@ -8,14 +8,31 @@
         // $month[]  = date_format(date_create( $row['TRANSDATE']),"M d, Y")  ;
         $total_rank[] = $row['total'];
         $rank_acronym[] = $row['acronym'];
+        $rows[] = $row;
     }
   ?>
 <div class="card-header">
     <h5 class="card-title mb-0 text-center">Total of Reservist by Rank</h5>
 </div>
 <div class="card-body py-3">
-    <div class="chart chart-sm" style="height: 100%;">
+    <div class="chart chart-sm" style="height: 50%;">
         <canvas id="chartjs-dashboard-bar"></canvas>
+    </div>
+    <div class="mt-1" style="height: 150px; overflow-y:auto;">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <?php
+                    foreach ($rows as $row) {
+                        echo "<tr>
+                                <td>" . $row['acronym'] . "</td>
+                                <td class='text-end'>"  . $row['total'] . "</td>
+                            </tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

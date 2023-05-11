@@ -22,8 +22,7 @@
 </div>
 <div class="card-body d-flex">
   <div class="align-self-center w-100 mt-2">
-            <div id="piechart_3d"></div>
-          <!-- <canvas id="chartjs-pie"></canvas> -->
+        <div id="piechart_3d" style="width: 100%; height: 400px; margin-left: 1rem;"></div>
     <div style="height: 150px; overflow-y:auto;">
         <div class="table-responsive">
             <table class="table">
@@ -43,6 +42,7 @@
   </div>
 </div>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Pie chart
@@ -84,9 +84,8 @@
         ]);
 
         var options = {
-            is3D: true,
-            width:  '100%',
-            height: '100%'
+          is3D: true,
+          fontSize: 8
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
