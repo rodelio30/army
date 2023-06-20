@@ -16,13 +16,20 @@
     while ($r = mysqli_fetch_assoc($result_school_show)) {
         $rows[] = $r;
     }
+
+	// Checking if rows is empty, assign true to $isEmpty
+	$isEmpty = (empty($rows));
   ?>
 <div class="card-header text-center">
     <h5 class="card-title">Total Number of ROTC Graduates</h5>
 </div>
 <div class="card-body d-flex">
   <div class="align-self-center w-100 mt-2">
+    <?php if($isEmpty){ ?>
+			<h1 class="text-center">Empty</h1>
+    <?php } else { ?>
         <div id="piechart_3d" style="width: 100%; height: 400px; margin-left: 1rem;"></div>
+    <?php } ?>
     <div style="height: 150px; overflow-y:auto;">
         <div class="table-responsive">
             <table class="table">

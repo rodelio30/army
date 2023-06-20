@@ -9,7 +9,10 @@ if ($result_years->num_rows > 0) {
     }
 }
 
-$total_years = count($academic_years);
+// Checking if academic_years is empty, assign true to $isEmpty
+$isEmpty = (empty($academic_years));
+
+$total_years = !$isEmpty ? count($academic_years) : 0;
 // query school names from school table
 $sql_schools = "SELECT * FROM schools";
 $result_schools = $conn->query($sql_schools);
@@ -61,6 +64,10 @@ while ($row = $result->fetch_assoc()) {
 </div>
 
 <div class="card-body py-1">
+    <?php if($isEmpty){ ?>
+        <h1 class="text-center mt-4">Empty</h1>
+    <?php } else { ?>
+
     <div class="table-responsive">
 
     <table class="table">
@@ -95,4 +102,6 @@ while ($row = $result->fetch_assoc()) {
       </tfoot>
     </table>
     </div>
+    
+    <?php } ?>
 </div>
