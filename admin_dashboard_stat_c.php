@@ -18,11 +18,17 @@ if ($result_schools->num_rows > 0) {
         $schools[$row_schools["school_id"]] = $row_schools["acronym"];
     }
 }
+
+// Checking if schools is empty, assign true to $isEmpty
+$isEmpty = (empty($schools));
 ?>
 <div class="card-header">
     <h5 class="card-title mb-0 text-center">Total Number of ROTC Graduates by School Year</h5>
 </div>
 <div class="card-body py-1">
+    <?php if($isEmpty){ ?>
+        <h1 class="text-center mt-4">Empty</h1>
+    <?php } else { ?>
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -54,4 +60,5 @@ if ($result_schools->num_rows > 0) {
       </tbody>
   </table>
   </div>
+    <?php } ?>
 </div>
