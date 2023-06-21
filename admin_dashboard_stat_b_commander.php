@@ -10,24 +10,31 @@
         $rank_acronym[] = $row['acronym'];
         $rows[] = $row;
     }
+	$isEmpty = (empty($rows));
   ?>
 <div class="card-header">
     <h5 class="card-title mb-0 text-center">Total of Reservist by Rank</h5>
 </div>
 <div class="card-body py-3">
-    <div class="chart chart-sm" style="height: 50%;">
-        <canvas id="chartjs-dashboard-bar"></canvas>
-    </div>
+    <?php if($isEmpty){ ?>
+			<h1 class="text-center mt-4">Empty</h1>
+    <?php } else { ?>
+			<div class="chart chart-sm" style="height: 50%;">
+					<canvas id="chartjs-dashboard-bar"></canvas>
+			</div>
+    <?php } ?>
     <div class="mt-1" style="height: 150px; overflow-y:auto;">
         <div class="table-responsive">
             <table class="table">
                 <tbody>
                     <?php
-                    foreach ($rows as $row) {
-                        echo "<tr>
-                                <td>" . $row['acronym'] . "</td>
-                                <td class='text-end'>"  . $row['total'] . "</td>
-                            </tr>";
+										if(!$isEmpty){
+											foreach ($rows as $row) {
+													echo "<tr>
+																	<td>" . $row['acronym'] . "</td>
+																	<td class='text-end'>"  . $row['total'] . "</td>
+															</tr>";
+											}
                     }
                     ?>
                 </tbody>

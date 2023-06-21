@@ -51,7 +51,7 @@ include 'admin_query_getter.php';
                       <h1 class="h3 mb-3"><a href="admin_reg_admin.php" class="linked-navigation">Admin List </a> / <?php echo $firstname . ' ' . $lastname ?></h1>
                     </div>
                     <div class="col-6">
-                      <a <?php echo "href=\"admin_reg_admin_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+                      <a <?php echo "href=\"admin_reg_admin_edit.php?ID=$reservist_id\" " ?> class="btn btn-md btn-outline-success mb-0" style="float:right">Update</a>
                     </div>
                   </div> 
                     <div class="row">

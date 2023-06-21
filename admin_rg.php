@@ -66,13 +66,13 @@ if($isReservist){
                                             if ($rg_counter > 0) {
 
                                                 if($isSchool){
-                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE status != 'archive' && school_id = '$public_school_id' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE user_status != 'archive' && school_id = '$public_school_id' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 } 
                                                 else if($isCommander){
-                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE status != 'archive' && company_id = $public_company_id ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE user_status != 'archive' && company_id = $public_company_id ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
                                                 else{
-                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
+                                                $result = mysqli_query($conn, "select reservist_id, firstname, middle_initial, lastname, extname, afpsn, rank_id, date_of_birth, home_address, date_graduated, school_id, status from reservists WHERE user_status != 'archive' ORDER BY date_modified") or die("Query for latest reservist....");
                                                 }
 
                                                 while (list($reservist_id, $firstname, $middle_initial, $lastname, $extname, $afpsn, $rank_id, $date_of_birth, $home_address, $date_graduated, $school_id, $status) = mysqli_fetch_array($result)) {

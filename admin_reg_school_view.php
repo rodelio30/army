@@ -51,7 +51,7 @@ include 'admin_query_getter_school.php';
               <?php 
               if($isSadmin || $isAdmin){
               ?>
-              <a <?php echo "href=\"admin_reg_school_edit.php?ID=$sch_id\" " ?> class="btn btn-md btn-outline-secondary mb-0" style="float:right">Update</a>
+              <a <?php echo "href=\"admin_reg_school_edit.php?ID=$sch_id\" " ?> class="btn btn-md btn-outline-success mb-0" style="float:right">Update</a>
               <?php } ?>
             </div>
           </div>
