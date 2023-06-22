@@ -13,13 +13,14 @@ $company_select   = '';
 $rids_select      = '';
 $student_select   = '';
 $course_select    = '';
-$announce_select   = '';
+$announce_select  = '';
 $appoint_select   = '';
 $training_select  = '';
 $seminar_select   = '';
 $aor_select       = '';
 $rotc_select      = '';
-$ts_select      = '';
+$ts_select        = '';
+$docu_select      = '';
 
 
 if ($nav_active == 'dashboard') {
@@ -84,6 +85,9 @@ if ($nav_active == 'rotc') {
 }
 if ($nav_active == 'ts_available') {
     $ts_select = 'active';
+}
+if ($nav_active == 'document') {
+    $docu_select = 'active';
 }
 
 if($isSadmin || $isAdmin || $isStaff){

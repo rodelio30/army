@@ -3,6 +3,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <h2>Appointments</h2>
                 <table id="archive_appointments" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
