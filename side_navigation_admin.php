@@ -15,6 +15,16 @@
                 </a>
             </li>
 
+            <li class="sidebar-header">
+                Documents 
+            </li>
+            
+            <li class="sidebar-item <?php echo $docu_select ?>">
+                <a class="sidebar-link" href="documents.php">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Documents</span>
+                </a>
+            </li>
+
             <?php 
                 if($isSadmin){
             ?>

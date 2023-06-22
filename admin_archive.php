@@ -26,9 +26,10 @@ if(!$isSadmin){
                     <?php include 'admin_archive_table_reservist.php'; ?>
                     <?php include 'admin_archive_admin_input.php'; ?>
                     <?php include 'admin_archive_trainings_seminars.php'; ?>
-                    <?php include 'admin_archive_announcements.php'; ?>
-                    <?php include 'admin_archive_appointments.php'; ?>
-                    <?php include 'admin_archive_aor.php'; ?>
+                    <?php include 'admin_archive_table_announcements.php'; ?>
+                    <?php include 'admin_archive_table_appointments.php'; ?>
+                    <?php include 'admin_archive_table_aor.php'; ?>
+                    <?php include 'admin_archive_documents.php'; ?>
                 </div>
             </main>
 
